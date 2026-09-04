@@ -1,18 +1,9 @@
-# Python bytecode and tool caches
+# Python bytecode
 __pycache__/
 *.py[codz]
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-.hypothesis/
-.coverage
-.coverage.*
-coverage.xml
-htmlcov/
 
 # Virtual environments
 .venv/
-.ci-venv/
 venv/
 env/
 
@@ -45,11 +36,8 @@ wheels/
 *.log
 *.pid
 
-# Local test and development output
-/.pytest-tmp/
+# Local development output
 /.cache/
-/.tox/
-/.nox/
 /docs/_build/
 /site/
 *.tmp
