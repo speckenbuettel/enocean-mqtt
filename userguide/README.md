@@ -58,7 +58,7 @@ The native installation uses a Git checkout and a Python virtual environment. Th
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/seneca-III/enocean-mqtt.git
+git clone https://github.com/speckenbuettel/enocean-mqtt.git
 cd enocean-mqtt
 ```
 
