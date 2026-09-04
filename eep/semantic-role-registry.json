@@ -1,0 +1,2025 @@
+{
+  "schema_version": "0.1",
+  "generated_at": "2026-06-18T13:24:04+00:00",
+  "source": "eep/semantic-role-mapping.json",
+  "role_count": 74,
+  "roles": [
+    {
+      "semantic_role": "actuator.switch",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "switch"
+      ],
+      "normalized_functions": [
+        "switch"
+      ],
+      "attributes": {},
+      "confidences": [
+        "low"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": [
+        "may also be setpoint, can be relay, lighting, …"
+      ]
+    },
+    {
+      "semantic_role": "astro.azimuth",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "azimuth",
+        "sunAzimuth"
+      ],
+      "normalized_functions": [
+        "azimuth"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "astro.elevation",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "elevation",
+        "sunElevation"
+      ],
+      "normalized_functions": [
+        "elevation"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "climate.day_night",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "setpoint",
+        "state"
+      ],
+      "function_keys": [
+        "dayNight",
+        "slideSwitch"
+      ],
+      "normalized_functions": [
+        "day_night"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "climate.fan_speed",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "setpoint"
+      ],
+      "function_keys": [
+        "fanSpeed",
+        "fanspeed"
+      ],
+      "normalized_functions": [
+        "fan_speed"
+      ],
+      "attributes": {},
+      "confidences": [
+        "medium"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": [
+        "may also be state in some EEPs",
+        "spelling variant of fanSpeed"
+      ]
+    },
+    {
+      "semantic_role": "climate.humidity",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "measurement",
+        "setpoint"
+      ],
+      "function_keys": [
+        "humidity",
+        "humiditySetpoint"
+      ],
+      "normalized_functions": [
+        "humidity"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "climate.supply_temperature",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "measurement"
+      ],
+      "function_keys": [
+        "feedTemperature"
+      ],
+      "normalized_functions": [
+        "supply_temperature"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "climate.temperature",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "measurement",
+        "setpoint"
+      ],
+      "function_keys": [
+        "roomTemperature",
+        "temperature",
+        "temperatureSetpoint"
+      ],
+      "normalized_functions": [
+        "temperature"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "climate.valve_position",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "valve"
+      ],
+      "normalized_functions": [
+        "valve_position"
+      ],
+      "attributes": {},
+      "confidences": [
+        "medium"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": [
+        "may also be setpoint"
+      ]
+    },
+    {
+      "semantic_role": "climate.window_state",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "window"
+      ],
+      "normalized_functions": [
+        "window_state"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": [
+        "thermostat window-open detection"
+      ]
+    },
+    {
+      "semantic_role": "control.timer",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "setpoint"
+      ],
+      "function_keys": [
+        "autoOffTimer",
+        "delayOffTimer",
+        "rampingTime",
+        "rampingTime1",
+        "rampingTime2",
+        "rampingTime3",
+        "randomEndDelay",
+        "randomStartDelay",
+        "rotationTime",
+        "switchTimer",
+        "timeout",
+        "verticalMovementTime"
+      ],
+      "normalized_functions": [
+        "timer"
+      ],
+      "attributes": {
+        "channel": [
+          "1",
+          "2",
+          "3"
+        ],
+        "timer_type": [
+          "auto_off",
+          "delay_off",
+          "ramping",
+          "random_end_delay",
+          "random_start_delay",
+          "rotation",
+          "switch",
+          "timeout",
+          "vertical_movement"
+        ]
+      },
+      "confidences": [
+        "medium"
+      ],
+      "review_statuses": [],
+      "notes": []
+    },
+    {
+      "semantic_role": "device.actuator_obstructed",
+      "channel_types": [
+        "device"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "actuatorObstructed"
+      ],
+      "normalized_functions": [
+        "actuator_obstructed"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [],
+      "notes": [
+        "deferred device-channel role"
+      ]
+    },
+    {
+      "semantic_role": "device.battery",
+      "channel_types": [
+        "device"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "battery",
+        "batteryLow",
+        "batteryLowClick"
+      ],
+      "normalized_functions": [
+        "battery"
+      ],
+      "attributes": {
+        "condition": [
+          "low",
+          "low_click"
+        ]
+      },
+      "confidences": [
+        "high",
+        "medium"
+      ],
+      "review_statuses": [],
+      "notes": [
+        "deferred device-channel role",
+        "deferred device-channel role; enables sound for low-battery"
+      ]
+    },
+    {
+      "semantic_role": "device.display_orientation",
+      "channel_types": [
+        "device"
+      ],
+      "capabilities": [
+        "configuration"
+      ],
+      "function_keys": [
+        "displayOrientation"
+      ],
+      "normalized_functions": [
+        "display_orientation"
+      ],
+      "attributes": {},
+      "confidences": [
+        "medium"
+      ],
+      "review_statuses": [],
+      "notes": [
+        "deferred device-channel role"
+      ]
+    },
+    {
+      "semantic_role": "device.energy_input",
+      "channel_types": [
+        "device"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "energyInput"
+      ],
+      "normalized_functions": [
+        "energy_input"
+      ],
+      "attributes": {},
+      "confidences": [
+        "medium"
+      ],
+      "review_statuses": [],
+      "notes": [
+        "deferred device-channel role; = harvesting status"
+      ]
+    },
+    {
+      "semantic_role": "device.energy_storage",
+      "channel_types": [
+        "device"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "energyStorage",
+        "energyStorageAvailability",
+        "energyStorageCharged"
+      ],
+      "normalized_functions": [
+        "energy_storage"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high",
+        "medium"
+      ],
+      "review_statuses": [],
+      "notes": [
+        "deferred device-channel role",
+        "deferred device-channel role = energy storage data available"
+      ]
+    },
+    {
+      "semantic_role": "device.error_code",
+      "channel_types": [
+        "device"
+      ],
+      "capabilities": [
+        "diagnostic"
+      ],
+      "function_keys": [
+        "errorCode"
+      ],
+      "normalized_functions": [
+        "error_code"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [],
+      "notes": [
+        "deferred device-channel role"
+      ]
+    },
+    {
+      "semantic_role": "device.local_control",
+      "channel_types": [
+        "device"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "localControl"
+      ],
+      "normalized_functions": [
+        "local_control"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [],
+      "notes": [
+        "deferred device-channel role"
+      ]
+    },
+    {
+      "semantic_role": "device.localization",
+      "channel_types": [
+        "device"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "localizationActive"
+      ],
+      "normalized_functions": [
+        "localization"
+      ],
+      "attributes": {},
+      "confidences": [
+        "medium"
+      ],
+      "review_statuses": [],
+      "notes": [
+        "deferred device-channel role"
+      ]
+    },
+    {
+      "semantic_role": "device.occupancy_enabled",
+      "channel_types": [
+        "device"
+      ],
+      "capabilities": [
+        "configuration"
+      ],
+      "function_keys": [
+        "occupancyEnabled"
+      ],
+      "normalized_functions": [
+        "occupancy_enabled"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [],
+      "notes": [
+        "deferred device-channel role"
+      ]
+    },
+    {
+      "semantic_role": "device.power_failure",
+      "channel_types": [
+        "device"
+      ],
+      "capabilities": [
+        "configuration",
+        "state"
+      ],
+      "function_keys": [
+        "powerFailureDetected",
+        "powerFailureDetection"
+      ],
+      "normalized_functions": [
+        "power_failure"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high",
+        "medium"
+      ],
+      "review_statuses": [],
+      "notes": [
+        "deferred device-channel role"
+      ]
+    },
+    {
+      "semantic_role": "device.radio_error",
+      "channel_types": [
+        "device"
+      ],
+      "capabilities": [
+        "diagnostic"
+      ],
+      "function_keys": [
+        "radioError"
+      ],
+      "normalized_functions": [
+        "radio_error"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [],
+      "notes": [
+        "deferred device-channel role"
+      ]
+    },
+    {
+      "semantic_role": "device.radio_signal_strength",
+      "channel_types": [
+        "device"
+      ],
+      "capabilities": [
+        "measurement"
+      ],
+      "function_keys": [
+        "radioSignalStrength"
+      ],
+      "normalized_functions": [
+        "radio_signal_strength"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [],
+      "notes": [
+        "deferred device-channel role"
+      ]
+    },
+    {
+      "semantic_role": "device.repeater",
+      "channel_types": [
+        "device"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "repeater"
+      ],
+      "normalized_functions": [
+        "repeater"
+      ],
+      "attributes": {},
+      "confidences": [
+        "medium"
+      ],
+      "review_statuses": [],
+      "notes": [
+        "deferred device-channel role"
+      ]
+    },
+    {
+      "semantic_role": "device.reporting_interval",
+      "channel_types": [
+        "device"
+      ],
+      "capabilities": [
+        "configuration"
+      ],
+      "function_keys": [
+        "communicationIntervall",
+        "maxTimeBetweenReports",
+        "minTimeBetweenReports",
+        "sensorUpdateInverval"
+      ],
+      "normalized_functions": [
+        "timer"
+      ],
+      "attributes": {
+        "limit": [
+          "max",
+          "min"
+        ]
+      },
+      "confidences": [
+        "medium"
+      ],
+      "review_statuses": [],
+      "notes": [
+        "deferred device-channel role",
+        "spelling from source retained"
+      ]
+    },
+    {
+      "semantic_role": "device.sensor_availability",
+      "channel_types": [
+        "device"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "temperatureAvailability"
+      ],
+      "normalized_functions": [
+        "sensor_availability"
+      ],
+      "attributes": {
+        "sensor": [
+          "temperature"
+        ]
+      },
+      "confidences": [
+        "medium"
+      ],
+      "review_statuses": [],
+      "notes": [
+        "deferred device-channel role"
+      ]
+    },
+    {
+      "semantic_role": "device.sensor_error",
+      "channel_types": [
+        "device"
+      ],
+      "capabilities": [
+        "diagnostic"
+      ],
+      "function_keys": [
+        "sensorError"
+      ],
+      "normalized_functions": [
+        "sensor_error"
+      ],
+      "attributes": {},
+      "confidences": [
+        "medium"
+      ],
+      "review_statuses": [],
+      "notes": [
+        "deferred device-channel role"
+      ]
+    },
+    {
+      "semantic_role": "device.service_mode",
+      "channel_types": [
+        "device"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "serviceMode"
+      ],
+      "normalized_functions": [
+        "service_mode"
+      ],
+      "attributes": {},
+      "confidences": [
+        "medium"
+      ],
+      "review_statuses": [],
+      "notes": [
+        "deferred device-channel role"
+      ]
+    },
+    {
+      "semantic_role": "device.summer_mode",
+      "channel_types": [
+        "device"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "summerMode"
+      ],
+      "normalized_functions": [
+        "summer_mode"
+      ],
+      "attributes": {},
+      "confidences": [
+        "medium"
+      ],
+      "review_statuses": [],
+      "notes": [
+        "deferred device-channel role"
+      ]
+    },
+    {
+      "semantic_role": "device.supply_voltage",
+      "channel_types": [
+        "device"
+      ],
+      "capabilities": [
+        "measurement"
+      ],
+      "function_keys": [
+        "supplyVoltage"
+      ],
+      "normalized_functions": [
+        "supply_voltage"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [],
+      "notes": [
+        "deferred device-channel role"
+      ]
+    },
+    {
+      "semantic_role": "device.time_format",
+      "channel_types": [
+        "device"
+      ],
+      "capabilities": [
+        "configuration"
+      ],
+      "function_keys": [
+        "timeFormat"
+      ],
+      "normalized_functions": [
+        "time_format"
+      ],
+      "attributes": {},
+      "confidences": [
+        "medium"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "device.user_activity",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "userActivity"
+      ],
+      "normalized_functions": [
+        "user_activity"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "device.user_interface",
+      "channel_types": [
+        "device"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "userInterfaceIndication"
+      ],
+      "normalized_functions": [
+        "user_interface"
+      ],
+      "attributes": {},
+      "confidences": [
+        "medium"
+      ],
+      "review_statuses": [],
+      "notes": [
+        "deferred device-channel role"
+      ]
+    },
+    {
+      "semantic_role": "electrical.current",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "measurement"
+      ],
+      "function_keys": [
+        "amperage",
+        "current1",
+        "current2",
+        "current3"
+      ],
+      "normalized_functions": [
+        "current"
+      ],
+      "attributes": {
+        "phase": [
+          "L1",
+          "L2",
+          "L3"
+        ]
+      },
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "electrical.voltage",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "measurement"
+      ],
+      "function_keys": [
+        "voltage"
+      ],
+      "normalized_functions": [
+        "voltage"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "environment",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "measurement"
+      ],
+      "function_keys": [
+        "sunEast",
+        "sunSouth",
+        "sunWest"
+      ],
+      "normalized_functions": [
+        "illuminance"
+      ],
+      "attributes": {},
+      "confidences": [
+        "low"
+      ],
+      "review_statuses": [],
+      "notes": []
+    },
+    {
+      "semantic_role": "environment.acceleration",
+      "channel_types": [
+        "device",
+        "semantic"
+      ],
+      "capabilities": [
+        "measurement",
+        "state"
+      ],
+      "function_keys": [
+        "accelerationStatus",
+        "accelerationX",
+        "accelerationY",
+        "accelerationZ"
+      ],
+      "normalized_functions": [
+        "acceleration"
+      ],
+      "attributes": {
+        "axis": [
+          "x",
+          "y",
+          "z"
+        ]
+      },
+      "confidences": [
+        "high",
+        "medium"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": [
+        "deferred device-channel role"
+      ]
+    },
+    {
+      "semantic_role": "environment.barometric_pressure",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "measurement"
+      ],
+      "function_keys": [
+        "barometer"
+      ],
+      "normalized_functions": [
+        "barometric_pressure"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "environment.gas_concentration",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "measurement"
+      ],
+      "function_keys": [
+        "1Pentanol",
+        "2Butanol",
+        "2Methylpropanol",
+        "4Phenylcyclohexene",
+        "acetaldehydeue",
+        "aceticAcid",
+        "acetone",
+        "ammoniac",
+        "benzene",
+        "butyricAcid",
+        "cadaverine",
+        "caproicAcid",
+        "co2",
+        "concentration",
+        "cyclopentane",
+        "diethylEther",
+        "dimethylSulfide",
+        "ethanol",
+        "ethyleneOxide",
+        "formaldehyde",
+        "hydrogenSulfide",
+        "indole",
+        "isovalericAcid",
+        "limonene",
+        "methanol",
+        "nHexane",
+        "nOctane",
+        "naphthalene",
+        "ozone",
+        "propioniceAcid",
+        "putrescine",
+        "radon",
+        "styrene",
+        "tetrachloroethylene",
+        "toluene",
+        "trichloroethylene",
+        "valericAcid",
+        "voctTotal",
+        "xylene"
+      ],
+      "normalized_functions": [
+        "gas_concentration"
+      ],
+      "attributes": {
+        "substance": [
+          "1pentanol",
+          "2butanol",
+          "2methylpropanol",
+          "4phenylcyclohexene",
+          "acetaldehyde",
+          "aceticacid",
+          "acetone",
+          "ammonia",
+          "benzene",
+          "butyricacid",
+          "cadaverine",
+          "caproicacid",
+          "co2",
+          "cyclopentane",
+          "diethylether",
+          "dimethylsulfide",
+          "ethanol",
+          "ethyleneoxide",
+          "formaldehyde",
+          "generic",
+          "hydrogensulfide",
+          "indole",
+          "isovalericacid",
+          "limonene",
+          "methanol",
+          "naphthalene",
+          "nhexane",
+          "noctane",
+          "ozone",
+          "propionicacid",
+          "putrescine",
+          "radon",
+          "styrene",
+          "tetrachloroethylene",
+          "toluene",
+          "trichloroethylene",
+          "valericacid",
+          "voc_total",
+          "xylene"
+        ]
+      },
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": [
+        "special gas substance; low practical relevance for home automation"
+      ]
+    },
+    {
+      "semantic_role": "environment.illuminance",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "measurement",
+        "setpoint"
+      ],
+      "function_keys": [
+        "dawnSensor",
+        "illuminance",
+        "illumination",
+        "illuminationSetpoint"
+      ],
+      "normalized_functions": [
+        "illuminance"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "environment.particle_concentration",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "measurement"
+      ],
+      "function_keys": [
+        "particles_1",
+        "particles_10",
+        "particles_2_5"
+      ],
+      "normalized_functions": [
+        "particle_concentration"
+      ],
+      "attributes": {
+        "particle_size": [
+          "pm1",
+          "pm10",
+          "pm2_5"
+        ]
+      },
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "environment.rain",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "rainIndication"
+      ],
+      "normalized_functions": [
+        "rain"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "environment.solar_radiation",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "measurement"
+      ],
+      "function_keys": [
+        "solarRadiation"
+      ],
+      "normalized_functions": [
+        "solar_radiation"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "environment.sound_direction",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "measurement"
+      ],
+      "function_keys": [
+        "sourceLocalization"
+      ],
+      "normalized_functions": [
+        "sound_direction"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "environment.sound_pressure",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "measurement"
+      ],
+      "function_keys": [
+        "averageSoundLevel",
+        "picSoundLevel",
+        "soundPressure"
+      ],
+      "normalized_functions": [
+        "sound_pressure"
+      ],
+      "attributes": {
+        "variant": [
+          "average",
+          "peak"
+        ]
+      },
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": [
+        "peak; spelling source says pic"
+      ]
+    },
+    {
+      "semantic_role": "environment.wind",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "wind"
+      ],
+      "normalized_functions": [
+        "wind"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "environment.wind_direction",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "measurement"
+      ],
+      "function_keys": [
+        "windDirection"
+      ],
+      "normalized_functions": [
+        "wind_direction"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "environment.wind_speed",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "measurement"
+      ],
+      "function_keys": [
+        "windSpeed",
+        "windSpeedAverage",
+        "windSpeedMax"
+      ],
+      "normalized_functions": [
+        "wind_speed"
+      ],
+      "attributes": {
+        "variant": [
+          "average",
+          "maximum"
+        ]
+      },
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "geo.position",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "latitude",
+        "longitude"
+      ],
+      "normalized_functions": [
+        "position"
+      ],
+      "attributes": {
+        "coordinate": [
+          "latitude",
+          "longitude"
+        ]
+      },
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "io.input",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "measurement",
+        "state"
+      ],
+      "function_keys": [
+        "analogInput",
+        "digitalInput0",
+        "digitalInput1",
+        "digitalInput2",
+        "digitalInput3",
+        "wakeStatus"
+      ],
+      "normalized_functions": [
+        "input"
+      ],
+      "attributes": {
+        "channel": [
+          "1",
+          "2",
+          "3"
+        ],
+        "signal_type": [
+          "analog",
+          "digital",
+          "trigger"
+        ]
+      },
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "lighting.brightness",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "setpoint",
+        "state"
+      ],
+      "function_keys": [
+        "dimValue",
+        "dimming"
+      ],
+      "normalized_functions": [
+        "brightness"
+      ],
+      "attributes": {},
+      "confidences": [
+        "medium"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": [
+        "may also be setpoint",
+        "may also be state"
+      ]
+    },
+    {
+      "semantic_role": "lighting.color",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "setpoint",
+        "state"
+      ],
+      "function_keys": [
+        "blue",
+        "dimValueBlue",
+        "dimValueGreen",
+        "dimValueRed",
+        "green",
+        "red"
+      ],
+      "normalized_functions": [
+        "color"
+      ],
+      "attributes": {
+        "color_channel": [
+          "blue",
+          "green",
+          "red"
+        ]
+      },
+      "confidences": [
+        "medium"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "lighting.operating_hours",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "operatingHours"
+      ],
+      "normalized_functions": [
+        "operating_hours"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "metering.counter",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "measurement"
+      ],
+      "function_keys": [
+        "cumulativeCounter",
+        "currentCounter"
+      ],
+      "normalized_functions": [
+        "counter"
+      ],
+      "attributes": {
+        "variant": [
+          "cumulative",
+          "current"
+        ]
+      },
+      "confidences": [
+        "medium"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "metering.energy",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "measurement"
+      ],
+      "function_keys": [
+        "energy",
+        "energyDelta"
+      ],
+      "normalized_functions": [
+        "energy"
+      ],
+      "attributes": {
+        "variant": [
+          "delta"
+        ]
+      },
+      "confidences": [
+        "high",
+        "medium"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": [
+        "incremental energy change"
+      ]
+    },
+    {
+      "semantic_role": "metering.flowrate",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "measurement"
+      ],
+      "function_keys": [
+        "flowrate"
+      ],
+      "normalized_functions": [
+        "flowrate"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "metering.level",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "measurement"
+      ],
+      "function_keys": [
+        "materialLevel"
+      ],
+      "normalized_functions": [
+        "level"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "metering.power",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "measurement"
+      ],
+      "function_keys": [
+        "power",
+        "powerDelta"
+      ],
+      "normalized_functions": [
+        "power"
+      ],
+      "attributes": {
+        "variant": [
+          "delta"
+        ]
+      },
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": [
+        "incremental power change"
+      ]
+    },
+    {
+      "semantic_role": "metering.power_utilization",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "measurement",
+        "state"
+      ],
+      "function_keys": [
+        "absoluteRelativePowerUsage",
+        "maxMinPowerUsage",
+        "powerUsage"
+      ],
+      "normalized_functions": [
+        "power_utilization"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "metering.volume",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "measurement"
+      ],
+      "function_keys": [
+        "volume"
+      ],
+      "normalized_functions": [
+        "volume"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "position.angle",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "angle"
+      ],
+      "normalized_functions": [
+        "angle"
+      ],
+      "attributes": {},
+      "confidences": [
+        "low"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": [
+        "may also be rotational angle, may also be setpoint"
+      ]
+    },
+    {
+      "semantic_role": "security.contact_state",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "contact"
+      ],
+      "normalized_functions": [
+        "contact_state"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "security.fire_alarm",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "alarm"
+      ],
+      "normalized_functions": [
+        "fire_alarm"
+      ],
+      "attributes": {},
+      "confidences": [
+        "medium"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": [
+        "only used in F6-05-02; here \"smoke alarm\""
+      ]
+    },
+    {
+      "semantic_role": "security.handle_position",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "handle"
+      ],
+      "normalized_functions": [
+        "handle_position"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "security.intrusion_alarm",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "burglaryAlarm",
+        "protectionPlusAlarm",
+        "vibration"
+      ],
+      "normalized_functions": [
+        "intrusion_alarm"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": [
+        "in the context of A5-14-xx: intrusion alarm"
+      ]
+    },
+    {
+      "semantic_role": "security.leak",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "leakDetection",
+        "liquidDetected",
+        "pastLeakDetection"
+      ],
+      "normalized_functions": [
+        "leak"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "security.lock_state",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "locked"
+      ],
+      "normalized_functions": [
+        "lock_state"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "security.motion",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "motionDetected"
+      ],
+      "normalized_functions": [
+        "motion"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "security.occupancy",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "activity",
+        "occupancy",
+        "occupancyButton",
+        "presence",
+        "unoccupancyButton"
+      ],
+      "normalized_functions": [
+        "occupancy"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": [
+        "user-triggered event"
+      ]
+    },
+    {
+      "semantic_role": "shading",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "command"
+      ],
+      "function_keys": [
+        "alarmAction"
+      ],
+      "normalized_functions": [],
+      "attributes": {},
+      "confidences": [
+        "low"
+      ],
+      "review_statuses": [],
+      "notes": []
+    },
+    {
+      "semantic_role": "shading.movement",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "command",
+        "state"
+      ],
+      "function_keys": [
+        "movement",
+        "repositioning",
+        "stop"
+      ],
+      "normalized_functions": [
+        "movement"
+      ],
+      "attributes": {
+        "action": [
+          "stop"
+        ]
+      },
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "shading.position",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "setpoint",
+        "state"
+      ],
+      "function_keys": [
+        "endPosition",
+        "position"
+      ],
+      "normalized_functions": [
+        "position"
+      ],
+      "attributes": {
+        "variant": [
+          "end_position"
+        ]
+      },
+      "confidences": [
+        "high",
+        "medium"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "time.datetime",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "amPm",
+        "day",
+        "hour",
+        "minute",
+        "month",
+        "second",
+        "weekday",
+        "year"
+      ],
+      "normalized_functions": [
+        "datetime"
+      ],
+      "attributes": {
+        "component": [
+          "am_pm",
+          "day",
+          "hour",
+          "minute",
+          "month",
+          "second",
+          "weekday",
+          "year"
+        ]
+      },
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    },
+    {
+      "semantic_role": "time.duration",
+      "channel_types": [
+        "semantic"
+      ],
+      "capabilities": [
+        "state"
+      ],
+      "function_keys": [
+        "time"
+      ],
+      "normalized_functions": [
+        "duration"
+      ],
+      "attributes": {},
+      "confidences": [
+        "high"
+      ],
+      "review_statuses": [
+        "ok"
+      ],
+      "notes": []
+    }
+  ]
+}

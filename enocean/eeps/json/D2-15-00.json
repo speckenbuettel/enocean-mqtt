@@ -1,0 +1,129 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:10.805+0200"
+   },
+   "profile": {
+      "eep": "D2-15-00",
+      "title": "People Activit Sensor",
+      "functionGroups": [
+         {
+            "title": "EPAC",
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "activity",
+                  "description": "Activity could be counted at PIR, but with cumulative counter also past activities are considered in case of telegram lose ",
+                  "values": [
+                     {
+                        "meaning": "Activity[%]=(PIRCounterCurrentTel - PIRCounterLastTel)*(time[s]/(ArrivalCurrentTel[s] - ArrivalPreviousTel[s]))",
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 1
+                        }
+                     },
+                     {
+                        "value": "unavailable",
+                        "meaning": "Activity is currently not availble"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "unavailable"
+               },
+               {
+                  "key": "energyStorage",
+                  "description": "Energy storage status",
+                  "values": [
+                     {
+                        "value": "critical",
+                        "meaning": "Critical"
+                     },
+                     {
+                        "value": "high",
+                        "meaning": "High"
+                     },
+                     {
+                        "value": "low",
+                        "meaning": "Low"
+                     },
+                     {
+                        "value": "medium",
+                        "meaning": "Medium"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "high"
+               },
+               {
+                  "key": "pirCounter",
+                  "description": "Amount of times that PIR activity has been counted. ",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 65535,
+                           "step": 1,
+                           "unit": "Activations"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "presence",
+                  "description": "Presence detector ",
+                  "values": [
+                     {
+                        "value": "noPresenceDetected",
+                        "meaning": "Not present"
+                     },
+                     {
+                        "value": "presenceDetected",
+                        "meaning": "Present"
+                     },
+                     {
+                        "value": "presenceDetectionError",
+                        "meaning": "Presence Detection Error"
+                     },
+                     {
+                        "value": "presenceNotDetectable",
+                        "meaning": "Not detectable"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "noPresenceDetected"
+               },
+               {
+                  "key": "time",
+                  "description": "Discrete interval in which the activity is considered.",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 1,
+                           "max": 16,
+                           "step": 1,
+                           "unit": "s"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

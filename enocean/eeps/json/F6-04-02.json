@@ -1,0 +1,30 @@
+{
+  "header" : {
+    "httpStatus" : 200,
+    "content" : "profile",
+    "gateway" : "DC-GW/EO-IP v1.15.011",
+    "timestamp" : "2020-09-17T14:34:53.581+0200"
+  },
+  "profile" : {
+    "eep" : "F6-04-02",
+    "title" : "Position Switch, Home and Office Application, Key Card Activated Switch ERP2",
+    "functionGroups" : [ {
+      "direction" : "from",
+      "functions" : [ {
+        "key" : "stateOfCard",
+        "description" : "State of the card",
+        "values" : [ {
+          "value" : "inserted",
+          "meaning" : "Card inserted"
+        }, {
+          "value" : "removed",
+          "meaning" : "Card taken out"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      } ]
+    } ],
+    "version" : 0.9
+  }
+}

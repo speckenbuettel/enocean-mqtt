@@ -1,0 +1,95 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:04.295+0200"
+   },
+   "profile": {
+      "eep": "A5-14-06",
+      "title": "Multi-Func Sensor, Vibration/Tilt, Illumination and Supply voltage monitor",
+      "functionGroups": [
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "errorCode",
+                  "description": "Error code from supply voltage byte",
+                  "values": [
+                     {
+                        "meaning": "Error code from supply voltage byte",
+                        "range": {
+                           "min": 251,
+                           "max": 255,
+                           "step": 1
+                        }
+                     },
+                     {
+                        "value": "noError",
+                        "meaning": "No error reported"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "illumination",
+                  "description": "Illumination (linear)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 1000,
+                           "step": 4,
+                           "unit": "lx"
+                        }
+                     },
+                     {
+                        "value": "overRange",
+                        "meaning": "Illumination is over sensor range"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "supplyVoltage",
+                  "description": "Supply voltage (linear)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 5,
+                           "step": 0.02,
+                           "unit": "V"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "vibration",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "No vibration detected"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Vibration detected"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

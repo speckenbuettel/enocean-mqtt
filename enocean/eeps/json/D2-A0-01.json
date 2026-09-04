@@ -1,0 +1,67 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:11.484+0200"
+   },
+   "profile": {
+      "eep": "D2-A0-01",
+      "title": "Standard Valve, Valve Control",
+      "functionGroups": [
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "valve",
+                  "description": "Status of valve",
+                  "values": [
+                     {
+                        "value": "close",
+                        "meaning": "Valve is closed"
+                     },
+                     {
+                        "value": "open",
+                        "meaning": "Valve is opened"
+                     },
+                     {
+                        "value": "undefined",
+                        "meaning": "State of valve is undefined or valve is actually moving"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "valve",
+                  "description": "Request to operate the valve",
+                  "values": [
+                     {
+                        "value": "close",
+                        "meaning": "Request to close valve"
+                     },
+                     {
+                        "value": "open",
+                        "meaning": "Request to open valve"
+                     },
+                     {
+                        "value": "query",
+                        "meaning": "Request to query state of valve"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

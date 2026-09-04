@@ -1,0 +1,524 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:08.634+0200"
+   },
+   "profile": {
+      "eep": "D2-01-09",
+      "title": "Electronic switches and dimmers with Energy Measurement and Local Control",
+      "functionGroups": [
+         {
+            "title": "Actuator Set Output",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "dimValue",
+                  "values": [
+                     {
+                        "meaning": "Output value 0% to 100%",
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 1,
+                           "unit": "%"
+                        }
+                     },
+                     {
+                        "value": "invalid",
+                        "meaning": "Output value not valid / not applicable"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "testExists": true
+               },
+               {
+                  "key": "rampingMode",
+                  "values": [
+                     {
+                        "value": "rampingTime1",
+                        "meaning": "Dim to new output value using rampingTime1"
+                     },
+                     {
+                        "value": "rampingTime2",
+                        "meaning": "Dim to new output value using rampingTime2"
+                     },
+                     {
+                        "value": "rampingTime3",
+                        "meaning": "Dim to new output value using rampingTime3"
+                     },
+                     {
+                        "value": "stop",
+                        "meaning": "Stop dimming"
+                     },
+                     {
+                        "value": "switch",
+                        "meaning": "Switch to new output value"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "testExists": true,
+                  "defaultValue": "rampingTime1"
+               }
+            ]
+         },
+         {
+            "title": "Configure Actuator",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "defaultState",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "Default state: 0% or OFF"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "Default state: 100% or ON"
+                     },
+                     {
+                        "value": "previousState",
+                        "meaning": "Default state: remember previous state"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "previousState"
+               },
+               {
+                  "key": "overcurrentSwitchOffReset",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Reset over current shut down: not active"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Reset over current shut down: trigger signal"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "false"
+               },
+               {
+                  "key": "rampingTime1",
+                  "values": [
+                     {
+                        "meaning": "Dim timer 1",
+                        "range": {
+                           "min": 0.5,
+                           "max": 7.5,
+                           "step": 0.5,
+                           "unit": "s"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": 1
+               },
+               {
+                  "key": "rampingTime2",
+                  "values": [
+                     {
+                        "meaning": "Dim timer 2",
+                        "range": {
+                           "min": 0.5,
+                           "max": 7.5,
+                           "step": 0.5,
+                           "unit": "s"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": 4
+               },
+               {
+                  "key": "rampingTime3",
+                  "values": [
+                     {
+                        "meaning": "Dim timer 3",
+                        "range": {
+                           "min": 0.5,
+                           "max": 7.5,
+                           "step": 0.5,
+                           "unit": "s"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": 7.5
+               },
+               {
+                  "key": "taughtInDevices",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "Disable taught-in devices (with different EEP)"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "Enable taught-in devices (with different EEP)"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "on"
+               }
+            ]
+         },
+         {
+            "title": "Actuator Status Response",
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "dimValue",
+                  "values": [
+                     {
+                        "meaning": "Output value 0% to 100%",
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 1,
+                           "unit": "%"
+                        }
+                     },
+                     {
+                        "value": "invalid",
+                        "meaning": "Output value not valid / not applicable"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "testExists": true
+               },
+               {
+                  "key": "errorCode",
+                  "values": [
+                     {
+                        "value": "failure",
+                        "meaning": "Error level 2: hardware failure"
+                     },
+                     {
+                        "value": "noError",
+                        "meaning": "Error level 0: hardware OK"
+                     },
+                     {
+                        "value": "notSupported",
+                        "meaning": "Error level not supported"
+                     },
+                     {
+                        "value": "warning",
+                        "meaning": "Error level 1: hardware warning"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "localControl",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "Local control disabled / not supported"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "Local control enabled"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "overcurrentSwitchOff",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Over current switch off: ready / not supported"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Over current switch off: executed"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Set Energy Measurement",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "energyDelta",
+                  "description": "Delta of energy to be reported",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 4095000,
+                           "step": 0.000278,
+                           "unit": "Wh"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "maxTimeBetweenReports",
+                  "description": "Measurement Response messages",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 10,
+                           "max": 2550,
+                           "step": 10,
+                           "unit": "s"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": 60
+               },
+               {
+                  "key": "minTimeBetweenReports",
+                  "description": "Measurement Response messages",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 255,
+                           "step": 1,
+                           "unit": "s"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": 10
+               },
+               {
+                  "key": "reportMeasurement",
+                  "values": [
+                     {
+                        "value": "queryAndAuto",
+                        "meaning": "Report measurement: query / auto reporting"
+                     },
+                     {
+                        "value": "queryOnly",
+                        "meaning": "Report measurement: query only"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "queryAndAuto"
+               },
+               {
+                  "key": "resetMeasurement",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Reset measurement: not active"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Reset measurement: trigger signal"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "false"
+               }
+            ]
+         },
+         {
+            "title": "Set Power Measurement",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "maxTimeBetweenReports",
+                  "description": "Measurement Response messages",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 10,
+                           "max": 2550,
+                           "step": 10,
+                           "unit": "s"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": 60
+               },
+               {
+                  "key": "minTimeBetweenReports",
+                  "description": "Measurement Response messages",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 255,
+                           "step": 1,
+                           "unit": "s"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": 10
+               },
+               {
+                  "key": "powerDelta",
+                  "description": "Delta of power to be reported",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 4095000,
+                           "step": 1,
+                           "unit": "W"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "reportMeasurement",
+                  "values": [
+                     {
+                        "value": "queryAndAuto",
+                        "meaning": "Report measurement: query / auto reporting"
+                     },
+                     {
+                        "value": "queryOnly",
+                        "meaning": "Report measurement: query only"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "queryAndAuto"
+               },
+               {
+                  "key": "resetMeasurement",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Reset measurement: not active"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Reset measurement: trigger signal"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "false"
+               }
+            ]
+         },
+         {
+            "title": "Actuator Query",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "query",
+                  "values": [
+                     {
+                        "value": "energy",
+                        "meaning": "Query energy"
+                     },
+                     {
+                        "value": "power",
+                        "meaning": "Query power"
+                     },
+                     {
+                        "value": "status",
+                        "meaning": "Query status"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Actuator Measurement Response",
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "energy",
+                  "description": "Cumulative electricity value from meter",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 4294967295000,
+                           "step": 0.000278,
+                           "unit": "Wh"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "power",
+                  "description": "Current power value from meter",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 4294967295000,
+                           "step": 1,
+                           "unit": "W"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

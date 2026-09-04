@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% set active_page = "configuration" %}
+
+{% block title %}enocean-mqtt Settings{% endblock %}
+
+{% block styles %}
+  <link rel="stylesheet" href="/static/css/configuration.css?v=20260829-1">
+{% endblock %}
+
+{% block main_class %} configuration-main{% endblock %}
+
+{% block content %}
+  <div class="configuration-page">
+    <header class="configuration-header compact-card">
+      <div>
+        <p class="eyebrow">Configuration</p>
+        <h1>Settings</h1>
+      </div>
+      <div id="configurationStatus" class="overall-health neutral">
+        <span class="status-dot"></span>
+        <span id="configurationStatusText">Loading</span>
+      </div>
+    </header>
+
+    <section id="configurationGrid" class="configuration-grid" aria-live="polite">
+      <article class="compact-card configuration-section">
+        <div class="card-heading"><h2>Configuration</h2></div>
+        <p>Loading settings…</p>
+      </article>
+    </section>
+
+    <footer class="configuration-actions compact-card">
+      <div id="configurationMessage" class="configuration-message"></div>
+      <div class="configuration-buttons">
+        <button id="restartGatewayButton" class="configuration-button" type="button" disabled>
+          Restart gateway
+        </button>
+        <button id="saveConfigurationButton" class="configuration-button primary" type="button" disabled>
+          Save settings
+        </button>
+      </div>
+    </footer>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="/static/js/configuration.js?v=20260829-1"></script>
+{% endblock %}

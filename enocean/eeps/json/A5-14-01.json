@@ -1,0 +1,74 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:03.801+0200"
+   },
+   "profile": {
+      "eep": "A5-14-01",
+      "title": "Multi-Func Sensor, Single Input Contact (Window/Door), Supply voltage monitor",
+      "functionGroups": [
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "contact",
+                  "values": [
+                     {
+                        "value": "closed",
+                        "meaning": "Contact closed"
+                     },
+                     {
+                        "value": "open",
+                        "meaning": "Contact open"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "errorCode",
+                  "description": "Error code from supply voltage byte",
+                  "values": [
+                     {
+                        "meaning": "Error code from supply voltage byte",
+                        "range": {
+                           "min": 251,
+                           "max": 255,
+                           "step": 1
+                        }
+                     },
+                     {
+                        "value": "noError",
+                        "meaning": "No error reported"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "supplyVoltage",
+                  "description": "Supply voltage (linear)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 5,
+                           "step": 0.02,
+                           "unit": "V"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

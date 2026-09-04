@@ -1,0 +1,739 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProfileCertification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="./Certification_EEP.xsd"  schemaVersion="0.9">
+	<EEP rorg="0xA5"	func="0x09"	type="0x0D">
+	<TestCase>
+	<Name>Teach-in Test</Name>
+	<Test>
+		<Name>Unidirectional Teach-in Test</Name>
+	    <Step>
+			<Dataset>
+	<Telegram rorg="0xA5" length="4">
+	<Byte order="0" ignoremask="0x0">36</Byte>
+	<Byte order="1" ignoremask="0x07">104</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0x00">0x80</Byte>
+	</Telegram>
+	<RealData>
+  	<Data>
+    	<Type>RORG</Type>
+    	<Value>0xA5</Value>
+  	</Data>
+  	<Data>
+    	<Type>FUNC</Type>
+    	<Value>0x09</Value>
+  	</Data>
+  	<Data>
+    	<Type>TYPE</Type>
+    	<Value>0x0D</Value>
+  	</Data>
+  	</RealData>
+    </Dataset>
+    </Step>
+    </Test>
+   	</TestCase>
+	<TestCase>
+	<Name>humidity
+			
+			
+			
+			</Name>
+	<Test>
+            <Name>Min humidity
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xA5" length="4">
+	<Byte order="0" ignoremask="0x0">0x0</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>humidity
+			
+			
+			
+			</Type>
+                <Value>0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	<Test>
+            <Name>Mid humidity
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xA5" length="4">
+	<Byte order="0" ignoremask="0x0">0x64</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>humidity
+			
+			
+			
+			</Type>
+                <Value>50</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	<Test>
+            <Name>Max humidity
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xA5" length="4">
+	<Byte order="0" ignoremask="0x0">0xC8</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>humidity
+			
+			
+			
+			</Type>
+                <Value>100</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	</TestCase>
+	<TestCase>
+	<Name>
+			TVOC
+			
+			
+			</Name>
+	<Test>
+            <Name>Min 
+			TVOC
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xA5" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0x0">0x0</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>
+			TVOC
+			
+			
+			</Type>
+                <Value>0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	<Test>
+            <Name>Mid 
+			TVOC
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xA5" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0x0">0x64</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>
+			TVOC
+			
+			
+			</Type>
+                <Value>50</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	<Test>
+            <Name>Max 
+			TVOC
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xA5" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0x0">0xC8</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>
+			TVOC
+			
+			
+			</Type>
+                <Value>100</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	</TestCase>
+	<TestCase>
+	<Name>temperature
+			
+			
+			
+			</Name>
+	<Test>
+            <Name>Min temperature
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xA5" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0x0">0x0</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>temperature
+			
+			
+			
+			</Type>
+                <Value>0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	<Test>
+            <Name>Mid temperature
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xA5" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0x0">0x7D</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>temperature
+			
+			
+			
+			</Type>
+                <Value>25</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	<Test>
+            <Name>Max temperature
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xA5" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0x0">0xFA</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>temperature
+			
+			
+			
+			</Type>
+                <Value>51.0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	</TestCase>
+	<TestCase>
+	<Name>CMF-T
+			
+			
+			</Name>
+	<Test>
+            <Name>Temperature out of Comfort Zone CMF-T
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xA5" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0x7F">0x0</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>CMF-T
+			
+			
+			</Type>
+                <Value>0x0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>Temperature in Comfort Zone CMF-T
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xA5" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0x7F">0x1</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>CMF-T
+			
+			
+			</Type>
+                <Value>0x1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	</TestCase>
+	<TestCase>
+	<Name>CMF-rh
+			
+			
+			</Name>
+	<Test>
+            <Name>humidity out of Comfort Zone CMF-rh
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xA5" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xBF">0x0</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>CMF-rh
+			
+			
+			</Type>
+                <Value>0x0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>humidity in Comfort Zone CMF-rh
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xA5" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xBF">0x1</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>CMF-rh
+			
+			
+			</Type>
+                <Value>0x1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	</TestCase>
+	<TestCase>
+	<Name>unused</Name>
+	<Test>
+            <Name>always = 1 unused Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xA5" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xDF">0x1</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>unused</Type>
+                <Value>0x1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	</TestCase>
+	<TestCase>
+	<Name>unused</Name>
+	<Test>
+            <Name>always = 0 unused Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xA5" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xEF">0x0</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>unused</Type>
+                <Value>0x0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	</TestCase>
+	<TestCase>
+	<Name>LrnBit
+			
+			
+			
+			</Name>
+	<Test>
+            <Name>Teach-in telegram LrnBit
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xA5" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xF7">0x0</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>LrnBit
+			
+			
+			
+			</Type>
+                <Value>0x0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>Data Telegram LrnBit
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xA5" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xF7">0x1</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>LrnBit
+			
+			
+			
+			</Type>
+                <Value>0x1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	</TestCase>
+	<TestCase>
+	<Name>IAQ
+			
+			
+			</Name>
+	<Test>
+            <Name>excellent Air Quality TVOC = 0...10% IAQ
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xA5" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xF8">0x0</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>IAQ
+			
+			
+			</Type>
+                <Value>0x0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>Good Air Quality, TVOC = 10,5....20% IAQ
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xA5" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xF8">0x1</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>IAQ
+			
+			
+			</Type>
+                <Value>0x1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>lightly polluted air, TVOC = 20,5....30% IAQ
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xA5" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xF8">0x2</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>IAQ
+			
+			
+			</Type>
+                <Value>0x2</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>moderately polluted air, TVOC = 30,5...40% IAQ
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xA5" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xF8">0x3</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>IAQ
+			
+			
+			</Type>
+                <Value>0x3</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>heavily polluted air; TVOC = 40,5...50% IAQ
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xA5" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xF8">0x4</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>IAQ
+			
+			
+			</Type>
+                <Value>0x4</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>severely polluted air; TVOC = 50,5...70% IAQ
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xA5" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xF8">0x5</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>IAQ
+			
+			
+			</Type>
+                <Value>0x5</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>extremely polluted air; TVOC > 70% IAQ
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xA5" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xF8">0x6</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>IAQ
+			
+			
+			</Type>
+                <Value>0x6</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>invalid air quality IAQ
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xA5" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xF8">0x7</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>IAQ
+			
+			
+			</Type>
+                <Value>0x7</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	</TestCase>
+	<TestCase>
+      <Name>unusedFieldTest</Name>
+      <Test>
+        <Name>unused field test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="4" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+	</EEP>
+ </ProfileCertification>

@@ -1,0 +1,36 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:11.732+0200"
+   },
+   "profile": {
+      "eep": "D5-00-01",
+      "title": "Contacts and Switches, Single Input Contact",
+      "functionGroups": [
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "contact",
+                  "values": [
+                     {
+                        "value": "closed",
+                        "meaning": "Closed"
+                     },
+                     {
+                        "value": "open",
+                        "meaning": "Open"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

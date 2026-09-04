@@ -1,0 +1,54 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:00.397+0200"
+   },
+   "profile": {
+      "eep": "A5-10-0B",
+      "title": "Room Operating Panel, Temperature Sensor and Single Input Contact",
+      "functionGroups": [
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "contact",
+                  "description": "Contact state",
+                  "values": [
+                     {
+                        "value": "closed",
+                        "meaning": "Closed"
+                     },
+                     {
+                        "value": "open",
+                        "meaning": "Open"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "temperature",
+                  "description": "Temperature (linear)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 40,
+                           "step": 0.157,
+                           "unit": "°C"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

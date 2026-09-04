@@ -1,0 +1,64 @@
+# Python bytecode and tool caches
+__pycache__/
+*.py[codz]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# Virtual environments
+.venv/
+.ci-venv/
+venv/
+env/
+
+# Packaging and build output
+build/
+dist/
+*.egg-info/
+.eggs/
+wheels/
+
+# Local runtime configuration and secrets
+/config/config.json
+/config/config.json_old
+/config/devices.json
+/config/virtual-devices.json
+/config/sender-id-registry.json
+/config/device-controller-mappings.json
+/config/secrets/
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+.pypirc
+
+# Runtime data, captures and exports
+/data/
+/export/
+/testdata/
+*.log
+*.pid
+
+# Local test and development output
+/.pytest-tmp/
+/.cache/
+/.tox/
+/.nox/
+/docs/_build/
+/site/
+*.tmp
+*.bak
+*~
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

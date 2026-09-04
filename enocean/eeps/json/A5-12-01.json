@@ -1,0 +1,93 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:02.627+0200"
+   },
+   "profile": {
+      "eep": "A5-12-01",
+      "title": "Automated Meter Reading (AMR), Electricity",
+      "functionGroups": [
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "channel",
+                  "description": "Tariff info",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 15,
+                           "step": 1
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "energy",
+                  "description": "Cumulative electricity value from meter",
+                  "values": [
+                     {
+                        "meaning": "Cumulative electricity value",
+                        "range": {
+                           "min": 0,
+                           "max": 16777215000,
+                           "step": 1,
+                           "unit": "Wh"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "channel",
+                  "description": "Tariff info",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 15,
+                           "step": 1
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "power",
+                  "description": "Current electricity value from meter",
+                  "values": [
+                     {
+                        "meaning": "Current electricity value",
+                        "range": {
+                           "min": 0,
+                           "max": 16777215,
+                           "step": 1,
+                           "unit": "W"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

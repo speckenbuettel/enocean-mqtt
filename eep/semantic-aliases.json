@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "description": "Canonical aliases for semantic enum input values used by runtime TX encoding and future API/MQTT normalization.",
+  "aliases": {
+    "on": [
+      "1",
+      "true",
+      "yes",
+      "on",
+      "enabled",
+      "active"
+    ],
+    "off": [
+      "0",
+      "false",
+      "no",
+      "off",
+      "disabled",
+      "inactive"
+    ],
+    "open": [
+      "1",
+      "true",
+      "open"
+    ],
+    "closed": [
+      "0",
+      "false",
+      "closed",
+      "close"
+    ],
+    "normal_operation": [
+      "0",
+      "false",
+      "normal",
+      "normal_operation"
+    ],
+    "reference_run": [
+      "1",
+      "true",
+      "reference_run"
+    ],
+    "summer_mode": [
+      "1",
+      "true",
+      "summer_mode"
+    ]
+  },
+  "derived_values": {
+    "opening.contact": {
+      "value_bool": {
+        "open": true,
+        "closed": false
+      }
+    },
+    "lighting.switch": {
+      "value_bool": {
+        "on": true,
+        "off": false
+      }
+    }
+  }
+}

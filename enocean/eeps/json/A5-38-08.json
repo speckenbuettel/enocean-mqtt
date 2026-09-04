@@ -1,0 +1,361 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:06.195+0200"
+   },
+   "profile": {
+      "eep": "A5-38-08",
+      "title": "Central Command, Gateway",
+      "functionGroups": [
+         {
+            "title": "Switching",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "locked",
+                  "description": "Lock for duration time if time >0, unlimited time if timer==0. During lock phase no other commands will be accepted or executed. Locking may be cleared with „unlock“",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Unlock the locked device."
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Lock for duration time if timer>0, unlimited time if timer==0. During lock phase no other commands except \"unlock\" will be accepted or executed."
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "false"
+               },
+               {
+                  "key": "switch",
+                  "description": "Switching Command ON/OFF",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "Off"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "On"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "switchType",
+                  "description": "Duration or Delay",
+                  "values": [
+                     {
+                        "value": "delay",
+                        "meaning": "Execute switching command after delay defined by timer"
+                     },
+                     {
+                        "value": "duration",
+                        "meaning": "Execute switching command immediately and switch back after duration defined by timer"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "duration"
+               },
+               {
+                  "key": "time",
+                  "description": "Timer of duration or delay",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0.1,
+                           "max": 6553.5,
+                           "step": 0.1,
+                           "unit": "s"
+                        }
+                     },
+                     {
+                        "value": "0",
+                        "meaning": "No time specified"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": 0
+               }
+            ]
+         },
+         {
+            "title": "Dimming",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "dimValue",
+                  "values": [
+                     {
+                        "meaning": "Output value 0% to 100%",
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 0.392,
+                           "unit": "%"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "testExists": true
+               },
+               {
+                  "key": "rampingTime",
+                  "values": [
+                     {
+                        "meaning": "Time to reach specified dimValue",
+                        "range": {
+                           "min": 0,
+                           "max": 255,
+                           "step": 1,
+                           "unit": "s"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "testExists": true,
+                  "defaultValue": 0
+               },
+               {
+                  "key": "storeFinalValue",
+                  "description": "Store final value",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Do not store final value"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Store final value"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "testExists": true,
+                  "defaultValue": "false"
+               },
+               {
+                  "key": "switch",
+                  "description": "Switching Command ON/OFF",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "Off"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "On"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "testExists": true,
+                  "defaultValue": "on"
+               }
+            ]
+         },
+         {
+            "title": "Setpoint shift",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "setpointShift",
+                  "description": "Setpoint shift",
+                  "values": [
+                     {
+                        "range": {
+                           "min": -12.7,
+                           "max": 12.8,
+                           "step": 0.1,
+                           "unit": "°C"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Basic Setpoint",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "basicSetpoint",
+                  "description": "Basic Setpoint",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 51.2,
+                           "step": 0.201,
+                           "unit": "°C"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Control variable",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "control",
+                  "description": "Controller state",
+                  "values": [
+                     {
+                        "value": "auto",
+                        "meaning": "Controller is automatic"
+                     },
+                     {
+                        "value": "override",
+                        "meaning": "Controller is override by another device"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "controlVariable",
+                  "description": "Control variable override",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 0.392,
+                           "unit": "%"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "energyHoldOff",
+                  "description": "Energy Hold Off",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Normal operation"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Energy hold off / Dew point"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "mode",
+                  "description": "Controller Mode",
+                  "values": [
+                     {
+                        "value": "auto",
+                        "meaning": "Controller has automatic selection"
+                     },
+                     {
+                        "value": "cooling",
+                        "meaning": "Controller is cooling"
+                     },
+                     {
+                        "value": "heating",
+                        "meaning": "Controller is heating"
+                     },
+                     {
+                        "value": "off",
+                        "meaning": "Controller is off"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "occupancy",
+                  "description": "Room occupancy",
+                  "values": [
+                     {
+                        "value": "occupied",
+                        "meaning": "Occupied"
+                     },
+                     {
+                        "value": "standby",
+                        "meaning": "Standby"
+                     },
+                     {
+                        "value": "unoccupied",
+                        "meaning": "Unoccupied"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Fan stage",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "fanSpeed",
+                  "description": "FanStage override",
+                  "values": [
+                     {
+                        "value": "auto",
+                        "meaning": "Fan speed Auto"
+                     },
+                     {
+                        "value": "speed0",
+                        "meaning": "Fan speed 0"
+                     },
+                     {
+                        "value": "speed1",
+                        "meaning": "Fan speed 1"
+                     },
+                     {
+                        "value": "speed2",
+                        "meaning": "Fan speed 2"
+                     },
+                     {
+                        "value": "speed3",
+                        "meaning": "Fan speed 3"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

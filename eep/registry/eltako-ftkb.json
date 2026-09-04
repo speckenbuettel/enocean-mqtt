@@ -1,0 +1,250 @@
+{
+  "profile_type": "manufacturer_extension",
+  "eep": "eltako-ftkb",
+  "base_eep": "D5-00-01",
+  "rorg": "D5",
+  "func": "00",
+  "type": "01",
+  "manufacturer": "Eltako",
+  "model": "FTKB",
+  "func_description": "Contact and proprietary voltage telegrams",
+  "type_description": "Eltako FTKB window and door contact with additional voltage telegram",
+  "description": "Eltako FTKB window and door contact with solar cell, battery backup and additional voltage telegram",
+  "source": "Eltako FTKB documentation",
+  "source_version": "30 000 424 - 1 / 38-2022",
+  "sources": {
+    "manufacturer_pdf": [
+      "Eltako FTKB - Bedienungsanleitung (30 000 424 - 1, 2022-38).pdf"
+    ],
+    "legacy_profile": [
+      "eltako-ftkb.json"
+    ]
+  },
+  "direction": "unidirectional",
+  "device_class": "sensor",
+  "channels": [
+    {
+      "name": "contact",
+      "display_name": null,
+      "description": "Window or door contact state",
+      "semantic_role": "opening.contact",
+      "object_type": "state",
+      "semantic_confidence": "high",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 8,
+          "label": "open",
+          "description": "Contact open"
+        },
+        {
+          "value": 9,
+          "label": "closed",
+          "description": "Contact closed"
+        }
+      ],
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "battery_voltage",
+      "display_name": null,
+      "description": "Battery voltage",
+      "semantic_role": "power.battery_voltage",
+      "object_type": "measurement",
+      "semantic_confidence": "high",
+      "data_type": "float",
+      "unit": "V",
+      "ranges": [
+        {
+          "min": 0,
+          "max": 5,
+          "step": 0.02,
+          "unit": "V"
+        }
+      ],
+      "value_resolution": 0.02,
+      "value_precision": 2,
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "energy_storage_voltage",
+      "display_name": null,
+      "description": "Energy storage voltage",
+      "semantic_role": "power.energy_storage_voltage",
+      "object_type": "measurement",
+      "semantic_confidence": "high",
+      "data_type": "float",
+      "unit": "V",
+      "ranges": [
+        {
+          "min": 0,
+          "max": 5,
+          "step": 0.02,
+          "unit": "V"
+        }
+      ],
+      "value_resolution": 0.02,
+      "value_precision": 2,
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    }
+  ],
+  "telegrams": [
+    {
+      "telegram_type_id": "eltako-ftkb.contact_status",
+      "telegram_id": {
+        "rorg": "D5",
+        "legacy_org": "0x06"
+      },
+      "description": "Standard D5-00-01 contact telegram",
+      "fields": [
+        {
+          "name": "contact",
+          "offset": 0,
+          "size": 8,
+          "shortcut": "DB3",
+          "description": "Window or door contact state",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "contact",
+          "field_ref": "contact",
+          "enum": [
+            {
+              "value": 8,
+              "label": "open"
+            },
+            {
+              "value": 9,
+              "label": "closed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "eltako-ftkb.voltage_status",
+      "telegram_id": {
+        "rorg": "A5",
+        "legacy_org": "0x07"
+      },
+      "description": "FTKB proprietary voltage telegram",
+      "fields": [
+        {
+          "name": "energy_storage_voltage",
+          "offset": 0,
+          "size": 8,
+          "shortcut": "DB3",
+          "description": "Energy storage voltage",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "battery_voltage",
+          "offset": 8,
+          "size": 8,
+          "shortcut": "DB2",
+          "description": "Battery voltage",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_db1",
+          "offset": 16,
+          "size": 8,
+          "shortcut": "DB1",
+          "description": "Reserved / fixed zero byte",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "voltage_status_marker",
+          "offset": 24,
+          "size": 8,
+          "shortcut": "DB0",
+          "description": "Manufacturer-defined voltage status marker",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload",
+          "constant": 8
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "battery_voltage",
+          "field_ref": "battery_voltage",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 255,
+            "scale_min": 0.0,
+            "scale_max": 5.0
+          }
+        },
+        {
+          "channel_ref": "energy_storage_voltage",
+          "field_ref": "energy_storage_voltage",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 255,
+            "scale_min": 0.0,
+            "scale_max": 5.0
+          }
+        }
+      ],
+      "constraints": [
+        {
+          "field": "reserved_db1",
+          "equals": 0
+        },
+        {
+          "field": "voltage_status_marker",
+          "equals": 8
+        }
+      ]
+    }
+  ],
+  "tx": {
+    "aggregation_window_seconds": 10
+  },
+  "metadata": {
+    "curation_status": "curated",
+    "curated_by": "llm_assisted_review",
+    "source_notes": [
+      "Migrated from the legacy proprietary profile to Registry v3.",
+      "The contact telegram follows the legacy D5-00-01/ORG 0x06 contact representation used by the existing runtime profile.",
+      "The voltage telegram is manufacturer-specific and uses legacy ORG 0x07 with DB3=energy storage voltage, DB2=battery voltage, DB1=0x00 and DB0=0x08.",
+      "Telegram direction is intentionally omitted so the same semantic telegram definition can be used for physical RX decoding and virtual-device TX encoding."
+    ]
+  }
+}

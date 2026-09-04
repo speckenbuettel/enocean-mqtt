@@ -1,0 +1,319 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:09.669+0200"
+   },
+   "profile": {
+      "eep": "D2-01-12",
+      "title": "Electronic switches and dimmers with Energy Measurement and Local Control",
+      "functionGroups": [
+         {
+            "title": "Actuator Set Output",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "channel",
+                  "values": [
+                     {
+                        "meaning": "Output channel (to load)",
+                        "range": {
+                           "min": 0,
+                           "max": 1,
+                           "step": 1
+                        }
+                     },
+                     {
+                        "value": "all",
+                        "meaning": "All output channels supported by the device"
+                     },
+                     {
+                        "value": "input",
+                        "meaning": "Input channel (from mains supply)"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "testExists": true
+               },
+               {
+                  "key": "switch",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "Output value OFF"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "Output value ON"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "testExists": true
+               }
+            ]
+         },
+         {
+            "title": "Actuator Status Response",
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "channel",
+                  "values": [
+                     {
+                        "meaning": "Output channel (to load)",
+                        "range": {
+                           "min": 0,
+                           "max": 1,
+                           "step": 1
+                        }
+                     },
+                     {
+                        "value": "input",
+                        "meaning": "Input channel (from mains supply)"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "switch",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "Output value OFF"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "Output value ON"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Actuator Set External Interface Settings",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "autoOffTimer",
+                  "description": "Timer to automatically set OFF output channel when it is set ON",
+                  "values": [
+                     {
+                        "meaning": "Timer ON",
+                        "range": {
+                           "min": 0,
+                           "max": 6553,
+                           "step": 0.1,
+                           "unit": "s"
+                        }
+                     },
+                     {
+                        "value": "0",
+                        "meaning": "Timer OFF"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "delayOffTimer",
+                  "description": "Delay timer before setting output channel to OFF value received by radio cmd",
+                  "values": [
+                     {
+                        "meaning": "Delay Timer ON",
+                        "range": {
+                           "min": 0,
+                           "max": 6553,
+                           "step": 0.1,
+                           "unit": "s"
+                        }
+                     },
+                     {
+                        "value": "0",
+                        "meaning": "Delay Timer OFF"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "extButton",
+                  "description": "External interface mode",
+                  "values": [
+                     {
+                        "value": "autoDetect",
+                        "meaning": "Auto detect"
+                     },
+                     {
+                        "value": "extPushButton",
+                        "meaning": "External Push Button"
+                     },
+                     {
+                        "value": "extSwitch",
+                        "meaning": "External Switch"
+                     },
+                     {
+                        "value": "notApplicable",
+                        "meaning": "Not applicable"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "switchingState",
+                  "description": "Switching state",
+                  "values": [
+                     {
+                        "value": "0",
+                        "meaning": "Change of key state sets ON or OFF"
+                     },
+                     {
+                        "value": "1",
+                        "meaning": "Specific ON/OFF positions. ON when contacs are closed. OFF when contacs are open"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Actuator External Interface Query",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "channel",
+                  "values": [
+                     {
+                        "meaning": "Output channel (to load)",
+                        "range": {
+                           "min": 0,
+                           "max": 1,
+                           "step": 1
+                        }
+                     },
+                     {
+                        "value": "all",
+                        "meaning": "All output channels supported by the device"
+                     },
+                     {
+                        "value": "input",
+                        "meaning": "Input channel (from mains supply)"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Actuator External Interface Repsonse",
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "autoOffTimer",
+                  "description": "Timer to automatically set OFF output channel when it is set ON",
+                  "values": [
+                     {
+                        "meaning": "Timer ON",
+                        "range": {
+                           "min": 0,
+                           "max": 6553,
+                           "step": 0.1,
+                           "unit": "s"
+                        }
+                     },
+                     {
+                        "value": "0",
+                        "meaning": "Timer OFF"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "delayOffTimer",
+                  "description": "Delay timer before setting output channel to OFF value received by radio cmd",
+                  "values": [
+                     {
+                        "meaning": "Delay Timer ON",
+                        "range": {
+                           "min": 0,
+                           "max": 6553,
+                           "step": 0.1,
+                           "unit": "s"
+                        }
+                     },
+                     {
+                        "value": "0",
+                        "meaning": "Delay Timer OFF"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "extButton",
+                  "description": "External interface mode",
+                  "values": [
+                     {
+                        "value": "autoDetect",
+                        "meaning": "Auto detect"
+                     },
+                     {
+                        "value": "extPushButton",
+                        "meaning": "External Push Button"
+                     },
+                     {
+                        "value": "extSwitch",
+                        "meaning": "External Switch"
+                     },
+                     {
+                        "value": "notApplicable",
+                        "meaning": "Not applicable"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "switchingState",
+                  "description": "Switching state",
+                  "values": [
+                     {
+                        "value": "0",
+                        "meaning": "Change of key state sets ON or OFF"
+                     },
+                     {
+                        "value": "1",
+                        "meaning": "Specific ON/OFF positions. ON when contacs are closed. OFF when contacs are open"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

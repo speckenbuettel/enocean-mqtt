@@ -1,0 +1,45 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}enocean-mqtt{% endblock %}</title>
+  <link rel="stylesheet" href="/static/css/web-ui.css">
+  <link rel="icon" type="image/png" href="/static/favicon.png">
+  {% block styles %}{% endblock %}
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="app-nav" aria-label="Main navigation">
+      <div class="nav-brand">
+        <img src="/static/logo.png" class="nav-logo" alt="enocean-mqtt">
+        <div>
+          <div class="nav-title">enocean-mqtt</div>
+          {% if request.state.web_user %}
+            <div class="nav-subtitle">User: {{ request.state.web_user }}</div>
+          {% endif %}
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a class="nav-link{% if active_page == 'dashboard' %} active{% endif %}" href="/">Dashboard</a>
+        <a class="nav-link{% if active_page == 'busmonitor' %} active{% endif %}" href="/busmonitor">Bus Monitor</a>
+        <a class="nav-link{% if active_page == 'devices' %} active{% endif %}" href="/devices-ui">Device Management</a>
+        <a class="nav-link{% if active_page == 'metrics' %} active{% endif %}" href="/metrics-ui">EnOcean Metrics</a>
+        <a class="nav-link{% if active_page == 'runtime' %} active{% endif %}" href="/runtime-ui">System</a>
+        <a class="nav-link{% if active_page == 'configuration' %} active{% endif %}" href="/configuration-ui">Settings</a>
+        <a class="nav-link{% if active_page == 'documentation' %} active{% endif %}" href="/docs">Documentation</a>
+      </nav>
+      {% if request.state.web_user %}
+        <form method="post" action="/logout" class="nav-logout-form">
+          <button type="submit" class="nav-logout-button">Log out</button>
+        </form>
+      {% endif %}
+    </aside>
+    <main class="app-main {% block main_class %}{% endblock %}">
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

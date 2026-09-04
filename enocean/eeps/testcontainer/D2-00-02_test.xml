@@ -1,0 +1,766 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProfileCertification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="./Certification_EEP.xsd"  schemaVersion="0.9">
+	<EEP rorg="0xD2"	func="0x00"	type="0x02">
+	<TestCase>
+	<Name>Teach-in Test</Name>
+	<Test>
+		<Name>Unidirectional Teach-in Test</Name>
+	    <Step>
+			<Dataset>
+	<Telegram rorg="0xD4" length="7">
+	<Byte order="0" ignoremask="0xFF">0x80</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0x00">0x02</Byte>
+	<Byte order="5" ignoremask="0x00">0x00</Byte>
+	<Byte order="6" ignoremask="0x00">0xD2</Byte>
+	</Telegram>
+	<RealData>
+  	<Data>
+    	<Type>RORG</Type>
+    	<Value>0xD2</Value>
+  	</Data>
+  	<Data>
+    	<Type>FUNC</Type>
+    	<Value>0x00</Value>
+  	</Data>
+  	<Data>
+    	<Type>TYPE</Type>
+    	<Value>0x02</Value>
+  	</Data>
+  	</RealData>
+    </Dataset>
+    </Step>
+    </Test>
+   	</TestCase>
+	<TestCase>
+	<Name>Heating Temperature Setpoint
+			
+			
+			
+			
+			
+			
+			
+			
+			</Name>
+	<Test>
+            <Name>Min Heating Temperature Setpoint
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="4">
+	<Byte order="0" ignoremask="0x0">0x0</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Heating Temperature Setpoint
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	<Test>
+            <Name>Mid Heating Temperature Setpoint
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="4">
+	<Byte order="0" ignoremask="0x0">0x7D</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Heating Temperature Setpoint
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>25</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	<Test>
+            <Name>Max Heating Temperature Setpoint
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="4">
+	<Byte order="0" ignoremask="0x0">0xFA</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Heating Temperature Setpoint
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>50</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	<Test>
+            <Name>No Change Heating Temperature Setpoint
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="4">
+	<Byte order="0" ignoremask="0x0">0xFF</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Heating Temperature Setpoint
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0xFF</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Delta T Cooling setpoint
+			
+			
+			
+			
+			
+			
+			</Name>
+	<Test>
+            <Name>Min Delta T Cooling setpoint
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0x0">0x14</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Delta T Cooling setpoint
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>2</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	<Test>
+            <Name>Mid Delta T Cooling setpoint
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0x0">0x73</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Delta T Cooling setpoint
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>11</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	<Test>
+            <Name>Max Delta T Cooling setpoint
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0x0">0xFA</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Delta T Cooling setpoint
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>25.0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	<Test>
+            <Name>No change Delta T Cooling setpoint
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0x0">0xFF</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Delta T Cooling setpoint
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0xFF</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Free cooling delta T setpoint
+			
+			
+			
+			</Name>
+	<Test>
+            <Name>Min Free cooling delta T setpoint
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0x0">0x0</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Free cooling delta T setpoint
+			
+			
+			
+			</Type>
+                <Value>-15</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	<Test>
+            <Name>Mid Free cooling delta T setpoint
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0x0">0x64</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Free cooling delta T setpoint
+			
+			
+			
+			</Type>
+                <Value>10</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	<Test>
+            <Name>Max Free cooling delta T setpoint
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0x0">0xC8</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Free cooling delta T setpoint
+			
+			
+			
+			</Type>
+                <Value>5</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	<Test>
+            <Name>No change Free cooling delta T setpoint
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0x0">0xFF</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Free cooling delta T setpoint
+			
+			
+			
+			</Type>
+                <Value>0xFF</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	</TestCase>
+	<TestCase>
+	<Name>
+			Change Over
+			</Name>
+	<Test>
+            <Name>Mid Season 
+			Change Over
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xE7">0x0</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>
+			Change Over
+			</Type>
+                <Value>0x0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>Heating Season 
+			Change Over
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xE7">0x1</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>
+			Change Over
+			</Type>
+                <Value>0x1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>Cooling Season 
+			Change Over
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xE7">0x2</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>
+			Change Over
+			</Type>
+                <Value>0x2</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>No Change 
+			Change Over
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xE7">0x3</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>
+			Change Over
+			</Type>
+                <Value>0x3</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Thermal Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			</Name>
+	<Test>
+            <Name>Comfort Thermal Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xF8">0x0</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Thermal Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>Eco Thermal Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xF8">0x1</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Thermal Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>Night Thermal Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xF8">0x2</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Thermal Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x2</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>Maintenance Thermal Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xF8">0x3</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Thermal Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x3</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>Defrost Thermal Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xF8">0x4</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Thermal Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x4</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	</TestCase>
+	<TestCase>
+      <Name>unusedFieldTest</Name>
+      <Test>
+        <Name>unused field test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="4" length="4">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+	</EEP>
+ </ProfileCertification>

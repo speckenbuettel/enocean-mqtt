@@ -1,0 +1,125 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:02.201+0200"
+   },
+   "profile": {
+      "eep": "A5-10-21",
+      "title": "Room Operating Panel, Temperature, Humidity and Set Point with Special Heating States",
+      "functionGroups": [
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "batteryLow",
+                  "description": "Battery change needed",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Battery is OK"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Battery is low"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "humidity",
+                  "description": "Rel. humidity (linear)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 0.4,
+                           "unit": "%"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "setpoint",
+                  "description": "Set point (manufacturer specific)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 255,
+                           "step": 1
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "setpointMode",
+                  "description": "Selection of heating mode",
+                  "values": [
+                     {
+                        "value": "auto",
+                        "meaning": "Automatic control (e.g. defined by time program)"
+                     },
+                     {
+                        "value": "frost",
+                        "meaning": "Frost protection"
+                     },
+                     {
+                        "value": "setpoint",
+                        "meaning": "Room temperature is defined by Set point"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "temperature",
+                  "description": "Temperature (linear)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 40,
+                           "step": 0.16,
+                           "unit": "°C"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "userActivity",
+                  "description": "User intervention action on device",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "No user intervention action on device"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "User intervention action on device"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

@@ -1,0 +1,1717 @@
+{
+  "profile_type": "standard",
+  "eep": "A5-20-06",
+  "rorg": "A5",
+  "func": "20",
+  "type": "06",
+  "func_description": "HVAC Components",
+  "type_description": "Harvesting-powered actuator with local temperature offset control (BI-DIR)",
+  "description": "Harvesting-powered actuator with local temperature offset control (BI-DIR)",
+  "source": "EnOcean Equipment Profiles / IP Representation",
+  "sources": {
+    "xml": [
+      "enocean/eeps/xml/A5-20-06.xml"
+    ],
+    "pdf": [
+      "enocean/eeps/pdf/A5-20-06.pdf"
+    ],
+    "ip_pdf": [
+      "enocean/eeps/pdf/A5-20-06_ip.pdf"
+    ],
+    "semantic_mapping": [
+      "eep/semantic-role-mapping.json"
+    ],
+    "eep_list": [
+      "eep/eep-list.csv"
+    ]
+  },
+  "direction": "bidirectional",
+  "device_class": "actuator_bidirectional",
+  "function_groups": [
+    {
+      "name": "operation_mode_temperature_control",
+      "title": "Operation mode: Temperature control",
+      "direction": "from",
+      "functions": [
+        "actuator_obstructed",
+        "energy_input_enabled",
+        "energy_storage_charged",
+        "feed_temperature",
+        "radio_error",
+        "radio_signal_strength",
+        "local_ambient_temperature",
+        "local_temperature_setpoint",
+        "valve_position",
+        "window_open_detection"
+      ]
+    },
+    {
+      "name": "operating_mode_valve_position_control",
+      "title": "Operating Mode: Valve Position Control",
+      "direction": "from",
+      "functions": [
+        "actuator_obstructed",
+        "energy_input_enabled",
+        "energy_storage_charged",
+        "feed_temperature",
+        "radio_error",
+        "radio_signal_strength",
+        "local_offset",
+        "local_ambient_temperature",
+        "valve_position",
+        "window_open_detection"
+      ]
+    },
+    {
+      "name": "control_actuator_via_valve_position",
+      "title": "Control actuator via valve position",
+      "direction": "to",
+      "functions": [
+        "communication_interval",
+        "temperature_selection",
+        "valve_position"
+      ]
+    },
+    {
+      "name": "run_actuator_internal_temperature_control_loop_with_rcu_providing_room_temperature",
+      "title": "Run actuator-internal temperature control loop with RCU providing room temperature",
+      "direction": "to",
+      "functions": [
+        "communication_interval",
+        "room_temperature",
+        "temperature_selection",
+        "temperature_setpoint"
+      ]
+    },
+    {
+      "name": "run_actuator_internal_temperature_control_loop_room_temperature_is_estimated_based_on_the_actuator_s_internal_sensors",
+      "title": "Run actuator-internal temperature control loop, room temperature is estimated based on the actuator's internal sensors",
+      "direction": "to",
+      "functions": [
+        "communication_interval",
+        "temperature_selection",
+        "temperature_setpoint"
+      ]
+    },
+    {
+      "name": "configuration_mode",
+      "title": "Configuration mode",
+      "direction": "to",
+      "functions": [
+        "reference_run",
+        "standby",
+        "summer_mode"
+      ]
+    }
+  ],
+  "channels": [
+    {
+      "name": "valve_position",
+      "display_name": null,
+      "description": "Current valve position",
+      "source_key": "valve",
+      "function_group": "operation_mode_temperature_control",
+      "semantic_role": "climate.valve_position",
+      "object_type": "state",
+      "semantic_confidence": "high",
+      "data_type": "integer",
+      "unit": "%",
+      "ranges": [
+        {
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%"
+        }
+      ],
+      "value_resolution": 1.0,
+      "value_precision": 0,
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "local_offset_mode",
+      "display_name": null,
+      "description": "Local offset mode defines the interpretation of the LO field",
+      "semantic_role": "enocean.selector",
+      "object_type": "selector",
+      "semantic_confidence": "high",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "relative_offset_temperature",
+          "description": "LO is relative offset temperature"
+        },
+        {
+          "value": 1,
+          "label": "absolute_temperature",
+          "description": "LO is absolute temperature"
+        }
+      ],
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      }
+    },
+    {
+      "name": "local_offset",
+      "display_name": null,
+      "description": "Local offset reported by the actuator when LOM selects relative offset mode",
+      "source_key": "setpointShift",
+      "function_group": "operating_mode_valve_position_control",
+      "semantic_role": "climate.temperature",
+      "object_type": "setpoint",
+      "semantic_confidence": "high",
+      "data_type": "enum",
+      "unit": "°C",
+      "enum": [
+        {
+          "value": 0,
+          "label": "offset_0c"
+        },
+        {
+          "value": 1,
+          "label": "offset_plus_1c"
+        },
+        {
+          "value": 2,
+          "label": "offset_plus_2c"
+        },
+        {
+          "value": 3,
+          "label": "offset_plus_3c"
+        },
+        {
+          "value": 4,
+          "label": "offset_plus_4c"
+        },
+        {
+          "value": 5,
+          "label": "offset_plus_5c"
+        },
+        {
+          "value": 123,
+          "label": "offset_minus_5c"
+        },
+        {
+          "value": 124,
+          "label": "offset_minus_4c"
+        },
+        {
+          "value": 125,
+          "label": "offset_minus_3c"
+        },
+        {
+          "value": 126,
+          "label": "offset_minus_2c"
+        },
+        {
+          "value": 127,
+          "label": "offset_minus_1c"
+        }
+      ],
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "local_temperature_setpoint",
+      "display_name": null,
+      "description": "Local absolute temperature setpoint reported via LO when LOM selects absolute temperature mode",
+      "source_key": "temperatureSetpoint",
+      "function_group": "operation_mode_temperature_control",
+      "semantic_role": "climate.temperature",
+      "object_type": "setpoint",
+      "semantic_confidence": "high",
+      "data_type": "float",
+      "unit": "°C",
+      "ranges": [
+        {
+          "min": 0,
+          "max": 40,
+          "step": 0.5,
+          "unit": "°C"
+        }
+      ],
+      "value_resolution": 0.5,
+      "value_precision": 1,
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "local_ambient_temperature",
+      "display_name": null,
+      "description": "Local ambient temperature reported by the actuator",
+      "source_key": "temperature",
+      "function_group": "operation_mode_temperature_control",
+      "semantic_role": "climate.temperature",
+      "object_type": "measurement",
+      "semantic_confidence": "high",
+      "data_type": "float",
+      "unit": "°C",
+      "ranges": [
+        {
+          "min": 0,
+          "max": 40,
+          "step": 0.5,
+          "unit": "°C"
+        }
+      ],
+      "value_resolution": 0.5,
+      "value_precision": 1,
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "feed_temperature",
+      "display_name": null,
+      "description": "Feed temperature reported by the actuator",
+      "source_key": "feedTemperature",
+      "function_group": "operation_mode_temperature_control",
+      "semantic_role": "climate.supply_temperature",
+      "object_type": "measurement",
+      "semantic_confidence": "high",
+      "data_type": "float",
+      "unit": "°C",
+      "ranges": [
+        {
+          "min": 0,
+          "max": 80,
+          "step": 0.5,
+          "unit": "°C"
+        }
+      ],
+      "value_resolution": 0.5,
+      "value_precision": 1,
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "temperature_selection",
+      "display_name": null,
+      "description": "Selects whether TMP represents ambient or feed temperature",
+      "semantic_role": "enocean.selector",
+      "object_type": "selector",
+      "semantic_confidence": "high",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "ambient_sensor_temperature",
+          "description": "Ambient sensor temperature"
+        },
+        {
+          "value": 1,
+          "label": "feed_sensor_temperature",
+          "description": "Feed sensor temperature"
+        }
+      ],
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      }
+    },
+    {
+      "name": "energy_input_enabled",
+      "display_name": null,
+      "description": "Harvesting status",
+      "source_key": "energyInput",
+      "function_group": "operation_mode_temperature_control",
+      "semantic_role": "device.energy_input",
+      "object_type": "state",
+      "semantic_confidence": "high",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "not_harvesting",
+          "description": "Not harvesting"
+        },
+        {
+          "value": 1,
+          "label": "harvesting_active",
+          "description": "Harvesting active"
+        }
+      ],
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      }
+    },
+    {
+      "name": "energy_storage_charged",
+      "display_name": null,
+      "description": "Charge level of energy storage",
+      "source_key": "energyStorageCharged",
+      "function_group": "operation_mode_temperature_control",
+      "semantic_role": "device.energy_storage",
+      "object_type": "state",
+      "semantic_confidence": "high",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "low_almost_discharged",
+          "description": "Low, almost discharged"
+        },
+        {
+          "value": 1,
+          "label": "sufficiently_charged",
+          "description": "Sufficiently charged"
+        }
+      ],
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      }
+    },
+    {
+      "name": "window_open_detection",
+      "display_name": null,
+      "description": "Window open detection",
+      "source_key": "window",
+      "function_group": "operation_mode_temperature_control",
+      "semantic_role": "climate.window_state",
+      "object_type": "state",
+      "semantic_confidence": "high",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "closed",
+          "description": "No window open detected"
+        },
+        {
+          "value": 1,
+          "label": "open",
+          "description": "Window open detected"
+        }
+      ],
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      }
+    },
+    {
+      "name": "telegram_type",
+      "display_name": null,
+      "description": "LRN bit / telegram type",
+      "semantic_role": "enocean.telegram",
+      "object_type": "state",
+      "semantic_confidence": "high",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "teach_in_telegram",
+          "description": "Teach-in telegram"
+        },
+        {
+          "value": 1,
+          "label": "data_telegram",
+          "description": "Data telegram"
+        }
+      ],
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": true,
+        "default_value": "data_telegram",
+        "required_for_snapshot": false
+      }
+    },
+    {
+      "name": "radio_error",
+      "display_name": null,
+      "description": "Indicates radio communication error",
+      "source_key": "radioError",
+      "function_group": "operation_mode_temperature_control",
+      "semantic_role": "enocean.radio",
+      "object_type": "diagnostic",
+      "semantic_confidence": "high",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "radio_communication_stable",
+          "description": "Radio communication is stable"
+        },
+        {
+          "value": 1,
+          "label": "radio_communication_error",
+          "description": "6 or more consecutive communication errors have occurred"
+        }
+      ],
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      }
+    },
+    {
+      "name": "radio_signal_strength",
+      "display_name": null,
+      "description": "Weak radio signal warning",
+      "source_key": "radioSignalStrength",
+      "function_group": "operation_mode_temperature_control",
+      "semantic_role": "enocean.radio",
+      "object_type": "diagnostic",
+      "semantic_confidence": "high",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "radio_signal_strong",
+          "description": "Radio signal is strong"
+        },
+        {
+          "value": 1,
+          "label": "radio_signal_weak",
+          "description": "Radio signal is weak under -77 dBm"
+        }
+      ],
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      }
+    },
+    {
+      "name": "actuator_obstructed",
+      "display_name": null,
+      "description": "Reports blocked actuator",
+      "source_key": "actuatorObstructed",
+      "function_group": "operation_mode_temperature_control",
+      "semantic_role": "device.actuator_obstructed",
+      "object_type": "diagnostic",
+      "semantic_confidence": "high",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "actuator_working_correctly",
+          "description": "Actuator working correctly"
+        },
+        {
+          "value": 1,
+          "label": "actuator_blocked",
+          "description": "Actuator blocked"
+        }
+      ],
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      }
+    }
+  ],
+  "messages": [
+    {
+      "name": "valve_position",
+      "display_name": null,
+      "description": "Valve position setpoint sent to the actuator",
+      "source_key": "valve",
+      "function_group": "control_actuator_via_valve_position",
+      "semantic_role": "climate.valve_position",
+      "object_type": "setpoint",
+      "semantic_confidence": "high",
+      "data_type": "float",
+      "unit": "%",
+      "ranges": [
+        {
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%"
+        }
+      ],
+      "value_resolution": 1.0,
+      "value_precision": 0,
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "temperature_setpoint",
+      "display_name": null,
+      "description": "Temperature setpoint sent to the actuator",
+      "source_key": "temperatureSetpoint",
+      "function_group": "run_actuator_internal_temperature_control_loop_room_temperature_is_estimated_based_on_the_actuator_s_internal_sensors",
+      "semantic_role": "climate.temperature",
+      "object_type": "setpoint",
+      "semantic_confidence": "high",
+      "data_type": "float",
+      "unit": "°C",
+      "ranges": [
+        {
+          "min": 0,
+          "max": 40,
+          "step": 0.5,
+          "unit": "°C"
+        }
+      ],
+      "value_resolution": 0.5,
+      "value_precision": 1,
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "room_temperature",
+      "display_name": null,
+      "description": "Room temperature from control unit",
+      "source_key": "temperature",
+      "function_group": "run_actuator_internal_temperature_control_loop_with_rcu_providing_room_temperature",
+      "semantic_role": "climate.temperature",
+      "object_type": "measurement",
+      "semantic_confidence": "high",
+      "data_type": "float",
+      "unit": "°C",
+      "ranges": [
+        {
+          "min": 0,
+          "max": 40,
+          "step": 0.25,
+          "unit": "°C"
+        }
+      ],
+      "value_resolution": 0.25,
+      "value_precision": 2,
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "reference_run",
+      "display_name": null,
+      "description": "Execute reference run",
+      "source_key": "command",
+      "function_group": "configuration_mode",
+      "semantic_role": "device.reference_run",
+      "object_type": "command",
+      "semantic_confidence": "high",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "normal_operation",
+          "description": "Normal operation"
+        },
+        {
+          "value": 1,
+          "label": "reference_run",
+          "description": "Reference run"
+        }
+      ],
+      "default_value": 0,
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": true,
+        "default_value": 0,
+        "required_for_snapshot": false
+      }
+    },
+    {
+      "name": "communication_interval",
+      "display_name": null,
+      "description": "Radio duty cycle selection",
+      "source_key": "communicationIntervall",
+      "function_group": "control_actuator_via_valve_position",
+      "semantic_role": "enocean.radio",
+      "object_type": "configuration",
+      "semantic_confidence": "high",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "auto",
+          "description": "Auto"
+        },
+        {
+          "value": 1,
+          "label": "2_minutes",
+          "description": "2 minutes"
+        },
+        {
+          "value": 2,
+          "label": "5_minutes",
+          "description": "5 minutes"
+        },
+        {
+          "value": 3,
+          "label": "10_minutes",
+          "description": "10 minutes"
+        },
+        {
+          "value": 4,
+          "label": "20_minutes",
+          "description": "20 minutes"
+        },
+        {
+          "value": 5,
+          "label": "30_minutes",
+          "description": "30 minutes"
+        },
+        {
+          "value": 6,
+          "label": "60_minutes",
+          "description": "60 minutes"
+        },
+        {
+          "value": 7,
+          "label": "120_minutes",
+          "description": "120 minutes"
+        }
+      ],
+      "default_value": 0,
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": true,
+        "default_value": 0,
+        "required_for_snapshot": false
+      }
+    },
+    {
+      "name": "summer_mode",
+      "display_name": null,
+      "description": "Initiate summer mode",
+      "source_key": "summerMode",
+      "function_group": "configuration_mode",
+      "semantic_role": "device.summer_mode",
+      "object_type": "configuration",
+      "semantic_confidence": "high",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "normal_operation",
+          "description": "Normal operation"
+        },
+        {
+          "value": 1,
+          "label": "summer_mode",
+          "description": "Summer mode with 8 hours radio duty cycle"
+        }
+      ],
+      "default_value": 0,
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": true,
+        "default_value": 0,
+        "required_for_snapshot": false
+      }
+    },
+    {
+      "name": "setpoint_selection",
+      "display_name": null,
+      "description": "Selects whether SP represents valve position or temperature setpoint",
+      "semantic_role": "enocean.selector",
+      "object_type": "selector",
+      "semantic_confidence": "high",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "valve_position_mode",
+          "description": "Valve position mode"
+        },
+        {
+          "value": 1,
+          "label": "temperature_setpoint",
+          "description": "Temperature setpoint"
+        }
+      ],
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": true,
+        "required_for_snapshot": false
+      }
+    },
+    {
+      "name": "temperature_selection",
+      "display_name": null,
+      "description": "Selects which temperature value the actuator shall report",
+      "source_key": "temperatureSelection",
+      "function_group": "control_actuator_via_valve_position",
+      "semantic_role": "enocean.selector",
+      "object_type": "selector",
+      "semantic_confidence": "high",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "request_ambient_temperature",
+          "description": "Request ambient temperature"
+        },
+        {
+          "value": 1,
+          "label": "request_feed_temperature",
+          "description": "Request feed temperature"
+        }
+      ],
+      "default_value": 0,
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": true,
+        "default_value": 0,
+        "required_for_snapshot": false
+      }
+    },
+    {
+      "name": "standby",
+      "display_name": null,
+      "description": "Enter standby mode",
+      "source_key": "standByMode",
+      "function_group": "configuration_mode",
+      "semantic_role": "device.standby",
+      "object_type": "configuration",
+      "semantic_confidence": "high",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "normal_operation",
+          "description": "Normal operation"
+        },
+        {
+          "value": 1,
+          "label": "standby",
+          "description": "Enter standby"
+        }
+      ],
+      "default_value": 0,
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": true,
+        "default_value": 0,
+        "required_for_snapshot": false
+      }
+    },
+    {
+      "name": "telegram_type",
+      "display_name": null,
+      "description": "LRN bit / telegram type",
+      "semantic_role": "enocean.telegram",
+      "object_type": "selector",
+      "semantic_confidence": "high",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "teach_in_telegram",
+          "description": "Teach-in telegram"
+        },
+        {
+          "value": 1,
+          "label": "data_telegram",
+          "description": "Data telegram"
+        }
+      ],
+      "default_value": 1,
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": true,
+        "default_value": "data_telegram",
+        "required_for_snapshot": false
+      }
+    }
+  ],
+  "telegrams": [
+    {
+      "telegram_type_id": "a5-20-06.rx.direction1",
+      "telegram_id": {
+        "rorg": "A5"
+      },
+      "direction": "rx",
+      "description": "Direction 1, actuator to gateway/controller",
+      "fields": [
+        {
+          "name": "current_value",
+          "offset": 0,
+          "size": 8,
+          "shortcut": "CV",
+          "description": "Current valve position",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "local_offset_mode",
+          "offset": 8,
+          "size": 1,
+          "shortcut": "LOM",
+          "description": "Local Offset Mode defines the format of LO",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "local_offset",
+          "offset": 9,
+          "size": 7,
+          "shortcut": "LO",
+          "description": "Local offset",
+          "raw_min": 0,
+          "raw_max": 127,
+          "source": "payload"
+        },
+        {
+          "name": "temperature",
+          "offset": 16,
+          "size": 8,
+          "shortcut": "TMP",
+          "description": "Local ambient or feed temperature selected by TSL",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "temperature_selection",
+          "offset": 24,
+          "size": 1,
+          "shortcut": "TSL",
+          "description": "Indicates which sensor is used for TMP",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "energy_input_enabled",
+          "offset": 25,
+          "size": 1,
+          "shortcut": "ENIE",
+          "description": "Harvesting status",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "energy_storage",
+          "offset": 26,
+          "size": 1,
+          "shortcut": "ES",
+          "description": "Charge level of energy storage",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "window_open_detection",
+          "offset": 27,
+          "size": 1,
+          "shortcut": "DWO",
+          "description": "Window open detection",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "telegram_type",
+          "offset": 28,
+          "size": 1,
+          "shortcut": "LRNB",
+          "description": "LRN bit",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "radio_error",
+          "offset": 29,
+          "size": 1,
+          "shortcut": "RCE",
+          "description": "Indicates radio communication error",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "radio_signal_strength",
+          "offset": 30,
+          "size": 1,
+          "shortcut": "RSS",
+          "description": "Weak radio signal warning",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "actuator_obstructed",
+          "offset": 31,
+          "size": 1,
+          "shortcut": "ACO",
+          "description": "Reports blocked actuator",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "valve_position",
+          "field_ref": "current_value",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 100,
+            "scale_min": 0.0,
+            "scale_max": 100.0
+          }
+        },
+        {
+          "channel_ref": "local_offset_mode",
+          "field_ref": "local_offset_mode",
+          "enum": [
+            {
+              "value": 0,
+              "label": "relative_offset_temperature"
+            },
+            {
+              "value": 1,
+              "label": "absolute_temperature"
+            }
+          ]
+        },
+        {
+          "channel_ref": "local_offset",
+          "field_ref": "local_offset",
+          "enum": [
+            {
+              "value": 0,
+              "label": "offset_0c"
+            },
+            {
+              "value": 1,
+              "label": "offset_plus_1c"
+            },
+            {
+              "value": 2,
+              "label": "offset_plus_2c"
+            },
+            {
+              "value": 3,
+              "label": "offset_plus_3c"
+            },
+            {
+              "value": 4,
+              "label": "offset_plus_4c"
+            },
+            {
+              "value": 5,
+              "label": "offset_plus_5c"
+            },
+            {
+              "value": 123,
+              "label": "offset_minus_5c"
+            },
+            {
+              "value": 124,
+              "label": "offset_minus_4c"
+            },
+            {
+              "value": 125,
+              "label": "offset_minus_3c"
+            },
+            {
+              "value": 126,
+              "label": "offset_minus_2c"
+            },
+            {
+              "value": 127,
+              "label": "offset_minus_1c"
+            }
+          ],
+          "depends_on": {
+            "field": "local_offset_mode",
+            "equals": 0
+          }
+        },
+        {
+          "channel_ref": "local_temperature_setpoint",
+          "field_ref": "local_offset",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 80,
+            "scale_min": 0.0,
+            "scale_max": 40.0
+          },
+          "depends_on": {
+            "field": "local_offset_mode",
+            "equals": 1
+          }
+        },
+        {
+          "channel_ref": "local_ambient_temperature",
+          "field_ref": "temperature",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 80,
+            "scale_min": 0.0,
+            "scale_max": 40.0
+          },
+          "depends_on": {
+            "field": "temperature_selection",
+            "equals": 0
+          }
+        },
+        {
+          "channel_ref": "feed_temperature",
+          "field_ref": "temperature",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 160,
+            "scale_min": 0.0,
+            "scale_max": 80.0
+          },
+          "depends_on": {
+            "field": "temperature_selection",
+            "equals": 1
+          }
+        },
+        {
+          "channel_ref": "temperature_selection",
+          "field_ref": "temperature_selection",
+          "enum": [
+            {
+              "value": 0,
+              "label": "ambient_sensor_temperature"
+            },
+            {
+              "value": 1,
+              "label": "feed_sensor_temperature"
+            }
+          ]
+        },
+        {
+          "channel_ref": "energy_input_enabled",
+          "field_ref": "energy_input_enabled",
+          "enum": [
+            {
+              "value": 0,
+              "label": "not_harvesting"
+            },
+            {
+              "value": 1,
+              "label": "harvesting_active"
+            }
+          ]
+        },
+        {
+          "channel_ref": "energy_storage_charged",
+          "field_ref": "energy_storage",
+          "enum": [
+            {
+              "value": 0,
+              "label": "low_almost_discharged"
+            },
+            {
+              "value": 1,
+              "label": "sufficiently_charged"
+            }
+          ]
+        },
+        {
+          "channel_ref": "window_open_detection",
+          "field_ref": "window_open_detection",
+          "enum": [
+            {
+              "value": 0,
+              "label": "closed"
+            },
+            {
+              "value": 1,
+              "label": "open"
+            }
+          ]
+        },
+        {
+          "channel_ref": "telegram_type",
+          "field_ref": "telegram_type",
+          "enum": [
+            {
+              "value": 0,
+              "label": "teach_in_telegram"
+            },
+            {
+              "value": 1,
+              "label": "data_telegram"
+            }
+          ]
+        },
+        {
+          "channel_ref": "radio_error",
+          "field_ref": "radio_error",
+          "enum": [
+            {
+              "value": 0,
+              "label": "radio_communication_stable"
+            },
+            {
+              "value": 1,
+              "label": "radio_communication_error"
+            }
+          ]
+        },
+        {
+          "channel_ref": "radio_signal_strength",
+          "field_ref": "radio_signal_strength",
+          "enum": [
+            {
+              "value": 0,
+              "label": "radio_signal_strong"
+            },
+            {
+              "value": 1,
+              "label": "radio_signal_weak"
+            }
+          ]
+        },
+        {
+          "channel_ref": "actuator_obstructed",
+          "field_ref": "actuator_obstructed",
+          "enum": [
+            {
+              "value": 0,
+              "label": "actuator_working_correctly"
+            },
+            {
+              "value": 1,
+              "label": "actuator_blocked"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "a5-20-06.tx.direction2",
+      "telegram_id": {
+        "rorg": "A5"
+      },
+      "direction": "tx",
+      "description": "Direction 2, gateway/controller to actuator",
+      "fields": [
+        {
+          "name": "setpoint",
+          "offset": 0,
+          "size": 8,
+          "shortcut": "SP",
+          "description": "Valve position or temperature setpoint",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "room_temperature",
+          "offset": 8,
+          "size": 8,
+          "shortcut": "TMP",
+          "description": "Room temperature from control unit",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "reference_run",
+          "offset": 16,
+          "size": 1,
+          "shortcut": "REF",
+          "description": "Execute reference run",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "communication_interval",
+          "offset": 17,
+          "size": 3,
+          "shortcut": "RFC",
+          "description": "Radio duty cycle selection",
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload"
+        },
+        {
+          "name": "summer_mode",
+          "offset": 20,
+          "size": 1,
+          "shortcut": "SB",
+          "description": "Initiate summer mode",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "setpoint_selection",
+          "offset": 21,
+          "size": 1,
+          "shortcut": "SPS",
+          "description": "Set point selection",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "temperature_selection",
+          "offset": 22,
+          "size": 1,
+          "shortcut": "TSL",
+          "description": "Temperature Selection",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "standby",
+          "offset": 23,
+          "size": 1,
+          "shortcut": "SBY",
+          "description": "Enter standby",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_24_4",
+          "offset": 24,
+          "size": 4,
+          "shortcut": "",
+          "description": "Reserved",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
+        },
+        {
+          "name": "telegram_type",
+          "offset": 28,
+          "size": 1,
+          "shortcut": "LRNB",
+          "description": "LRN Bit",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_29_3",
+          "offset": 29,
+          "size": 3,
+          "shortcut": "",
+          "description": "Reserved",
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
+        }
+      ],
+      "message_bindings": [
+        {
+          "message_ref": "valve_position",
+          "field_ref": "setpoint",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 100,
+            "scale_min": 0.0,
+            "scale_max": 100.0
+          },
+          "depends_on": {
+            "field": "setpoint_selection",
+            "equals": 0
+          }
+        },
+        {
+          "message_ref": "temperature_setpoint",
+          "field_ref": "setpoint",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 80,
+            "scale_min": 0.0,
+            "scale_max": 40.0
+          },
+          "depends_on": {
+            "field": "setpoint_selection",
+            "equals": 1
+          }
+        },
+        {
+          "message_ref": "room_temperature",
+          "field_ref": "room_temperature",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 160,
+            "scale_min": 0.0,
+            "scale_max": 40.0
+          }
+        },
+        {
+          "message_ref": "reference_run",
+          "field_ref": "reference_run",
+          "enum": [
+            {
+              "value": 0,
+              "label": "normal_operation"
+            },
+            {
+              "value": 1,
+              "label": "reference_run"
+            }
+          ]
+        },
+        {
+          "message_ref": "communication_interval",
+          "field_ref": "communication_interval",
+          "enum": [
+            {
+              "value": 0,
+              "label": "auto"
+            },
+            {
+              "value": 1,
+              "label": "2_minutes"
+            },
+            {
+              "value": 2,
+              "label": "5_minutes"
+            },
+            {
+              "value": 3,
+              "label": "10_minutes"
+            },
+            {
+              "value": 4,
+              "label": "20_minutes"
+            },
+            {
+              "value": 5,
+              "label": "30_minutes"
+            },
+            {
+              "value": 6,
+              "label": "60_minutes"
+            },
+            {
+              "value": 7,
+              "label": "120_minutes"
+            }
+          ]
+        },
+        {
+          "message_ref": "summer_mode",
+          "field_ref": "summer_mode",
+          "enum": [
+            {
+              "value": 0,
+              "label": "normal_operation"
+            },
+            {
+              "value": 1,
+              "label": "summer_mode"
+            }
+          ]
+        },
+        {
+          "message_ref": "setpoint_selection",
+          "field_ref": "setpoint_selection",
+          "enum": [
+            {
+              "value": 0,
+              "label": "valve_position_mode"
+            },
+            {
+              "value": 1,
+              "label": "temperature_setpoint"
+            }
+          ]
+        },
+        {
+          "message_ref": "temperature_selection",
+          "field_ref": "temperature_selection",
+          "enum": [
+            {
+              "value": 0,
+              "label": "request_ambient_temperature"
+            },
+            {
+              "value": 1,
+              "label": "request_feed_temperature"
+            }
+          ]
+        },
+        {
+          "message_ref": "standby",
+          "field_ref": "standby",
+          "enum": [
+            {
+              "value": 0,
+              "label": "normal_operation"
+            },
+            {
+              "value": 1,
+              "label": "standby"
+            }
+          ]
+        },
+        {
+          "message_ref": "telegram_type",
+          "field_ref": "telegram_type",
+          "enum": [
+            {
+              "value": 0,
+              "label": "teach_in_telegram"
+            },
+            {
+              "value": 1,
+              "label": "data_telegram"
+            }
+          ]
+        }
+      ],
+      "constraints": [
+        {
+          "field": "reserved_24_4",
+          "equals": 0
+        },
+        {
+          "field": "reserved_29_3",
+          "equals": 0
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "target": "local_offset",
+      "depends_on": {
+        "field": "local_offset_mode",
+        "equals": 0
+      },
+      "reason": "LO represents relative offset when LOM is 0"
+    },
+    {
+      "target": "local_temperature_setpoint",
+      "depends_on": {
+        "field": "local_offset_mode",
+        "equals": 1
+      },
+      "reason": "LO represents absolute local temperature setpoint when LOM is 1"
+    },
+    {
+      "target": "local_ambient_temperature",
+      "depends_on": {
+        "field": "temperature_selection",
+        "equals": 0
+      },
+      "reason": "TMP represents local ambient temperature when TSL is 0"
+    },
+    {
+      "target": "feed_temperature",
+      "depends_on": {
+        "field": "temperature_selection",
+        "equals": 1
+      },
+      "reason": "TMP represents feed temperature when TSL is 1"
+    },
+    {
+      "target": "valve_position",
+      "depends_on": {
+        "field": "setpoint_selection",
+        "equals": 0
+      },
+      "reason": "SP represents valve position when SPS is 0"
+    },
+    {
+      "target": "temperature_setpoint",
+      "depends_on": {
+        "field": "setpoint_selection",
+        "equals": 1
+      },
+      "reason": "SP represents temperature setpoint when SPS is 1"
+    }
+  ],
+  "tx": {
+    "aggregation_window_seconds": 10
+  },
+  "metadata": {
+    "curation_status": "curated",
+    "curated_by": "llm_assisted_review",
+    "source_notes": [
+      "XML field RFC uses bitsize 4, which overlaps SB at bit offset 20. The curated registry uses RFC size 3 according to the official PDF table.",
+      "XML spelling errors were corrected in semantic object names while raw descriptions are preserved where useful.",
+      "RX TMP and TX TMP are modelled as separate semantic objects because their direction and source descriptions differ."
+    ]
+  }
+}

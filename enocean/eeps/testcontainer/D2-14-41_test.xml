@@ -1,0 +1,974 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProfileCertification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./Certification_EEP.xsd"  schemaVersion="0.9">
+	<EEP rorg="0xD2" func="0x14" type="0x41">
+		<TestCase>
+		<Name>Teach-in Test</Name>
+		<Test>
+		<Name>Unidirectional Teach-in Test</Name>
+		<Step>
+		<Dataset>
+			<Telegram rorg="0xD4" length="7">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0x00">0x41</Byte>
+				<Byte order="5" ignoremask="0x00">0x14</Byte>
+				<Byte order="6" ignoremask="0x00">0xD2</Byte>
+			</Telegram>
+			<RealData>
+			<Data>
+			<Type>RORG</Type>
+			<Value>0xD2</Value>
+			</Data>
+			<Data>
+			<Type>FUNC</Type>
+			<Value>0x14</Value>
+			</Data>
+			<Data>
+			<Type>TYPE</Type>
+			<Value>0x41</Value>
+			</Data>
+			</RealData>
+			</Dataset>
+			</Step>
+			</Test>
+		</TestCase>
+	<TestCase>
+	<Name>temperature</Name>
+	<Test>
+		<Name>Min temperature Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0x00">0x00</Byte>
+				<Byte order="1" ignoremask="0x3F">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>temperature</Type>
+			<Value>-40</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Mid temperature Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0x00">0x7D</Byte>
+				<Byte order="1" ignoremask="0x3F">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>temperature</Type>
+			<Value>10</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Max temperature Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0x00">0xFA</Byte>
+				<Byte order="1" ignoremask="0x3F">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>temperature</Type>
+			<Value>60</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name> Out of range negative (&lt;-40°C) temperature Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0x00">0xFF</Byte>
+				<Byte order="1" ignoremask="0x3F">0x40</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>temperature</Type>
+			<Value>1021</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name> Out of range positive (&gt;60°C) temperature Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0x00">0xFF</Byte>
+				<Byte order="1" ignoremask="0x3F">0x80</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>temperature</Type>
+			<Value>1022</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name> Error temperature Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0x00">0xFF</Byte>
+				<Byte order="1" ignoremask="0x3F">0xC0</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>temperature</Type>
+			<Value>1023</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	<TestCase>
+	<Name>humidity</Name>
+	<Test>
+		<Name>Min humidity Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xC0">0x00</Byte>
+				<Byte order="2" ignoremask="0x3F">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>humidity</Type>
+			<Value>0</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Mid humidity Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xC0">0x19</Byte>
+				<Byte order="2" ignoremask="0x3F">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>humidity</Type>
+			<Value>50</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Max humidity Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xC0">0x32</Byte>
+				<Byte order="2" ignoremask="0x3F">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>humidity</Type>
+			<Value>100</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name> Supported + Invalid humidity Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xC0">0x3F</Byte>
+				<Byte order="2" ignoremask="0x3F">0x80</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>humidity</Type>
+			<Value>254</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name> notSupported humidity Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xC0">0x3F</Byte>
+				<Byte order="2" ignoremask="0x3F">0xC0</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>humidity</Type>
+			<Value>255</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Illumination</Name>
+	<Test>
+		<Name>Min Illumination Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xC0">0x00</Byte>
+				<Byte order="3" ignoremask="0x00">0x00</Byte>
+				<Byte order="4" ignoremask="0x1F">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Illumination</Type>
+			<Value>0</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Mid Illumination Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xC0">0x18</Byte>
+				<Byte order="3" ignoremask="0x00">0x6A</Byte>
+				<Byte order="4" ignoremask="0x1F">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Illumination</Type>
+			<Value>50000</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Max Illumination Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xC0">0x30</Byte>
+				<Byte order="3" ignoremask="0x00">0xD4</Byte>
+				<Byte order="4" ignoremask="0x1F">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Illumination</Type>
+			<Value>100000</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name> Error Illumination Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xC0">0x3F</Byte>
+				<Byte order="3" ignoremask="0x00">0xFF</Byte>
+				<Byte order="4" ignoremask="0x1F">0xE0</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Illumination</Type>
+			<Value>131071</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Acceleration Status</Name>
+	<Test>
+		<Name> Periodic Update Acceleration Status Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xE7">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Acceleration Status</Type>
+			<Value>0</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name> Threshold 1 exceeded Acceleration Status Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xE7">0x08</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Acceleration Status</Type>
+			<Value>1</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name> Threshold 2 exceeded Acceleration Status Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xE7">0x10</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Acceleration Status</Type>
+			<Value>2</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Acceleration X</Name>
+	<Test>
+		<Name>Min Acceleration X Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xF8">0x00</Byte>
+				<Byte order="5" ignoremask="0x01">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Acceleration X</Type>
+			<Value>-2</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Mid Acceleration X Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xF8">0x03</Byte>
+				<Byte order="5" ignoremask="0x01">0xE8</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Acceleration X</Type>
+			<Value>0</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Max Acceleration X Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xF8">0x07</Byte>
+				<Byte order="5" ignoremask="0x01">0xD0</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Acceleration X</Type>
+			<Value>2</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name> Out of range negative(&lt;-2.5g) Acceleration X Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xF8">0x07</Byte>
+				<Byte order="5" ignoremask="0x01">0xFA</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Acceleration X</Type>
+			<Value>1021</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name> Out of range positive(&gt;2.5g) Acceleration X Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xF8">0x07</Byte>
+				<Byte order="5" ignoremask="0x01">0xFC</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Acceleration X</Type>
+			<Value>1022</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name> Error Acceleration X Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xF8">0x07</Byte>
+				<Byte order="5" ignoremask="0x01">0xFE</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Acceleration X</Type>
+			<Value>1023</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Acceleration Y</Name>
+	<Test>
+		<Name>Min Acceleration Y Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFE">0x00</Byte>
+				<Byte order="6" ignoremask="0x00">0x00</Byte>
+				<Byte order="7" ignoremask="0x7F">0x00</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Acceleration Y</Type>
+			<Value>-2</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Mid Acceleration Y Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFE">0x00</Byte>
+				<Byte order="6" ignoremask="0x00">0xFA</Byte>
+				<Byte order="7" ignoremask="0x7F">0x00</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Acceleration Y</Type>
+			<Value>0</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Max Acceleration Y Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFE">0x01</Byte>
+				<Byte order="6" ignoremask="0x00">0xF4</Byte>
+				<Byte order="7" ignoremask="0x7F">0x00</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Acceleration Y</Type>
+			<Value>2</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name> Out of range negative(&lt;-2.5g) Acceleration Y Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFE">0x01</Byte>
+				<Byte order="6" ignoremask="0x00">0xFE</Byte>
+				<Byte order="7" ignoremask="0x7F">0x80</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Acceleration Y</Type>
+			<Value>1021</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name> Out of range positive(&gt;2.5g) Acceleration Y Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFE">0x01</Byte>
+				<Byte order="6" ignoremask="0x00">0xFF</Byte>
+				<Byte order="7" ignoremask="0x7F">0x00</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Acceleration Y</Type>
+			<Value>1022</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name> Error Acceleration Y Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFE">0x01</Byte>
+				<Byte order="6" ignoremask="0x00">0xFF</Byte>
+				<Byte order="7" ignoremask="0x7F">0x80</Byte>
+				<Byte order="8" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Acceleration Y</Type>
+			<Value>1023</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Acceleration Z</Name>
+	<Test>
+		<Name>Min Acceleration Z Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0x80">0x00</Byte>
+				<Byte order="8" ignoremask="0x10">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Acceleration Z</Type>
+			<Value>-2</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Mid Acceleration Z Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0x80">0x3E</Byte>
+				<Byte order="8" ignoremask="0x10">0x80</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Acceleration Z</Type>
+			<Value>0</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Max Acceleration Z Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0x80">0x7D</Byte>
+				<Byte order="8" ignoremask="0x10">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Acceleration Z</Type>
+			<Value>2</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name> Out of range negative(&lt;-2.5g) Acceleration Z Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0x80">0x7F</Byte>
+				<Byte order="8" ignoremask="0x10">0xA0</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Acceleration Z</Type>
+			<Value>1021</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name> Out of range positive(&gt;2.5g) Acceleration Z Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0x80">0x7F</Byte>
+				<Byte order="8" ignoremask="0x10">0xC0</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Acceleration Z</Type>
+			<Value>1022</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name> Error Acceleration Z Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0x80">0x7F</Byte>
+				<Byte order="8" ignoremask="0x10">0xE0</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Acceleration Z</Type>
+			<Value>1023</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Contact</Name>
+	<Test>
+		<Name> Open Contact Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xE0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Contact</Type>
+			<Value>0</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name> Closed Contact Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="9">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xE0">0x10</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Contact</Type>
+			<Value>1</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	</EEP>
+</ProfileCertification>

@@ -1,0 +1,40 @@
+{
+  "header" : {
+    "httpStatus" : 200,
+    "content" : "profile",
+    "gateway" : "DC-GW/EO-IP v1.15.011",
+    "timestamp" : "2020-09-17T14:31:29.950+0200"
+  },
+  "profile" : {
+    "eep" : "F6-05-00",
+    "title" : "Detectors - Wind Speed Threshold Detector",
+    "functionGroups" : [ {
+      "direction" : "from",
+      "functions" : [ {
+        "key" : "energyStorage",
+        "description" : "Status of battery",
+        "values" : [ {
+          "value" : "low",
+          "meaning" : "Energy LOW"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "wind",
+        "description" : "Status of detection",
+        "values" : [ {
+          "value" : "below",
+          "meaning" : "Wind speed below threshold (Alarm OFF)"
+        }, {
+          "value" : "exceeded",
+          "meaning" : "Wind speed exceeds threshold (Alarm ON)"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      } ]
+    } ],
+    "version" : 0.9
+  }
+}

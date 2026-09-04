@@ -1,0 +1,82 @@
+{
+  "devices": [
+    {
+      "sender_id": "52523b1a",
+      "sender_name": "TH Badezimmer",
+      "alias": "th_badezimmer",
+      "description": "Eltako FTFSB temperature and humidity sensor in bathroom",
+      "manufacturer": "Eltako",
+      "model": "FTFSB",
+      "device_type": "sensor",
+      "eep": "A5-04-02",
+      "rorg": "A5",
+      "func": "04",
+      "type": "02",
+      "location": "bathroom",
+      "enabled": true,
+      "channels": {
+        "temperature": {
+          "datatype": "float",
+          "unit": "°C",
+          "writable": false,
+          "publish": {
+            "value": true,
+            "state": true,
+            "meta": true,
+            "retain": true,
+            "on_change_only": true,
+            "change_threshold": 0.1,
+            "min_interval_seconds": 30,
+            "max_interval_seconds": 600
+          }
+        },
+        "humidity": {
+          "datatype": "float",
+          "unit": "%",
+          "writable": false,
+          "publish": {
+            "value": true,
+            "state": true,
+            "meta": true,
+            "retain": true,
+            "on_change_only": true,
+            "change_threshold": 1,
+            "min_interval_seconds": 30,
+            "max_interval_seconds": 600
+          }
+        }
+      }
+    },
+    {
+      "sender_id": "aabbccdd",
+      "sender_name": "Aktor Licht Bad",
+      "alias": "aktor_licht_bad",
+      "description": "Example switching actuator",
+      "manufacturer": "ExampleVendor",
+      "model": "FSR61",
+      "device_type": "actuator",
+      "eep": "F6-02-01",
+      "rorg": "F6",
+      "func": "02",
+      "type": "01",
+      "location": "bathroom",
+      "enabled": true,
+      "tx_sender": "ff800001",
+      "channels": {
+        "switch": {
+          "datatype": "boolean",
+          "writable": true
+        }
+      }
+    },
+    {
+      "sender_id": "ff800001",
+      "sender_name": "Gateway Switch Bad",
+      "alias": "gateway_switch_bad",
+      "description": "Virtual TX sender for bathroom actuator control",
+      "device_type": "gateway_tx_sender",
+      "enabled": true,
+      "purpose": "Sender ID taught into bathroom switching actuator"
+    }
+  ]
+}

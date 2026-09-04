@@ -1,0 +1,2393 @@
+{
+  "profile_type": "standard",
+  "eep": "A5-38-08",
+  "rorg": "A5",
+  "func": "38",
+  "type": "08",
+  "func_description": "Central Command",
+  "type_description": "Gateway",
+  "description": "Central Command, Gateway",
+  "source": "EnOcean Equipment Profiles",
+  "source_version": "2.6.8",
+  "sources": {
+    "xml": [
+      "enocean/eeps/eep268.xml"
+    ],
+    "semantic_mapping": [
+      "eep/semantic-role-mapping.json"
+    ],
+    "eep_list": [
+      "eep/eep-list.csv"
+    ],
+    "json": [
+      "enocean/eeps/json/A5-38-08.json"
+    ]
+  },
+  "direction": "unidirectional",
+  "device_class": "controller",
+  "function_groups": [
+    {
+      "name": "switching",
+      "title": "Switching",
+      "direction": "to",
+      "functions": [
+        "locked",
+        "switch",
+        "switch_type",
+        "time"
+      ]
+    },
+    {
+      "name": "dimming",
+      "title": "Dimming",
+      "direction": "to",
+      "functions": [
+        "dim_value",
+        "ramping_time",
+        "store_final_value",
+        "switch"
+      ]
+    },
+    {
+      "name": "setpoint_shift",
+      "title": "Setpoint shift",
+      "direction": "to",
+      "functions": [
+        "setpoint_shift"
+      ]
+    },
+    {
+      "name": "basic_setpoint",
+      "title": "Basic Setpoint",
+      "direction": "to",
+      "functions": [
+        "basic_setpoint"
+      ]
+    },
+    {
+      "name": "control_variable",
+      "title": "Control variable",
+      "direction": "to",
+      "functions": [
+        "control",
+        "control_variable",
+        "energy_hold_off",
+        "mode",
+        "occupancy"
+      ]
+    },
+    {
+      "name": "fan_stage",
+      "title": "Fan stage",
+      "direction": "to",
+      "functions": [
+        "fan_speed"
+      ]
+    }
+  ],
+  "channels": [
+    {
+      "name": "telegram_type",
+      "display_name": null,
+      "semantic_role": "enocean.telegram_type",
+      "object_type": "state",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "teach_in_telegram"
+        },
+        {
+          "value": 1,
+          "label": "data_telegram"
+        }
+      ],
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": true,
+        "default_value": "data_telegram",
+        "required_for_snapshot": false
+      }
+    },
+    {
+      "name": "command",
+      "display_name": null,
+      "semantic_role": "device.tbd",
+      "object_type": "state",
+      "semantic_confidence": "low",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 1,
+          "label": "0x01"
+        }
+      ],
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "time",
+      "display_name": null,
+      "description": "Timer of duration or delay",
+      "source_key": "time",
+      "function_group": "switching",
+      "semantic_role": "time.duration",
+      "object_type": "state",
+      "semantic_confidence": "high",
+      "data_type": "enum",
+      "unit": "s",
+      "enum": [
+        {
+          "value": "0",
+          "label": "0",
+          "description": "No time specified"
+        }
+      ],
+      "ranges": [
+        {
+          "min": 0.1,
+          "max": 6553.5,
+          "step": 0.1,
+          "unit": "s",
+          "description": null
+        }
+      ],
+      "default_value": 0,
+      "value_resolution": 0.09999999999999999,
+      "value_precision": 2,
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "lock_unlock",
+      "display_name": null,
+      "object_type": "state",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "unlock"
+        },
+        {
+          "value": 1,
+          "label": "lock"
+        }
+      ],
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "delay_or_duration",
+      "display_name": null,
+      "object_type": "state",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "duration"
+        },
+        {
+          "value": 1,
+          "label": "delay"
+        }
+      ],
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "switching_command",
+      "display_name": null,
+      "object_type": "state",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "off"
+        },
+        {
+          "value": 1,
+          "label": "on"
+        }
+      ],
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "dimming_value",
+      "display_name": null,
+      "object_type": "measurement",
+      "data_type": "float",
+      "unit": "%",
+      "value_resolution": 0.39215686274509803,
+      "value_precision": 1,
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "ramping_time",
+      "display_name": null,
+      "source_key": "rampingTime",
+      "function_group": "dimming",
+      "semantic_role": "control.timer",
+      "object_type": "setpoint",
+      "semantic_confidence": "medium",
+      "semantic_attributes": {
+        "timer_type": "ramping"
+      },
+      "data_type": "integer",
+      "unit": "s",
+      "ranges": [
+        {
+          "min": 0,
+          "max": 255,
+          "step": 1,
+          "unit": "s",
+          "description": "Time to reach specified dimValue"
+        }
+      ],
+      "default_value": 0,
+      "value_resolution": 1.0,
+      "value_precision": 0,
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "dimming_range",
+      "display_name": null,
+      "object_type": "state",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "absolute_value"
+        },
+        {
+          "value": 1,
+          "label": "relative_value"
+        }
+      ],
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "store_final_value",
+      "display_name": null,
+      "description": "Store final value",
+      "source_key": "storeFinalValue",
+      "function_group": "dimming",
+      "semantic_role": "device.tbd",
+      "object_type": "state",
+      "semantic_confidence": "low",
+      "data_type": "boolean",
+      "default_value": false,
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "setpoint",
+      "display_name": null,
+      "semantic_role": "device.tbd",
+      "object_type": "measurement",
+      "semantic_confidence": "low",
+      "data_type": "float",
+      "unit": "K",
+      "value_resolution": 0.1,
+      "value_precision": 1,
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "basic_setpoint",
+      "display_name": null,
+      "description": "Basic Setpoint",
+      "source_key": "basicSetpoint",
+      "function_group": "basic_setpoint",
+      "semantic_role": "device.tbd",
+      "object_type": "setpoint",
+      "semantic_confidence": "low",
+      "data_type": "float",
+      "unit": "°C",
+      "ranges": [
+        {
+          "min": 0,
+          "max": 51.2,
+          "step": 0.201,
+          "unit": "°C",
+          "description": null
+        }
+      ],
+      "value_resolution": 0.20078431372549022,
+      "value_precision": 1,
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "control_variable_override",
+      "display_name": null,
+      "object_type": "measurement",
+      "data_type": "float",
+      "unit": "%",
+      "value_resolution": 0.39215686274509803,
+      "value_precision": 1,
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "controller_mode",
+      "display_name": null,
+      "object_type": "state",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "automatic_mode_selection"
+        },
+        {
+          "value": 1,
+          "label": "heating"
+        },
+        {
+          "value": 2,
+          "label": "cooling"
+        },
+        {
+          "value": 3,
+          "label": "off"
+        }
+      ],
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "controller_state",
+      "display_name": null,
+      "object_type": "state",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "automatic"
+        },
+        {
+          "value": 1,
+          "label": "override"
+        }
+      ],
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "energy_hold_off",
+      "display_name": null,
+      "description": "Energy Hold Off",
+      "source_key": "energyHoldOff",
+      "function_group": "control_variable",
+      "semantic_role": "device.tbd",
+      "object_type": "state",
+      "semantic_confidence": "low",
+      "data_type": "boolean",
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "room_occupancy",
+      "display_name": null,
+      "object_type": "state",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "occupied"
+        },
+        {
+          "value": 1,
+          "label": "unoccupied"
+        },
+        {
+          "value": 2,
+          "label": "standby"
+        }
+      ],
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "fanstage_override",
+      "display_name": null,
+      "object_type": "state",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "stage_0"
+        },
+        {
+          "value": 1,
+          "label": "stage_1"
+        },
+        {
+          "value": 2,
+          "label": "stage_2"
+        },
+        {
+          "value": 3,
+          "label": "stage_3"
+        },
+        {
+          "value": 255,
+          "label": "auto"
+        }
+      ],
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "parameter_1",
+      "display_name": null,
+      "object_type": "state",
+      "data_type": "integer",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "parameter_2",
+      "display_name": null,
+      "object_type": "state",
+      "data_type": "integer",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "function",
+      "display_name": null,
+      "object_type": "state",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "do_nothing_status_request"
+        },
+        {
+          "value": 1,
+          "label": "blind_stops"
+        },
+        {
+          "value": 2,
+          "label": "blind_opens"
+        },
+        {
+          "value": 3,
+          "label": "blind_closes"
+        },
+        {
+          "value": 4,
+          "label": "blind_drives_to_position_with_angle_value_see_remark_2"
+        },
+        {
+          "value": 5,
+          "label": "blind_opens_for_time_position_value_and_angle_angle_value"
+        },
+        {
+          "value": 6,
+          "label": "blind_closes_for_time_position_value_and_angle_angle_value"
+        },
+        {
+          "value": 7,
+          "label": "set_runtime_parameters_see_remark_3"
+        },
+        {
+          "value": 8,
+          "label": "set_angle_configuration_see_remark_3"
+        },
+        {
+          "value": 9,
+          "label": "set_min_max_values_see_remark_4"
+        },
+        {
+          "value": 10,
+          "label": "set_slat_angle_for_shut_and_open_position_see_remark_5"
+        },
+        {
+          "value": 11,
+          "label": "set_position_logic_see_remark_6"
+        }
+      ],
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "send_status_flag",
+      "display_name": null,
+      "object_type": "state",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "send_new_status_of_device"
+        },
+        {
+          "value": 1,
+          "label": "send_no_status_e_g_global_central_commands"
+        }
+      ],
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "pos_and_angle_flag",
+      "display_name": null,
+      "object_type": "state",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "no_angle_and_position_value_available"
+        },
+        {
+          "value": 1,
+          "label": "angle_and_position_value_available"
+        }
+      ],
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "service_mode_flag",
+      "display_name": null,
+      "object_type": "state",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "normal_operation"
+        },
+        {
+          "value": 1,
+          "label": "service_mode_the_module_disables_all_senders_except_this_sender_which_has_set_the_service_mode_for_example_for_maintenance"
+        }
+      ],
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    }
+  ],
+  "messages": [
+    {
+      "name": "locked",
+      "display_name": null,
+      "description": "Lock for duration time if time >0, unlimited time if timer==0. During lock phase no other commands will be accepted or executed. Locking may be cleared with „unlock“",
+      "source_key": "locked",
+      "function_group": "switching",
+      "semantic_role": "security.lock_state",
+      "object_type": "state",
+      "semantic_confidence": "high",
+      "data_type": "boolean",
+      "default_value": false,
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "switch",
+      "display_name": null,
+      "description": "Switching Command ON/OFF",
+      "source_key": "switch",
+      "function_group": "switching",
+      "semantic_role": "actuator.switch",
+      "object_type": "state",
+      "semantic_confidence": "low",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": "off",
+          "label": "off",
+          "description": "Off"
+        },
+        {
+          "value": "on",
+          "label": "on",
+          "description": "On"
+        }
+      ],
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "switch_type",
+      "display_name": null,
+      "description": "Duration or Delay",
+      "source_key": "switchType",
+      "function_group": "switching",
+      "semantic_role": "device.tbd",
+      "object_type": "state",
+      "semantic_confidence": "low",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": "delay",
+          "label": "delay",
+          "description": "Execute switching command after delay defined by timer"
+        },
+        {
+          "value": "duration",
+          "label": "duration",
+          "description": "Execute switching command immediately and switch back after duration defined by timer"
+        }
+      ],
+      "default_value": "duration",
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "time",
+      "display_name": null,
+      "description": "Timer of duration or delay",
+      "source_key": "time",
+      "function_group": "switching",
+      "semantic_role": "time.duration",
+      "object_type": "state",
+      "semantic_confidence": "high",
+      "data_type": "enum",
+      "unit": "s",
+      "enum": [
+        {
+          "value": "0",
+          "label": "0",
+          "description": "No time specified"
+        }
+      ],
+      "ranges": [
+        {
+          "min": 0.1,
+          "max": 6553.5,
+          "step": 0.1,
+          "unit": "s",
+          "description": null
+        }
+      ],
+      "default_value": 0,
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "dim_value",
+      "display_name": null,
+      "source_key": "dimValue",
+      "function_group": "dimming",
+      "semantic_role": "lighting.brightness",
+      "object_type": "setpoint",
+      "semantic_confidence": "medium",
+      "data_type": "float",
+      "unit": "%",
+      "ranges": [
+        {
+          "min": 0,
+          "max": 100,
+          "step": 0.392,
+          "unit": "%",
+          "description": "Output value 0% to 100%"
+        }
+      ],
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "ramping_time",
+      "display_name": null,
+      "source_key": "rampingTime",
+      "function_group": "dimming",
+      "semantic_role": "control.timer",
+      "object_type": "setpoint",
+      "semantic_confidence": "medium",
+      "semantic_attributes": {
+        "timer_type": "ramping"
+      },
+      "data_type": "integer",
+      "unit": "s",
+      "ranges": [
+        {
+          "min": 0,
+          "max": 255,
+          "step": 1,
+          "unit": "s",
+          "description": "Time to reach specified dimValue"
+        }
+      ],
+      "default_value": 0,
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "store_final_value",
+      "display_name": null,
+      "description": "Store final value",
+      "source_key": "storeFinalValue",
+      "function_group": "dimming",
+      "semantic_role": "device.tbd",
+      "object_type": "state",
+      "semantic_confidence": "low",
+      "data_type": "boolean",
+      "default_value": false,
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "setpoint_shift",
+      "display_name": null,
+      "description": "Setpoint shift",
+      "source_key": "setpointShift",
+      "function_group": "setpoint_shift",
+      "semantic_role": "device.tbd",
+      "object_type": "measurement",
+      "semantic_confidence": "low",
+      "data_type": "float",
+      "unit": "°C",
+      "ranges": [
+        {
+          "min": -12.7,
+          "max": 12.8,
+          "step": 0.1,
+          "unit": "°C",
+          "description": null
+        }
+      ],
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "basic_setpoint",
+      "display_name": null,
+      "description": "Basic Setpoint",
+      "source_key": "basicSetpoint",
+      "function_group": "basic_setpoint",
+      "semantic_role": "device.tbd",
+      "object_type": "setpoint",
+      "semantic_confidence": "low",
+      "data_type": "float",
+      "unit": "°C",
+      "ranges": [
+        {
+          "min": 0,
+          "max": 51.2,
+          "step": 0.201,
+          "unit": "°C",
+          "description": null
+        }
+      ],
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "control",
+      "display_name": null,
+      "description": "Controller state",
+      "source_key": "control",
+      "function_group": "control_variable",
+      "semantic_role": "device.tbd",
+      "object_type": "state",
+      "semantic_confidence": "low",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": "auto",
+          "label": "auto",
+          "description": "Controller is automatic"
+        },
+        {
+          "value": "override",
+          "label": "override",
+          "description": "Controller is override by another device"
+        }
+      ],
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "control_variable",
+      "display_name": null,
+      "description": "Control variable override",
+      "source_key": "controlVariable",
+      "function_group": "control_variable",
+      "semantic_role": "device.tbd",
+      "object_type": "measurement",
+      "semantic_confidence": "low",
+      "data_type": "float",
+      "unit": "%",
+      "ranges": [
+        {
+          "min": 0,
+          "max": 100,
+          "step": 0.392,
+          "unit": "%",
+          "description": null
+        }
+      ],
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "energy_hold_off",
+      "display_name": null,
+      "description": "Energy Hold Off",
+      "source_key": "energyHoldOff",
+      "function_group": "control_variable",
+      "semantic_role": "device.tbd",
+      "object_type": "state",
+      "semantic_confidence": "low",
+      "data_type": "boolean",
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "mode",
+      "display_name": null,
+      "description": "Controller Mode",
+      "source_key": "mode",
+      "function_group": "control_variable",
+      "semantic_role": "device.tbd",
+      "object_type": "state",
+      "semantic_confidence": "low",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": "auto",
+          "label": "auto",
+          "description": "Controller has automatic selection"
+        },
+        {
+          "value": "cooling",
+          "label": "cooling",
+          "description": "Controller is cooling"
+        },
+        {
+          "value": "heating",
+          "label": "heating",
+          "description": "Controller is heating"
+        },
+        {
+          "value": "off",
+          "label": "off",
+          "description": "Controller is off"
+        }
+      ],
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "occupancy",
+      "display_name": null,
+      "description": "Room occupancy",
+      "source_key": "occupancy",
+      "function_group": "control_variable",
+      "semantic_role": "security.occupancy",
+      "object_type": "state",
+      "semantic_confidence": "high",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": "occupied",
+          "label": "occupied",
+          "description": "Occupied"
+        },
+        {
+          "value": "standby",
+          "label": "standby",
+          "description": "Standby"
+        },
+        {
+          "value": "unoccupied",
+          "label": "unoccupied",
+          "description": "Unoccupied"
+        }
+      ],
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "fan_speed",
+      "display_name": null,
+      "description": "FanStage override",
+      "source_key": "fanSpeed",
+      "function_group": "fan_stage",
+      "semantic_role": "climate.fan_speed",
+      "object_type": "setpoint",
+      "semantic_confidence": "medium",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": "auto",
+          "label": "auto",
+          "description": "Fan speed Auto"
+        },
+        {
+          "value": "speed0",
+          "label": "speed0",
+          "description": "Fan speed 0"
+        },
+        {
+          "value": "speed1",
+          "label": "speed1",
+          "description": "Fan speed 1"
+        },
+        {
+          "value": "speed2",
+          "label": "speed2",
+          "description": "Fan speed 2"
+        },
+        {
+          "value": "speed3",
+          "label": "speed3",
+          "description": "Fan speed 3"
+        }
+      ],
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    }
+  ],
+  "telegrams": [
+    {
+      "telegram_type_id": "a5-38-08.0x01_switching",
+      "telegram_id": {
+        "rorg": "A5"
+      },
+      "description": "0x01 Switching",
+      "fields": [
+        {
+          "name": "reserved_24_4",
+          "offset": 24,
+          "size": 4,
+          "shortcut": "",
+          "description": "Reserved field 24:4",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "telegram_type",
+          "offset": 28,
+          "size": 1,
+          "shortcut": "LRNB",
+          "description": "LRN Bit",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "command",
+          "offset": 0,
+          "size": 8,
+          "shortcut": "COM",
+          "description": "Command",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "time",
+          "offset": 8,
+          "size": 16,
+          "shortcut": "TIM",
+          "description": "Time",
+          "raw_min": 0,
+          "raw_max": 65535,
+          "source": "payload"
+        },
+        {
+          "name": "lock_unlock",
+          "offset": 29,
+          "size": 1,
+          "shortcut": "LCK",
+          "description": "Lock/Unlock",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "delay_or_duration",
+          "offset": 30,
+          "size": 1,
+          "shortcut": "DEL",
+          "description": "Delay or duration",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "switching_command",
+          "offset": 31,
+          "size": 1,
+          "shortcut": "SW",
+          "description": "Switching Command",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "telegram_type",
+          "field_ref": "telegram_type",
+          "enum": [
+            {
+              "value": 0,
+              "label": "teach_in_telegram"
+            },
+            {
+              "value": 1,
+              "label": "data_telegram"
+            }
+          ]
+        },
+        {
+          "channel_ref": "command",
+          "field_ref": "command",
+          "enum": [
+            {
+              "value": 1,
+              "label": "0x01"
+            }
+          ]
+        },
+        {
+          "channel_ref": "time",
+          "field_ref": "time",
+          "scale": {
+            "raw_min": 1,
+            "raw_max": 65535,
+            "scale_min": 0.1,
+            "scale_max": 6553.5
+          }
+        },
+        {
+          "channel_ref": "lock_unlock",
+          "field_ref": "lock_unlock",
+          "enum": [
+            {
+              "value": 0,
+              "label": "unlock"
+            },
+            {
+              "value": 1,
+              "label": "lock"
+            }
+          ]
+        },
+        {
+          "channel_ref": "delay_or_duration",
+          "field_ref": "delay_or_duration",
+          "enum": [
+            {
+              "value": 0,
+              "label": "duration"
+            },
+            {
+              "value": 1,
+              "label": "delay"
+            }
+          ]
+        },
+        {
+          "channel_ref": "switching_command",
+          "field_ref": "switching_command",
+          "enum": [
+            {
+              "value": 0,
+              "label": "off"
+            },
+            {
+              "value": 1,
+              "label": "on"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "a5-38-08.cmd02.0x02_dimming",
+      "telegram_id": {
+        "rorg": "A5",
+        "cmd": "0x02"
+      },
+      "description": "0x02 Dimming",
+      "fields": [
+        {
+          "name": "reserved_24_4",
+          "offset": 24,
+          "size": 4,
+          "shortcut": "",
+          "description": "Reserved field 24:4",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "telegram_type",
+          "offset": 28,
+          "size": 1,
+          "shortcut": "LRNB",
+          "description": "LRN Bit",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "command",
+          "offset": 0,
+          "size": 8,
+          "shortcut": "COM",
+          "description": "Command",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "dimming_value",
+          "offset": 8,
+          "size": 8,
+          "shortcut": "EDIM",
+          "description": "Dimming value",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "ramping_time",
+          "offset": 16,
+          "size": 8,
+          "shortcut": "RMP",
+          "description": "Ramping time",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "dimming_range",
+          "offset": 29,
+          "size": 1,
+          "shortcut": "EDIM R",
+          "description": "Dimming Range",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "store_final_value",
+          "offset": 30,
+          "size": 1,
+          "shortcut": "STR",
+          "description": "Store final value",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "switching_command",
+          "offset": 31,
+          "size": 1,
+          "shortcut": "SW",
+          "description": "Switching Command",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "telegram_type",
+          "field_ref": "telegram_type",
+          "enum": [
+            {
+              "value": 0,
+              "label": "teach_in_telegram"
+            },
+            {
+              "value": 1,
+              "label": "data_telegram"
+            }
+          ]
+        },
+        {
+          "channel_ref": "command",
+          "field_ref": "command",
+          "enum": [
+            {
+              "value": 2,
+              "label": "0x02"
+            }
+          ]
+        },
+        {
+          "channel_ref": "dimming_value",
+          "field_ref": "dimming_value",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 255,
+            "scale_min": 0.0,
+            "scale_max": 100.0
+          }
+        },
+        {
+          "channel_ref": "ramping_time",
+          "field_ref": "ramping_time",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 255,
+            "scale_min": 0.0,
+            "scale_max": 255.0
+          }
+        },
+        {
+          "channel_ref": "dimming_range",
+          "field_ref": "dimming_range",
+          "enum": [
+            {
+              "value": 0,
+              "label": "absolute_value"
+            },
+            {
+              "value": 1,
+              "label": "relative_value"
+            }
+          ]
+        },
+        {
+          "channel_ref": "store_final_value",
+          "field_ref": "store_final_value"
+        },
+        {
+          "channel_ref": "switching_command",
+          "field_ref": "switching_command",
+          "enum": [
+            {
+              "value": 0,
+              "label": "off"
+            },
+            {
+              "value": 1,
+              "label": "on"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "a5-38-08.cmd03.0x03_setpoint_shift",
+      "telegram_id": {
+        "rorg": "A5",
+        "cmd": "0x03"
+      },
+      "description": "0x03 Setpoint shift",
+      "fields": [
+        {
+          "name": "reserved_8_8",
+          "offset": 8,
+          "size": 8,
+          "shortcut": "",
+          "description": "Reserved field 8:8",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_24_4",
+          "offset": 24,
+          "size": 4,
+          "shortcut": "",
+          "description": "Reserved field 24:4",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_29_3",
+          "offset": 29,
+          "size": 3,
+          "shortcut": "",
+          "description": "Reserved field 29:3",
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload"
+        },
+        {
+          "name": "telegram_type",
+          "offset": 28,
+          "size": 1,
+          "shortcut": "LRNB",
+          "description": "LRN Bit",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "command",
+          "offset": 0,
+          "size": 8,
+          "shortcut": "COM",
+          "description": "Command",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "setpoint",
+          "offset": 16,
+          "size": 8,
+          "shortcut": "SP",
+          "description": "Setpoint",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "telegram_type",
+          "field_ref": "telegram_type",
+          "enum": [
+            {
+              "value": 0,
+              "label": "teach_in_telegram"
+            },
+            {
+              "value": 1,
+              "label": "data_telegram"
+            }
+          ]
+        },
+        {
+          "channel_ref": "command",
+          "field_ref": "command",
+          "enum": [
+            {
+              "value": 3,
+              "label": "0x03"
+            }
+          ]
+        },
+        {
+          "channel_ref": "setpoint",
+          "field_ref": "setpoint",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 255,
+            "scale_min": -12.7,
+            "scale_max": 12.8
+          }
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "a5-38-08.cmd04.0x04_basic_setpoint",
+      "telegram_id": {
+        "rorg": "A5",
+        "cmd": "0x04"
+      },
+      "description": "0x04 Basic Setpoint",
+      "fields": [
+        {
+          "name": "reserved_8_8",
+          "offset": 8,
+          "size": 8,
+          "shortcut": "",
+          "description": "Reserved field 8:8",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_24_4",
+          "offset": 24,
+          "size": 4,
+          "shortcut": "",
+          "description": "Reserved field 24:4",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_29_3",
+          "offset": 29,
+          "size": 3,
+          "shortcut": "",
+          "description": "Reserved field 29:3",
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload"
+        },
+        {
+          "name": "telegram_type",
+          "offset": 28,
+          "size": 1,
+          "shortcut": "LRNB",
+          "description": "LRN Bit",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "command",
+          "offset": 0,
+          "size": 8,
+          "shortcut": "COM",
+          "description": "Command",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "basic_setpoint",
+          "offset": 16,
+          "size": 8,
+          "shortcut": "BSP",
+          "description": "Basic Setpoint",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "telegram_type",
+          "field_ref": "telegram_type",
+          "enum": [
+            {
+              "value": 0,
+              "label": "teach_in_telegram"
+            },
+            {
+              "value": 1,
+              "label": "data_telegram"
+            }
+          ]
+        },
+        {
+          "channel_ref": "command",
+          "field_ref": "command",
+          "enum": [
+            {
+              "value": 4,
+              "label": "0x04"
+            }
+          ]
+        },
+        {
+          "channel_ref": "basic_setpoint",
+          "field_ref": "basic_setpoint",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 255,
+            "scale_min": 0.0,
+            "scale_max": 51.2
+          }
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "a5-38-08.cmd05.0x05_control_variable",
+      "telegram_id": {
+        "rorg": "A5",
+        "cmd": "0x05"
+      },
+      "description": "0x05 Control variable",
+      "fields": [
+        {
+          "name": "reserved_8_8",
+          "offset": 8,
+          "size": 8,
+          "shortcut": "",
+          "description": "Reserved field 8:8",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_24_1",
+          "offset": 24,
+          "size": 1,
+          "shortcut": "",
+          "description": "Reserved field 24:1",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "telegram_type",
+          "offset": 28,
+          "size": 1,
+          "shortcut": "LRNB",
+          "description": "LRN Bit",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "command",
+          "offset": 0,
+          "size": 8,
+          "shortcut": "COM",
+          "description": "Command",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "control_variable_override",
+          "offset": 16,
+          "size": 8,
+          "shortcut": "CVOV",
+          "description": "Control variable override",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "controller_mode",
+          "offset": 25,
+          "size": 2,
+          "shortcut": "CM",
+          "description": "Controller mode",
+          "raw_min": 0,
+          "raw_max": 3,
+          "source": "payload"
+        },
+        {
+          "name": "controller_state",
+          "offset": 27,
+          "size": 1,
+          "shortcut": "CS",
+          "description": "Controller state",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "energy_hold_off",
+          "offset": 29,
+          "size": 1,
+          "shortcut": "ENHO",
+          "description": "Energy hold off",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "room_occupancy",
+          "offset": 30,
+          "size": 2,
+          "shortcut": "RMOCC",
+          "description": "Room occupancy",
+          "raw_min": 0,
+          "raw_max": 3,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "telegram_type",
+          "field_ref": "telegram_type",
+          "enum": [
+            {
+              "value": 0,
+              "label": "teach_in_telegram"
+            },
+            {
+              "value": 1,
+              "label": "data_telegram"
+            }
+          ]
+        },
+        {
+          "channel_ref": "command",
+          "field_ref": "command",
+          "enum": [
+            {
+              "value": 5,
+              "label": "0x05"
+            }
+          ]
+        },
+        {
+          "channel_ref": "control_variable_override",
+          "field_ref": "control_variable_override",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 255,
+            "scale_min": 0.0,
+            "scale_max": 100.0
+          }
+        },
+        {
+          "channel_ref": "controller_mode",
+          "field_ref": "controller_mode",
+          "enum": [
+            {
+              "value": 0,
+              "label": "automatic_mode_selection"
+            },
+            {
+              "value": 1,
+              "label": "heating"
+            },
+            {
+              "value": 2,
+              "label": "cooling"
+            },
+            {
+              "value": 3,
+              "label": "off"
+            }
+          ]
+        },
+        {
+          "channel_ref": "controller_state",
+          "field_ref": "controller_state",
+          "enum": [
+            {
+              "value": 0,
+              "label": "automatic"
+            },
+            {
+              "value": 1,
+              "label": "override"
+            }
+          ]
+        },
+        {
+          "channel_ref": "energy_hold_off",
+          "field_ref": "energy_hold_off"
+        },
+        {
+          "channel_ref": "room_occupancy",
+          "field_ref": "room_occupancy",
+          "enum": [
+            {
+              "value": 0,
+              "label": "occupied"
+            },
+            {
+              "value": 1,
+              "label": "unoccupied"
+            },
+            {
+              "value": 2,
+              "label": "standby"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "a5-38-08.cmd06.0x06_fan_stage",
+      "telegram_id": {
+        "rorg": "A5",
+        "cmd": "0x06"
+      },
+      "description": "0x06 Fan stage",
+      "fields": [
+        {
+          "name": "reserved_8_8",
+          "offset": 8,
+          "size": 8,
+          "shortcut": "",
+          "description": "Reserved field 8:8",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_24_4",
+          "offset": 24,
+          "size": 4,
+          "shortcut": "",
+          "description": "Reserved field 24:4",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_29_3",
+          "offset": 29,
+          "size": 3,
+          "shortcut": "",
+          "description": "Reserved field 29:3",
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload"
+        },
+        {
+          "name": "telegram_type",
+          "offset": 28,
+          "size": 1,
+          "shortcut": "LRNB",
+          "description": "LRN Bit",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "command",
+          "offset": 0,
+          "size": 8,
+          "shortcut": "COM",
+          "description": "Command",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "fanstage_override",
+          "offset": 16,
+          "size": 8,
+          "shortcut": "FO",
+          "description": "FanStage override",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "telegram_type",
+          "field_ref": "telegram_type",
+          "enum": [
+            {
+              "value": 0,
+              "label": "teach_in_telegram"
+            },
+            {
+              "value": 1,
+              "label": "data_telegram"
+            }
+          ]
+        },
+        {
+          "channel_ref": "command",
+          "field_ref": "command",
+          "enum": [
+            {
+              "value": 6,
+              "label": "0x06"
+            }
+          ]
+        },
+        {
+          "channel_ref": "fanstage_override",
+          "field_ref": "fanstage_override",
+          "enum": [
+            {
+              "value": 0,
+              "label": "stage_0"
+            },
+            {
+              "value": 1,
+              "label": "stage_1"
+            },
+            {
+              "value": 2,
+              "label": "stage_2"
+            },
+            {
+              "value": 3,
+              "label": "stage_3"
+            },
+            {
+              "value": 255,
+              "label": "auto"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "a5-38-08.cmd07.0x07_blind_central_command",
+      "telegram_id": {
+        "rorg": "A5",
+        "cmd": "0x07"
+      },
+      "description": "0x07 Blind Central Command",
+      "fields": [
+        {
+          "name": "telegram_type",
+          "offset": 28,
+          "size": 1,
+          "shortcut": "LRNB",
+          "description": "LRN Bit",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "command",
+          "offset": 0,
+          "size": 8,
+          "shortcut": "COM",
+          "description": "Command",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "parameter_1",
+          "offset": 8,
+          "size": 8,
+          "shortcut": "P1",
+          "description": "Parameter 1",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "parameter_2",
+          "offset": 16,
+          "size": 8,
+          "shortcut": "P2",
+          "description": "Parameter 2",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "function",
+          "offset": 24,
+          "size": 4,
+          "shortcut": "FUNC",
+          "description": "Function",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "send_status_flag",
+          "offset": 29,
+          "size": 1,
+          "shortcut": "SSF",
+          "description": "Send status flag",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "pos_and_angle_flag",
+          "offset": 30,
+          "size": 1,
+          "shortcut": "PAF",
+          "description": "Pos. and Angle flag",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "service_mode_flag",
+          "offset": 31,
+          "size": 1,
+          "shortcut": "SMF",
+          "description": "Service Mode Flag",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "telegram_type",
+          "field_ref": "telegram_type",
+          "enum": [
+            {
+              "value": 0,
+              "label": "teach_in_telegram"
+            },
+            {
+              "value": 1,
+              "label": "data_telegram"
+            }
+          ]
+        },
+        {
+          "channel_ref": "command",
+          "field_ref": "command",
+          "enum": [
+            {
+              "value": 7,
+              "label": "shutters_blinds"
+            }
+          ]
+        },
+        {
+          "channel_ref": "parameter_1",
+          "field_ref": "parameter_1"
+        },
+        {
+          "channel_ref": "parameter_2",
+          "field_ref": "parameter_2"
+        },
+        {
+          "channel_ref": "function",
+          "field_ref": "function",
+          "enum": [
+            {
+              "value": 0,
+              "label": "do_nothing_status_request"
+            },
+            {
+              "value": 1,
+              "label": "blind_stops"
+            },
+            {
+              "value": 2,
+              "label": "blind_opens"
+            },
+            {
+              "value": 3,
+              "label": "blind_closes"
+            },
+            {
+              "value": 4,
+              "label": "blind_drives_to_position_with_angle_value_see_remark_2"
+            },
+            {
+              "value": 5,
+              "label": "blind_opens_for_time_position_value_and_angle_angle_value"
+            },
+            {
+              "value": 6,
+              "label": "blind_closes_for_time_position_value_and_angle_angle_value"
+            },
+            {
+              "value": 7,
+              "label": "set_runtime_parameters_see_remark_3"
+            },
+            {
+              "value": 8,
+              "label": "set_angle_configuration_see_remark_3"
+            },
+            {
+              "value": 9,
+              "label": "set_min_max_values_see_remark_4"
+            },
+            {
+              "value": 10,
+              "label": "set_slat_angle_for_shut_and_open_position_see_remark_5"
+            },
+            {
+              "value": 11,
+              "label": "set_position_logic_see_remark_6"
+            }
+          ]
+        },
+        {
+          "channel_ref": "send_status_flag",
+          "field_ref": "send_status_flag",
+          "enum": [
+            {
+              "value": 0,
+              "label": "send_new_status_of_device"
+            },
+            {
+              "value": 1,
+              "label": "send_no_status_e_g_global_central_commands"
+            }
+          ]
+        },
+        {
+          "channel_ref": "pos_and_angle_flag",
+          "field_ref": "pos_and_angle_flag",
+          "enum": [
+            {
+              "value": 0,
+              "label": "no_angle_and_position_value_available"
+            },
+            {
+              "value": 1,
+              "label": "angle_and_position_value_available"
+            }
+          ]
+        },
+        {
+          "channel_ref": "service_mode_flag",
+          "field_ref": "service_mode_flag",
+          "enum": [
+            {
+              "value": 0,
+              "label": "normal_operation"
+            },
+            {
+              "value": 1,
+              "label": "service_mode_the_module_disables_all_senders_except_this_sender_which_has_set_the_service_mode_for_example_for_maintenance"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tx": {
+    "aggregation_window_seconds": 10
+  }
+}

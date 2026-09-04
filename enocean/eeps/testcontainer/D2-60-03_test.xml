@@ -1,0 +1,2430 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProfileCertification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="./Certification_EEP.xsd"  schemaVersion="0.9">
+	<EEP rorg="0xD2"	func="0x60"	type="0x03">
+	<TestCase>
+	<Name>Teach-in Test</Name>
+	<Test>
+		<Name>Unidirectional Teach-in Test</Name>
+	    <Step>
+			<Dataset>
+	<Telegram rorg="0xD4" length="7">
+	<Byte order="0" ignoremask="0xFF">0x80</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0x00">0x03</Byte>
+	<Byte order="5" ignoremask="0x00">0x60</Byte>
+	<Byte order="6" ignoremask="0x00">0xD2</Byte>
+	</Telegram>
+	<RealData>
+  	<Data>
+    	<Type>RORG</Type>
+    	<Value>0xD2</Value>
+  	</Data>
+  	<Data>
+    	<Type>FUNC</Type>
+    	<Value>0x60</Value>
+  	</Data>
+  	<Data>
+    	<Type>TYPE</Type>
+    	<Value>0x03</Value>
+  	</Data>
+  	</RealData>
+    </Dataset>
+    </Step>
+    </Test>
+   	</TestCase>
+	<TestCase>
+	<Name>
+			Unused
+			
+			
+			
+			
+			
+			
+			
+			
+			</Name>
+	</TestCase>
+	<TestCase>
+	<Name>Thermal Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			</Name>
+	<Test>
+            <Name>Comfort Thermal Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0x8F">0x0</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Thermal Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>Eco Thermal Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0x8F">0x1</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Thermal Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>Night Thermal Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0x8F">0x2</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Thermal Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x2</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>Maintenance Thermal Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0x8F">0x3</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Thermal Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x3</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>Defrost Thermal Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0x8F">0x4</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Thermal Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x4</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Applied Thermal Mode 
+			
+			
+			
+			
+			
+			
+			
+			
+			</Name>
+	<Test>
+            <Name>Auto Applied Thermal Mode 
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xF7">0x0</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Applied Thermal Mode 
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>Override Applied Thermal Mode 
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xF7">0x1</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Applied Thermal Mode 
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Ventilation Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Name>
+	<Test>
+            <Name>Comfort Ventilation Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xF9">0x0</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Ventilation Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>Eco Ventilation Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xF9">0x1</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Ventilation Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>Night Ventilation Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xF9">0x2</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Ventilation Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x2</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>Maintenance Ventilation Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xF9">0x3</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Ventilation Mode
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x3</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Applied ventilation Mode 
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Name>
+	<Test>
+            <Name>Auto Applied ventilation Mode 
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFE">0x0</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Applied ventilation Mode 
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>Override Applied ventilation Mode 
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFE">0x1</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Applied ventilation Mode 
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	</TestCase>
+	<TestCase>
+	<Name>
+			Heating Exemption Setpoint 
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Name>
+	<Test>
+            <Name>Min 
+			Heating Exemption Setpoint 
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0x0">0x0</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>
+			Heating Exemption Setpoint 
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>10</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	<Test>
+            <Name>Mid 
+			Heating Exemption Setpoint 
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0x0">0x7F</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>
+			Heating Exemption Setpoint 
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>12</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	<Test>
+            <Name>Max 
+			Heating Exemption Setpoint 
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0x0">0xFF</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>
+			Heating Exemption Setpoint 
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>35.5</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	</TestCase>
+	<TestCase>
+	<Name>
+			Delta T Cooling exemption setpoint
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Name>
+	<Test>
+            <Name>Min 
+			Delta T Cooling exemption setpoint
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0x0">0x14</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>
+			Delta T Cooling exemption setpoint
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>2</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	<Test>
+            <Name>Mid 
+			Delta T Cooling exemption setpoint
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0x0">0x73</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>
+			Delta T Cooling exemption setpoint
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>11</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	<Test>
+            <Name>Max 
+			Delta T Cooling exemption setpoint
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0x0">0xFA</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>
+			Delta T Cooling exemption setpoint
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>25</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	</TestCase>
+	<TestCase>
+	<Name>
+			Unused
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Name>
+	</TestCase>
+	<TestCase>
+	<Name>Heating and Cooling Exemption
+			
+			</Name>
+	<Test>
+            <Name>No exemption Heating and Cooling Exemption
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xEF">0x0</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Heating and Cooling Exemption
+			
+			</Type>
+                <Value>0x0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>Exemption under way / Override from BMS Heating and Cooling Exemption
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xEF">0x1</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Heating and Cooling Exemption
+			
+			</Type>
+                <Value>0x1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Heating and Cooling Exemption duration
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Name>
+	<Test>
+            <Name>No exemption Heating and Cooling Exemption duration
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xF0">0x0</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Heating and Cooling Exemption duration
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>Never end Heating and Cooling Exemption duration
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xF0">0x1</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Heating and Cooling Exemption duration
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>End on event (Change Mode) Heating and Cooling Exemption duration
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xF0">0x2</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Heating and Cooling Exemption duration
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x2</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>15 minutes Heating and Cooling Exemption duration
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xF0">0x3</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Heating and Cooling Exemption duration
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x3</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>30 minutes Heating and Cooling Exemption duration
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xF0">0x4</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Heating and Cooling Exemption duration
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x4</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>1 hour Heating and Cooling Exemption duration
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xF0">0x5</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Heating and Cooling Exemption duration
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x5</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>2 hours Heating and Cooling Exemption duration
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xF0">0x6</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Heating and Cooling Exemption duration
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x6</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>6 hours Heating and Cooling Exemption duration
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xF0">0x7</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Heating and Cooling Exemption duration
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x7</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>12 hours Heating and Cooling Exemption duration
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xF0">0x8</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Heating and Cooling Exemption duration
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x8</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>24 hours Heating and Cooling Exemption duration
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xF0">0x9</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Heating and Cooling Exemption duration
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x9</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Free Cooling Temperature Exemption setpoint
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Name>
+	<Test>
+            <Name>Min Free Cooling Temperature Exemption setpoint
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0x0">0x0</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Free Cooling Temperature Exemption setpoint
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>-15</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	<Test>
+            <Name>Mid Free Cooling Temperature Exemption setpoint
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0x0">0x64</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Free Cooling Temperature Exemption setpoint
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>10</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	<Test>
+            <Name>Max Free Cooling Temperature Exemption setpoint
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0x0">0xC8</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Free Cooling Temperature Exemption setpoint
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>5</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	</TestCase>
+	<TestCase>
+	<Name>Ventilation Exemption
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Name>
+	<Test>
+            <Name>No exemption Ventilation Exemption
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0x7F">0x0</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Ventilation Exemption
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>Exemption under way (only from probe) Ventilation Exemption
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0x7F">0x1</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Ventilation Exemption
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	</TestCase>
+	<TestCase>
+	<Name>
+			Free Cooling status
+			
+			
+			
+			
+			
+			</Name>
+	<Test>
+            <Name>Not active 
+			Free Cooling status
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xBF">0x0</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>
+			Free Cooling status
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>Under way 
+			Free Cooling status
+			
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xBF">0x1</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>
+			Free Cooling status
+			
+			
+			
+			
+			
+			</Type>
+                <Value>0x1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	</TestCase>
+	<TestCase>
+	<Name>
+			Free Cooling  Regulation type
+			
+			
+			
+			
+			</Name>
+	<Test>
+            <Name>On constant Air Flow 
+			Free Cooling  Regulation type
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xDF">0x0</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>
+			Free Cooling  Regulation type
+			
+			
+			
+			
+			</Type>
+                <Value>0x0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>On temperature 
+			Free Cooling  Regulation type
+			
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xDF">0x1</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>
+			Free Cooling  Regulation type
+			
+			
+			
+			
+			</Type>
+                <Value>0x1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Free Cooling Temperature exemption 
+
+			
+			
+			
+			</Name>
+	<Test>
+            <Name>No exemption Free Cooling Temperature exemption 
+
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xEF">0x0</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Free Cooling Temperature exemption 
+
+			
+			
+			
+			</Type>
+                <Value>0x0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>Exemption under way / Override from BMS Free Cooling Temperature exemption 
+
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xEF">0x1</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Free Cooling Temperature exemption 
+
+			
+			
+			
+			</Type>
+                <Value>0x1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Free Cooling Temperature Exemption duration
+			
+			
+			
+			</Name>
+	<Test>
+            <Name>No exemption Free Cooling Temperature Exemption duration
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xF0">0x0</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Free Cooling Temperature Exemption duration
+			
+			
+			
+			</Type>
+                <Value>0x0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>Never end Free Cooling Temperature Exemption duration
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xF0">0x1</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Free Cooling Temperature Exemption duration
+			
+			
+			
+			</Type>
+                <Value>0x1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>End on event (Change Mode) Free Cooling Temperature Exemption duration
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xF0">0x2</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Free Cooling Temperature Exemption duration
+			
+			
+			
+			</Type>
+                <Value>0x2</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>15 minutes Free Cooling Temperature Exemption duration
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xF0">0x3</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Free Cooling Temperature Exemption duration
+			
+			
+			
+			</Type>
+                <Value>0x3</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>30 minutes Free Cooling Temperature Exemption duration
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xF0">0x4</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Free Cooling Temperature Exemption duration
+			
+			
+			
+			</Type>
+                <Value>0x4</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>1 hour Free Cooling Temperature Exemption duration
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xF0">0x5</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Free Cooling Temperature Exemption duration
+			
+			
+			
+			</Type>
+                <Value>0x5</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>2 hours Free Cooling Temperature Exemption duration
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xF0">0x6</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Free Cooling Temperature Exemption duration
+			
+			
+			
+			</Type>
+                <Value>0x6</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>6 hours Free Cooling Temperature Exemption duration
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xF0">0x7</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Free Cooling Temperature Exemption duration
+			
+			
+			
+			</Type>
+                <Value>0x7</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>12 hours Free Cooling Temperature Exemption duration
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xF0">0x8</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Free Cooling Temperature Exemption duration
+			
+			
+			
+			</Type>
+                <Value>0x8</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	<Test>
+            <Name>24 hours Free Cooling Temperature Exemption duration
+			
+			
+			
+			 Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xF0">0x9</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Free Cooling Temperature Exemption duration
+			
+			
+			
+			</Type>
+                <Value>0x9</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	</TestCase>
+	<TestCase>
+      <Name>unusedFieldTest</Name>
+      <Test>
+        <Name>unused field test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="6" length="6">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0xFF">0x00</Byte>
+	<Byte order="5" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+	</EEP>
+ </ProfileCertification>

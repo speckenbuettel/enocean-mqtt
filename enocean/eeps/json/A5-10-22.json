@@ -1,0 +1,80 @@
+{
+  "header" : {
+    "httpStatus" : 200,
+    "content" : "profile",
+    "gateway" : "OPUS-IQ-DOT v1.18.014",
+    "timestamp" : "2021-12-22T11:35:05.876+0100"
+  },
+  "profile" : {
+    "eep" : "A5-10-22",
+    "title" : "Room Operating Panel, Temperature, Setpoint, Humidity and Fan Speed",
+    "functionGroups" : [ {
+      "direction" : "from",
+      "functions" : [ {
+        "key" : "fanspeed",
+        "description" : "Fansspeed",
+        "values" : [ {
+          "value" : "auto",
+          "meaning" : "Fan speed auto"
+        }, {
+          "value" : "off",
+          "meaning" : "Fan is off"
+        }, {
+          "value" : "speed1",
+          "meaning" : "Fan speed 1"
+        }, {
+          "value" : "speed2",
+          "meaning" : "Fan speed 2"
+        }, {
+          "value" : "speed3",
+          "meaning" : "Fan speed 3"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "humidity",
+        "description" : "Rel. Humidity (linear)",
+        "values" : [ {
+          "range" : {
+            "min" : 0,
+            "max" : 100,
+            "step" : 0.4,
+            "unit" : "%"
+          }
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "relativeSetpoint",
+        "description" : "Setpoint (linear) Min.- … Max+",
+        "values" : [ {
+          "range" : {
+            "min" : 0,
+            "max" : 255,
+            "step" : 1
+          }
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "temperature",
+        "description" : "Temperature (linear)",
+        "values" : [ {
+          "range" : {
+            "min" : 0,
+            "max" : 40,
+            "step" : 0.16,
+            "unit" : "°C"
+          }
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      } ]
+    } ],
+    "version" : 0.9
+  }
+}

@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+
+{% set active_page = "busmonitor" %}
+
+{% block title %}enocean-mqtt Bus Monitor{% endblock %}
+
+{% block styles %}
+  <link rel="stylesheet" href="/static/css/busmonitor.css?v=20260822-2">
+{% endblock %}
+
+{% block main_class %} busmonitor-main{% endblock %}
+
+{% block content %}
+  <div class="busmonitor-page">
+    <header class="busmonitor-header compact-card">
+      <div>
+        <p class="eyebrow">EnOcean</p>
+        <h1>Bus Monitor</h1>
+      </div>
+      <div id="busmonitorModeStatus" class="overall-health ok busmonitor-mode-status">
+        <span class="status-dot"></span>
+        <span>Bus monitor in Live Mode</span>
+      </div>
+    </header>
+
+    <section class="busmonitor-card compact-card">
+      <div class="card-heading busmonitor-card-heading">
+        <h2>Telegrams</h2>
+        <span id="status" class="busmonitor-loaded-status">not loaded</span>
+      </div>
+
+      <section class="busmonitor-filter-card" aria-labelledby="busmonitorFiltersTitle">
+        <h3 id="busmonitorFiltersTitle">Filters</h3>
+
+        <div class="busmonitor-filters">
+          <div class="filter-field filter-field-range">
+            <label for="quickRange">Quick range</label>
+            <select id="quickRange">
+              <option value="now-15m">Last 15 minutes</option>
+              <option value="now-30m">Last 30 minutes</option>
+              <option value="now-1h" selected>Last 1 hour</option>
+              <option value="now-6h">Last 6 hours</option>
+              <option value="now-12h">Last 12 hours</option>
+              <option value="now-24h">Last 24 hours</option>
+              <option value="now-7d">Last 7 days</option>
+              <option value="custom">Custom</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="timeFrom">From</label>
+            <input type="text" id="timeFrom" value="now-1h" placeholder="now-6h">
+          </div>
+
+          <div class="filter-field">
+            <label for="timeTo">To</label>
+            <input type="text" id="timeTo" value="now" placeholder="now">
+          </div>
+
+          <div class="filter-field">
+            <span class="filter-label">Devices</span>
+            <div class="multi-select" id="senderFilter">
+              <button type="button" id="senderFilterButton" class="multi-select-button">any device</button>
+              <div id="senderFilterPanel" class="multi-select-panel" hidden>
+                <label class="multi-select-option"><input type="checkbox" id="senderFilterAll" checked>any device</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-field">
+            <span class="filter-label">RORG</span>
+            <div class="multi-select" id="rorgFilter">
+              <button type="button" id="rorgFilterButton" class="multi-select-button">any RORG</button>
+              <div id="rorgFilterPanel" class="multi-select-panel" hidden>
+                <label class="multi-select-option"><input type="checkbox" id="rorgFilterAll" checked>any RORG</label>
+                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="F6" checked>F6 | RPS</label>
+                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="D5" checked>D5 | 1BS</label>
+                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="A5" checked>A5 | 4BS</label>
+                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="D2" checked>D2 | VLD</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-field filter-field-small">
+            <label for="runtimeMode">Runtime</label>
+            <select id="runtimeMode">
+              <option value="">all</option>
+              <option value="live">live</option>
+              <option value="replay">replay</option>
+            </select>
+          </div>
+
+          <div class="filter-field filter-field-small">
+            <label for="direction">Direction</label>
+            <select id="direction">
+              <option value="">all</option>
+              <option value="rx">rx</option>
+              <option value="tx">tx</option>
+            </select>
+          </div>
+
+          <div class="filter-field filter-field-small">
+            <label for="knownFilter">Device visibility</label>
+            <select id="knownFilter">
+              <option value="all">all devices</option>
+              <option value="known">known devices</option>
+              <option value="unknown">unknown devices</option>
+            </select>
+          </div>
+
+          <fieldset class="filter-choice-group">
+            <legend>Sender display</legend>
+            <label><input type="radio" name="senderDisplayMode" value="id" checked>ID</label>
+            <label><input type="radio" name="senderDisplayMode" value="name">Name</label>
+          </fieldset>
+
+          <fieldset class="filter-choice-group">
+            <legend>Table view</legend>
+            <label><input type="radio" name="tableViewMode" value="compact" checked>Compact</label>
+            <label><input type="radio" name="tableViewMode" value="extended">Extended</label>
+          </fieldset>
+
+          <div class="filter-choice-group filter-checkbox-group">
+            <span class="filter-label">Timestamp</span>
+            <label><input type="checkbox" id="showMilliseconds">Milliseconds</label>
+          </div>
+        </div>
+
+        <div class="filter-actions">
+          <button type="button" id="applyButton" class="filter-action-primary">Apply</button>
+          <button type="button" id="loadOlderButton">Load older</button>
+          <button type="button" id="loadAllButton">Load all</button>
+          <a id="csvLink" class="filter-action-link" href="/api/v1/busmonitor/export/csv?limit=100" target="_blank">Export to CSV</a>
+        </div>
+      </section>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Timestamp</th>
+              <th>Direction</th>
+              <th class="extended-column">Runtime</th>
+              <th id="senderColumnHeader">Sender ID</th>
+              <th class="extended-column">Known</th>
+              <th>RORG</th>
+              <th>Data</th>
+              <th>Status</th>
+              <th class="extended-column">Raw Telegram</th>
+              <th>RSSI</th>
+            </tr>
+          </thead>
+          <tbody id="telegramBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="details compact-card">
+      <div class="card-heading">
+        <h2>Telegram Details</h2>
+      </div>
+      <pre id="details">Select a telegram row.</pre>
+    </section>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="/static/js/busmonitor.js?v=20260822-1"></script>
+  <script src="/static/js/busmonitor-controls.js?v=20260822-1"></script>
+{% endblock %}

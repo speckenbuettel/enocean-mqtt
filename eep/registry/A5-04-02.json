@@ -1,0 +1,253 @@
+{
+  "profile_type": "standard",
+  "eep": "A5-04-02",
+  "rorg": "A5",
+  "func": "04",
+  "type": "02",
+  "func_description": "Temperature and Humidity Sensor",
+  "type_description": "Range -20 °C to +60 °C and 0% to 100%",
+  "description": "Temperature and Humidity Sensor, Range -20 °C to +60 °C and 0% to 100%",
+  "source": "EnOcean Equipment Profiles",
+  "source_version": "2.6.8",
+  "channels": [
+    {
+      "name": "telegram_type",
+      "display_name": null,
+      "channel_type": "status",
+      "data_type": "enum",
+      "semantic_role": "enocean.telegram_type",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "teach_in_telegram"
+        },
+        {
+          "value": 1,
+          "label": "data_telegram"
+        }
+      ],
+      "tx": {
+        "managed": true,
+        "default_value": "data_telegram",
+        "required_for_snapshot": false
+      }
+    },
+    {
+      "name": "humidity",
+      "display_name": null,
+      "channel_type": "measurement",
+      "data_type": "float",
+      "unit": "%",
+      "semantic_role": "environment.humidity",
+      "value_precision": 1,
+      "value_resolution": 0.4,
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "temperature",
+      "display_name": null,
+      "channel_type": "measurement",
+      "data_type": "float",
+      "unit": "°C",
+      "semantic_role": "environment.temperature",
+      "value_precision": 1,
+      "value_resolution": 0.32,
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "t_sensor",
+      "display_name": null,
+      "channel_type": "status",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "not_available"
+        },
+        {
+          "value": 1,
+          "label": "available"
+        }
+      ],
+      "tx": {
+        "managed": true,
+        "runtime_default": "channel_enabled",
+		"runtime_default_channel": "temperature",
+        "required_for_snapshot": false
+      }
+    }
+  ],
+  "telegrams": [
+    {
+      "telegram_type_id": "a5-04-02.case1",
+      "telegram_id": {
+        "rorg": "A5"
+      },
+      "fields": [
+        {
+          "name": "reserved_0_8",
+          "offset": 0,
+          "size": 8,
+          "shortcut": "",
+          "description": "Reserved field 0:8",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_24_4",
+          "offset": 24,
+          "size": 4,
+          "shortcut": "",
+          "description": "Reserved field 24:4",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_29_1",
+          "offset": 29,
+          "size": 1,
+          "shortcut": "",
+          "description": "Reserved field 29:1",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_31_1",
+          "offset": 31,
+          "size": 1,
+          "shortcut": "",
+          "description": "Reserved field 31:1",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "telegram_type",
+          "offset": 28,
+          "size": 1,
+          "shortcut": "LRNB",
+          "description": "LRN bit",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "humidity",
+          "offset": 8,
+          "size": 8,
+          "shortcut": "HUM",
+          "description": "Humidity",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "temperature",
+          "offset": 16,
+          "size": 8,
+          "shortcut": "TMP",
+          "description": "Temperature",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "t_sensor",
+          "offset": 30,
+          "size": 1,
+          "shortcut": "TSN",
+          "description": "T-sensor",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "telegram_type",
+          "field_ref": "telegram_type",
+          "bitfield_ref": "telegram_type",
+          "enum": [
+            {
+              "value": 0,
+              "label": "teach_in_telegram"
+            },
+            {
+              "value": 1,
+              "label": "data_telegram"
+            }
+          ]
+        },
+        {
+          "channel_ref": "humidity",
+          "field_ref": "humidity",
+          "bitfield_ref": "humidity",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 250,
+            "scale_min": 0.0,
+            "scale_max": 100.0
+          }
+        },
+        {
+          "channel_ref": "temperature",
+          "field_ref": "temperature",
+          "bitfield_ref": "temperature",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 250,
+            "scale_min": -20.0,
+            "scale_max": 60.0
+          }
+        },
+        {
+          "channel_ref": "t_sensor",
+          "field_ref": "t_sensor",
+          "bitfield_ref": "t_sensor",
+          "enum": [
+            {
+              "value": 0,
+              "label": "not_available"
+            },
+            {
+              "value": 1,
+              "label": "available"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tx": {
+    "aggregation_window_seconds": 10
+  }
+}

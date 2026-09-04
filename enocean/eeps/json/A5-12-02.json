@@ -1,0 +1,93 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:02.717+0200"
+   },
+   "profile": {
+      "eep": "A5-12-02",
+      "title": "Automated Meter Reading (AMR), Gas",
+      "functionGroups": [
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "channel",
+                  "description": "Tariff info",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 15,
+                           "step": 1
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "volume",
+                  "description": "Cumulative gas volume from meter",
+                  "values": [
+                     {
+                        "meaning": "Cumulative gas volume",
+                        "range": {
+                           "min": 0,
+                           "max": 16777215000,
+                           "step": 1,
+                           "unit": "l"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "channel",
+                  "description": "Tariff info",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 15,
+                           "step": 1
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "flowrate",
+                  "description": "Current gas flow rate from meter",
+                  "values": [
+                     {
+                        "meaning": "Current gas flow rate",
+                        "range": {
+                           "min": 0,
+                           "max": 16777215,
+                           "step": 1,
+                           "unit": "l/s"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

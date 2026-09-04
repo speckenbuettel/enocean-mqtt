@@ -1,0 +1,159 @@
+{
+  "header" : {
+    "httpStatus" : 200,
+    "content" : "profile",
+    "gateway" : "DC-GW/EO-IP v1.15.001",
+    "timestamp" : "2020-06-12T07:57:39.729+0200"
+  },
+  "profile" : {
+    "eep" : "D2-14-40",
+    "title" : "Indoor -Temperature, Humidity XYZ Acceleration, Illumination Sensor",
+    "functionGroups" : [ {
+      "direction" : "from",
+      "functions" : [ {
+        "key" : "accelerationStatus",
+        "description" : "Status of the Sensor",
+        "values" : [ {
+          "value" : "heartbeat",
+          "meaning" : "Heartbeat"
+        }, {
+          "value" : "threshold1",
+          "meaning" : "Threshold 1 exceeded"
+        }, {
+          "value" : "threshold2",
+          "meaning" : "Threshold 2 exceeded"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "accelerationX",
+        "description" : "Acceleration X (linear)",
+        "values" : [ {
+          "range" : {
+            "min" : -2.5,
+            "max" : 2.5,
+            "step" : 0.005,
+            "unit" : "g"
+          }
+        }, {
+          "value" : "accelerationErrorX",
+          "meaning" : "Error"
+        }, {
+          "value" : "overrange",
+          "meaning" : "Out of Range positive (&gt;2.5g)"
+        }, {
+          "value" : "underrange",
+          "meaning" : "Out of Range negative (&lt;-2.5g)"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "accelerationY",
+        "description" : "Acceleration Y (linear)",
+        "values" : [ {
+          "range" : {
+            "min" : -2.5,
+            "max" : 2.5,
+            "step" : 0.005,
+            "unit" : "g"
+          }
+        }, {
+          "value" : "accelerationErrorY",
+          "meaning" : "Error"
+        }, {
+          "value" : "overrange",
+          "meaning" : "Out of Range positive (&gt;2.5g)"
+        }, {
+          "value" : "underrange",
+          "meaning" : "Out of Range negative (&lt;-2.5g)"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "accelerationZ",
+        "description" : "Acceleration Z (linear)",
+        "values" : [ {
+          "range" : {
+            "min" : -2.5,
+            "max" : 2.5,
+            "step" : 0.005,
+            "unit" : "g"
+          }
+        }, {
+          "value" : "accelerationErrorZ",
+          "meaning" : "Error"
+        }, {
+          "value" : "overrange",
+          "meaning" : "Out of Range positive (&gt;2.5g)"
+        }, {
+          "value" : "underrange",
+          "meaning" : "Out of Range negative (&lt;-2.5g)"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "humidity",
+        "description" : "Rel. Humidity (linear)",
+        "values" : [ {
+          "range" : {
+            "min" : 0,
+            "max" : 100,
+            "step" : 0.5,
+            "unit" : "%"
+          }
+        }, {
+          "value" : "humidityError",
+          "meaning" : "Error"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "illumination",
+        "description" : "Illumination (linear)",
+        "values" : [ {
+          "range" : {
+            "min" : 0,
+            "max" : 100000,
+            "step" : 1,
+            "unit" : "lx"
+          }
+        }, {
+          "value" : "illuminationError",
+          "meaning" : "Error"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "temperature",
+        "description" : "Temperature (linear)",
+        "values" : [ {
+          "range" : {
+            "min" : -40,
+            "max" : 60,
+            "step" : 0.1,
+            "unit" : "°C"
+          }
+        }, {
+          "value" : "overrange",
+          "meaning" : "Out of Range positive (&gt;60°)"
+        }, {
+          "value" : "temperatureError",
+          "meaning" : "Error"
+        }, {
+          "value" : "underrange",
+          "meaning" : "Out of Range negative (&lt;-40°)"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      } ]
+    } ],
+    "version" : 0.9
+  }
+}

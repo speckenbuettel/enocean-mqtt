@@ -1,0 +1,766 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProfileCertification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./Certification_EEP.xsd" schemaVersion="0.9">
+  <EEP rorg="0xA5" func="0x38" type="0x09">
+    <TestCase>
+      <Name>Teach-in Test</Name>
+      <Test>
+        <Name>Unidirectional Teach-in Test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0x0">0xE0</Byte>
+              <Byte order="1" ignoremask="0x07">0x48</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0x00">0x80</Byte>
+
+            </Telegram>
+            <RealData>
+              <Data>
+                <Type>LRN Bit</Type>
+                <Value>0</Value>
+              </Data>
+              <Data>
+                <Type>RORG</Type>
+                <Value>165</Value>
+              </Data>
+              <Data>
+                <Type>FUNC</Type>
+                <Value>56</Value>
+              </Data>
+              <Data>
+                <Type>TYPE</Type>
+                <Value>9</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>Parameter 1 Enum Test</Name>
+      <Test>
+        <Name>Parameter 1: Func. 00: -- not used –-
+                      Func. 01: -- not used --
+                      Func. 02: -- not used --
+                      Func. 03: -- not used --
+                      Func. 04: -- not used --
+                      Func. 05: -- not used --
+                      Func. 06: Dimm-Value (0 ... 255)
+                      Func. 07: R - Red (0 .. 255)
+                      Func. 08: -- not used --
+                      Func. 09: Dimm-Value (0 ... 255)
+                      Func. 10: Lamp operating hours (MSB 15..8)
+                      Func. 11: -- not used --
+                      Func. 12: Energy metering value (MSB 15..8)
+                      </Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0x00">0x01</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>P1</Shortcut>
+                <Type>Func. 00: -- not used –-
+                      Func. 01: -- not used --
+                      Func. 02: -- not used --
+                      Func. 03: -- not used --
+                      Func. 04: -- not used --
+                      Func. 05: -- not used --
+                      Func. 06: Dimm-Value (0 ... 255)
+                      Func. 07: R - Red (0 .. 255)
+                      Func. 08: -- not used --
+                      Func. 09: Dimm-Value (0 ... 255)
+                      Func. 10: Lamp operating hours (MSB 15..8)
+                      Func. 11: -- not used --
+                      Func. 12: Energy metering value (MSB 15..8)
+                      </Type>
+                <Value>1</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>Parameter 2 Enum Test</Name>
+      <Test>
+        <Name>Parameter 2: 
+                           Func. 00: -- not used –-
+                      Func. 01: -- not used --
+                      Func. 02: -- not used --
+                      Func. 03: Ramping time (MSB 15...8) (65535 s)
+                      Func. 04: Ramping time (MSB 15...8) (65535 s)
+                      Func. 05: -- not used --
+                      Func. 06: Ramping time (MSB 15...8) (65535 s)
+                      Func. 07: G - Green (0 ... 255)
+                      Func. 08: -- not used --
+                      Func. 09: Dimm-Value (0 ... 255)
+                      Func. 10: Lamp operating hours (7...0 LSB)
+                      Func. 11: -- not used --
+                      Func. 12: Energy metering value (7..0 LSB)
+                    </Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0x00">0x01</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>P2</Shortcut>
+                <Type>
+                           Func. 00: -- not used –-
+                      Func. 01: -- not used --
+                      Func. 02: -- not used --
+                      Func. 03: Ramping time (MSB 15...8) (65535 s)
+                      Func. 04: Ramping time (MSB 15...8) (65535 s)
+                      Func. 05: -- not used --
+                      Func. 06: Ramping time (MSB 15...8) (65535 s)
+                      Func. 07: G - Green (0 ... 255)
+                      Func. 08: -- not used --
+                      Func. 09: Dimm-Value (0 ... 255)
+                      Func. 10: Lamp operating hours (7...0 LSB)
+                      Func. 11: -- not used --
+                      Func. 12: Energy metering value (7..0 LSB)
+                    </Type>
+                <Value>1</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>Parameter 3 Enum Test</Name>
+      <Test>
+        <Name>Parameter 3: 
+                           Func. 00: -- not used –-
+                      Func. 01: -- not used --
+                      Func. 02: -- not used --
+                      Func. 03: Ramping time (7...0 LSB) (65535 s)
+                      Func. 04: Ramping time (7...0 LSB) (65535 s)
+                      Func. 05: -- not used --
+                      Func. 06: Ramping time (7...0 LSB) (65535 s)
+                      Func. 07: B - Blue(0 ... 255)
+                      Func. 08:
+                      Bit7: 0 = Drive to scene-value
+                      Bit7: 1 = Stores actual value in the scene
+                      Bit3..0: Scene number 0 ... 15
+                      Func. 09: -- not used --
+                      Func. 10: -- not used --
+                      Func. 11: Blocks the local operations
+                      Enum:
+                      0 = Unlock local operations
+                      1 = Locking switch on commands
+                      2 = Locking switch off commands
+                      3 = Locking local operations
+                      Func. 12: Unit of energy metering value
+                      Enum:
+                      0 = mW
+                      1 = W
+                      2 = kW
+                      3 = MW
+                      4 = Wh
+                      5 = kWh
+                      6 = MWh
+                      7 = GWh
+                      8 = mA
+                      9 = 1/10 A
+                      10 = mV
+                      11 = 1/10 V
+                      12 ... 15 Not used
+                    </Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0x00">0x01</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>P3</Shortcut>
+                <Type>
+                           Func. 00: -- not used –-
+                      Func. 01: -- not used --
+                      Func. 02: -- not used --
+                      Func. 03: Ramping time (7...0 LSB) (65535 s)
+                      Func. 04: Ramping time (7...0 LSB) (65535 s)
+                      Func. 05: -- not used --
+                      Func. 06: Ramping time (7...0 LSB) (65535 s)
+                      Func. 07: B - Blue(0 ... 255)
+                      Func. 08:
+                      Bit7: 0 = Drive to scene-value
+                      Bit7: 1 = Stores actual value in the scene
+                      Bit3..0: Scene number 0 ... 15
+                      Func. 09: -- not used --
+                      Func. 10: -- not used --
+                      Func. 11: Blocks the local operations
+                      Enum:
+                      0 = Unlock local operations
+                      1 = Locking switch on commands
+                      2 = Locking switch off commands
+                      3 = Locking local operations
+                      Func. 12: Unit of energy metering value
+                      Enum:
+                      0 = mW
+                      1 = W
+                      2 = kW
+                      3 = MW
+                      4 = Wh
+                      5 = kWh
+                      6 = MWh
+                      7 = GWh
+                      8 = mA
+                      9 = 1/10 A
+                      10 = mV
+                      11 = 1/10 V
+                      12 ... 15 Not used
+                    </Type>
+                <Value>1</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>Function Enum Test</Name>
+      <Test>
+        <Name>Function: Do nothing, status request</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0x07">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>FUNC</Shortcut>
+                <Type>Do nothing, status request</Type>
+                <Value>0</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Function: Switched off</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0x07">0x18</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>FUNC</Shortcut>
+                <Type>Switched off</Type>
+                <Value>1</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Function: Switched on (Memory value)</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0x07">0x28</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>FUNC</Shortcut>
+                <Type>Switched on (Memory value)</Type>
+                <Value>2</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Function: Dimming up with ramping time</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0x07">0x38</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>FUNC</Shortcut>
+                <Type>Dimming up with ramping time</Type>
+                <Value>3</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Function: Dimming down with ramping time</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0x07">0x48</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>FUNC</Shortcut>
+                <Type>Dimming down with ramping time</Type>
+                <Value>4</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Function: Dimming stops</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0x07">0x58</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>FUNC</Shortcut>
+                <Type>Dimming stops</Type>
+                <Value>5</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Function: Set dimmer-value and ramping time</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0x07">0x68</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>FUNC</Shortcut>
+                <Type>Set dimmer-value and ramping time</Type>
+                <Value>6</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Function: Set RGB values (see remark 1)</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0x07">0x78</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>FUNC</Shortcut>
+                <Type>Set RGB values (see remark 1)</Type>
+                <Value>7</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Function: Scene function (see remark 2)</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0x07">0x88</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>FUNC</Shortcut>
+                <Type>Scene function (see remark 2)</Type>
+                <Value>8</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Function: Set minimal and maximal dimmer-value (see remark 3)</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0x07">0x98</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>FUNC</Shortcut>
+                <Type>Set minimal and maximal dimmer-value (see remark 3)</Type>
+                <Value>9</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Function: Set the operating hours of the lamp (see remark 4)</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0x07">0xA8</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>FUNC</Shortcut>
+                <Type>Set the operating hours of the lamp (see remark 4)</Type>
+                <Value>10</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Function: Locking local operations (see remark 5)</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0x07">0xB8</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>FUNC</Shortcut>
+                <Type>Locking local operations (see remark 5)</Type>
+                <Value>11</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Function: Set a new value for the energy metering
+                    (overwrite the actual value with the selected unit)</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0x07">0xC8</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>FUNC</Shortcut>
+                <Type>Set a new value for the energy metering
+                    (overwrite the actual value with the selected unit)</Type>
+                <Value>12</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>Send status flag Enum Test</Name>
+      <Test>
+        <Name>Send status flag: Send new status of device</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF3">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>SSF</Shortcut>
+                <Type>Send new status of device</Type>
+                <Value>0</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Send status flag: Send no status (e.g. Global central commands)</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF3">0x0C</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>SSF</Shortcut>
+                <Type>Send no status (e.g. Global central commands)</Type>
+                <Value>1</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>Store final value Enum Test</Name>
+      <Test>
+        <Name>Store final value: No</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF5">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>SFV</Shortcut>
+                <Type>No</Type>
+                <Value>0</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Store final value: Yes</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF5">0x0A</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>SFV</Shortcut>
+                <Type>Yes</Type>
+                <Value>1</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>Service Mode Flag Enum Test</Name>
+      <Test>
+        <Name>Service Mode Flag: Normal operation</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF6">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>SMF</Shortcut>
+                <Type>Normal operation</Type>
+                <Value>0</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Service Mode Flag: Service mode: The module disables all
+                      senders, except this sender, which has set the service mode.
+                      (For example for maintenance)</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF6">0x09</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>SMF</Shortcut>
+                <Type>Service mode: The module disables all
+                      senders, except this sender, which has set the service mode.
+                      (For example for maintenance)</Type>
+                <Value>1</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>unusedFieldTest</Name>
+      <Test>
+        <Name>unused field test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xFF">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+  </EEP>
+</ProfileCertification>

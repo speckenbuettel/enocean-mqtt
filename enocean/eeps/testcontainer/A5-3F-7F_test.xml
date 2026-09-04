@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProfileCertification
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./Certification_EEP.xsd" schemaVersion="0.9">
+    <EEP rorg="0xA5" func="0x3F" type="0x7F">
+        <TestCase>
+            <Name>Teach-in Test</Name>
+            <Test>
+                <Name>Unidirectional Teach-in Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0x00">0xFF</Byte>
+                            <Byte order="1" ignoremask="0x00">0xF8</Byte>
+                            <Byte order="2" ignoremask="0x00">0x02</Byte>
+                            <Byte order="3" ignoremask="0x00">0x80</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Type>LRN Bit</Type>
+                                <Value>0</Value>
+                            </Data>
+                            <Data>
+                                <Type>RORG</Type>
+                                <Value>165</Value>
+                            </Data>
+                            <Data>
+                                <Type>FUNC</Type>
+                                <Value>63</Value>
+                            </Data>
+                            <Data>
+                                <Type>TYPE</Type>
+                                <Value>127</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+        <TestCase>
+            <Name>Data Input 3 Tests</Name>
+            <Test>
+                <Name>Min Voltage 3 Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0x00">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0x00">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Type>Voltage</Type>
+                                <Value>0</Value>
+                            </Data>
+                            <Data>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Max Voltage 3 Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0x00">0xFF</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0x00">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Type>Voltage</Type>
+                                <Value>10</Value>
+                            </Data>
+                            <Data>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Mid Voltage 3 Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0x00">0x7F</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0x00">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Type>Voltage</Type>
+                                <Value>5</Value>
+                            </Data>
+                            <Data>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+        <TestCase>
+            <Name>Data Input 2 Tests</Name>
+            <Test>
+                <Name>Min Voltage 2 Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0x00">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0x00">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Type>Voltage</Type>
+                                <Value>0</Value>
+                            </Data>
+                            <Data>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Max Voltage 2 Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0x00">0xFF</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0x00">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Type>Voltage</Type>
+                                <Value>10</Value>
+                            </Data>
+                            <Data>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Mid Voltage 2 Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0x00">0x7F</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0x00">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Type>Voltage</Type>
+                                <Value>5</Value>
+                            </Data>
+                            <Data>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+        <TestCase>
+            <Name>Data Input 1 Tests</Name>
+            <Test>
+                <Name>Min Voltage 1 Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0x00">0x00</Byte>
+                            <Byte order="3" ignoremask="0x00">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Type>Voltage</Type>
+                                <Value>0</Value>
+                            </Data>
+                            <Data>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Max Voltage 1 Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0x00">0xFF</Byte>
+                            <Byte order="3" ignoremask="0x00">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Type>Voltage</Type>
+                                <Value>10</Value>
+                            </Data>
+                            <Data>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Mid Voltage 1 Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0x00">0x7F</Byte>
+                            <Byte order="3" ignoremask="0x00">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Type>Voltage</Type>
+                                <Value>5</Value>
+                            </Data>
+                            <Data>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+    </EEP>
+</ProfileCertification>

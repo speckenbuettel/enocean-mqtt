@@ -1,0 +1,105 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:12.158+0200"
+   },
+   "profile": {
+      "eep": "F6-02-03",
+      "title": "Rocker Switch, 2 Rocker, Light and Blind Control - Application Style 11",
+      "functionGroups": [
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "buttonA0",
+                  "values": [
+                     {
+                        "value": "pressed",
+                        "meaning": "Button pressed"
+                     },
+                     {
+                        "value": "released",
+                        "meaning": "Button released"
+                     }
+                  ],
+                  "transmitOnConnect": false,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": true
+               },
+               {
+                  "key": "buttonAI",
+                  "values": [
+                     {
+                        "value": "pressed",
+                        "meaning": "Button pressed"
+                     },
+                     {
+                        "value": "released",
+                        "meaning": "Button released"
+                     }
+                  ],
+                  "transmitOnConnect": false,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": true
+               },
+               {
+                  "key": "buttonB0",
+                  "values": [
+                     {
+                        "value": "pressed",
+                        "meaning": "Button pressed"
+                     },
+                     {
+                        "value": "released",
+                        "meaning": "Button released"
+                     }
+                  ],
+                  "transmitOnConnect": false,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": true
+               },
+               {
+                  "key": "buttonBI",
+                  "values": [
+                     {
+                        "value": "pressed",
+                        "meaning": "Button pressed"
+                     },
+                     {
+                        "value": "released",
+                        "meaning": "Button released"
+                     }
+                  ],
+                  "transmitOnConnect": false,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": true
+               }
+            ]
+         },
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "multipleButtons",
+                  "values": [
+                     {
+                        "value": "pressed",
+                        "meaning": "3 or 4 buttons pressed"
+                     },
+                     {
+                        "value": "released",
+                        "meaning": "3 or 4 buttons released"
+                     }
+                  ],
+                  "transmitOnConnect": false,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": true
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

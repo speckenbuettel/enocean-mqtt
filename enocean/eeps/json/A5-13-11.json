@@ -1,0 +1,72 @@
+{
+  "header" : {
+    "httpStatus" : 200,
+    "content" : "profile",
+    "gateway" : "OPUS-IQ-DOT v1.18.014",
+    "timestamp" : "2021-12-22T11:34:45.844+0100"
+  },
+  "profile" : {
+    "eep" : "A5-13-11",
+    "title" : "Environmental Applications, Noise",
+    "functionGroups" : [ {
+      "direction" : "from",
+      "functions" : [ {
+        "key" : "averageSoundLevel",
+        "description" : "Average acoustic decibel level",
+        "values" : [ {
+          "range" : {
+            "min" : 17.6,
+            "max" : 120,
+            "step" : 0.1,
+            "unit" : "dBA"
+          }
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "localizationActive",
+        "description" : "Localization active",
+        "values" : [ {
+          "value" : "active",
+          "meaning" : "Localization active"
+        }, {
+          "value" : "off",
+          "meaning" : "No localization"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "picSoundLevel",
+        "description" : "Pic acoustic decibel level",
+        "values" : [ {
+          "range" : {
+            "min" : 17.6,
+            "max" : 120,
+            "step" : 0.1,
+            "unit" : "dBA"
+          }
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "sourceLocalization",
+        "description" : "Localization of the major sound source",
+        "values" : [ {
+          "range" : {
+            "min" : -90,
+            "max" : 90,
+            "step" : 1,
+            "unit" : "°"
+          }
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      } ]
+    } ],
+    "version" : 0.9
+  }
+}

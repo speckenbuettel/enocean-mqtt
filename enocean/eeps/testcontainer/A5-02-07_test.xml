@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProfileCertification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./Certification_EEP.xsd" schemaVersion="0.9">
+  <EEP rorg="0xA5" func="0x02" type="0x07">
+    <TestCase>
+      <Name>Teach-in Test</Name>
+      <Test>
+        <Name>Unidirectional Teach-in Test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0x0">0x08</Byte>
+              <Byte order="1" ignoremask="0x07">0x38</Byte>
+			        <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0x00">0x80</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Type>LRN Bit</Type>
+                <Value>0</Value>
+              </Data>
+              <Data>
+                <Type>RORG</Type>
+                <Value>165</Value>
+              </Data>
+              <Data>
+                <Type>FUNC</Type>
+                <Value>2</Value>
+              </Data>
+              <Data>
+                <Type>TYPE</Type>
+                <Value>7</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>Temperature Tests</Name>
+      <Test>
+        <Name>Min Temperature Test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0x00">0xFF</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>TMP</Shortcut>
+                <Type>Temperature</Type>
+                <Value>20</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Max Temperature Test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0x00">0x00</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>TMP</Shortcut>
+                <Type>Temperature</Type>
+                <Value>60</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Mid Temperature Test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0x00">0x7F</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>TMP</Shortcut>
+                <Type>Temperature</Type>
+                <Value>40</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>unusedFieldTest</Name>
+      <Test>
+        <Name>unused field test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0x00">0x00</Byte>
+              <Byte order="1" ignoremask="0x00">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xFF">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+  </EEP>
+</ProfileCertification>

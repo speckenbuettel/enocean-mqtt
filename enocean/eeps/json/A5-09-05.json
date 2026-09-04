@@ -1,0 +1,479 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:28:58.179+0200"
+   },
+   "profile": {
+      "eep": "A5-09-05",
+      "title": "Gas Sensor, VOC Sensor",
+      "functionGroups": [
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "1Pentanol",
+                  "description": "1-Pentanol",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 655350,
+                           "step": 0.01,
+                           "unit": "ppb"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "2Butanol",
+                  "description": "2-Butanol (butyl Alcohol)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 655350,
+                           "step": 0.01,
+                           "unit": "ppb"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "2Methylpropanol",
+                  "description": "2-Methylpropanol",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 655350,
+                           "step": 0.01,
+                           "unit": "ppb"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "acetaldehydeue",
+                  "description": "Acetaldehyde",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 655350,
+                           "step": 0.01,
+                           "unit": "ppb"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "aceticAcid",
+                  "description": "Acetic Acid",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 655350,
+                           "step": 0.01,
+                           "unit": "ppb"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "acetone",
+                  "description": "Acetone",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 655350,
+                           "step": 0.01,
+                           "unit": "ppb"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "ammoniac",
+                  "description": "Ammoniac",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 655350,
+                           "step": 0.01,
+                           "unit": "ppb"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "benzene",
+                  "description": "Benzene",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 655350,
+                           "step": 0.01,
+                           "unit": "ppb"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "butyricAcid",
+                  "description": "Butyric Acid",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 655350,
+                           "step": 0.01,
+                           "unit": "ppb"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "cyclopentane",
+                  "description": "Cyclopentane",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 655350,
+                           "step": 0.01,
+                           "unit": "ppb"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "diethylEther",
+                  "description": "Diethyl Ether",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 655350,
+                           "step": 0.01,
+                           "unit": "ppb"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "dimethylSulfide",
+                  "description": "Dimethyl Sulfide",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 655350,
+                           "step": 0.01,
+                           "unit": "ppb"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "ethanol",
+                  "description": "Ethanol",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 655350,
+                           "step": 0.01,
+                           "unit": "ppb"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "ethyleneOxide",
+                  "description": "Ethylene Oxide",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 655350,
+                           "step": 0.01,
+                           "unit": "ppb"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "formaldehyde",
+                  "description": "Formaldehyde",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 655350,
+                           "step": 0.01,
+                           "unit": "ppb"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "hydrogenSulfide",
+                  "description": "Hydrogen Sulfide",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 655350,
+                           "step": 0.01,
+                           "unit": "ppb"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "methanol",
+                  "description": "Methanol",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 655350,
+                           "step": 0.01,
+                           "unit": "ppb"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "nHexane",
+                  "description": "n-Hexane",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 655350,
+                           "step": 0.01,
+                           "unit": "ppb"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "nOctane",
+                  "description": "n-Octane",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 655350,
+                           "step": 0.01,
+                           "unit": "ppb"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "ozone",
+                  "description": "Ozone",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 655350,
+                           "step": 0.01,
+                           "unit": "ppb"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "propioniceAcid",
+                  "description": "Propionice Acid",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 655350,
+                           "step": 0.01,
+                           "unit": "ppb"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "styrene",
+                  "description": "Styrene",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 655350,
+                           "step": 0.01,
+                           "unit": "ppb"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "tetrachloroethylene",
+                  "description": "Tetrachloroethylene",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 655350,
+                           "step": 0.01,
+                           "unit": "ppb"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "toluene",
+                  "description": "Toluene",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 655350,
+                           "step": 0.01,
+                           "unit": "ppb"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "valericAcid",
+                  "description": "Valeric Acid",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 655350,
+                           "step": 0.01,
+                           "unit": "ppb"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "voctTotal",
+                  "description": "VOCT (total)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 655350,
+                           "step": 0.01,
+                           "unit": "ppb"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "xylene",
+                  "description": "Xylene",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 655350,
+                           "step": 0.01,
+                           "unit": "ppb"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

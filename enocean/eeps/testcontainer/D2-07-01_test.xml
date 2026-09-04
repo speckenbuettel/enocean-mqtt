@@ -1,0 +1,1193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProfileCertification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./Certification_EEP.xsd"  schemaVersion="0.9">
+<EEP rorg="0xD2" func="0x07" type="0x01">
+<TestCase>
+<Name>Teach-in Test</Name>
+<Test>
+<Name>Unidirectional Teach-in Test</Name>
+<Step>
+<Dataset>
+<Telegram rorg="0xD4" length="7">
+<Byte order="0" ignoremask="0xFF">0x00</Byte>
+<Byte order="1" ignoremask="0xFF">0x00</Byte>
+<Byte order="2" ignoremask="0xFF">0x00</Byte>
+<Byte order="3" ignoremask="0xFF">0x00</Byte>
+<Byte order="4" ignoremask="0x00">0x01</Byte>
+<Byte order="5" ignoremask="0x00">0x07</Byte>
+<Byte order="6" ignoremask="0x00">0xD2</Byte>
+</Telegram>
+<RealData>
+<Data>
+<Type>RORG</Type>
+<Value>0xD2</Value>
+</Data>
+<Data>
+<Type>FUNC</Type>
+<Value>0x07</Value>
+</Data>
+<Data>
+<Type>TYPE</Type>
+<Value>0x01</Value>
+</Data>
+</RealData>
+</Dataset>
+</Step>
+</Test>
+</TestCase>
+	<TestCase>
+	<Name>Lock number
+			
+			</Name>
+	<Test>
+		<Name>Min Lock number
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0x00">0x00</Byte>
+				<Byte order="1" ignoremask="0x00">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0xFF">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Lock number
+			
+			</Type>
+			<Value>0</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Mid Lock number
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0x00">0x7F</Byte>
+				<Byte order="1" ignoremask="0x00">0xFF</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0xFF">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Lock number
+			
+			</Type>
+			<Value>32767</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Max Lock number
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0x00">0xFF</Byte>
+				<Byte order="1" ignoremask="0x00">0xFF</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0xFF">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Lock number
+			
+			</Type>
+			<Value>65535</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Lock state
+			
+			</Name>
+	<Test>
+		<Name>Lock open Lock state
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0x1F">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0xFF">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Lock state
+			
+			</Type>
+			<Value>Lock open</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Lock closed Lock state
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0x1F">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0xFF">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Lock state
+			
+			</Type>
+			<Value>Lock closed</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Lock usable for a time Lock state
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0x1F">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0xFF">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Lock state
+			
+			</Type>
+			<Value>Lock usable for a time</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Lock blocked Lock state
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0x1F">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0xFF">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Lock state
+			
+			</Type>
+			<Value>Lock blocked</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	<TestCase>
+	<Name>DND state
+			</Name>
+	<Test>
+		<Name>DND not active DND state
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xEF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0xFF">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>DND state
+			</Type>
+			<Value>DND not active</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>DND active DND state
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xEF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0xFF">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>DND state
+			</Type>
+			<Value>DND active</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Event type
+			
+			</Name>
+	<Test>
+		<Name>Lock used Event type
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xF0">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0xFF">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Event type
+			
+			</Type>
+			<Value>Lock used</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Lock programmed Event type
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xF0">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0xFF">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Event type
+			
+			</Type>
+			<Value>Lock programmed</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Lock resetted Event type
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xF0">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0xFF">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Event type
+			
+			</Type>
+			<Value>Lock resetted</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Lock protocolls read Event type
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xF0">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0xFF">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Event type
+			
+			</Type>
+			<Value>Lock protocolls read</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Battery changed Event type
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xF0">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0xFF">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Event type
+			
+			</Type>
+			<Value>Battery changed</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Key type
+			
+			</Name>
+	<Test>
+		<Name>User Key Key type
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0x0F">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0xFF">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Key type
+			
+			</Type>
+			<Value>User Key</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Master Key Key type
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0x0F">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0xFF">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Key type
+			
+			</Type>
+			<Value>Master Key</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Housekeepin Key Key type
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0x0F">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0xFF">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Key type
+			
+			</Type>
+			<Value>Housekeepin Key</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Type of actuation
+			
+			</Name>
+	<Test>
+		<Name>RFID Type of actuation
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xF0">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0xFF">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Type of actuation
+			
+			</Type>
+			<Value>RFID</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>PIN-Code Type of actuation
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xF0">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0xFF">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Type of actuation
+			
+			</Type>
+			<Value>PIN-Code</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Bluetooth Type of actuation
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xF0">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0xFF">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Type of actuation
+			
+			</Type>
+			<Value>Bluetooth</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Actuation identifier
+			
+			</Name>
+	<Test>
+		<Name>Min Actuation identifier
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0x00">0x00</Byte>
+				<Byte order="5" ignoremask="0x00">0x00</Byte>
+				<Byte order="6" ignoremask="0x00">0x00</Byte>
+				<Byte order="7" ignoremask="0x00">0x00</Byte>
+				<Byte order="8" ignoremask="0x00">0x00</Byte>
+				<Byte order="9" ignoremask="0x00">0x00</Byte>
+				<Byte order="10" ignoremask="0x00">0x00</Byte>
+				<Byte order="11" ignoremask="0xFF">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Actuation identifier
+			
+			</Type>
+			<Value>0</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Mid Actuation identifier
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0x00">0x80</Byte>
+				<Byte order="5" ignoremask="0x00">0x00</Byte>
+				<Byte order="6" ignoremask="0x00">0x00</Byte>
+				<Byte order="7" ignoremask="0x00">0x00</Byte>
+				<Byte order="8" ignoremask="0x00">0x00</Byte>
+				<Byte order="9" ignoremask="0x00">0x00</Byte>
+				<Byte order="10" ignoremask="0x00">0x00</Byte>
+				<Byte order="11" ignoremask="0xFF">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Actuation identifier
+			
+			</Type>
+			<Value>36028797018963970</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Max Actuation identifier
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0x00">0x80</Byte>
+				<Byte order="5" ignoremask="0x00">0x00</Byte>
+				<Byte order="6" ignoremask="0x00">0x00</Byte>
+				<Byte order="7" ignoremask="0x00">0x00</Byte>
+				<Byte order="8" ignoremask="0x00">0x00</Byte>
+				<Byte order="9" ignoremask="0x00">0x00</Byte>
+				<Byte order="10" ignoremask="0x00">0x00</Byte>
+				<Byte order="11" ignoremask="0xFF">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Actuation identifier
+			
+			</Type>
+			<Value>72057594037927940</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Reason for rejection
+			
+			</Name>
+	<Test>
+		<Name>No rejection Reason for rejection
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0x00">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Reason for rejection
+			
+			</Type>
+			<Value>No rejection</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Key not valid yet Reason for rejection
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0x00">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Reason for rejection
+			
+			</Type>
+			<Value>Key not valid yet</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Key not valid any more Reason for rejection
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0x00">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Reason for rejection
+			
+			</Type>
+			<Value>Key not valid any more</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Key with wrong generation Reason for rejection
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0x00">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Reason for rejection
+			
+			</Type>
+			<Value>Key with wrong generation</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Key not allowed at this lock Reason for rejection
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0x00">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Reason for rejection
+			
+			</Type>
+			<Value>Key not allowed at this lock</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>DND active Reason for rejection
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0x00">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Reason for rejection
+			
+			</Type>
+			<Value>DND active</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Timezone not active Reason for rejection
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0x00">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Reason for rejection
+			
+			</Type>
+			<Value>Timezone not active</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>PIN-Code not allowed Reason for rejection
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0x00">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Reason for rejection
+			
+			</Type>
+			<Value>PIN-Code not allowed</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Usercount exceeded Reason for rejection
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0x00">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Reason for rejection
+			
+			</Type>
+			<Value>Usercount exceeded</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Lock blocked Reason for rejection
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0x00">0x00</Byte>
+				<Byte order="12" ignoremask="0x80">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Reason for rejection
+			
+			</Type>
+			<Value>Lock blocked</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Alarm state
+			</Name>
+	<Test>
+		<Name>No alarm Alarm state
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0xFF">0x00</Byte>
+				<Byte order="12" ignoremask="0x00">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Alarm state
+			</Type>
+			<Value>No alarm</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Alarm active Alarm state
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="13">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFF">0x00</Byte>
+				<Byte order="7" ignoremask="0xFF">0x00</Byte>
+				<Byte order="8" ignoremask="0xFF">0x00</Byte>
+				<Byte order="9" ignoremask="0xFF">0x00</Byte>
+				<Byte order="10" ignoremask="0xFF">0x00</Byte>
+				<Byte order="11" ignoremask="0xFF">0x00</Byte>
+				<Byte order="12" ignoremask="0x00">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Alarm state
+			</Type>
+			<Value>Alarm active</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	</EEP>
+</ProfileCertification>

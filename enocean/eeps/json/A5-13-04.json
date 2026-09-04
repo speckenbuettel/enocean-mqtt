@@ -1,0 +1,156 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:03.344+0200"
+   },
+   "profile": {
+      "eep": "A5-13-04",
+      "title": "Environmental Applications, Time and Day Exchange",
+      "functionGroups": [
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "amPm",
+                  "description": "AM or PM",
+                  "values": [
+                     {
+                        "value": "am",
+                        "meaning": "AM"
+                     },
+                     {
+                        "value": "pm",
+                        "meaning": "PM"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "hour",
+                  "description": "Hour",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 23,
+                           "step": 1
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "minute",
+                  "description": "Minute",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 59,
+                           "step": 1
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "second",
+                  "description": "Second",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 59,
+                           "step": 1
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "source",
+                  "description": "Source",
+                  "values": [
+                     {
+                        "value": "gps",
+                        "meaning": "Source is GPS or equivalent"
+                     },
+                     {
+                        "value": "rtc",
+                        "meaning": "Source is Real Time Clock"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "timeFormat",
+                  "description": "Time format",
+                  "values": [
+                     {
+                        "value": "12hours",
+                        "meaning": "12 Hours time format"
+                     },
+                     {
+                        "value": "24hours",
+                        "meaning": "24 Hours time format"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "weekday",
+                  "description": "Weekday",
+                  "values": [
+                     {
+                        "value": "friday",
+                        "meaning": "Friday"
+                     },
+                     {
+                        "value": "monday",
+                        "meaning": "Monday"
+                     },
+                     {
+                        "value": "saturday",
+                        "meaning": "Saturday"
+                     },
+                     {
+                        "value": "sunday",
+                        "meaning": "Sunday"
+                     },
+                     {
+                        "value": "thursday",
+                        "meaning": "Thursday"
+                     },
+                     {
+                        "value": "tuesday",
+                        "meaning": "Tuesday"
+                     },
+                     {
+                        "value": "wednesday",
+                        "meaning": "Wednesday"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

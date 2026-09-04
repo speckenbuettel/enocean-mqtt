@@ -1,0 +1,467 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:02.892+0200"
+   },
+   "profile": {
+      "eep": "A5-13-01",
+      "title": "Environmental Applications, Sun Intensity",
+      "functionGroups": [
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "hemisphere",
+                  "description": "switch Sun south to Sun north when in southern hemisphere",
+                  "values": [
+                     {
+                        "value": "north",
+                        "meaning": "North"
+                     },
+                     {
+                        "value": "south",
+                        "meaning": "South"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "sunEast",
+                  "description": "Sun - East,linear",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 150000,
+                           "step": 588.235,
+                           "unit": "lx"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "sunSouth",
+                  "description": "Sun - South,linear",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 150000,
+                           "step": 588.235,
+                           "unit": "lx"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "sunWest",
+                  "description": "Sun - West,linear",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 150000,
+                           "step": 588.235,
+                           "unit": "lx"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "day",
+                  "description": "Day",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 1,
+                           "max": 31,
+                           "step": 1
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "month",
+                  "description": "Month",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 1,
+                           "max": 12,
+                           "step": 1
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "source",
+                  "description": "Source",
+                  "values": [
+                     {
+                        "value": "gps",
+                        "meaning": "Source is GPS or equivalent"
+                     },
+                     {
+                        "value": "rtc",
+                        "meaning": "Source is Real Time Clock"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "year",
+                  "description": "Year",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 2000,
+                           "max": 2099,
+                           "step": 1
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "amPm",
+                  "description": "AM or PM",
+                  "values": [
+                     {
+                        "value": "am",
+                        "meaning": "AM"
+                     },
+                     {
+                        "value": "pm",
+                        "meaning": "PM"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "hour",
+                  "description": "Hour",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 23,
+                           "step": 1
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "minute",
+                  "description": "Minute",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 59,
+                           "step": 1
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "second",
+                  "description": "Second",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 59,
+                           "step": 1
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "source",
+                  "description": "Source",
+                  "values": [
+                     {
+                        "value": "gps",
+                        "meaning": "Source is GPS or equivalent"
+                     },
+                     {
+                        "value": "rtc",
+                        "meaning": "Source is Real Time Clock"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "timeFormat",
+                  "description": "Time format",
+                  "values": [
+                     {
+                        "value": "12hours",
+                        "meaning": "12 Hours time format"
+                     },
+                     {
+                        "value": "24hours",
+                        "meaning": "24 Hours time format"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "weekday",
+                  "description": "Weekday",
+                  "values": [
+                     {
+                        "value": "friday",
+                        "meaning": "Friday"
+                     },
+                     {
+                        "value": "monday",
+                        "meaning": "Monday"
+                     },
+                     {
+                        "value": "saturday",
+                        "meaning": "Saturday"
+                     },
+                     {
+                        "value": "sunday",
+                        "meaning": "Sunday"
+                     },
+                     {
+                        "value": "thursday",
+                        "meaning": "Thursday"
+                     },
+                     {
+                        "value": "tuesday",
+                        "meaning": "Tuesday"
+                     },
+                     {
+                        "value": "wednesday",
+                        "meaning": "Wednesday"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "azimuth",
+                  "description": "Azimuth (0° -> True north  clockwise)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 359,
+                           "step": 1,
+                           "unit": "°"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "elevation",
+                  "description": "Elevation (0° -> horizon)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": -90,
+                           "max": 90,
+                           "step": 1,
+                           "unit": "°"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "latitude",
+                  "description": "Latitude",
+                  "values": [
+                     {
+                        "range": {
+                           "min": -90,
+                           "max": 90,
+                           "step": 0.044,
+                           "unit": "°"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "longitude",
+                  "description": "Longitude",
+                  "values": [
+                     {
+                        "range": {
+                           "min": -180,
+                           "max": 180,
+                           "step": 0.088,
+                           "unit": "°"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "dawnSensor",
+                  "description": "Dawn sensor",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 999,
+                           "step": 3.918,
+                           "unit": "lx"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "dayNight",
+                  "description": "Day / Night",
+                  "values": [
+                     {
+                        "value": "day",
+                        "meaning": "Day"
+                     },
+                     {
+                        "value": "night",
+                        "meaning": "Night"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "rainIndication",
+                  "description": "Rain indication",
+                  "values": [
+                     {
+                        "value": "noRain",
+                        "meaning": "No rain"
+                     },
+                     {
+                        "value": "rain",
+                        "meaning": "Rain"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "temperature",
+                  "description": "Outdoor temp",
+                  "values": [
+                     {
+                        "range": {
+                           "min": -40,
+                           "max": 80,
+                           "step": 0.471,
+                           "unit": "°C"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "windSpeed",
+                  "description": "Wind speed",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 70,
+                           "step": 0.275,
+                           "unit": "m/s"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

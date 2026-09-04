@@ -1,0 +1,105 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.15.002",
+      "timestamp": "2020-07-09T10:07:34.031+0200"
+   },
+   "profile": {
+      "eep": "A5-06-04",
+      "title": "Light Sensor - Curtain Wall Brightness Sensor",
+      "functionGroups": [
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "energyStorage",
+                  "description": "Energy Storage",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 6.667,
+                           "unit": "%"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": true
+               },
+               {
+                  "key": "energyStorageAvailability",
+                  "description": "Valid energy storage data avilable on DB0",
+                  "values": [
+                     {
+                        "value": "available",
+                        "meaning": "Energy storage data is available"
+                     },
+                     {
+                        "value": "unavailable",
+                        "meaning": "Energy storage data is unavailable"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": true
+               },
+               {
+                  "key": "illuminance",
+                  "description": "Illuminance (linear)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 65535,
+                           "step": 1,
+                           "unit": "lx"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": true
+               },
+               {
+                  "key": "temperature",
+                  "description": "Ambient Temperature",
+                  "values": [
+                     {
+                        "range": {
+                           "min": -20,
+                           "max": 60,
+                           "step": 0.314,
+                           "unit": "°C"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": true
+               },
+               {
+                  "key": "temperatureAvailability",
+                  "description": "Valid temperature data available on DB3",
+                  "values": [
+                     {
+                        "value": "available",
+                        "meaning": "Temperature data is available"
+                     },
+                     {
+                        "value": "unavailable",
+                        "meaning": "Temperature data is unavailable"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": true
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

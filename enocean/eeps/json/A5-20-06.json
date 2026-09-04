@@ -1,0 +1,697 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:05.404+0200"
+   },
+   "profile": {
+      "eep": "A5-20-06",
+      "title": "HVAC Components,Harvesting-powered actuator with local temperature offset control ",
+      "functionGroups": [
+         {
+            "title": "Operation mode: Temperature control",
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "actuatorObstructed",
+                  "description": "Actuator obstructed",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Actuator operating normally"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Actuator is obstructed"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "energyInput",
+                  "description": "Energy input enabled",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "No energy is harvested"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Energy is being harvested"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "energyStorageCharged",
+                  "description": "Energy storage sufficiently charged",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Energy storage needs to be charged"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Energy storage is sufficiently charged"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "feedTemperature",
+                  "description": "Current feed temperature value",
+                  "values": [
+                     {
+                        "meaning": "The feed temperature sensor is used",
+                        "range": {
+                           "min": 0,
+                           "max": 80,
+                           "step": 0.5,
+                           "unit": "°C"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "radioError",
+                  "description": "Indicates radio communication errors",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "radio communication is stable"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "6 or more consecutive radio communication errors have occurred"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "radioSignalStrength",
+                  "description": "Weak radio signal warning",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Radio signal is strong"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Radio signal is weak (-77dBm or less)"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "temperature",
+                  "description": "Current temperature",
+                  "values": [
+                     {
+                        "meaning": "The local ambient temperature is used",
+                        "range": {
+                           "min": 0,
+                           "max": 40,
+                           "step": 0.5,
+                           "unit": "°C"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "temperatureSetpoint",
+                  "description": "Current temperature set-point plus / minus local offset are communicated as an absolute temperature value",
+                  "values": [
+                     {
+                        "meaning": "Current temperature setpoint plus / minus local offset are communicated as an absolute temperature value [°C]",
+                        "range": {
+                           "min": 0,
+                           "max": 40,
+                           "step": 0.5,
+                           "unit": "°C"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "valve",
+                  "description": "Current valve position",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 1,
+                           "unit": "%"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "window",
+                  "description": "Detection, window open",
+                  "values": [
+                     {
+                        "value": "closed",
+                        "meaning": "Normal operation"
+                     },
+                     {
+                        "value": "open",
+                        "meaning": "Open window detected"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Operating Mode: Valve Position Control",
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "actuatorObstructed",
+                  "description": "Actuator obstructed",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Actuator operating normally"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Actuator is obstructed"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "energyInput",
+                  "description": "Energy input enabled",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "No energy is harvested"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Energy is being harvested"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "energyStorageCharged",
+                  "description": "Energy storage sufficiently charged",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Energy storage is discharged"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Energy storage is sufficiently charged"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "feedTemperature",
+                  "description": "Current feed temperature value",
+                  "values": [
+                     {
+                        "meaning": "The feed temperature sensor is used",
+                        "range": {
+                           "min": 0,
+                           "max": 80,
+                           "step": 0.5,
+                           "unit": "°C"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "radioError",
+                  "description": "Indicates radio communication errors",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "radio communication is stable"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "6 or more consecutive radio communication errors have occurred"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "radioSignalStrength",
+                  "description": "Weak radio signal warning",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Radio signal is strong"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Radio signal is weak (-77dBm or less)"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "setpointShift",
+                  "description": "Local offset setting is communicated directly",
+                  "values": [
+                     {
+                        "meaning": "Local offset setting is communicated directly",
+                        "range": {
+                           "min": -5,
+                           "max": 5,
+                           "step": 1,
+                           "unit": "°C"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "temperature",
+                  "description": "Current temperature",
+                  "values": [
+                     {
+                        "meaning": "The local ambient temperature is used",
+                        "range": {
+                           "min": 0,
+                           "max": 40,
+                           "step": 0.5,
+                           "unit": "°C"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "valve",
+                  "description": "Current valve position",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 1,
+                           "unit": "%"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "window",
+                  "description": "Detection, window open",
+                  "values": [
+                     {
+                        "value": "closed",
+                        "meaning": "Normal operation"
+                     },
+                     {
+                        "value": "open",
+                        "meaning": "Open window detected"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Control actuator via valve position",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "communicationIntervall",
+                  "values": [
+                     {
+                        "value": "10minutes",
+                        "meaning": "Radio duty cycle 10 min"
+                     },
+                     {
+                        "value": "120minutes",
+                        "meaning": "Radio duty cycle 120 min"
+                     },
+                     {
+                        "value": "20minutes",
+                        "meaning": "Radio duty cycle 20 min"
+                     },
+                     {
+                        "value": "2minutes",
+                        "meaning": "Radio duty cycle 2 min"
+                     },
+                     {
+                        "value": "30minutes",
+                        "meaning": "Radio duty cycle 30 min"
+                     },
+                     {
+                        "value": "5minutes",
+                        "meaning": "Radio duty cycle 5 min"
+                     },
+                     {
+                        "value": "60minutes",
+                        "meaning": "Radio duty cycle 60 min"
+                     },
+                     {
+                        "value": "auto",
+                        "meaning": "Radio duty cycle default time set"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "auto"
+               },
+               {
+                  "key": "temperatureSelection",
+                  "values": [
+                     {
+                        "value": "ambientTemperature",
+                        "meaning": "ambient temperature is requested"
+                     },
+                     {
+                        "value": "feedTemperature",
+                        "meaning": "feed temperature is requested"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "ambientTemperature"
+               },
+               {
+                  "key": "valve",
+                  "description": "Valve position is regulated locally or by central control",
+                  "values": [
+                     {
+                        "meaning": "Valve position setpoint (0 - 100%) requested by controller",
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 1,
+                           "unit": "%"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Run actuator-internal temperature control loop with RCU providing room temperature",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "communicationIntervall",
+                  "values": [
+                     {
+                        "value": "10minutes",
+                        "meaning": "Radio duty cycle 10 min"
+                     },
+                     {
+                        "value": "120minutes",
+                        "meaning": "Radio duty cycle 120 min"
+                     },
+                     {
+                        "value": "20minutes",
+                        "meaning": "Radio duty cycle 20 min"
+                     },
+                     {
+                        "value": "2minutes",
+                        "meaning": "Radio duty cycle 2 min"
+                     },
+                     {
+                        "value": "30minutes",
+                        "meaning": "Radio duty cycle 30 min"
+                     },
+                     {
+                        "value": "5minutes",
+                        "meaning": "Radio duty cycle 5 min"
+                     },
+                     {
+                        "value": "60minutes",
+                        "meaning": "Radio duty cycle 60 min"
+                     },
+                     {
+                        "value": "auto",
+                        "meaning": "Radio duty cycle default time set"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "auto"
+               },
+               {
+                  "key": "temperature",
+                  "description": "Temperature by RCU",
+                  "values": [
+                     {
+                        "meaning": "Temperature communivcated by RCU",
+                        "range": {
+                           "min": 0,
+                           "max": 40,
+                           "step": 0.25,
+                           "unit": "°C"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "temperatureSelection",
+                  "values": [
+                     {
+                        "value": "ambientTemperature",
+                        "meaning": "ambient temperature is requested"
+                     },
+                     {
+                        "value": "feedTemperature",
+                        "meaning": "feed temperature is requested"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "ambientTemperature"
+               },
+               {
+                  "key": "temperatureSetpoint",
+                  "description": "Temperature setpoint: The actuator can be used as self-sufficient room controller (pi controller) without integration in automation systems.",
+                  "values": [
+                     {
+                        "meaning": "Target temperature as requested by RCU",
+                        "range": {
+                           "min": 0,
+                           "max": 40,
+                           "step": 0.5,
+                           "unit": "°C"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Run actuator-internal temperature control loop, room temperature is estimated based on the actuator's internal sensors",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "communicationIntervall",
+                  "values": [
+                     {
+                        "value": "10minutes",
+                        "meaning": "Radio duty cycle 10 min"
+                     },
+                     {
+                        "value": "120minutes",
+                        "meaning": "Radio duty cycle 120 min"
+                     },
+                     {
+                        "value": "20minutes",
+                        "meaning": "Radio duty cycle 20 min"
+                     },
+                     {
+                        "value": "2minutes",
+                        "meaning": "Radio duty cycle 2 min"
+                     },
+                     {
+                        "value": "30minutes",
+                        "meaning": "Radio duty cycle 30 min"
+                     },
+                     {
+                        "value": "5minutes",
+                        "meaning": "Radio duty cycle 5 min"
+                     },
+                     {
+                        "value": "60minutes",
+                        "meaning": "Radio duty cycle 60 min"
+                     },
+                     {
+                        "value": "auto",
+                        "meaning": "Radio duty cycle default time set"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "auto"
+               },
+               {
+                  "key": "temperatureSelection",
+                  "values": [
+                     {
+                        "value": "ambientTemperature",
+                        "meaning": "ambient temperature is requested"
+                     },
+                     {
+                        "value": "feedTemperature",
+                        "meaning": "feed temperature is requested"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "ambientTemperature"
+               },
+               {
+                  "key": "temperatureSetpoint",
+                  "description": "Temperature setpoint: The actuator can be used as self-sufficient room controller (pi controller) without integration in automation systems.",
+                  "values": [
+                     {
+                        "meaning": "Target temperature as requested by RCU",
+                        "range": {
+                           "min": 0,
+                           "max": 40,
+                           "step": 0.5,
+                           "unit": "°C"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Cofiguration mode",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "command",
+                  "description": "Reference run",
+                  "values": [
+                     {
+                        "value": "noChange",
+                        "meaning": "Normal operation"
+                     },
+                     {
+                        "value": "runReference",
+                        "meaning": "Execute reference-run, then revert to normal operation"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "noChange"
+               },
+               {
+                  "key": "standByMode",
+                  "description": "Enter standby mode",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Normal operation"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Enter standby mode (manually turn dial to wake up from standby)"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "false"
+               },
+               {
+                  "key": "summerMode",
+                  "description": "The radio communication between the actuator and the controller is restricted, sleep mode is extended. This functionality can be used for battery powered actuators.",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Normal operation"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Summer mode is activated (radio communication every 8h only)"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "false"
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

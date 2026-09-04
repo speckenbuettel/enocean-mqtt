@@ -1,0 +1,338 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:05.209+0200"
+   },
+   "profile": {
+      "eep": "A5-20-04",
+      "title": "HVAC Components, Heating Radiator Valve Actuating Drive with Feed and Room Temperature Measurement, Local Set Point Control and Display",
+      "functionGroups": [
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "errorCode",
+                  "values": [
+                     {
+                        "value": "batteryEmpty",
+                        "meaning": "Battery is empty"
+                     },
+                     {
+                        "value": "blockedValve",
+                        "meaning": "Blocked valve"
+                     },
+                     {
+                        "value": "endpointDetectionError",
+                        "meaning": "End point detection error"
+                     },
+                     {
+                        "value": "frostProtection",
+                        "meaning": "Frost protection"
+                     },
+                     {
+                        "value": "measurementError",
+                        "meaning": "Measurement error"
+                     },
+                     {
+                        "value": "noError",
+                        "meaning": "No error reported"
+                     },
+                     {
+                        "value": "noReponseFromController",
+                        "meaning": "No response from controller"
+                     },
+                     {
+                        "value": "noValve",
+                        "meaning": "No valve"
+                     },
+                     {
+                        "value": "notTaughtIn",
+                        "meaning": "Not taught in"
+                     },
+                     {
+                        "value": "teachInError",
+                        "meaning": "Teach-in error"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "feedTemperature",
+                  "description": "Current feed temperature value",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 20,
+                           "max": 80,
+                           "step": 0.235,
+                           "unit": "°C"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "locked",
+                  "description": "Shows if all buttons on the actuator are locked",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Manual room temperature selection enabled"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Manual room temperature selection disabled"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "measurement",
+                  "description": "Measure feed + room temperature",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "Measure feed + room temperature is inactive"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "Measure feed + room temperature is active"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "query",
+                  "description": "Request for status from the controller",
+                  "values": [
+                     {
+                        "value": "noChange",
+                        "meaning": "No change"
+                     },
+                     {
+                        "value": "status",
+                        "meaning": "Status requested"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "roomTemperature",
+                  "description": "Current room temperature",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 10,
+                           "max": 30,
+                           "step": 0.078,
+                           "unit": "°C"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "temperatureSetpoint",
+                  "description": "Current temperature set point",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 10,
+                           "max": 30,
+                           "step": 0.078,
+                           "unit": "°C"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "valve",
+                  "description": "Current valve position",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 1,
+                           "unit": "%"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "command",
+                  "description": "Initiates certain temporary service operations",
+                  "values": [
+                     {
+                        "value": "closeValve",
+                        "meaning": "Close valve"
+                     },
+                     {
+                        "value": "noChange",
+                        "meaning": "No change"
+                     },
+                     {
+                        "value": "openValve",
+                        "meaning": "Open valve"
+                     },
+                     {
+                        "value": "runInit",
+                        "meaning": "Run initialisation"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "noChange"
+               },
+               {
+                  "key": "displayOrientation",
+                  "description": "Adjusts the display orientation",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 270,
+                           "step": 90,
+                           "unit": "°"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": 0
+               },
+               {
+                  "key": "locked",
+                  "description": "Set the button lock status",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Manual room temperature selection enabled"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Manual room temperature selection disabled"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "false"
+               },
+               {
+                  "key": "measurement",
+                  "description": "Measure feed + room temperature",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "Disable measurement for energy saving"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "Enable feed + room temperature measurement"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "on"
+               },
+               {
+                  "key": "temperatureSetpoint",
+                  "description": "Temperature set point",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 10,
+                           "max": 30,
+                           "step": 0.078,
+                           "unit": "°C"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "valve",
+                  "description": "Valve position",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 1,
+                           "unit": "%"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "wakeUpCycle",
+                  "description": "Defines the cyclic wake-up time",
+                  "values": [
+                     {
+                        "meaning": "Cyclic wake-up time, 30 secs - 25 min in 30 seconds steps",
+                        "range": {
+                           "min": 30,
+                           "max": 1500,
+                           "step": 30,
+                           "unit": "s"
+                        }
+                     },
+                     {
+                        "meaning": "Cyclic wake-up time, 3-42 hours in 3 hours steps",
+                        "range": {
+                           "min": 10800,
+                           "max": 151200,
+                           "step": 10800,
+                           "unit": "s"
+                        }
+                     },
+                     {
+                        "value": "10",
+                        "meaning": "Minimal cyclic wake-up time = 10 seconds"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": 600
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

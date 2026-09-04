@@ -1,0 +1,3255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProfileCertification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./Certification_EEP.xsd" schemaVersion="0.9">
+    <EEP rorg="0xA5" func="0x20" type="0x04">
+        <TestCase>
+            <Name>Teach-in Test</Name>
+            <Test>
+                <Name>Unidirectional Teach-in Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0x0">0x80</Byte>
+                            <Byte order="1" ignoremask="0x07">0x20</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0x00">0x80</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Type>LRN Bit</Type>
+                                <Value>0</Value>
+                            </Data>
+                            <Data>
+                                <Type>RORG</Type>
+                                <Value>165</Value>
+                            </Data>
+                            <Data>
+                                <Type>FUNC</Type>
+                                <Value>32</Value>
+                            </Data>
+                            <Data>
+                                <Type>TYPE</Type>
+                                <Value>4</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+        <TestCase>
+            <Name>Current Position Tests</Name>
+            <Test>
+                <Name>Min Current Position Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0x00">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>CP</Shortcut>
+                                <Type>Current Position</Type>
+                                <Value>0</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Max Current Position Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0x00">0x64</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>CP</Shortcut>
+                                <Type>Current Position</Type>
+                                <Value>100</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Mid Current Position Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0x00">0x32</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>CP</Shortcut>
+                                <Type>Current Position</Type>
+                                <Value>50</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+        <TestCase>
+            <Name>Feed Temperature OR Temperature Set Point Tests</Name>
+            <Test>
+                <Name>Min Feed Temperature OR Temperature Set Point Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0x00">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>FTS</Shortcut>
+                                <Type>Feed Temperature OR Temperature Set Point</Type>
+                                <Value>20</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Max Feed Temperature OR Temperature Set Point Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0x00">0xFF</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>FTS</Shortcut>
+                                <Type>Feed Temperature OR Temperature Set Point</Type>
+                                <Value>80</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Mid Feed Temperature OR Temperature Set Point Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0x00">0x7F</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>FTS</Shortcut>
+                                <Type>Feed Temperature OR Temperature Set Point</Type>
+                                <Value>50</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+        <TestCase>
+            <Name>Room Temperature OR Failure Code Enum Test</Name>
+            <Test>
+                <Name>Room Temperature OR Failure Code: </Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0x00">0xFF</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>TMPFC</Shortcut>
+                                <Type />
+                                <Value>255</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Room Temperature OR Failure Code: Measurement error</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0x00">0x11</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>TMPFC</Shortcut>
+                                <Type>Measurement error</Type>
+                                <Value>17</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Room Temperature OR Failure Code: Battery empty</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0x00">0x12</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>TMPFC</Shortcut>
+                                <Type>Battery empty</Type>
+                                <Value>18</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Room Temperature OR Failure Code: Frost protection</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0x00">0x14</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>TMPFC</Shortcut>
+                                <Type>Frost protection</Type>
+                                <Value>20</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Room Temperature OR Failure Code: Blocked valve</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0x00">0x21</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>TMPFC</Shortcut>
+                                <Type>Blocked valve</Type>
+                                <Value>33</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Room Temperature OR Failure Code: End point detection error</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0x00">0x24</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>TMPFC</Shortcut>
+                                <Type>End point detection error</Type>
+                                <Value>36</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Room Temperature OR Failure Code: No valve</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0x00">0x28</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>TMPFC</Shortcut>
+                                <Type>No valve</Type>
+                                <Value>40</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Room Temperature OR Failure Code: Not taught in</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0x00">0x31</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>TMPFC</Shortcut>
+                                <Type>Not taught in</Type>
+                                <Value>49</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Room Temperature OR Failure Code: No response from controller</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0x00">0x35</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>TMPFC</Shortcut>
+                                <Type>No response from controller</Type>
+                                <Value>53</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Room Temperature OR Failure Code: Teach-in error</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0x00">0x36</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>TMPFC</Shortcut>
+                                <Type>Teach-in error</Type>
+                                <Value>54</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+        <TestCase>
+            <Name>Measurement Status Enum Test</Name>
+            <Test>
+                <Name>Measurement Status: Active</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0x77">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>MST</Shortcut>
+                                <Type>Active</Type>
+                                <Value>0</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Measurement Status: Inactive</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0x77">0x88</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>MST</Shortcut>
+                                <Type>Inactive</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+        <TestCase>
+            <Name>Status Request Enum Test</Name>
+            <Test>
+                <Name>Status Request: No change</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xB7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>STR</Shortcut>
+                                <Type>No change</Type>
+                                <Value>0</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Status Request: Status requested</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xB7">0x48</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>STR</Shortcut>
+                                <Type>Status requested</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+        <TestCase>
+            <Name>Button Lock Status Enum Test</Name>
+            <Test>
+                <Name>Button Lock Status: Unlocked</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xF3">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>BLS</Shortcut>
+                                <Type>Unlocked</Type>
+                                <Value>0</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Button Lock Status: Locked</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xF3">0x0C</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>BLS</Shortcut>
+                                <Type>Locked</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+        <TestCase>
+            <Name>Temperature Selection Enum Test</Name>
+            <Test>
+                <Name>Temperature Selection: Feed temperature</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xF5">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>TS</Shortcut>
+                                <Type>Feed temperature</Type>
+                                <Value>0</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Temperature Selection: Temperature set point</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xF5">0x0A</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>TS</Shortcut>
+                                <Type>Temperature set point</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+        <TestCase>
+            <Name>Failure Enum Test</Name>
+            <Test>
+                <Name>Failure: No failure (TMP is transmitted)</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xF6">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>FL</Shortcut>
+                                <Type>No failure (TMP is transmitted)</Type>
+                                <Value>0</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Failure: failure (FC is transmitted)</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xF6">0x09</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>FL</Shortcut>
+                                <Type>failure (FC is transmitted)</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+        <TestCase>
+            <Name>Valve Position Tests</Name>
+            <Test>
+                <Name>Min Valve Position Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0x00">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>POS</Shortcut>
+                                <Type>Valve Position</Type>
+                                <Value>0</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Max Valve Position Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0x00">0x64</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>POS</Shortcut>
+                                <Type>Valve Position</Type>
+                                <Value>100</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Mid Valve Position Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0x00">0x32</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>POS</Shortcut>
+                                <Type>Valve Position</Type>
+                                <Value>50</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+        <TestCase>
+            <Name>Temperature Set Point Tests</Name>
+            <Test>
+                <Name>Min Temperature Set Point Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0x00">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>TSP</Shortcut>
+                                <Type>Temperature Set Point</Type>
+                                <Value>10</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Max Temperature Set Point Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0x00">0xFF</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>TSP</Shortcut>
+                                <Type>Temperature Set Point</Type>
+                                <Value>30</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Mid Temperature Set Point Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0x00">0x7F</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>TSP</Shortcut>
+                                <Type>Temperature Set Point</Type>
+                                <Value>20</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+        <TestCase>
+            <Name>Measurement Control Enum Test</Name>
+            <Test>
+                <Name>Measurement Control: Enable</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xBF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>MC</Shortcut>
+                                <Type>Enable</Type>
+                                <Value>0</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Measurement Control: Disable</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xBF">0x40</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>MC</Shortcut>
+                                <Type>Disable</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+        <TestCase>
+            <Name>Wake-up Cycle Enum Test</Name>
+            <Test>
+                <Name>Wake-up Cycle: 10 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x00</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>10 sec</Type>
+                                <Value>0</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 60 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x01</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>60 sec</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 90 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x02</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>90 sec</Type>
+                                <Value>2</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 120 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x03</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>120 sec</Type>
+                                <Value>3</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 150 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x04</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>150 sec</Type>
+                                <Value>4</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 180 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x05</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>180 sec</Type>
+                                <Value>5</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 210 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x06</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>210 sec</Type>
+                                <Value>6</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 240 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x07</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>240 sec</Type>
+                                <Value>7</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 270 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x08</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>270 sec</Type>
+                                <Value>8</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 300 sec (5 min)</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x09</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>300 sec (5 min)</Type>
+                                <Value>9</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 330 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x0A</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>330 sec</Type>
+                                <Value>10</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 360 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x0B</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>360 sec</Type>
+                                <Value>11</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 390 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x0C</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>390 sec</Type>
+                                <Value>12</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 420 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x0D</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>420 sec</Type>
+                                <Value>13</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 450 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x0E</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>450 sec</Type>
+                                <Value>14</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 480 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x0F</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>480 sec</Type>
+                                <Value>15</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 510 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x10</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>510 sec</Type>
+                                <Value>16</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 540 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x11</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>540 sec</Type>
+                                <Value>17</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 570 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x12</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>570 sec</Type>
+                                <Value>18</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 600 sec (10 min)</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x13</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>600 sec (10 min)</Type>
+                                <Value>19</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 630 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x14</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>630 sec</Type>
+                                <Value>20</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 660 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x15</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>660 sec</Type>
+                                <Value>21</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 690 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x16</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>690 sec</Type>
+                                <Value>22</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 720 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x17</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>720 sec</Type>
+                                <Value>23</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 750 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x18</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>750 sec</Type>
+                                <Value>24</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 780 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x19</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>780 sec</Type>
+                                <Value>25</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 810 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x1A</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>810 sec</Type>
+                                <Value>26</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 840 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x1B</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>840 sec</Type>
+                                <Value>27</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 870 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x1C</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>870 sec</Type>
+                                <Value>28</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 900 sec (15 min)</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x1D</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>900 sec (15 min)</Type>
+                                <Value>29</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 930 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x1E</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>930 sec</Type>
+                                <Value>30</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 960 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x1F</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>960 sec</Type>
+                                <Value>31</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 990 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x20</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>990 sec</Type>
+                                <Value>32</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 1020 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x21</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>1020 sec</Type>
+                                <Value>33</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 1050 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x22</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>1050 sec</Type>
+                                <Value>34</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 1080 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x23</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>1080 sec</Type>
+                                <Value>35</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 1110 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x24</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>1110 sec</Type>
+                                <Value>36</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 1140 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x25</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>1140 sec</Type>
+                                <Value>37</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 1170 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x26</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>1170 sec</Type>
+                                <Value>38</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 1200 sec (20 min)</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x27</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>1200 sec (20 min)</Type>
+                                <Value>39</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 1230 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x28</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>1230 sec</Type>
+                                <Value>40</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 1260 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x29</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>1260 sec</Type>
+                                <Value>41</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 1290 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x2A</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>1290 sec</Type>
+                                <Value>42</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 1320 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x2B</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>1320 sec</Type>
+                                <Value>43</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 1350 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x2C</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>1350 sec</Type>
+                                <Value>44</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 1380 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x2D</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>1380 sec</Type>
+                                <Value>45</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 1410 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x2E</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>1410 sec</Type>
+                                <Value>46</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 1440 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x2F</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>1440 sec</Type>
+                                <Value>47</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 1470 sec</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x30</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>1470 sec</Type>
+                                <Value>48</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 1500 sec (25 min)</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x31</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>1500 sec (25 min)</Type>
+                                <Value>49</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 3 hrs</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x32</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>3 hrs</Type>
+                                <Value>50</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 6 hrs</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x33</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>6 hrs</Type>
+                                <Value>51</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 9 hrs</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x34</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>9 hrs</Type>
+                                <Value>52</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 12 hrs</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x35</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>12 hrs</Type>
+                                <Value>53</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 15 hrs</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x36</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>15 hrs</Type>
+                                <Value>54</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 18 hrs</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x37</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>18 hrs</Type>
+                                <Value>55</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 21 hrs</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x38</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>21 hrs</Type>
+                                <Value>56</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 24 hrs</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x39</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>24 hrs</Type>
+                                <Value>57</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 27 hrs</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x3A</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>27 hrs</Type>
+                                <Value>58</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 30 hrs</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x3B</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>30 hrs</Type>
+                                <Value>59</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 33 hrs</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x3C</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>33 hrs</Type>
+                                <Value>60</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 36 hrs</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x3D</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>36 hrs</Type>
+                                <Value>61</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 39 hrs</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x3E</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>39 hrs</Type>
+                                <Value>62</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Wake-up Cycle: 42 hrs (max)</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xC0">0x3F</Byte>
+                            <Byte order="3" ignoremask="0xF7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>WUC</Shortcut>
+                                <Type>42 hrs (max)</Type>
+                                <Value>63</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+        <TestCase>
+            <Name>Display Orientation Enum Test</Name>
+            <Test>
+                <Name>Display Orientation: 0°</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xC7">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>DSO</Shortcut>
+                                <Type>0°</Type>
+                                <Value>0</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Display Orientation: 90°</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xC7">0x18</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>DSO</Shortcut>
+                                <Type>90°</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Display Orientation: 180°</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xC7">0x28</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>DSO</Shortcut>
+                                <Type>180°</Type>
+                                <Value>2</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Display Orientation: 270°</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xC7">0x38</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>DSO</Shortcut>
+                                <Type>270°</Type>
+                                <Value>3</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+        <TestCase>
+            <Name>Button Lock Control Enum Test</Name>
+            <Test>
+                <Name>Button Lock Control: Unlocked</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xF3">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>BLC</Shortcut>
+                                <Type>Unlocked</Type>
+                                <Value>0</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Button Lock Control: Locked</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xF3">0x0C</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>BLC</Shortcut>
+                                <Type>Locked</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+        <TestCase>
+            <Name>Service Command Enum Test</Name>
+            <Test>
+                <Name>Service Command: No change</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xF4">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>SER</Shortcut>
+                                <Type>No change</Type>
+                                <Value>0</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Service Command: Open valve</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xF4">0x09</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>SER</Shortcut>
+                                <Type>Open valve</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Service Command: Run initialisation</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xF4">0x0A</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>SER</Shortcut>
+                                <Type>Run initialisation</Type>
+                                <Value>2</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Service Command: Close valve</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xF4">0x0B</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>SER</Shortcut>
+                                <Type>Close valve</Type>
+                                <Value>3</Value>
+                            </Data>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+        <TestCase>
+            <Name>unusedFieldTest</Name>
+            <Test>
+                <Name>unused field test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xA5" length="4">
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0x7F">0x00</Byte>
+                            <Byte order="3" ignoremask="0x7F">0x08</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Shortcut>LRN</Shortcut>
+                                <Type>LRN Bit</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+    </EEP>
+</ProfileCertification>

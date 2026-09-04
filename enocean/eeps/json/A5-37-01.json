@@ -1,0 +1,127 @@
+{
+  "header" : {
+    "httpStatus" : 200,
+    "content" : "profile",
+    "gateway" : "DC-GW/EO-IP v1.15.007",
+    "timestamp" : "2020-08-05T16:47:09.363+0200"
+  },
+  "profile" : {
+    "eep" : "A5-37-01",
+    "title" : "Energy Management, Demand Response",
+    "functionGroups" : [ {
+      "direction" : "from",
+      "functions" : [ {
+        "key" : "absoluteRelativePowerUsage",
+        "description" : "Absolute/relative power usage",
+        "values" : [ {
+          "value" : "absolute",
+          "meaning" : "Absolute power usage"
+        }, {
+          "value" : "relative",
+          "meaning" : "Relative power usage"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "drLevel",
+        "description" : "DR Level",
+        "values" : [ {
+          "range" : {
+            "min" : 0,
+            "max" : 15,
+            "step" : 1
+          }
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "maxMinPowerUsage",
+        "description" : "Max/Min power usage for DR state",
+        "values" : [ {
+          "value" : "maxPower",
+          "meaning" : "Maximum Power usage"
+        }, {
+          "value" : "minPower",
+          "meaning" : "Minimum Power usage"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "powerUsage",
+        "description" : "Power usage",
+        "values" : [ {
+          "range" : {
+            "min" : 0,
+            "max" : 100,
+            "step" : 1,
+            "unit" : "%"
+          }
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "randomEndDelay",
+        "description" : "Randomized end delay",
+        "values" : [ {
+          "value" : "false",
+          "meaning" : "End delay is fixed"
+        }, {
+          "value" : "true",
+          "meaning" : "End delay is randomized"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "randomStartDelay",
+        "description" : "Randomized start delay",
+        "values" : [ {
+          "value" : "false",
+          "meaning" : "Start delay is fixed"
+        }, {
+          "value" : "true",
+          "meaning" : "Start delay is randomized"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "temporaryDefault",
+        "description" : "Temporary default",
+        "values" : [ {
+          "meaning" : "Temporary default DR set point",
+          "range" : {
+            "min" : 0,
+            "max" : 255,
+            "step" : 1
+          }
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "timeout",
+        "description" : "Timeout Setting",
+        "values" : [ {
+          "range" : {
+            "min" : 15,
+            "max" : 3825,
+            "step" : 15,
+            "unit" : "min"
+          }
+        }, {
+          "value" : "unspecified",
+          "meaning" : "No Timeout was specified"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      } ]
+    } ],
+    "version" : 0.9
+  }
+}

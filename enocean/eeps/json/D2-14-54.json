@@ -1,0 +1,83 @@
+{
+  "header" : {
+    "httpStatus" : 200,
+    "content" : "profile",
+    "gateway" : "OPUS-IQ-DOT v1.18.014",
+    "timestamp" : "2021-12-22T11:34:13.353+0100"
+  },
+  "profile" : {
+    "eep" : "D2-14-54",
+    "title" : "Multi Function Sensors, Leak Detector with Temperature and Humidity Sensing",
+    "functionGroups" : [ {
+      "direction" : "from",
+      "functions" : [ {
+        "key" : "humidity",
+        "description" : "Relative humidity (linear)",
+        "values" : [ {
+          "range" : {
+            "min" : 0,
+            "max" : 100,
+            "step" : 0.5,
+            "unit" : "%"
+          }
+        }, {
+          "value" : "invalid",
+          "meaning" : "Invalid humidity value"
+        }, {
+          "value" : "notSupported",
+          "meaning" : "Sensor does not support humidty"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "leakDetection",
+        "description" : "Indicates whether a leak is currently detected",
+        "values" : [ {
+          "value" : "leakDetected",
+          "meaning" : "Active leakage detected"
+        }, {
+          "value" : "noLeakDetected",
+          "meaning" : "No leakage detected"
+        }, {
+          "value" : "sensorError",
+          "meaning" : "Leakage sensor reported error"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "pastLeakDetection",
+        "description" : "Indicates whether a leak has been detected since last time this field was reset",
+        "values" : [ {
+          "value" : "leakDetected",
+          "meaning" : "Active leakage was detected"
+        }, {
+          "value" : "noLeakDetected",
+          "meaning" : "No leakage was detected"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "temperature",
+        "description" : "Measurement of Temperature (linear)",
+        "values" : [ {
+          "range" : {
+            "min" : 0,
+            "max" : 50,
+            "step" : 0.1,
+            "unit" : "°C"
+          }
+        }, {
+          "value" : "error",
+          "meaning" : "Invalid temperature value"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      } ]
+    } ],
+    "version" : 0.9
+  }
+}

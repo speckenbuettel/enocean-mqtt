@@ -1,0 +1,126 @@
+{
+  "profile_type": "standard",
+  "eep": "D5-00-01",
+  "rorg": "D5",
+  "func": "00",
+  "type": "01",
+  "func_description": "Contacts and Switches",
+  "type_description": "Single Input Contact",
+  "description": "Single Input Contact",
+  "source": "EnOcean Equipment Profiles",
+  "source_version": "2.6.8",
+  "channels": [
+    {
+      "name": "contact",
+      "display_name": null,
+      "channel_type": "state",
+      "data_type": "enum",
+      "semantic_role": "opening.contact",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "open"
+        },
+        {
+          "value": 1,
+          "label": "closed"
+        }
+      ],
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "learn_button",
+      "display_name": null,
+      "channel_type": "status",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "pressed"
+        },
+        {
+          "value": 1,
+          "label": "not_pressed"
+        }
+      ]
+    }
+  ],
+  "telegrams": [
+    {
+      "telegram_type_id": "d5-00-01.case1",
+      "telegram_id": {
+        "rorg": "D5"
+      },
+      "fields": [
+        {
+          "name": "contact",
+          "offset": 7,
+          "size": 1,
+          "shortcut": "CO",
+          "description": "Contact",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "learn_button",
+          "offset": 4,
+          "size": 1,
+          "shortcut": "LRN",
+          "description": "Learn Button",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "contact",
+          "field_ref": "contact",
+          "bitfield_ref": "contact",
+          "enum": [
+            {
+              "value": 0,
+              "label": "open"
+            },
+            {
+              "value": 1,
+              "label": "closed"
+            }
+          ]
+        },
+        {
+          "channel_ref": "learn_button",
+          "field_ref": "learn_button",
+          "bitfield_ref": "learn_button",
+          "enum": [
+            {
+              "value": 0,
+              "label": "pressed"
+            },
+            {
+              "value": 1,
+              "label": "not_pressed"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tx": {
+    "aggregation_window_seconds": 10
+  }
+}

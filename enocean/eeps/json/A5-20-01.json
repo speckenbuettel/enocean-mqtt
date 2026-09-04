@@ -1,0 +1,359 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:04.755+0200"
+   },
+   "profile": {
+      "eep": "A5-20-01",
+      "title": "HVAC Components, Battery Powered Actuator",
+      "functionGroups": [
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "actuatorObstructed",
+                  "description": "Actuator obstructed",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Actuator is free"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Actuator is obstructed"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "batteryLow",
+                  "description": "Change battery next days",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Battery does not need to be changed"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Change battery in the next days"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "contact",
+                  "description": "Contact or cover",
+                  "values": [
+                     {
+                        "value": "closed",
+                        "meaning": "Contact or cover is closed"
+                     },
+                     {
+                        "value": "open",
+                        "meaning": "Contact or cover is open"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "energyInput",
+                  "description": "Energy input enabled",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Energy input is disabled"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Energy input is enabled"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "energyStorageCharged",
+                  "description": "Energy storage sufficiently charged",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Energy storage needs to be charged"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Energy storage is sufficiently charged"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "serviceMode",
+                  "description": "Service On",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "Service is off"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "Service is on"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "temperature",
+                  "description": "Temperature (linear)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 40,
+                           "step": 0.157,
+                           "unit": "°C"
+                        }
+                     },
+                     {
+                        "value": "overRange",
+                        "meaning": "Temperature sensor failure or out of range"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "valve",
+                  "description": "Current valve position",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 1,
+                           "unit": "%"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "window",
+                  "description": "Detection, window open",
+                  "values": [
+                     {
+                        "value": "closed",
+                        "meaning": "Normal operation"
+                     },
+                     {
+                        "value": "open",
+                        "meaning": "Open window detected"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Control actuator via valve position",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "setpointInverse",
+                  "description": "Valve set point can be sent to the actuator normal or inverted. This function is used in dependence on the type of valve.",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Set point is normal"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Set point is inversed"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "false"
+               },
+               {
+                  "key": "summerMode",
+                  "description": "The radio communication between the actuator and the controller is restricted, sleep mode is extended. This functionality can be used for battery powered actuators.",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Summer mode is deactivated"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Summer mode is activated"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "false"
+               },
+               {
+                  "key": "valve",
+                  "description": "Valve position",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 1,
+                           "unit": "%"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "testExists": true
+               }
+            ]
+         },
+         {
+            "title": "Control actuator via temperature",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "summerMode",
+                  "description": "The radio communication between the actuator and the controller is restricted, sleep mode is extended. This functionality can be used for battery powered actuators.",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Summer mode is deactivated"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Summer mode is activated"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "false"
+               },
+               {
+                  "key": "temperature",
+                  "description": "Temperature from room control unit (RCU)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 40,
+                           "step": 0.157,
+                           "unit": "°C"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "temperatureSetpoint",
+                  "description": "Temperature set point",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 40,
+                           "step": 0.157,
+                           "unit": "°C"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Service mode",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "runInitSequence",
+                  "description": "The limit switching measures the travel and signals when an end position has been reached. This end position (valve zero point) in the actuator is stored.",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Do not run init sequence"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Run init sequence"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "false"
+               },
+               {
+                  "key": "runLiftSet",
+                  "description": "Initialization, adjustment to the valve stroke. The Initialization is switched after receiving the command. The valve is completely opened and closed during initialization.",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Done with initialization"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Initialization is running"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "false"
+               },
+               {
+                  "key": "valveMaintenance",
+                  "description": "Operate valve in maintenance mode",
+                  "values": [
+                     {
+                        "value": "close",
+                        "meaning": "Close valve"
+                     },
+                     {
+                        "value": "noChange",
+                        "meaning": "Do not move valve after init sequence or lift set"
+                     },
+                     {
+                        "value": "open",
+                        "meaning": "Open valve"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "noChange"
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

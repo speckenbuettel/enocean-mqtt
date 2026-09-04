@@ -1,0 +1,135 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:07.335+0200"
+   },
+   "profile": {
+      "eep": "D2-01-03",
+      "title": "Electronic switches and dimmers with Energy Measurement and Local Control",
+      "functionGroups": [
+         {
+            "title": "Actuator Set Output",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "dimValue",
+                  "values": [
+                     {
+                        "meaning": "Output value 0% to 100%",
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 1,
+                           "unit": "%"
+                        }
+                     },
+                     {
+                        "value": "invalid",
+                        "meaning": "Output value not valid / not applicable"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "testExists": true
+               },
+               {
+                  "key": "rampingMode",
+                  "values": [
+                     {
+                        "value": "rampingTime1",
+                        "meaning": "Dim to new output value using rampingTime1"
+                     },
+                     {
+                        "value": "rampingTime2",
+                        "meaning": "Dim to new output value using rampingTime2"
+                     },
+                     {
+                        "value": "rampingTime3",
+                        "meaning": "Dim to new output value using rampingTime3"
+                     },
+                     {
+                        "value": "stop",
+                        "meaning": "Stop dimming"
+                     },
+                     {
+                        "value": "switch",
+                        "meaning": "Switch to new output value"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "testExists": true,
+                  "defaultValue": "rampingTime1"
+               }
+            ]
+         },
+         {
+            "title": "Actuator Status Response",
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "dimValue",
+                  "values": [
+                     {
+                        "meaning": "Output value 0% to 100%",
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 1,
+                           "unit": "%"
+                        }
+                     },
+                     {
+                        "value": "invalid",
+                        "meaning": "Output value not valid / not applicable"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "testExists": true
+               },
+               {
+                  "key": "localControl",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "Local control disabled / not supported"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "Local control enabled"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Actuator Query",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "query",
+                  "values": [
+                     {
+                        "value": "status",
+                        "meaning": "Query status"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

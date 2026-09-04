@@ -1,0 +1,89 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:04.994+0200"
+   },
+   "profile": {
+      "eep": "A5-20-02",
+      "title": "HVAC Components, Basic Actuator",
+      "functionGroups": [
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "setpointInverse",
+                  "description": "State of set point inverse (manufacturer specific)",
+                  "values": [
+                     {
+                        "value": "false"
+                     },
+                     {
+                        "value": "true"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "valve",
+                  "description": "Actual value (linear) can be a linear or rotation motion",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 1,
+                           "unit": "%"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "setpointInverse",
+                  "description": "State of set point inverse (manufacturer specific)",
+                  "values": [
+                     {
+                        "value": "false"
+                     },
+                     {
+                        "value": "true"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "valve",
+                  "description": "Value to set for the valve (linear)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 1,
+                           "unit": "%"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

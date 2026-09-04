@@ -1,0 +1,41 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:12.726+0200"
+   },
+   "profile": {
+      "eep": "F6-10-00",
+      "title": "Mechanical Handle, Window Handle",
+      "functionGroups": [
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "handle",
+                  "description": "Movement of the window handle",
+                  "values": [
+                     {
+                        "value": "closed",
+                        "meaning": "Window is closed"
+                     },
+                     {
+                        "value": "open",
+                        "meaning": "Window is open"
+                     },
+                     {
+                        "value": "up",
+                        "meaning": "Window is tilt"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

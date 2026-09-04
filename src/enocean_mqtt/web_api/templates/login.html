@@ -1,0 +1,42 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>enocean-mqtt | Log in</title>
+  <link rel="stylesheet" href="/static/css/web-ui.css">
+  <link rel="stylesheet" href="/static/css/login.css">
+</head>
+<body class="login-page">
+  <main class="login-shell">
+    <section class="login-card">
+      <div class="login-brand">
+        <img src="/static/logo.png" class="login-logo" alt="enocean-mqtt">
+        <div>
+          <h1>enocean-mqtt</h1>
+          <p>Gateway</p>
+        </div>
+      </div>
+      <form method="post" action="/login" class="login-form">
+        <input type="hidden" name="next" value="{{ next_path }}">
+        <label>
+          Username
+          <input class="login-input" type="text" name="username" autocomplete="username" required autofocus>
+        </label>
+        <label>
+          Password
+          <input class="login-input" type="password" name="password" autocomplete="current-password" required>
+        </label>
+        {% if error %}
+          <div class="login-error" role="alert">{{ error }}</div>
+        {% endif %}
+        <button type="submit" class="login-submit">Log in</button>
+      </form>
+      <p class="login-note">
+        Use the token name as username and the corresponding API token as password.
+      </p>
+    </section>
+  </main>
+</body>
+</html>

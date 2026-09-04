@@ -1,0 +1,402 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProfileCertification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./Certification_EEP.xsd" schemaVersion="0.9">
+  <EEP rorg="0xA5" func="0x13" type="0x06">
+    <TestCase>
+      <Name>Teach-in Test</Name>
+      <Test>
+        <Name>Unidirectional Teach-in Test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0x0">0x4C</Byte>
+              <Byte order="1" ignoremask="0x07">0x30</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0x00">0x80</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Type>LRN Bit</Type>
+                <Value>0</Value>
+              </Data>
+              <Data>
+                <Type>RORG</Type>
+                <Value>165</Value>
+              </Data>
+              <Data>
+                <Type>FUNC</Type>
+                <Value>19</Value>
+              </Data>
+              <Data>
+                <Type>TYPE</Type>
+                <Value>6</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>Latitude(MSB) Tests</Name>
+      <Test>
+        <Name>Min Latitude(MSB) Test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0x0F">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>LAT(MSB)</Shortcut>
+                <Type>Latitude(MSB)</Type>
+                <Value>-90</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Max Latitude(MSB) Test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0x0F">0xF0</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>LAT(MSB)</Shortcut>
+                <Type>Latitude(MSB)</Type>
+                <Value>90</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Mid Latitude(MSB) Test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0x0F">0xF0</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>LAT(MSB)</Shortcut>
+                <Type>Latitude(MSB)</Type>
+                <Value>0</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>Longitude(MSB) Tests</Name>
+      <Test>
+        <Name>Min Longitude(MSB) Test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xF0">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>LOT(MSB)</Shortcut>
+                <Type>Longitude(MSB)</Type>
+                <Value>-180</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Max Longitude(MSB) Test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xF0">0xFF</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>LOT(MSB)</Shortcut>
+                <Type>Longitude(MSB)</Type>
+                <Value>180</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Mid Longitude(MSB) Test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xF0">0xFF</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>LOT(MSB)</Shortcut>
+                <Type>Longitude(MSB)</Type>
+                <Value>0</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>Latitude(LSB) Tests</Name>
+      <Test>
+        <Name>Min Latitude(LSB) Test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0x00">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>LAT(LSB)</Shortcut>
+                <Type>Latitude(LSB)</Type>
+                <Value>-90</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Max Latitude(LSB) Test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x0F</Byte>
+              <Byte order="1" ignoremask="0x00">0xFF</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>LAT(LSB)</Shortcut>
+                <Type>Latitude(LSB)</Type>
+                <Value>90</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Mid Latitude(LSB) Test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x07</Byte>
+              <Byte order="1" ignoremask="0x00">0xFF</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>LAT(LSB)</Shortcut>
+                <Type>Latitude(LSB)</Type>
+                <Value>0</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>Longitude(LSB) Tests</Name>
+      <Test>
+        <Name>Min Longitude(LSB) Test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0x00">0x00</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>LOT(LSB)</Shortcut>
+                <Type>Longitude(LSB)</Type>
+                <Value>-180</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Max Longitude(LSB) Test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x0F</Byte>
+              <Byte order="2" ignoremask="0x00">0xFF</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>LOT(LSB)</Shortcut>
+                <Type>Longitude(LSB)</Type>
+                <Value>180</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Mid Longitude(LSB) Test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x07</Byte>
+              <Byte order="2" ignoremask="0x00">0xFF</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>LOT(LSB)</Shortcut>
+                <Type>Longitude(LSB)</Type>
+                <Value>0</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>Identifier Enum Test</Name>
+      <Test>
+        <Name>Identifier: </Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0x07">0x68</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>ID</Shortcut>
+                <Type></Type>
+                <Value>6</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>unusedFieldTest</Name>
+      <Test>
+        <Name>unused field test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+  </EEP>
+</ProfileCertification>

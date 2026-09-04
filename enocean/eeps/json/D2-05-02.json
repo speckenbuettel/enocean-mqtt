@@ -1,0 +1,216 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:10.091+0200"
+   },
+   "profile": {
+      "eep": "D2-05-02",
+      "title": "Blinds Control for Position and Angle",
+      "functionGroups": [
+         {
+            "title": "Go to Position and Angle",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "angle",
+                  "description": "Rotation angle",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 1,
+                           "unit": "%"
+                        }
+                     },
+                     {
+                        "value": "noChange",
+                        "meaning": "Do not change"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "testExists": true,
+                  "defaultValue": "noChange"
+               },
+               {
+                  "key": "lockingMode",
+                  "description": "Set/reset locking modes",
+                  "values": [
+                     {
+                        "value": "block",
+                        "meaning": "Set blockage mode"
+                     },
+                     {
+                        "value": "noChange",
+                        "meaning": "Do not change"
+                     },
+                     {
+                        "value": "unblock",
+                        "meaning": "Deblockage"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "testExists": true,
+                  "defaultValue": "noChange"
+               },
+               {
+                  "key": "position",
+                  "description": "Vertical position",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 1,
+                           "unit": "%"
+                        }
+                     },
+                     {
+                        "value": "noChange",
+                        "meaning": "Do not change"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "testExists": true,
+                  "defaultValue": "noChange"
+               },
+               {
+                  "key": "repositioning",
+                  "description": "How to adjust the internal positioning tracker, before going to the new position",
+                  "values": [
+                     {
+                        "value": "direct",
+                        "meaning": "Go directly to POS/ANG"
+                     },
+                     {
+                        "value": "firstDown",
+                        "meaning": "Go down (100%), then to POS/ANG"
+                     },
+                     {
+                        "value": "firstUp",
+                        "meaning": "Go up (0%), then to POS/ANG"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "testExists": true,
+                  "defaultValue": "direct"
+               }
+            ]
+         },
+         {
+            "title": "Stop",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "stop",
+                  "description": "Stops actuator immediately",
+                  "values": [
+                     {
+                        "value": "true",
+                        "meaning": "Stop command"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Query Position and Angle",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "query",
+                  "description": "Command identifier",
+                  "values": [
+                     {
+                        "value": "status",
+                        "meaning": "Query command"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Reply Position and Angle",
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "angle",
+                  "description": "Current rotation angle",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 1,
+                           "unit": "%"
+                        }
+                     },
+                     {
+                        "value": "unknown",
+                        "meaning": "Angle currently unknown"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "lockingMode",
+                  "description": "Current locking mode",
+                  "values": [
+                     {
+                        "value": "block",
+                        "meaning": "Blockage mode"
+                     },
+                     {
+                        "value": "unblock",
+                        "meaning": "Normal (no lock)"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "position",
+                  "description": "Current vertical position",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 1,
+                           "unit": "%"
+                        }
+                     },
+                     {
+                        "value": "unknown",
+                        "meaning": "Position currently unknown"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

@@ -1,0 +1,71 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:28:58.395+0200"
+   },
+   "profile": {
+      "eep": "A5-09-07",
+      "title": "Gas Sensor, Particles",
+      "functionGroups": [
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "particles_1",
+                  "description": "Dust less than 1 µm (PM1)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 511,
+                           "step": 1,
+                           "unit": "µg/m3"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "particles_10",
+                  "description": "Dust less than 10 µm (PM10)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 511,
+                           "step": 1,
+                           "unit": "µg/m3"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "particles_2_5",
+                  "description": "Dust less than 2.5 µm (PM2.5)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 511,
+                           "step": 1,
+                           "unit": "µg/m3"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

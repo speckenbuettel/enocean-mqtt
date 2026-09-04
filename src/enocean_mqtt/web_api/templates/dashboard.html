@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% set active_page = "dashboard" %}
+{% block title %}enocean-mqtt | Dashboard{% endblock %}
+{% block styles %}<link rel="stylesheet" href="/static/css/dashboard.css">{% endblock %}
+{% block main_class %}dashboard-v2{% endblock %}
+
+{% block content %}
+  <header class="dashboard-header compact-card">
+    <div><p class="eyebrow">Gateway</p><h1>Dashboard</h1></div>
+    <div id="systemHealth" class="overall-health neutral" tabindex="0" aria-describedby="healthDetails">
+      <span class="status-dot"></span><span id="systemHealthText">Loading</span>
+      <div id="healthDetails" class="health-popover" role="tooltip"></div>
+    </div>
+  </header>
+
+  <section class="status-grid" aria-label="Gateway status">
+    <article class="compact-card status-card">
+      <div class="card-heading"><h2>System</h2></div>
+      <div id="systemStatus" class="primary-state neutral"><span class="status-dot"></span><span>loading</span></div>
+      <dl class="compact-list">
+        <div><dt>Version</dt><dd id="version">loading</dd></div>
+        <div><dt>Uptime</dt><dd id="uptime">loading</dd></div>
+        <div><dt>Memory</dt><dd id="memory">loading</dd></div>
+        <div><dt>Mode</dt><dd id="runtimeMode">loading</dd></div>
+        <div><dt>API</dt><dd id="apiStatus">loading</dd></div>
+      </dl>
+    </article>
+    <article class="compact-card status-card">
+      <div class="card-heading"><h2>EnOcean</h2></div>
+      <div id="enoceanStatus" class="primary-state neutral"><span class="status-dot"></span><span>loading</span></div>
+      <dl class="compact-list">
+        <div><dt>Interfaces</dt><dd id="enoceanInterfaces">loading</dd></div>
+        <div>
+          <dt>Interface</dt>
+          <dd id="enoceanInterface">
+            <span id="enoceanInterfaceValue">loading</span>
+            <select id="enoceanInterfaceSelect" class="interface-select" aria-label="EnOcean interface" hidden></select>
+          </dd>
+        </div>
+        <div><dt>Base ID</dt><dd id="enoceanBaseId">loading</dd></div>
+        <div><dt>RX</dt><dd id="enoceanRx">loading</dd></div>
+        <div><dt>TX</dt><dd id="enoceanTx">loading</dd></div>
+      </dl>
+    </article>
+    <article class="compact-card status-card">
+      <div class="card-heading"><h2>MQTT</h2></div>
+      <div id="mqttStatus" class="primary-state neutral"><span class="status-dot"></span><span>loading</span></div>
+      <dl class="compact-list">
+        <div><dt>Host</dt><dd id="mqttEndpoint">loading</dd></div>
+        <div><dt>Uptime</dt><dd id="mqttUptime">loading</dd></div>
+        <div><dt>Reconnects</dt><dd id="mqttReconnects">loading</dd></div>
+        <div><dt>Published (last 15 min)</dt><dd id="mqttPublished15m">loading</dd></div>
+        <div><dt>Received (last 15 min)</dt><dd id="mqttReceived15m">loading</dd></div>
+      </dl>
+    </article>
+    <article class="compact-card status-card">
+      <div class="card-heading"><h2>SQLite</h2></div>
+      <div id="sqliteStatus" class="primary-state neutral"><span class="status-dot"></span><span>loading</span></div>
+      <dl class="compact-list">
+        <div><dt>Telegrams</dt><dd id="sqliteRecords">loading</dd></div>
+        <div><dt>Telegram limit</dt><dd id="sqliteTelegramLimit">loading</dd></div>
+        <div><dt>Last write</dt><dd id="sqliteLastWrite">loading</dd></div>
+        <div><dt>Oldest telegram</dt><dd id="sqliteOldestTelegram">loading</dd></div>
+        <div><dt>Database size</dt><dd id="sqliteSize">loading</dd></div>
+      </dl>
+    </article>
+  </section>
+
+  <section class="compact-card activity-card" aria-labelledby="activityHeading">
+    <div class="card-heading"><h2 id="activityHeading">EnOcean Metrics</h2></div>
+    <div class="metrics-grid">
+      <article class="kpi-card"><span id="rxRate" class="kpi-value">0.0</span><span class="kpi-label">RX/min</span><span id="rxTotal" class="kpi-detail">0 total</span></article>
+      <article class="kpi-card"><span id="txRate" class="kpi-value">0.0</span><span class="kpi-label">TX/min</span><span id="txTotal" class="kpi-detail">0 total</span></article>
+      <article class="kpi-card"><span id="decodedTotal" class="kpi-value">0</span><span class="kpi-label">Decoded</span></article>
+      <article class="kpi-card"><span id="errorCount" class="kpi-value">0</span><span class="kpi-label">Decode errors</span></article>
+      <article class="kpi-card kpi-card-wide"><span id="lastSender" class="kpi-value kpi-value-small">n/a</span><span class="kpi-label">Last sender</span><span id="lastSenderName" class="kpi-detail">unknown</span></article>
+      <article id="lastRawRxCard" class="kpi-card kpi-card-wide activity-tooltip" tabindex="0"><span id="lastRawRx" class="kpi-value kpi-value-small mono">n/a</span><span class="kpi-label">Last Raw RX</span><span id="lastRawRxTooltip" class="activity-tooltip-panel" role="tooltip">Decode unavailable</span></article>
+    </div>
+  </section>
+
+  <section class="bottom-grid">
+    <article class="compact-card">
+      <div class="card-heading"><h2>Device Registry</h2><span id="registryReload" class="card-tag">loading</span></div>
+      <div class="registry-grid">
+        <div><strong id="registeredDeviceCount">0</strong><span>physical</span></div>
+        <div><strong id="activeRegistryCount">0</strong><span>active</span></div>
+        <div><strong id="unknownDeviceCount" class="warning-text">0</strong><span>unknown</span></div>
+        <div><strong id="virtualDeviceCount">0</strong><span>virtual</span></div>
+      </div>
+    </article>
+    <article class="compact-card">
+      <div class="card-heading"><h2>Runtime Commands</h2><span id="commandAvailability" class="card-tag">checking</span></div>
+      <div id="commandButtons" class="command-grid">
+        <button type="button" data-command="devices.reload">Reload devices</button>
+        <button type="button" data-command="gateway.republish">Republish gateway status (to MQTT)</button>
+        <button type="button" data-command="gateway.restart" data-confirm="Restart the gateway runtime?">Restart gateway</button>
+        <button type="button" class="danger-action" data-command="gateway.exit" data-confirm="Shut down the gateway runtime?">Shut down</button>
+      </div>
+      <p id="commandResult" class="command-result" aria-live="polite"></p>
+    </article>
+  </section>
+{% endblock %}
+
+{% block scripts %}<script src="/static/js/dashboard.js?v=20260821-7"></script>{% endblock %}

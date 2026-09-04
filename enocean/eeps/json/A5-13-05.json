@@ -1,0 +1,54 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:03.467+0200"
+   },
+   "profile": {
+      "eep": "A5-13-05",
+      "title": "Environmental Applications, Direction Exchange",
+      "functionGroups": [
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "azimuth",
+                  "description": "Azimuth (0° -> True north  clockwise)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 359,
+                           "step": 1,
+                           "unit": "°"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "elevation",
+                  "description": "Elevation (0° -> horizon)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": -90,
+                           "max": 90,
+                           "step": 1,
+                           "unit": "°"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

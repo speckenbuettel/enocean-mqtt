@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProfileCertification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./Certification_EEP.xsd" schemaVersion="0.9">
+  <EEP rorg="0xD2" func="0x14" type="0x50">
+    <TestCase>
+      <Name>Teach-in Test</Name>
+      <Test>
+        <Name>Universal Teach-in Test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xD4" length="7">
+              <Byte order="0">0x60</Byte>
+              <Byte order="1">0xFF</Byte>
+              <Byte order="2">0x00</Byte>
+              <Byte order="3">0x04</Byte>
+              <Byte order="4">0x51</Byte>
+              <Byte order="5">0x14</Byte>
+              <Byte order="6">0xD2</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Type>Direction</Type>
+                <Value>0</Value>
+              </Data>
+              <Data>
+                <Type>Teach-In Or Deletion</Type>
+                <Value>2</Value>
+              </Data>
+              <Data>
+                <Type>Manufacturer Code</Type>
+                <Value>4</Value>
+              </Data>
+              <Data>
+                <Type>RORG</Type>
+                <Value>210</Value>
+              </Data>
+              <Data>
+                <Type>FUNC</Type>
+                <Value>20</Value>
+              </Data>
+              <Data>
+                <Type>TYPE</Type>
+                <Value>80</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>Temperature Enum Test</Name>
+      <Test>
+        <Name>Temperature: max</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xD2" length="3">
+                <Byte order="0" ignoremask="0x00">0xFA</Byte>
+                <Byte order="1" ignoremask="0x7F">0x00</Byte>
+                <Byte order="2" ignoremask="0xFF">0x00</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <ShortCut>TMP9</ShortCut>
+                <Type>max</Type>
+                <Value>500</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Temperature: min</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xD2" length="3">
+                <Byte order="0" ignoremask="0x00">0x00</Byte>
+                <Byte order="1" ignoremask="0x7F">0x00</Byte>
+                <Byte order="2" ignoremask="0xFF">0x00</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <ShortCut>TMP9</ShortCut>
+                <Type>min</Type>
+                <Value>0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Temperature: medium</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xD2" length="3">
+                <Byte order="0" ignoremask="0x00">0x7D</Byte>
+                <Byte order="1" ignoremask="0x7F">0x00</Byte>
+                <Byte order="2" ignoremask="0xFF">0x00</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <ShortCut>TMP9</ShortCut>
+                <Type>medium</Type>
+                <Value>500</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Temperature: Reserved</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xD2" length="3">
+                <Byte order="0" ignoremask="0x00">0xFA</Byte>
+                <Byte order="1" ignoremask="0x7F">0x80</Byte>
+                <Byte order="2" ignoremask="0xFF">0x00</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <ShortCut>TMP9</ShortCut>
+                <Type>Reserved</Type>
+                <Value>501</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Temperature: Error</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xD2" length="3">
+                <Byte order="0" ignoremask="0x00">0xFF</Byte>
+                <Byte order="1" ignoremask="0x7F">0x80</Byte>
+                <Byte order="2" ignoremask="0xFF">0x00</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <ShortCut>TMP9</ShortCut>
+                <Type>Error</Type>
+                <Value>511</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>Dissolved Oxygen: Enum Test</Name>
+      <Test>
+        <Name>DO: max</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xD2" length="3">
+                <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                <Byte order="1" ignoremask="0x80">0x7D</Byte>
+                <Byte order="2" ignoremask="0x0F">0x00</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <ShortCut>DO11</ShortCut>
+                <Type>max</Type>
+                <Value>2000</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>DO: min</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xD2" length="3">
+                <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                <Byte order="1" ignoremask="0x80">0x00</Byte>
+                <Byte order="2" ignoremask="0x0F">0x00</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <ShortCut>DO11</ShortCut>
+                <Type>min</Type>
+                <Value>0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>DO: medium</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xD2" length="3">
+                <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                <Byte order="1" ignoremask="0x80">0x3E</Byte>
+                <Byte order="2" ignoremask="0x0F">0x80</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <ShortCut>DO11</ShortCut>
+                <Type>medium</Type>
+                <Value>1000</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>DO: Reserved</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xD2" length="3">
+                <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                <Byte order="1" ignoremask="0x80">0x7D</Byte>
+                <Byte order="2" ignoremask="0x0F">0x10</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <ShortCut>DO11</ShortCut>
+                <Type>Reserved</Type>
+                <Value>2001</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>DO: Error</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xD2" length="3">
+                <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                <Byte order="1" ignoremask="0x80">0x7F</Byte>
+                <Byte order="2" ignoremask="0x0F">0xF0</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <ShortCut>DO11</ShortCut>
+                <Type>Error</Type>
+                <Value>2047</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+  </EEP>
+</ProfileCertification>

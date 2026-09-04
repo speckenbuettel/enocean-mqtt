@@ -1,0 +1,12 @@
+{
+  "profile_type": "standard",
+  "eep": "D2-01-0E",
+  "rorg": "D2",
+  "func": "01",
+  "type": "0E",
+  "func_description": "Electronic Switches and Dimmers with Local Control",
+  "type_description": "Type 0x0E (description: see table)",
+  "description": "Electronic Switches and Dimmers with Local Control, Type 0x0E (description: see table)",
+  "source": "EnOcean Equipment Profiles",
+  "source_version": "2.6.8"
+}

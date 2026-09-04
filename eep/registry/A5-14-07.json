@@ -1,0 +1,292 @@
+{
+  "profile_type": "standard",
+  "eep": "A5-14-07",
+  "rorg": "A5",
+  "func": "14",
+  "type": "07",
+  "func_description": "Multi-Func Sensor",
+  "type_description": "Dual-door-contact with States Open/Closed and Locked/Unlocked, Supply voltage monitor",
+  "description": "Dual-door-contact with States Open/Closed and Locked/Unlocked, Supply voltage monitor",
+  "source": "EnOcean Equipment Profiles",
+  "source_version": "2.6.8",
+  "channels": [
+    {
+      "name": "telegram_type",
+      "channel_type": "status",
+      "data_type": "enum",
+      "semantic_role": "enocean.telegram_type",
+      "field_ref": "telegram_type",
+      "bitfield": {
+        "name": "telegram_type",
+        "offset": 28,
+        "size": 1,
+        "shortcut": "LRNB",
+        "description": "LRN Bit",
+        "raw_min": 0,
+        "raw_max": 1,
+        "source": "payload"
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "teach_in_telegram"
+        },
+        {
+          "value": 1,
+          "label": "data_telegram"
+        }
+      ]
+    },
+    {
+      "name": "supply_voltage",
+      "channel_type": "measurement",
+      "data_type": "float",
+      "unit": "V",
+      "semantic_role": "power.supply_voltage",
+      "field_ref": "supply_voltage",
+      "bitfield": {
+        "name": "supply_voltage",
+        "offset": 0,
+        "size": 8,
+        "shortcut": "SVC",
+        "description": "Supply voltage",
+        "raw_min": 0,
+        "raw_max": 255,
+        "source": "payload"
+      },
+      "scale": {
+        "raw_min": 0,
+        "raw_max": 255,
+        "scale_min": 0.0,
+        "scale_max": 5.0
+      }
+    },
+    {
+      "name": "door_contact",
+      "channel_type": "status",
+      "data_type": "enum",
+      "field_ref": "door_contact",
+      "bitfield": {
+        "name": "door_contact",
+        "offset": 29,
+        "size": 1,
+        "shortcut": "DCT",
+        "description": "Door Contact",
+        "raw_min": 0,
+        "raw_max": 1,
+        "source": "payload"
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "door_closed"
+        },
+        {
+          "value": 1,
+          "label": "door_open"
+        }
+      ]
+    },
+    {
+      "name": "lock_contact",
+      "channel_type": "status",
+      "data_type": "enum",
+      "field_ref": "lock_contact",
+      "bitfield": {
+        "name": "lock_contact",
+        "offset": 30,
+        "size": 1,
+        "shortcut": "LCT",
+        "description": "Lock Contact",
+        "raw_min": 0,
+        "raw_max": 1,
+        "source": "payload"
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "door_locked"
+        },
+        {
+          "value": 1,
+          "label": "door_unlocked"
+        }
+      ]
+    }
+  ],
+  "telegrams": [
+    {
+      "telegram_type_id": "a5-14-07.case1",
+      "telegram_id": {
+        "rorg": "A5"
+      },
+      "fields": [
+        {
+          "name": "telegram_type",
+          "offset": 28,
+          "size": 1,
+          "shortcut": "LRNB",
+          "description": "LRN Bit",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "supply_voltage",
+          "offset": 0,
+          "size": 8,
+          "shortcut": "SVC",
+          "description": "Supply voltage",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_8_20",
+          "offset": 8,
+          "size": 20,
+          "shortcut": "",
+          "description": "Reserved field 8:20",
+          "raw_min": 0,
+          "raw_max": 1048575,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_31_1",
+          "offset": 31,
+          "size": 1,
+          "shortcut": "",
+          "description": "Reserved field 31:1",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "door_contact",
+          "offset": 29,
+          "size": 1,
+          "shortcut": "DCT",
+          "description": "Door Contact",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "lock_contact",
+          "offset": 30,
+          "size": 1,
+          "shortcut": "LCT",
+          "description": "Lock Contact",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        }
+      ],
+      "channels": [
+        {
+          "name": "telegram_type",
+          "channel_type": "status",
+          "data_type": "enum",
+          "semantic_role": "enocean.telegram_type",
+          "field_ref": "telegram_type",
+          "bitfield": {
+            "name": "telegram_type",
+            "offset": 28,
+            "size": 1,
+            "shortcut": "LRNB",
+            "description": "LRN Bit",
+            "raw_min": 0,
+            "raw_max": 1,
+            "source": "payload"
+          },
+          "enum": [
+            {
+              "value": 0,
+              "label": "teach_in_telegram"
+            },
+            {
+              "value": 1,
+              "label": "data_telegram"
+            }
+          ]
+        },
+        {
+          "name": "supply_voltage",
+          "channel_type": "measurement",
+          "data_type": "float",
+          "unit": "V",
+          "semantic_role": "power.supply_voltage",
+          "field_ref": "supply_voltage",
+          "bitfield": {
+            "name": "supply_voltage",
+            "offset": 0,
+            "size": 8,
+            "shortcut": "SVC",
+            "description": "Supply voltage",
+            "raw_min": 0,
+            "raw_max": 255,
+            "source": "payload"
+          },
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 255,
+            "scale_min": 0.0,
+            "scale_max": 5.0
+          }
+        },
+        {
+          "name": "door_contact",
+          "channel_type": "status",
+          "data_type": "enum",
+          "field_ref": "door_contact",
+          "bitfield": {
+            "name": "door_contact",
+            "offset": 29,
+            "size": 1,
+            "shortcut": "DCT",
+            "description": "Door Contact",
+            "raw_min": 0,
+            "raw_max": 1,
+            "source": "payload"
+          },
+          "enum": [
+            {
+              "value": 0,
+              "label": "door_closed"
+            },
+            {
+              "value": 1,
+              "label": "door_open"
+            }
+          ]
+        },
+        {
+          "name": "lock_contact",
+          "channel_type": "status",
+          "data_type": "enum",
+          "field_ref": "lock_contact",
+          "bitfield": {
+            "name": "lock_contact",
+            "offset": 30,
+            "size": 1,
+            "shortcut": "LCT",
+            "description": "Lock Contact",
+            "raw_min": 0,
+            "raw_max": 1,
+            "source": "payload"
+          },
+          "enum": [
+            {
+              "value": 0,
+              "label": "door_locked"
+            },
+            {
+              "value": 1,
+              "label": "door_unlocked"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+Manufacturer;Model;EEP;Proprietary;Planned;Implemented;RX Tested;TX Tested;Description
+Eimsig;Fenstersensor;A5-14-0A;;;X;;;Window sensor with glass break alarm
+Eimsig;Universalsensor;A5-14-07;;;X;;;Universal door/window sensor with lock monitoring
+Eltako;FFT60SB;A5-04-02;;;X;;;Wireless humidity temperature sensor indoors and outdoors with solar cell and battery
+Eltako;FFTE;F6-10-00;;;X;;;Wireless window/door contact
+Eltako;FHMB;A5-30-03;;X;;;;Wireless heat detector
+Eltako;FTFSB;A5-04-02;;;X;;;Wireless temperature+humidity sensor with solar cell and battery
+Eltako;FTKB;D5-00-01;X;X;;;;Wireless window/door contact with solar cell and battery
+Eltako;FTKE;F6-10-00;;;X;;;Wireless window/door contact with energy generator
+Eltako;FUD70S-230V;;X;X;;;;Wireless actuator universal dimmer switch
+NodOn;CRC-2-6-03;F6-02-02;;;X;;;Soft remote control
+NodOn;MSP-2-1-11;D2-01-0E;;X;;;;Micro smart plug with metering
+NodOn;STPH-2-1-05;A5-04-01;;;X;;;Temperature and humidity sensor

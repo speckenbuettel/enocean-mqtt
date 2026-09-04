@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Project Status
+    url: https://github.com/seneca-III/enocean-mqtt/blob/main/docs/project-status.md
+    about: Review current implementation and architecture status before opening issues.

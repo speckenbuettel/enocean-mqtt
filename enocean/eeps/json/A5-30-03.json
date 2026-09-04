@@ -1,0 +1,122 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:05.960+0200"
+   },
+   "profile": {
+      "eep": "A5-30-03",
+      "title": "Digital Input, 4 Digital Inputs, Wake and Temperature",
+      "functionGroups": [
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "digitalInput0",
+                  "description": "Digital Input 0",
+                  "values": [
+                     {
+                        "value": "high",
+                        "meaning": "Digital Input 0 is High"
+                     },
+                     {
+                        "value": "low",
+                        "meaning": "Digital Input 0 is Low"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "digitalInput1",
+                  "description": "Digital Input 1",
+                  "values": [
+                     {
+                        "value": "high",
+                        "meaning": "Digital Input 1 is High"
+                     },
+                     {
+                        "value": "low",
+                        "meaning": "Digital Input 1 is Low"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "digitalInput2",
+                  "description": "Digital Input 2",
+                  "values": [
+                     {
+                        "value": "high",
+                        "meaning": "Digital Input 2 is High"
+                     },
+                     {
+                        "value": "low",
+                        "meaning": "Digital Input 2 is Low"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "digitalInput3",
+                  "description": "Digital Input 3",
+                  "values": [
+                     {
+                        "value": "high",
+                        "meaning": "Digital Input 3 is High"
+                     },
+                     {
+                        "value": "low",
+                        "meaning": "Digital Input 3 is Low"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "temperature",
+                  "description": "Temperature (linear)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 40,
+                           "step": 0.157,
+                           "unit": "°C"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "wakeStatus",
+                  "description": "Value of wake signal",
+                  "values": [
+                     {
+                        "value": "high",
+                        "meaning": "High value of wake signal"
+                     },
+                     {
+                        "value": "low",
+                        "meaning": "Low value of wake signal"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

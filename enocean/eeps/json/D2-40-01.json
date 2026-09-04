@@ -1,0 +1,161 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:11.347+0200"
+   },
+   "profile": {
+      "eep": "D2-40-01",
+      "title": "LED Controller Status, Type 0x01",
+      "functionGroups": [
+         {
+            "title": "Status of RGB LED Controller",
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "daylightHarvesting",
+                  "description": "Daylight harvesting feature is turned on. Readings from photo sensor are influencing the dimming level.",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Daylight harvesting off"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Daylight harvesting on"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "demandResponse",
+                  "description": "Controller is in the DR mode. It had received a DR command from DR controller, and it is executing it.",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "DR mode off"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "DR mode on"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "dimValueBlue",
+                  "description": "Current dim level for the blue LED",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 0.5,
+                           "unit": "%"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "dimValueGreen",
+                  "description": "Current dim level for the green LED",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 0.5,
+                           "unit": "%"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "dimValueRed",
+                  "description": "Current dim level for the red LED",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 0.5,
+                           "unit": "%"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "occupancy",
+                  "description": "Controller's room is considered occupied.",
+                  "values": [
+                     {
+                        "value": "occupied",
+                        "meaning": "Occupancy on"
+                     },
+                     {
+                        "value": "unknown",
+                        "meaning": "Occupancy unknown"
+                     },
+                     {
+                        "value": "unoccupied",
+                        "meaning": "Occupancy off"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "statusReason",
+                  "description": "Reason for sending this message.",
+                  "values": [
+                     {
+                        "value": "heartbeat",
+                        "meaning": "Reason of status update : heartbeat"
+                     },
+                     {
+                        "value": "other",
+                        "meaning": "Reason of status update : not defined"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "switch",
+                  "description": "LED status",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "LED off"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "LED on"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 1.0
+   }
+}

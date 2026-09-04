@@ -1,0 +1,411 @@
+.busmonitor-main {
+  padding: 0.85rem;
+}
+
+.busmonitor-page {
+  display: grid;
+  align-content: start;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.busmonitor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.busmonitor-header h1 {
+  margin: 0;
+  font-size: 1.45rem;
+}
+
+.busmonitor-mode-status {
+  font-size: 0.82rem;
+}
+
+.busmonitor-card {
+  min-width: 0;
+}
+
+.busmonitor-card-heading {
+  margin-bottom: 0.7rem;
+}
+
+.busmonitor-loaded-status {
+  color: var(--color-primary-muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.busmonitor-filter-card {
+  margin-bottom: 0.75rem;
+  padding: 0.7rem;
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+}
+
+.busmonitor-filter-card h3 {
+  margin: 0 0 0.65rem;
+  font-size: 0.9rem;
+}
+
+.busmonitor-filters {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(8rem, 1fr));
+  gap: 0.65rem 0.75rem;
+  align-items: end;
+}
+
+.filter-field,
+.filter-choice-group {
+  min-width: 0;
+}
+
+.filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.filter-field label,
+.filter-label,
+.filter-choice-group legend {
+  color: var(--color-primary-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.busmonitor-filter-card select,
+.busmonitor-filter-card input[type="text"],
+.busmonitor-filter-card button,
+.filter-action-link {
+  width: 100%;
+  min-height: 2.15rem;
+  padding: 0.38rem 0.5rem;
+  border: 1px solid var(--color-control-border);
+  border-radius: var(--radius-control);
+  background: white;
+  color: var(--color-primary);
+}
+
+.busmonitor-filter-card button,
+.filter-action-link {
+  cursor: pointer;
+}
+
+.busmonitor-filter-card button:hover,
+.filter-action-link:hover,
+.busmonitor-filter-card .filter-action-primary {
+  background: var(--palette-blue);
+  color: var(--palette-off-white);
+  border-color: var(--palette-blue);
+}
+
+.busmonitor-filter-card .filter-action-primary:hover {
+  background: var(--palette-blue-dark);
+  border-color: var(--palette-blue-dark);
+}
+
+.filter-action-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.filter-choice-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.7rem;
+  min-height: 2.15rem;
+  margin: 0;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+}
+
+.filter-choice-group legend {
+  padding: 0 0.2rem;
+}
+
+.filter-choice-group label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.filter-checkbox-group {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.filter-actions {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.55rem;
+  margin-top: 0.75rem;
+}
+
+.multi-select {
+  position: relative;
+}
+
+.multi-select-button {
+  text-align: left;
+}
+
+.multi-select-panel {
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  left: 0;
+  right: 0;
+  z-index: 100;
+  max-height: 24rem;
+  overflow-y: auto;
+  padding: 0.35rem;
+  background: white;
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-control);
+  box-shadow: 0 0.25rem 1rem rgb(0 0 0 / 12%);
+}
+
+.multi-select-option {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.35rem 0.45rem;
+  font-size: 0.82rem;
+  line-height: 1.25;
+}
+
+.multi-select-option:hover {
+  background: var(--color-table-hover);
+}
+
+.multi-select-option input {
+  margin-top: 0.1rem;
+}
+
+.table-wrap {
+  width: 100%;
+  max-height: calc(100dvh - 27rem);
+  min-height: 18rem;
+  overflow: auto;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+}
+
+.busmonitor-main table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+}
+
+.busmonitor-main th,
+.busmonitor-main td {
+  padding: 0.38rem 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+  text-align: left;
+  vertical-align: top;
+}
+
+.busmonitor-main th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--color-border);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.busmonitor-main tr:hover {
+  background: var(--color-table-hover);
+}
+
+.busmonitor-main tr.selected,
+.busmonitor-main tr.selected:hover {
+  background: var(--color-selected-row);
+  color: var(--color-selected-row-text);
+}
+
+.busmonitor-main tr.known-device {
+  background: var(--color-known-device);
+}
+
+.busmonitor-main tr.known-device:hover {
+  background: var(--color-known-device-hover);
+}
+
+.busmonitor-main tr.teach-in-telegram {
+  background: rgb(214 180 90 / 18%);
+  border-left: 4px solid var(--color-teach-in);
+}
+
+.busmonitor-main tr.teach-in-telegram:hover {
+  background: rgb(214 180 90 / 28%);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.telegram-id {
+  width: 5rem;
+}
+
+.timestamp-cell {
+  min-width: 11rem;
+}
+
+.direction-cell,
+.rorg-cell,
+.rssi-cell {
+  width: 4rem;
+}
+
+.runtime-cell,
+.status-cell {
+  width: 5rem;
+}
+
+.sender-cell {
+  min-width: 8rem;
+}
+
+.known-cell {
+  width: 4rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+.data-cell {
+  min-width: 7rem;
+}
+
+.raw-cell {
+  min-width: 28rem;
+  max-width: 40rem;
+}
+
+.raw-telegram-text {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rssi-cell {
+  text-align: right;
+}
+
+.tooltip {
+  position: relative;
+  cursor: help;
+}
+
+.tooltip-panel {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 0.45rem);
+  z-index: var(--tooltip-z-index);
+  display: none;
+  min-width: 18rem;
+  max-width: var(--tooltip-max-width);
+  padding: 0.65rem 0.75rem;
+  background: var(--color-tooltip-bg);
+  color: var(--color-tooltip-text);
+  border: 1px solid var(--color-tooltip-border);
+  border-radius: var(--radius-control);
+  box-shadow: var(--shadow-tooltip);
+  font-size: 0.75rem;
+  line-height: 1.35;
+  white-space: normal;
+}
+
+.status-cell .tooltip-panel,
+.rssi-cell .tooltip-panel {
+  left: auto;
+  inset-inline-end: 0;
+}
+
+.tooltip:hover .tooltip-panel,
+.tooltip:focus-within .tooltip-panel {
+  display: block;
+}
+
+.tooltip-title {
+  margin-bottom: 0.35rem;
+  font-weight: 700;
+}
+
+.tooltip-row {
+  display: grid;
+  grid-template-columns: minmax(7rem, max-content) minmax(0, 1fr);
+  gap: 0.75rem;
+  padding: 0.1rem 0;
+}
+
+.tooltip-key {
+  color: var(--color-tooltip-muted);
+  font-family: var(--font-mono);
+  text-align: right;
+}
+
+.tooltip-value {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.details pre {
+  margin: 0;
+  overflow: auto;
+  background: var(--color-primary);
+  color: var(--color-border);
+  padding: 0.75rem;
+  border-radius: var(--radius-control);
+  font-size: 0.78rem;
+}
+
+@media (max-width: 1250px) {
+  .busmonitor-filters {
+    grid-template-columns: repeat(4, minmax(8rem, 1fr));
+  }
+}
+
+@media (max-width: 1000px) {
+  .busmonitor-filters {
+    grid-template-columns: repeat(3, minmax(8rem, 1fr));
+  }
+
+  .filter-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .table-wrap {
+    max-height: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .busmonitor-filters,
+  .filter-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .busmonitor-header {
+    align-items: flex-start;
+  }
+}

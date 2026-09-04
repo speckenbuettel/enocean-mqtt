@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProfileCertification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./Certification_EEP.xsd" schemaVersion="0.9">
+  <EEP rorg="0xA5" func="0x07" type="0x01">
+    <TestCase>
+      <Name>Teach-in Test</Name>
+      <Test>
+        <Name>Unidirectional Teach-in Test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0x00">0x1C</Byte>
+              <Byte order="1" ignoremask="0x07">0x08</Byte>
+              <Byte order="2" ignoremask="0xff">0x00</Byte>
+              <Byte order="3" ignoremask="0x00">0x80</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Type>LRN Bit</Type>
+                <Value>0</Value>
+              </Data>
+              <Data>
+                <Type>RORG</Type>
+                <Value>165</Value>
+              </Data>
+              <Data>
+                <Type>FUNC</Type>
+                <Value>7</Value>
+              </Data>
+              <Data>
+                <Type>TYPE</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>Supply voltage (OPTIONAL) Tests</Name>
+      <Test>
+        <Name>Min Supply voltage (OPTIONAL) Test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0x00">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF7">0x09</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>SVC</Shortcut>
+                <Type>Supply voltage (OPTIONAL)</Type>
+                <Value>0</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Max Supply voltage (OPTIONAL) Test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0x00">0xFA</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF7">0x09</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>SVC</Shortcut>
+                <Type>Supply voltage (OPTIONAL)</Type>
+                <Value>5</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Mid Supply voltage (OPTIONAL) Test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0x00">0x7D</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF7">0x09</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>SVC</Shortcut>
+                <Type>Supply voltage (OPTIONAL)</Type>
+                <Value>2.5</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>PIR Status Enum Test</Name>
+      <Test>
+        <Name>PIR Status: PIR off</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0x00">0x7F</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>PIRS</Shortcut>
+                <Type>PIR off</Type>
+                <Value>127</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>PIR Status: PIR on</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0x00">0xFF</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>PIRS</Shortcut>
+                <Type>PIR on</Type>
+                <Value>255</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>Supply voltage availability Enum Test</Name>
+      <Test>
+        <Name>Supply voltage availability: Supply voltage is not supported</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF6">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>SVA</Shortcut>
+                <Type>Supply voltage is not supported</Type>
+                <Value>0</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Supply voltage availability: Supply voltage is supported</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF6">0x09</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>SVA</Shortcut>
+                <Type>Supply voltage is supported</Type>
+                <Value>1</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>unusedFieldTest</Name>
+      <Test>
+        <Name>unused field test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0x00">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0x09">0x00</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+  </EEP>
+</ProfileCertification>

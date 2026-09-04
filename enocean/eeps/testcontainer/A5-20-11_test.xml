@@ -1,0 +1,698 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProfileCertification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./Certification_EEP.xsd" schemaVersion="0.9">
+  <EEP rorg="0xA5" func="0x20" type="0x11">
+    <TestCase>
+      <Name>Teach-in Test</Name>
+      <Test>
+        <Name>Unidirectional Teach-in Test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0x0">0x80</Byte>
+              <Byte order="1" ignoremask="0x07">0x88</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0x00">0x80</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Type>LRN Bit</Type>
+                <Value>0</Value>
+              </Data>
+              <Data>
+                <Type>RORG</Type>
+                <Value>165</Value>
+              </Data>
+              <Data>
+                <Type>FUNC</Type>
+                <Value>32</Value>
+              </Data>
+              <Data>
+                <Type>TYPE</Type>
+                <Value>17</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>Disable remote controller Enum Test</Name>
+      <Test>
+        <Name>Disable remote controller: Enable Remote controller</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF3">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>DRC</Shortcut>
+                <Type>Enable Remote controller</Type>
+                <Value>0</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Disable remote controller: Disable Remote controller</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF3">0x0C</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>DRC</Shortcut>
+                <Type>Disable Remote controller</Type>
+                <Value>1</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>External disablement Enum Test</Name>
+      <Test>
+        <Name>External disablement: Not disabled</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFE">0x00</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>EXDS</Shortcut>
+                <Type>Not disabled</Type>
+                <Value>0</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>External disablement: Disabled</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFE">0x01</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>EXDS</Shortcut>
+                <Type>Disabled</Type>
+                <Value>1</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>Window contact Enum Test</Name>
+      <Test>
+        <Name>Window contact: Windows opened</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF5">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>WC</Shortcut>
+                <Type>Windows opened</Type>
+                <Value>0</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Window contact: Windows closed</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF5">0x0A</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>WC</Shortcut>
+                <Type>Windows closed</Type>
+                <Value>1</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>Remote controller Disablement Enum Test</Name>
+      <Test>
+        <Name>Remote controller Disablement: Remote controller enabled</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF3">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>RCD</Shortcut>
+                <Type>Remote controller enabled</Type>
+                <Value>0</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Remote controller Disablement: Remote controller disabled</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF3">0x0C</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>RCD</Shortcut>
+                <Type>Remote controller disabled</Type>
+                <Value>1</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>Error Code Tests</Name>
+      <Test>
+        <Name>Min Error Code Test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0x00">0x00</Byte>
+              <Byte order="1" ignoremask="0x00">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>ERR</Shortcut>
+                <Type>Error Code</Type>
+                <Value>0</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Max Error Code Test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0x00">0xFF</Byte>
+              <Byte order="1" ignoremask="0x00">0xFF</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>ERR</Shortcut>
+                <Type>Error Code</Type>
+                <Value>65535</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Mid Error Code Test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0x00">0x7F</Byte>
+              <Byte order="1" ignoremask="0x00">0xFF</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>ERR</Shortcut>
+                <Type>Error Code</Type>
+                <Value>32767.5</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>Reserved Enum Test</Name>
+      <Test>
+        <Name>Reserved: Reserved</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0x0F">0x00</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>RES</Shortcut>
+                <Type>Reserved</Type>
+                <Value>0</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>Other disablement Enum Test</Name>
+      <Test>
+        <Name>Other disablement: Not disabled</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xF7">0x00</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>OD</Shortcut>
+                <Type>Not disabled</Type>
+                <Value>0</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Other disablement: Disabled</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xF7">0x08</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>OD</Shortcut>
+                <Type>Disabled</Type>
+                <Value>1</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>Window contact disablement Enum Test</Name>
+      <Test>
+        <Name>Window contact disablement: Not disabled</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFB">0x00</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>WCD</Shortcut>
+                <Type>Not disabled</Type>
+                <Value>0</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Window contact disablement: Disabled</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFB">0x04</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>WCD</Shortcut>
+                <Type>Disabled</Type>
+                <Value>1</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>Key card disablement Enum Test</Name>
+      <Test>
+        <Name>Key card disablement: Not disabled</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFD">0x00</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>KCD</Shortcut>
+                <Type>Not disabled</Type>
+                <Value>0</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Key card disablement: Disabled</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFD">0x02</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>KCD</Shortcut>
+                <Type>Disabled</Type>
+                <Value>1</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>External disablement Enum Test</Name>
+      <Test>
+        <Name>External disablement: Not disabled</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFE">0x00</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>ED</Shortcut>
+                <Type>Not disabled</Type>
+                <Value>0</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>External disablement: Disabled</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFE">0x01</Byte>
+              <Byte order="3" ignoremask="0xF7">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>ED</Shortcut>
+                <Type>Disabled</Type>
+                <Value>1</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>Window contact Enum Test</Name>
+      <Test>
+        <Name>Window contact: Windows opened</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF5">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>WC</Shortcut>
+                <Type>Windows opened</Type>
+                <Value>0</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Window contact: Windows closed</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF5">0x0A</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>WC</Shortcut>
+                <Type>Windows closed</Type>
+                <Value>1</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>Alarm State Enum Test</Name>
+      <Test>
+        <Name>Alarm State: Ok</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF6">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>AS</Shortcut>
+                <Type>Ok</Type>
+                <Value>0</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+      <Test>
+        <Name>Alarm State: Error</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0xFF">0x00</Byte>
+              <Byte order="1" ignoremask="0xFF">0x00</Byte>
+              <Byte order="2" ignoremask="0xFF">0x00</Byte>
+              <Byte order="3" ignoremask="0xF6">0x09</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>AS</Shortcut>
+                <Type>Error</Type>
+                <Value>1</Value>
+              </Data>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+    <TestCase>
+      <Name>unusedFieldTest</Name>
+      <Test>
+        <Name>unused field test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xA5" length="4">
+              <Byte order="0" ignoremask="0x00">0x00</Byte>
+              <Byte order="1" ignoremask="0x00">0x00</Byte>
+              <Byte order="2" ignoremask="0x01">0x00</Byte>
+              <Byte order="3" ignoremask="0x01">0x08</Byte>
+            </Telegram>
+            <RealData>
+              <Data>
+                <Shortcut>LRN</Shortcut>
+                <Type>LRN Bit</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+  </EEP>
+</ProfileCertification>

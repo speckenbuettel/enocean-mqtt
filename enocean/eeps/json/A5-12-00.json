@@ -1,0 +1,92 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:02.543+0200"
+   },
+   "profile": {
+      "eep": "A5-12-00",
+      "title": "Automated Meter Reading (AMR), Counter",
+      "functionGroups": [
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "channel",
+                  "description": "Measurement channel",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 15,
+                           "step": 1
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "cumulativeCounter",
+                  "description": "Cumulative counter value from meter",
+                  "values": [
+                     {
+                        "meaning": "Cumulative counter value",
+                        "range": {
+                           "min": 0,
+                           "max": 16777215,
+                           "step": 0.001
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "channel",
+                  "description": "Measurement channel",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 15,
+                           "step": 1
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "currentCounter",
+                  "description": "Current counter value from meter",
+                  "values": [
+                     {
+                        "meaning": "Current counter value",
+                        "range": {
+                           "min": 0,
+                           "max": 16777215,
+                           "step": 0.001,
+                           "unit": "1/s"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

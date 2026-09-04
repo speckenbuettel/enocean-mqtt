@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProfileCertification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="./Certification_EEP.xsd"  schemaVersion="0.9">
+	<EEP rorg="0xD2"	func="0x06"	type="0x40">
+	<TestCase>
+    <Name>Teach-in Test</Name>
+    <Test>
+        <Name>Unidirectional Teach-in Test</Name>
+        <Step>
+            <Dataset>
+	<Telegram rorg="0xD4" length="7">
+	<Byte order="0" ignoremask="0xFF">0x80</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0x00">0x40</Byte>
+	<Byte order="5" ignoremask="0x00">0x06</Byte>
+	<Byte order="6" ignoremask="0x00">0xD2</Byte>
+	</Telegram>
+	<RealData>
+    <Data>
+        <Type>RORG</Type>
+        <Value>0xD2</Value>
+    </Data>
+    <Data>
+        <Type>FUNC</Type>
+        <Value>0x06</Value>
+    </Data>
+    <Data>
+        <Type>TYPE</Type>
+        <Value>0x40</Value>
+    </Data>
+    </RealData>
+    </Dataset>
+    </Step>
+    </Test>
+    </TestCase>
+	<TestCase>
+	<Name>Cmd Id</Name>
+		<Test>
+		<Name> Ignore (for compatibility reasons) Cmd Id Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+	<Byte order="0" ignoremask="0x3F">0x0</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Cmd Id</Type>
+                <Value>0x0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+            </Step>
+            </Test>
+		<Test>
+		<Name> Status / Request Cmd Id Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+	<Byte order="0" ignoremask="0x3F">0x1</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Cmd Id</Type>
+                <Value>0x1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+            </Step>
+            </Test>
+		<Test>
+		<Name> Reserved Cmd Id Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+	<Byte order="0" ignoremask="0x3F">0x2</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Cmd Id</Type>
+                <Value>0x2</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+            </Step>
+            </Test>
+	</TestCase>
+	<TestCase>
+	<Name>Handle Status</Name>
+		<Test>
+		<Name> Closed Handle Status Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+	<Byte order="0" ignoremask="0xCF">0x0</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Handle Status</Type>
+                <Value>0x0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+            </Step>
+            </Test>
+		<Test>
+		<Name> Open Handle Status Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+	<Byte order="0" ignoremask="0xCF">0x1</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Handle Status</Type>
+                <Value>0x1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+            </Step>
+            </Test>
+		<Test>
+		<Name> Tilted Handle Status Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+	<Byte order="0" ignoremask="0xCF">0x2</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Handle Status</Type>
+                <Value>0x2</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+            </Step>
+            </Test>
+		<Test>
+		<Name> Unknown Handle Status Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+	<Byte order="0" ignoremask="0xCF">0x3</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Handle Status</Type>
+                <Value>0x3</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+            </Step>
+            </Test>
+	</TestCase>
+	<TestCase>
+	<Name>Mechanics Status</Name>
+		<Test>
+		<Name> OK Mechanics Status Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+	<Byte order="0" ignoremask="0xF7">0x0</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Mechanics Status</Type>
+                <Value>0x0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+            </Step>
+            </Test>
+		<Test>
+		<Name> ERROR Mechanics Status Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+	<Byte order="0" ignoremask="0xF7">0x1</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Mechanics Status</Type>
+                <Value>0x1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+            </Step>
+            </Test>
+	</TestCase>
+	<TestCase>
+	<Name>Lock Status</Name>
+		<Test>
+		<Name> Unlocked Lock Status Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+	<Byte order="0" ignoremask="0xF9">0x0</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Lock Status</Type>
+                <Value>0x0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+            </Step>
+            </Test>
+		<Test>
+		<Name> Locked Lock Status Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+	<Byte order="0" ignoremask="0xF9">0x1</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Lock Status</Type>
+                <Value>0x1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+            </Step>
+            </Test>
+		<Test>
+		<Name> Unknown Lock Status Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+	<Byte order="0" ignoremask="0xF9">0x2</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Lock Status</Type>
+                <Value>0x2</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+            </Step>
+            </Test>
+		<Test>
+		<Name> Reserved Lock Status Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+	<Byte order="0" ignoremask="0xF9">0x3</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Lock Status</Type>
+                <Value>0x3</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+            </Step>
+            </Test>
+	</TestCase>
+	<TestCase>
+	<Name>Unlock Query</Name>
+		<Test>
+		<Name> Unlock NOT requested  Unlock Query Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+	<Byte order="0" ignoremask="0xFE">0x0</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Unlock Query</Type>
+                <Value>0x0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+            </Step>
+            </Test>
+		<Test>
+		<Name> Unlock requested Unlock Query Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+	<Byte order="0" ignoremask="0xFE">0x1</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Unlock Query</Type>
+                <Value>0x1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+            </Step>
+            </Test>
+	</TestCase>
+	<TestCase>
+	<Name>Cmd Id</Name>
+		<Test>
+		<Name> Ignore (for compatibility reasons) Cmd Id Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+	<Byte order="0" ignoremask="0x3F">0x0</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Cmd Id</Type>
+                <Value>0x0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+            </Step>
+            </Test>
+		<Test>
+		<Name> Reserved Cmd Id Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+	<Byte order="0" ignoremask="0x3F">0x1</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Cmd Id</Type>
+                <Value>0x1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+            </Step>
+            </Test>
+		<Test>
+		<Name> Reply Cmd Id Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+	<Byte order="0" ignoremask="0x3F">0x2</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Cmd Id</Type>
+                <Value>0x2</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+            </Step>
+            </Test>
+		<Test>
+		<Name> Reserved Cmd Id Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+	<Byte order="0" ignoremask="0x3F">0x3</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Cmd Id</Type>
+                <Value>0x3</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+            </Step>
+            </Test>
+	</TestCase>
+	<TestCase>
+	<Name>Unlock Reply</Name>
+		<Test>
+		<Name> Unlock NOT allowed Unlock Reply Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+	<Byte order="0" ignoremask="0xFE">0x0</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Unlock Reply</Type>
+                <Value>0x0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+            </Step>
+            </Test>
+		<Test>
+		<Name> Unlock allowed Unlock Reply Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+	<Byte order="0" ignoremask="0xFE">0x1</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Unlock Reply</Type>
+                <Value>0x1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+            </Step>
+            </Test>
+	</TestCase>
+	<TestCase>
+      <Name>unusedFieldTest</Name>
+      <Test>
+        <Name>unused field test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="0xD2" length="1">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+	</EEP>
+</ProfileCertification>

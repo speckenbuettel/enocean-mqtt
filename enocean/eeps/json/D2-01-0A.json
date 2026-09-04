@@ -1,0 +1,221 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:08.931+0200"
+   },
+   "profile": {
+      "eep": "D2-01-0A",
+      "title": "Electronic switches and dimmers with Energy Measurement and Local Control",
+      "functionGroups": [
+         {
+            "title": "Actuator Set Output",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "switch",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "Output value OFF"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "Output value ON"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "testExists": true
+               }
+            ]
+         },
+         {
+            "title": "Configure Actuator",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "defaultState",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "Default state: OFF"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "Default state: ON"
+                     },
+                     {
+                        "value": "previousState",
+                        "meaning": "Default state: remember previous state"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "previousState"
+               },
+               {
+                  "key": "localControl",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "Disable local control"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "Enable local control"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "on"
+               },
+               {
+                  "key": "powerFailureDetection",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "Disable Power Failure Detection"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "Enable Power Failure Detection"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "on"
+               },
+               {
+                  "key": "taughtInDevices",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "Disable taught-in devices (with different EEP)"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "Enable taught-in devices (with different EEP)"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "on"
+               },
+               {
+                  "key": "userInterfaceIndication",
+                  "values": [
+                     {
+                        "value": "day",
+                        "meaning": "User interface indication: day operation"
+                     },
+                     {
+                        "value": "night",
+                        "meaning": "User interface indication: night operation"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "day"
+               }
+            ]
+         },
+         {
+            "title": "Actuator Status Response",
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "localControl",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "Local control disabled / not supported"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "Local control enabled"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "powerFailureDetected",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Power Failure not detected/not supported/disabled"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Power Failure Detected"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "powerFailureDetection",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "Power Failure Detection disabled/not supported"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "Power Failure Detection enabled"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "switch",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "Output value OFF"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "Output value ON"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Actuator Query",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "query",
+                  "values": [
+                     {
+                        "value": "status",
+                        "meaning": "Query status"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

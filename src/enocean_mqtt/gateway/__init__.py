@@ -1,0 +1,1 @@
+"""MQTT gateway application layer."""

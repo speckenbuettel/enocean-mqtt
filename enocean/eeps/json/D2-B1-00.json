@@ -1,0 +1,84 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:11.611+0200"
+   },
+   "profile": {
+      "eep": "D2-B1-00",
+      "title": "Channel number",
+      "functionGroups": [
+         {
+            "title": "Dispenser state",
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "channel",
+                  "description": "Number of the channel of the dispenser. Each device starts with channel #0",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 255,
+                           "step": 1
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "errorCode",
+                  "description": "Error code of the device",
+                  "values": [
+                     {
+                        "value": "deviceEmpty"
+                     },
+                     {
+                        "value": "groundLoop"
+                     },
+                     {
+                        "value": "measurementsTooLow"
+                     },
+                     {
+                        "value": "noError"
+                     },
+                     {
+                        "value": "reserved"
+                     },
+                     {
+                        "value": "sensorCommunicationFailed"
+                     },
+                     {
+                        "value": "tooMuchIR"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "materialLevel",
+                  "description": "Level of the material in the channel",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 1,
+                           "unit": "%"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

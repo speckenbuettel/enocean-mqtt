@@ -1,0 +1,88 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:04.495+0200"
+   },
+   "profile": {
+      "eep": "A5-14-08",
+      "title": "Multi-Func Sensor, Dual-door-contact with States Open/Closed and Locked/Unlocked, Supply voltage monitor and Vibration detection",
+      "functionGroups": [
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "contact",
+                  "description": "Door contact",
+                  "values": [
+                     {
+                        "value": "closed",
+                        "meaning": "Door closed"
+                     },
+                     {
+                        "value": "open",
+                        "meaning": "Door open"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "locked",
+                  "description": "Lock contact",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Door unlocked"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Door locked"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "supplyVoltage",
+                  "description": "Supply voltage (linear)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 5,
+                           "step": 0.02,
+                           "unit": "V"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "vibration",
+                  "description": "Vibration sensor",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "No vibration detected"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Vibration detected"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

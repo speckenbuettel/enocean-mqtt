@@ -1,0 +1,54 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:01.123+0200"
+   },
+   "profile": {
+      "eep": "A5-10-17",
+      "title": "Room Operating Panel, 10 Bit Temperature Sensor, Occupancy Control",
+      "functionGroups": [
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "occupancyButton",
+                  "description": "Occupancy button",
+                  "values": [
+                     {
+                        "value": "pressed",
+                        "meaning": "Button is pressed"
+                     },
+                     {
+                        "value": "released",
+                        "meaning": "Button is released"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "temperature",
+                  "description": "Temperature (linear)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": -10,
+                           "max": 41.2,
+                           "step": 0.05,
+                           "unit": "°C"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

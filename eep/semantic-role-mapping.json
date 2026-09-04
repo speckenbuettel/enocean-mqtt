@@ -1,0 +1,3600 @@
+{
+  "schema_version": "0.1",
+  "generated_at": "2026-06-18T13:21:07+00:00",
+  "source": "eep/semantic-role-mapping.xlsx",
+  "sheet": "semantic-role-mapping",
+  "columns": [
+    "function_key",
+    "normalized_function",
+    "semantic_role",
+    "capability",
+    "confidence",
+    "channel_type",
+    "attributes",
+    "notes",
+    "review_status"
+  ],
+  "entries": [
+    {
+      "source_row": 2,
+      "function_key": "switch",
+      "normalized_function": "switch",
+      "semantic_role": "actuator.switch",
+      "capability": "state",
+      "confidence": "low",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "may also be setpoint, can be relay, lighting, …",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 3,
+      "function_key": "azimuth",
+      "normalized_function": "azimuth",
+      "semantic_role": "astro.azimuth",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 4,
+      "function_key": "sunAzimuth",
+      "normalized_function": "azimuth",
+      "semantic_role": "astro.azimuth",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 5,
+      "function_key": "elevation",
+      "normalized_function": "elevation",
+      "semantic_role": "astro.elevation",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 6,
+      "function_key": "sunElevation",
+      "normalized_function": "elevation",
+      "semantic_role": "astro.elevation",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 7,
+      "function_key": "dayNight",
+      "normalized_function": "day_night",
+      "semantic_role": "climate.day_night",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 8,
+      "function_key": "slideSwitch",
+      "normalized_function": "day_night",
+      "semantic_role": "climate.day_night",
+      "capability": "setpoint",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 9,
+      "function_key": "fanSpeed",
+      "normalized_function": "fan_speed",
+      "semantic_role": "climate.fan_speed",
+      "capability": "setpoint",
+      "confidence": "medium",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "may also be state in some EEPs",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 10,
+      "function_key": "fanspeed",
+      "normalized_function": "fan_speed",
+      "semantic_role": "climate.fan_speed",
+      "capability": "setpoint",
+      "confidence": "medium",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "spelling variant of fanSpeed",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 11,
+      "function_key": "humidity",
+      "normalized_function": "humidity",
+      "semantic_role": "climate.humidity",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 12,
+      "function_key": "humiditySetpoint",
+      "normalized_function": "humidity",
+      "semantic_role": "climate.humidity",
+      "capability": "setpoint",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 13,
+      "function_key": "feedTemperature",
+      "normalized_function": "supply_temperature",
+      "semantic_role": "climate.supply_temperature",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 14,
+      "function_key": "roomTemperature",
+      "normalized_function": "temperature",
+      "semantic_role": "climate.temperature",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 15,
+      "function_key": "temperature",
+      "normalized_function": "temperature",
+      "semantic_role": "climate.temperature",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 16,
+      "function_key": "temperatureSetpoint",
+      "normalized_function": "temperature",
+      "semantic_role": "climate.temperature",
+      "capability": "setpoint",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 17,
+      "function_key": "valve",
+      "normalized_function": "valve_position",
+      "semantic_role": "climate.valve_position",
+      "capability": "state",
+      "confidence": "medium",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "may also be setpoint",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 18,
+      "function_key": "window",
+      "normalized_function": "window_state",
+      "semantic_role": "climate.window_state",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "thermostat window-open detection",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 19,
+      "function_key": "autoOffTimer",
+      "normalized_function": "timer",
+      "semantic_role": "control.timer",
+      "capability": "setpoint",
+      "confidence": "medium",
+      "channel_type": "semantic",
+      "attributes": {
+        "timer_type": "auto_off"
+      },
+      "notes": "",
+      "review_status": "",
+      "attributes_raw": "{\"timer_type\":\"auto_off\"}"
+    },
+    {
+      "source_row": 20,
+      "function_key": "delayOffTimer",
+      "normalized_function": "timer",
+      "semantic_role": "control.timer",
+      "capability": "setpoint",
+      "confidence": "medium",
+      "channel_type": "semantic",
+      "attributes": {
+        "timer_type": "delay_off"
+      },
+      "notes": "",
+      "review_status": "",
+      "attributes_raw": "{\"timer_type\":\"delay_off\"}"
+    },
+    {
+      "source_row": 21,
+      "function_key": "rampingTime",
+      "normalized_function": "timer",
+      "semantic_role": "control.timer",
+      "capability": "setpoint",
+      "confidence": "medium",
+      "channel_type": "semantic",
+      "attributes": {
+        "timer_type": "ramping"
+      },
+      "notes": "",
+      "review_status": "",
+      "attributes_raw": "{\"timer_type\":\"ramping\"}"
+    },
+    {
+      "source_row": 22,
+      "function_key": "rampingTime1",
+      "normalized_function": "timer",
+      "semantic_role": "control.timer",
+      "capability": "setpoint",
+      "confidence": "medium",
+      "channel_type": "semantic",
+      "attributes": {
+        "timer_type": "ramping",
+        "channel": 1
+      },
+      "notes": "",
+      "review_status": "",
+      "attributes_raw": "{\"timer_type\":\"ramping\",\"channel\":1}"
+    },
+    {
+      "source_row": 23,
+      "function_key": "rampingTime2",
+      "normalized_function": "timer",
+      "semantic_role": "control.timer",
+      "capability": "setpoint",
+      "confidence": "medium",
+      "channel_type": "semantic",
+      "attributes": {
+        "timer_type": "ramping",
+        "channel": 2
+      },
+      "notes": "",
+      "review_status": "",
+      "attributes_raw": "{\"timer_type\":\"ramping\",\"channel\":2}"
+    },
+    {
+      "source_row": 24,
+      "function_key": "rampingTime3",
+      "normalized_function": "timer",
+      "semantic_role": "control.timer",
+      "capability": "setpoint",
+      "confidence": "medium",
+      "channel_type": "semantic",
+      "attributes": {
+        "timer_type": "ramping",
+        "channel": 3
+      },
+      "notes": "",
+      "review_status": "",
+      "attributes_raw": "{\"timer_type\":\"ramping\",\"channel\":3}"
+    },
+    {
+      "source_row": 25,
+      "function_key": "randomEndDelay",
+      "normalized_function": "timer",
+      "semantic_role": "control.timer",
+      "capability": "setpoint",
+      "confidence": "medium",
+      "channel_type": "semantic",
+      "attributes": {
+        "timer_type": "random_end_delay"
+      },
+      "notes": "",
+      "review_status": "",
+      "attributes_raw": "{\"timer_type\":\"random_end_delay\"}"
+    },
+    {
+      "source_row": 26,
+      "function_key": "randomStartDelay",
+      "normalized_function": "timer",
+      "semantic_role": "control.timer",
+      "capability": "setpoint",
+      "confidence": "medium",
+      "channel_type": "semantic",
+      "attributes": {
+        "timer_type": "random_start_delay"
+      },
+      "notes": "",
+      "review_status": "",
+      "attributes_raw": "{\"timer_type\":\"random_start_delay\"}"
+    },
+    {
+      "source_row": 27,
+      "function_key": "rotationTime",
+      "normalized_function": "timer",
+      "semantic_role": "control.timer",
+      "capability": "setpoint",
+      "confidence": "medium",
+      "channel_type": "semantic",
+      "attributes": {
+        "timer_type": "rotation"
+      },
+      "notes": "",
+      "review_status": "",
+      "attributes_raw": "{\"timer_type\":\"rotation\"}"
+    },
+    {
+      "source_row": 28,
+      "function_key": "switchTimer",
+      "normalized_function": "timer",
+      "semantic_role": "control.timer",
+      "capability": "setpoint",
+      "confidence": "medium",
+      "channel_type": "semantic",
+      "attributes": {
+        "timer_type": "switch"
+      },
+      "notes": "",
+      "review_status": "",
+      "attributes_raw": "{\"timer_type\":\"switch\"}"
+    },
+    {
+      "source_row": 29,
+      "function_key": "actuatorObstructed",
+      "normalized_function": "actuator_obstructed",
+      "semantic_role": "device.actuator_obstructed",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "device",
+      "attributes": {},
+      "notes": "deferred device-channel role",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 30,
+      "function_key": "battery",
+      "normalized_function": "battery",
+      "semantic_role": "device.battery",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "device",
+      "attributes": {},
+      "notes": "deferred device-channel role",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 31,
+      "function_key": "batteryLow",
+      "normalized_function": "battery",
+      "semantic_role": "device.battery",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "device",
+      "attributes": {
+        "condition": "low"
+      },
+      "notes": "deferred device-channel role",
+      "review_status": "",
+      "attributes_raw": "{\"condition\":\"low\"}"
+    },
+    {
+      "source_row": 32,
+      "function_key": "batteryLowClick",
+      "normalized_function": "battery",
+      "semantic_role": "device.battery",
+      "capability": "state",
+      "confidence": "medium",
+      "channel_type": "device",
+      "attributes": {
+        "condition": "low_click"
+      },
+      "notes": "deferred device-channel role; enables sound for low-battery",
+      "review_status": "",
+      "attributes_raw": "{\"condition\":\"low_click\"}"
+    },
+    {
+      "source_row": 33,
+      "function_key": "displayOrientation",
+      "normalized_function": "display_orientation",
+      "semantic_role": "device.display_orientation",
+      "capability": "configuration",
+      "confidence": "medium",
+      "channel_type": "device",
+      "attributes": {},
+      "notes": "deferred device-channel role",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 34,
+      "function_key": "energyInput",
+      "normalized_function": "energy_input",
+      "semantic_role": "device.energy_input",
+      "capability": "state",
+      "confidence": "medium",
+      "channel_type": "device",
+      "attributes": {},
+      "notes": "deferred device-channel role; = harvesting status",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 35,
+      "function_key": "energyStorage",
+      "normalized_function": "energy_storage",
+      "semantic_role": "device.energy_storage",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "device",
+      "attributes": {},
+      "notes": "deferred device-channel role",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 36,
+      "function_key": "energyStorageAvailability",
+      "normalized_function": "energy_storage",
+      "semantic_role": "device.energy_storage",
+      "capability": "state",
+      "confidence": "medium",
+      "channel_type": "device",
+      "attributes": {},
+      "notes": "deferred device-channel role = energy storage data available",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 37,
+      "function_key": "energyStorageCharged",
+      "normalized_function": "energy_storage",
+      "semantic_role": "device.energy_storage",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "device",
+      "attributes": {},
+      "notes": "deferred device-channel role",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 38,
+      "function_key": "errorCode",
+      "normalized_function": "error_code",
+      "semantic_role": "device.error_code",
+      "capability": "diagnostic",
+      "confidence": "high",
+      "channel_type": "device",
+      "attributes": {},
+      "notes": "deferred device-channel role",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 39,
+      "function_key": "localControl",
+      "normalized_function": "local_control",
+      "semantic_role": "device.local_control",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "device",
+      "attributes": {},
+      "notes": "deferred device-channel role",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 40,
+      "function_key": "localizationActive",
+      "normalized_function": "localization",
+      "semantic_role": "device.localization",
+      "capability": "state",
+      "confidence": "medium",
+      "channel_type": "device",
+      "attributes": {},
+      "notes": "deferred device-channel role",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 41,
+      "function_key": "occupancyEnabled",
+      "normalized_function": "occupancy_enabled",
+      "semantic_role": "device.occupancy_enabled",
+      "capability": "configuration",
+      "confidence": "high",
+      "channel_type": "device",
+      "attributes": {},
+      "notes": "deferred device-channel role",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 42,
+      "function_key": "powerFailureDetected",
+      "normalized_function": "power_failure",
+      "semantic_role": "device.power_failure",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "device",
+      "attributes": {},
+      "notes": "deferred device-channel role",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 43,
+      "function_key": "powerFailureDetection",
+      "normalized_function": "power_failure",
+      "semantic_role": "device.power_failure",
+      "capability": "configuration",
+      "confidence": "medium",
+      "channel_type": "device",
+      "attributes": {},
+      "notes": "deferred device-channel role",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 44,
+      "function_key": "radioError",
+      "normalized_function": "radio_error",
+      "semantic_role": "device.radio_error",
+      "capability": "diagnostic",
+      "confidence": "high",
+      "channel_type": "device",
+      "attributes": {},
+      "notes": "deferred device-channel role",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 45,
+      "function_key": "radioSignalStrength",
+      "normalized_function": "radio_signal_strength",
+      "semantic_role": "device.radio_signal_strength",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "device",
+      "attributes": {},
+      "notes": "deferred device-channel role",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 46,
+      "function_key": "repeater",
+      "normalized_function": "repeater",
+      "semantic_role": "device.repeater",
+      "capability": "state",
+      "confidence": "medium",
+      "channel_type": "device",
+      "attributes": {},
+      "notes": "deferred device-channel role",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 47,
+      "function_key": "communicationIntervall",
+      "normalized_function": "timer",
+      "semantic_role": "device.reporting_interval",
+      "capability": "configuration",
+      "confidence": "medium",
+      "channel_type": "device",
+      "attributes": {},
+      "notes": "spelling from source retained",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 48,
+      "function_key": "maxTimeBetweenReports",
+      "normalized_function": "timer",
+      "semantic_role": "device.reporting_interval",
+      "capability": "configuration",
+      "confidence": "medium",
+      "channel_type": "device",
+      "attributes": {
+        "limit": "max"
+      },
+      "notes": "deferred device-channel role",
+      "review_status": "",
+      "attributes_raw": "{\"limit\":\"max\"}"
+    },
+    {
+      "source_row": 49,
+      "function_key": "minTimeBetweenReports",
+      "normalized_function": "timer",
+      "semantic_role": "device.reporting_interval",
+      "capability": "configuration",
+      "confidence": "medium",
+      "channel_type": "device",
+      "attributes": {
+        "limit": "min"
+      },
+      "notes": "deferred device-channel role",
+      "review_status": "",
+      "attributes_raw": "{\"limit\":\"min\"}"
+    },
+    {
+      "source_row": 50,
+      "function_key": "sensorUpdateInverval",
+      "normalized_function": "timer",
+      "semantic_role": "device.reporting_interval",
+      "capability": "configuration",
+      "confidence": "medium",
+      "channel_type": "device",
+      "attributes": {},
+      "notes": "spelling from source retained",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 51,
+      "function_key": "temperatureAvailability",
+      "normalized_function": "sensor_availability",
+      "semantic_role": "device.sensor_availability",
+      "capability": "state",
+      "confidence": "medium",
+      "channel_type": "device",
+      "attributes": {
+        "sensor": "temperature"
+      },
+      "notes": "deferred device-channel role",
+      "review_status": "",
+      "attributes_raw": "{\"sensor\":\"temperature\"}"
+    },
+    {
+      "source_row": 52,
+      "function_key": "sensorError",
+      "normalized_function": "sensor_error",
+      "semantic_role": "device.sensor_error",
+      "capability": "diagnostic",
+      "confidence": "medium",
+      "channel_type": "device",
+      "attributes": {},
+      "notes": "deferred device-channel role",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 53,
+      "function_key": "serviceMode",
+      "normalized_function": "service_mode",
+      "semantic_role": "device.service_mode",
+      "capability": "state",
+      "confidence": "medium",
+      "channel_type": "device",
+      "attributes": {},
+      "notes": "deferred device-channel role",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 54,
+      "function_key": "summerMode",
+      "normalized_function": "summer_mode",
+      "semantic_role": "device.summer_mode",
+      "capability": "state",
+      "confidence": "medium",
+      "channel_type": "device",
+      "attributes": {},
+      "notes": "deferred device-channel role",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 55,
+      "function_key": "supplyVoltage",
+      "normalized_function": "supply_voltage",
+      "semantic_role": "device.supply_voltage",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "device",
+      "attributes": {},
+      "notes": "deferred device-channel role",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 56,
+      "function_key": "userInterfaceIndication",
+      "normalized_function": "user_interface",
+      "semantic_role": "device.user_interface",
+      "capability": "state",
+      "confidence": "medium",
+      "channel_type": "device",
+      "attributes": {},
+      "notes": "deferred device-channel role",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 57,
+      "function_key": "timeout",
+      "normalized_function": "timer",
+      "semantic_role": "control.timer",
+      "capability": "setpoint",
+      "confidence": "medium",
+      "channel_type": "semantic",
+      "attributes": {
+        "timer_type": "timeout"
+      },
+      "notes": "",
+      "review_status": "",
+      "attributes_raw": "{\"timer_type\":\"timeout\"}"
+    },
+    {
+      "source_row": 58,
+      "function_key": "verticalMovementTime",
+      "normalized_function": "timer",
+      "semantic_role": "control.timer",
+      "capability": "setpoint",
+      "confidence": "medium",
+      "channel_type": "semantic",
+      "attributes": {
+        "timer_type": "vertical_movement"
+      },
+      "notes": "",
+      "review_status": "",
+      "attributes_raw": "{\"timer_type\":\"vertical_movement\"}"
+    },
+    {
+      "source_row": 59,
+      "function_key": "userActivity",
+      "normalized_function": "user_activity",
+      "semantic_role": "device.user_activity",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 60,
+      "function_key": "amperage",
+      "normalized_function": "current",
+      "semantic_role": "electrical.current",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 61,
+      "function_key": "current1",
+      "normalized_function": "current",
+      "semantic_role": "electrical.current",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "phase": "L1"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"phase\":\"L1\"}"
+    },
+    {
+      "source_row": 62,
+      "function_key": "sunEast",
+      "normalized_function": "illuminance",
+      "semantic_role": "environment",
+      "capability": "measurement",
+      "confidence": "low",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 63,
+      "function_key": "sunSouth",
+      "normalized_function": "illuminance",
+      "semantic_role": "environment",
+      "capability": "measurement",
+      "confidence": "low",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 64,
+      "function_key": "sunWest",
+      "normalized_function": "illuminance",
+      "semantic_role": "environment",
+      "capability": "measurement",
+      "confidence": "low",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 65,
+      "function_key": "accelerationStatus",
+      "normalized_function": "acceleration",
+      "semantic_role": "environment.acceleration",
+      "capability": "state",
+      "confidence": "medium",
+      "channel_type": "device",
+      "attributes": {},
+      "notes": "deferred device-channel role",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 66,
+      "function_key": "current2",
+      "normalized_function": "current",
+      "semantic_role": "electrical.current",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "phase": "L2"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"phase\":\"L2\"}"
+    },
+    {
+      "source_row": 67,
+      "function_key": "current3",
+      "normalized_function": "current",
+      "semantic_role": "electrical.current",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "phase": "L3"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"phase\":\"L3\"}"
+    },
+    {
+      "source_row": 68,
+      "function_key": "voltage",
+      "normalized_function": "voltage",
+      "semantic_role": "electrical.voltage",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 69,
+      "function_key": "accelerationX",
+      "normalized_function": "acceleration",
+      "semantic_role": "environment.acceleration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "axis": "x"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"axis\":\"x\"}"
+    },
+    {
+      "source_row": 70,
+      "function_key": "accelerationY",
+      "normalized_function": "acceleration",
+      "semantic_role": "environment.acceleration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "axis": "y"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"axis\":\"y\"}"
+    },
+    {
+      "source_row": 71,
+      "function_key": "accelerationZ",
+      "normalized_function": "acceleration",
+      "semantic_role": "environment.acceleration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "axis": "z"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"axis\":\"z\"}"
+    },
+    {
+      "source_row": 72,
+      "function_key": "barometer",
+      "normalized_function": "barometric_pressure",
+      "semantic_role": "environment.barometric_pressure",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 73,
+      "function_key": "1Pentanol",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "1pentanol"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"1pentanol\"}"
+    },
+    {
+      "source_row": 74,
+      "function_key": "2Butanol",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "2butanol"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"2butanol\"}"
+    },
+    {
+      "source_row": 75,
+      "function_key": "2Methylpropanol",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "2methylpropanol"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"2methylpropanol\"}"
+    },
+    {
+      "source_row": 76,
+      "function_key": "4Phenylcyclohexene",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "4phenylcyclohexene"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"4phenylcyclohexene\"}"
+    },
+    {
+      "source_row": 77,
+      "function_key": "acetaldehydeue",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "acetaldehyde"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"acetaldehyde\"}"
+    },
+    {
+      "source_row": 78,
+      "function_key": "aceticAcid",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "aceticacid"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"aceticacid\"}"
+    },
+    {
+      "source_row": 79,
+      "function_key": "acetone",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "acetone"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"acetone\"}"
+    },
+    {
+      "source_row": 80,
+      "function_key": "ammoniac",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "ammonia"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"ammonia\"}"
+    },
+    {
+      "source_row": 81,
+      "function_key": "benzene",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "benzene"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"benzene\"}"
+    },
+    {
+      "source_row": 82,
+      "function_key": "butyricAcid",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "butyricacid"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"butyricacid\"}"
+    },
+    {
+      "source_row": 83,
+      "function_key": "cadaverine",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "cadaverine"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"cadaverine\"}"
+    },
+    {
+      "source_row": 84,
+      "function_key": "caproicAcid",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "caproicacid"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"caproicacid\"}"
+    },
+    {
+      "source_row": 85,
+      "function_key": "co2",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "co2"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"co2\"}"
+    },
+    {
+      "source_row": 86,
+      "function_key": "concentration",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "generic"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"generic\"}"
+    },
+    {
+      "source_row": 87,
+      "function_key": "cyclopentane",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "cyclopentane"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"cyclopentane\"}"
+    },
+    {
+      "source_row": 88,
+      "function_key": "diethylEther",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "diethylether"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"diethylether\"}"
+    },
+    {
+      "source_row": 89,
+      "function_key": "dimethylSulfide",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "dimethylsulfide"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"dimethylsulfide\"}"
+    },
+    {
+      "source_row": 90,
+      "function_key": "ethanol",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "ethanol"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"ethanol\"}"
+    },
+    {
+      "source_row": 91,
+      "function_key": "ethyleneOxide",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "ethyleneoxide"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"ethyleneoxide\"}"
+    },
+    {
+      "source_row": 92,
+      "function_key": "formaldehyde",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "formaldehyde"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"formaldehyde\"}"
+    },
+    {
+      "source_row": 93,
+      "function_key": "hydrogenSulfide",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "hydrogensulfide"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"hydrogensulfide\"}"
+    },
+    {
+      "source_row": 94,
+      "function_key": "indole",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "indole"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"indole\"}"
+    },
+    {
+      "source_row": 95,
+      "function_key": "isovalericAcid",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "isovalericacid"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"isovalericacid\"}"
+    },
+    {
+      "source_row": 96,
+      "function_key": "limonene",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "limonene"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"limonene\"}"
+    },
+    {
+      "source_row": 97,
+      "function_key": "methanol",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "methanol"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"methanol\"}"
+    },
+    {
+      "source_row": 98,
+      "function_key": "naphthalene",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "naphthalene"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"naphthalene\"}"
+    },
+    {
+      "source_row": 99,
+      "function_key": "nHexane",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "nhexane"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"nhexane\"}"
+    },
+    {
+      "source_row": 100,
+      "function_key": "nOctane",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "noctane"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"noctane\"}"
+    },
+    {
+      "source_row": 101,
+      "function_key": "ozone",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "ozone"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"ozone\"}"
+    },
+    {
+      "source_row": 102,
+      "function_key": "propioniceAcid",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "propionicacid"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"propionicacid\"}"
+    },
+    {
+      "source_row": 103,
+      "function_key": "putrescine",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "putrescine"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"putrescine\"}"
+    },
+    {
+      "source_row": 104,
+      "function_key": "radon",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "radon"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"radon\"}"
+    },
+    {
+      "source_row": 105,
+      "function_key": "styrene",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "styrene"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"styrene\"}"
+    },
+    {
+      "source_row": 106,
+      "function_key": "tetrachloroethylene",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "tetrachloroethylene"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"tetrachloroethylene\"}"
+    },
+    {
+      "source_row": 107,
+      "function_key": "toluene",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "toluene"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"toluene\"}"
+    },
+    {
+      "source_row": 108,
+      "function_key": "trichloroethylene",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "trichloroethylene"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"trichloroethylene\"}"
+    },
+    {
+      "source_row": 109,
+      "function_key": "valericAcid",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "valericacid"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"valericacid\"}"
+    },
+    {
+      "source_row": 110,
+      "function_key": "voctTotal",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "voc_total"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"voc_total\"}"
+    },
+    {
+      "source_row": 111,
+      "function_key": "xylene",
+      "normalized_function": "gas_concentration",
+      "semantic_role": "environment.gas_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "substance": "xylene"
+      },
+      "notes": "special gas substance; low practical relevance for home automation",
+      "review_status": "ok",
+      "attributes_raw": "{\"substance\":\"xylene\"}"
+    },
+    {
+      "source_row": 112,
+      "function_key": "dawnSensor",
+      "normalized_function": "illuminance",
+      "semantic_role": "environment.illuminance",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 113,
+      "function_key": "illuminance",
+      "normalized_function": "illuminance",
+      "semantic_role": "environment.illuminance",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 114,
+      "function_key": "illumination",
+      "normalized_function": "illuminance",
+      "semantic_role": "environment.illuminance",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 115,
+      "function_key": "illuminationSetpoint",
+      "normalized_function": "illuminance",
+      "semantic_role": "environment.illuminance",
+      "capability": "setpoint",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 116,
+      "function_key": "particles_1",
+      "normalized_function": "particle_concentration",
+      "semantic_role": "environment.particle_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "particle_size": "pm1"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"particle_size\":\"pm1\"}"
+    },
+    {
+      "source_row": 117,
+      "function_key": "particles_10",
+      "normalized_function": "particle_concentration",
+      "semantic_role": "environment.particle_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "particle_size": "pm10"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"particle_size\":\"pm10\"}"
+    },
+    {
+      "source_row": 118,
+      "function_key": "particles_2_5",
+      "normalized_function": "particle_concentration",
+      "semantic_role": "environment.particle_concentration",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "particle_size": "pm2_5"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"particle_size\":\"pm2_5\"}"
+    },
+    {
+      "source_row": 119,
+      "function_key": "rainIndication",
+      "normalized_function": "rain",
+      "semantic_role": "environment.rain",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 120,
+      "function_key": "solarRadiation",
+      "normalized_function": "solar_radiation",
+      "semantic_role": "environment.solar_radiation",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 121,
+      "function_key": "sourceLocalization",
+      "normalized_function": "sound_direction",
+      "semantic_role": "environment.sound_direction",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 122,
+      "function_key": "averageSoundLevel",
+      "normalized_function": "sound_pressure",
+      "semantic_role": "environment.sound_pressure",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "variant": "average"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"variant\":\"average\"}"
+    },
+    {
+      "source_row": 123,
+      "function_key": "picSoundLevel",
+      "normalized_function": "sound_pressure",
+      "semantic_role": "environment.sound_pressure",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "variant": "peak"
+      },
+      "notes": "peak; spelling source says pic",
+      "review_status": "ok",
+      "attributes_raw": "{\"variant\":\"peak\"}"
+    },
+    {
+      "source_row": 124,
+      "function_key": "soundPressure",
+      "normalized_function": "sound_pressure",
+      "semantic_role": "environment.sound_pressure",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 125,
+      "function_key": "wind",
+      "normalized_function": "wind",
+      "semantic_role": "environment.wind",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 126,
+      "function_key": "windDirection",
+      "normalized_function": "wind_direction",
+      "semantic_role": "environment.wind_direction",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 127,
+      "function_key": "windSpeed",
+      "normalized_function": "wind_speed",
+      "semantic_role": "environment.wind_speed",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 128,
+      "function_key": "windSpeedAverage",
+      "normalized_function": "wind_speed",
+      "semantic_role": "environment.wind_speed",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "variant": "average"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"variant\":\"average\"}"
+    },
+    {
+      "source_row": 129,
+      "function_key": "windSpeedMax",
+      "normalized_function": "wind_speed",
+      "semantic_role": "environment.wind_speed",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "variant": "maximum"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"variant\":\"maximum\"}"
+    },
+    {
+      "source_row": 130,
+      "function_key": "latitude",
+      "normalized_function": "position",
+      "semantic_role": "geo.position",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "coordinate": "latitude"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"coordinate\":\"latitude\"}"
+    },
+    {
+      "source_row": 131,
+      "function_key": "longitude",
+      "normalized_function": "position",
+      "semantic_role": "geo.position",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "coordinate": "longitude"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"coordinate\":\"longitude\"}"
+    },
+    {
+      "source_row": 132,
+      "function_key": "analogInput",
+      "normalized_function": "input",
+      "semantic_role": "io.input",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "signal_type": "analog"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"signal_type\":\"analog\"}"
+    },
+    {
+      "source_row": 133,
+      "function_key": "digitalInput0",
+      "normalized_function": "input",
+      "semantic_role": "io.input",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "signal_type": "digital",
+        "channel": 0
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"signal_type\":\"digital\",\"channel\":0}"
+    },
+    {
+      "source_row": 134,
+      "function_key": "digitalInput1",
+      "normalized_function": "input",
+      "semantic_role": "io.input",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "signal_type": "digital",
+        "channel": 1
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"signal_type\":\"digital\",\"channel\":1}"
+    },
+    {
+      "source_row": 135,
+      "function_key": "digitalInput2",
+      "normalized_function": "input",
+      "semantic_role": "io.input",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "signal_type": "digital",
+        "channel": 2
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"signal_type\":\"digital\",\"channel\":2}"
+    },
+    {
+      "source_row": 136,
+      "function_key": "digitalInput3",
+      "normalized_function": "input",
+      "semantic_role": "io.input",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "signal_type": "digital",
+        "channel": 3
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"signal_type\":\"digital\",\"channel\":3}"
+    },
+    {
+      "source_row": 137,
+      "function_key": "wakeStatus",
+      "normalized_function": "input",
+      "semantic_role": "io.input",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "signal_type": "trigger"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"signal_type\":\"trigger\"}"
+    },
+    {
+      "source_row": 138,
+      "function_key": "dimming",
+      "normalized_function": "brightness",
+      "semantic_role": "lighting.brightness",
+      "capability": "state",
+      "confidence": "medium",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "may also be setpoint",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 139,
+      "function_key": "dimValue",
+      "normalized_function": "brightness",
+      "semantic_role": "lighting.brightness",
+      "capability": "setpoint",
+      "confidence": "medium",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "may also be state",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 140,
+      "function_key": "blue",
+      "normalized_function": "color",
+      "semantic_role": "lighting.color",
+      "capability": "state",
+      "confidence": "medium",
+      "channel_type": "semantic",
+      "attributes": {
+        "color_channel": "blue"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"color_channel\":\"blue\"}"
+    },
+    {
+      "source_row": 141,
+      "function_key": "dimValueBlue",
+      "normalized_function": "color",
+      "semantic_role": "lighting.color",
+      "capability": "setpoint",
+      "confidence": "medium",
+      "channel_type": "semantic",
+      "attributes": {
+        "color_channel": "blue"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"color_channel\":\"blue\"}"
+    },
+    {
+      "source_row": 142,
+      "function_key": "dimValueGreen",
+      "normalized_function": "color",
+      "semantic_role": "lighting.color",
+      "capability": "setpoint",
+      "confidence": "medium",
+      "channel_type": "semantic",
+      "attributes": {
+        "color_channel": "green"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"color_channel\":\"green\"}"
+    },
+    {
+      "source_row": 143,
+      "function_key": "dimValueRed",
+      "normalized_function": "color",
+      "semantic_role": "lighting.color",
+      "capability": "setpoint",
+      "confidence": "medium",
+      "channel_type": "semantic",
+      "attributes": {
+        "color_channel": "red"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"color_channel\":\"red\"}"
+    },
+    {
+      "source_row": 144,
+      "function_key": "green",
+      "normalized_function": "color",
+      "semantic_role": "lighting.color",
+      "capability": "state",
+      "confidence": "medium",
+      "channel_type": "semantic",
+      "attributes": {
+        "color_channel": "green"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"color_channel\":\"green\"}"
+    },
+    {
+      "source_row": 145,
+      "function_key": "red",
+      "normalized_function": "color",
+      "semantic_role": "lighting.color",
+      "capability": "state",
+      "confidence": "medium",
+      "channel_type": "semantic",
+      "attributes": {
+        "color_channel": "red"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"color_channel\":\"red\"}"
+    },
+    {
+      "source_row": 146,
+      "function_key": "operatingHours",
+      "normalized_function": "operating_hours",
+      "semantic_role": "lighting.operating_hours",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 147,
+      "function_key": "cumulativeCounter",
+      "normalized_function": "counter",
+      "semantic_role": "metering.counter",
+      "capability": "measurement",
+      "confidence": "medium",
+      "channel_type": "semantic",
+      "attributes": {
+        "variant": "cumulative"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"variant\":\"cumulative\"}"
+    },
+    {
+      "source_row": 148,
+      "function_key": "currentCounter",
+      "normalized_function": "counter",
+      "semantic_role": "metering.counter",
+      "capability": "measurement",
+      "confidence": "medium",
+      "channel_type": "semantic",
+      "attributes": {
+        "variant": "current"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"variant\":\"current\"}"
+    },
+    {
+      "source_row": 149,
+      "function_key": "energy",
+      "normalized_function": "energy",
+      "semantic_role": "metering.energy",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 150,
+      "function_key": "energyDelta",
+      "normalized_function": "energy",
+      "semantic_role": "metering.energy",
+      "capability": "measurement",
+      "confidence": "medium",
+      "channel_type": "semantic",
+      "attributes": {
+        "variant": "delta"
+      },
+      "notes": "incremental energy change",
+      "review_status": "ok",
+      "attributes_raw": "{\"variant\":\"delta\"}"
+    },
+    {
+      "source_row": 151,
+      "function_key": "flowrate",
+      "normalized_function": "flowrate",
+      "semantic_role": "metering.flowrate",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 152,
+      "function_key": "materialLevel",
+      "normalized_function": "level",
+      "semantic_role": "metering.level",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 153,
+      "function_key": "power",
+      "normalized_function": "power",
+      "semantic_role": "metering.power",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 154,
+      "function_key": "powerDelta",
+      "normalized_function": "power",
+      "semantic_role": "metering.power",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "variant": "delta"
+      },
+      "notes": "incremental power change",
+      "review_status": "ok",
+      "attributes_raw": "{\"variant\":\"delta\"}"
+    },
+    {
+      "source_row": 155,
+      "function_key": "absoluteRelativePowerUsage",
+      "normalized_function": "power_utilization",
+      "semantic_role": "metering.power_utilization",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 156,
+      "function_key": "maxMinPowerUsage",
+      "normalized_function": "power_utilization",
+      "semantic_role": "metering.power_utilization",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 157,
+      "function_key": "powerUsage",
+      "normalized_function": "power_utilization",
+      "semantic_role": "metering.power_utilization",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 158,
+      "function_key": "volume",
+      "normalized_function": "volume",
+      "semantic_role": "metering.volume",
+      "capability": "measurement",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 159,
+      "function_key": "angle",
+      "normalized_function": "angle",
+      "semantic_role": "position.angle",
+      "capability": "state",
+      "confidence": "low",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "may also be rotational angle, may also be setpoint",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 160,
+      "function_key": "contact",
+      "normalized_function": "contact_state",
+      "semantic_role": "security.contact_state",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 161,
+      "function_key": "alarm",
+      "normalized_function": "fire_alarm",
+      "semantic_role": "security.fire_alarm",
+      "capability": "state",
+      "confidence": "medium",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "only used in F6-05-02; here \"smoke alarm\"",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 162,
+      "function_key": "handle",
+      "normalized_function": "handle_position",
+      "semantic_role": "security.handle_position",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 163,
+      "function_key": "burglaryAlarm",
+      "normalized_function": "intrusion_alarm",
+      "semantic_role": "security.intrusion_alarm",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 164,
+      "function_key": "protectionPlusAlarm",
+      "normalized_function": "intrusion_alarm",
+      "semantic_role": "security.intrusion_alarm",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 165,
+      "function_key": "vibration",
+      "normalized_function": "intrusion_alarm",
+      "semantic_role": "security.intrusion_alarm",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "in the context of A5-14-xx: intrusion alarm",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 166,
+      "function_key": "leakDetection",
+      "normalized_function": "leak",
+      "semantic_role": "security.leak",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 167,
+      "function_key": "liquidDetected",
+      "normalized_function": "leak",
+      "semantic_role": "security.leak",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 168,
+      "function_key": "pastLeakDetection",
+      "normalized_function": "leak",
+      "semantic_role": "security.leak",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 169,
+      "function_key": "locked",
+      "normalized_function": "lock_state",
+      "semantic_role": "security.lock_state",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 170,
+      "function_key": "motionDetected",
+      "normalized_function": "motion",
+      "semantic_role": "security.motion",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 171,
+      "function_key": "activity",
+      "normalized_function": "occupancy",
+      "semantic_role": "security.occupancy",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 172,
+      "function_key": "occupancy",
+      "normalized_function": "occupancy",
+      "semantic_role": "security.occupancy",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 173,
+      "function_key": "occupancyButton",
+      "normalized_function": "occupancy",
+      "semantic_role": "security.occupancy",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "user-triggered event",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 174,
+      "function_key": "presence",
+      "normalized_function": "occupancy",
+      "semantic_role": "security.occupancy",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 175,
+      "function_key": "unoccupancyButton",
+      "normalized_function": "occupancy",
+      "semantic_role": "security.occupancy",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "user-triggered event",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 176,
+      "function_key": "movement",
+      "normalized_function": "movement",
+      "semantic_role": "shading.movement",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 177,
+      "function_key": "repositioning",
+      "normalized_function": "movement",
+      "semantic_role": "shading.movement",
+      "capability": "command",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 178,
+      "function_key": "stop",
+      "normalized_function": "movement",
+      "semantic_role": "shading.movement",
+      "capability": "command",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "action": "stop"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"action\":\"stop\"}"
+    },
+    {
+      "source_row": 179,
+      "function_key": "endPosition",
+      "normalized_function": "position",
+      "semantic_role": "shading.position",
+      "capability": "setpoint",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "variant": "end_position"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"variant\":\"end_position\"}"
+    },
+    {
+      "source_row": 180,
+      "function_key": "position",
+      "normalized_function": "position",
+      "semantic_role": "shading.position",
+      "capability": "state",
+      "confidence": "medium",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 181,
+      "function_key": "alarmAction",
+      "normalized_function": "",
+      "semantic_role": "shading",
+      "capability": "command",
+      "confidence": "low",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 182,
+      "function_key": "alarmCounter",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "state",
+      "confidence": "low",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 183,
+      "function_key": "basicSetpoint",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "setpoint",
+      "confidence": "low",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 184,
+      "function_key": "button",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "state",
+      "confidence": "low",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 185,
+      "function_key": "buttonA0",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "state",
+      "confidence": "low",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 186,
+      "function_key": "buttonAI",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "state",
+      "confidence": "low",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 187,
+      "function_key": "buttonB0",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "state",
+      "confidence": "low",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 188,
+      "function_key": "buttonBI",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "state",
+      "confidence": "low",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 189,
+      "function_key": "buttonC0",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "state",
+      "confidence": "low",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 190,
+      "function_key": "buttonCI",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "state",
+      "confidence": "low",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 191,
+      "function_key": "buttonD0",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "state",
+      "confidence": "low",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 192,
+      "function_key": "buttonDI",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "state",
+      "confidence": "low",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 193,
+      "function_key": "buttonLeft",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 194,
+      "function_key": "buttonLeftPressedCounter",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 195,
+      "function_key": "buttonRight",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 196,
+      "function_key": "buttonRightPressedCounter",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 197,
+      "function_key": "channel",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 198,
+      "function_key": "command",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 199,
+      "function_key": "control",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 200,
+      "function_key": "controlVariable",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 201,
+      "function_key": "daylightHarvesting",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 202,
+      "function_key": "defaultState",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 203,
+      "function_key": "demandResponse",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 204,
+      "function_key": "drLevel",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 205,
+      "function_key": "energyHoldOff",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 206,
+      "function_key": "extButton",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 207,
+      "function_key": "handleClosedClick",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 208,
+      "function_key": "handleClosedCounter",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 209,
+      "function_key": "handleOpenedCounter",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 210,
+      "function_key": "handleTiltedCounter",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 211,
+      "function_key": "hemisphere",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 212,
+      "function_key": "lockingMode",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 213,
+      "function_key": "measurement",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 214,
+      "function_key": "mode",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 215,
+      "function_key": "multipleButtons",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 216,
+      "function_key": "overcurrentSwitchOff",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 217,
+      "function_key": "overcurrentSwitchOffMode",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 218,
+      "function_key": "overcurrentSwitchOffReset",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 219,
+      "function_key": "pilotWireMode",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 220,
+      "function_key": "pirCounter",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 221,
+      "function_key": "powerOnCounter",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 222,
+      "function_key": "query",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 223,
+      "function_key": "rampingMode",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 224,
+      "function_key": "relativeSetpoint",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 225,
+      "function_key": "reportMeasurement",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 226,
+      "function_key": "resetMeasurement",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 227,
+      "function_key": "runInitSequence",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 228,
+      "function_key": "runLiftSet",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 229,
+      "function_key": "setpoint",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 230,
+      "function_key": "setpointInverse",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 231,
+      "function_key": "setpointMode",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 232,
+      "function_key": "setpointShift",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 233,
+      "function_key": "source",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 234,
+      "function_key": "standByMode",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 235,
+      "function_key": "state",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 236,
+      "function_key": "stateOfCard",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 237,
+      "function_key": "status",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 238,
+      "function_key": "statusReason",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 239,
+      "function_key": "storeFinalValue",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 240,
+      "function_key": "switchingState",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 241,
+      "function_key": "switchType",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 242,
+      "function_key": "taughtInDevices",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 243,
+      "function_key": "temperatureSelection",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 244,
+      "function_key": "temporaryDefault",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 245,
+      "function_key": "trigger",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 246,
+      "function_key": "vacationBlinkInterval",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 247,
+      "function_key": "vacationBlinkInverval",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 248,
+      "function_key": "vacationMode",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 249,
+      "function_key": "valveMaintenance",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 250,
+      "function_key": "wakeUpCycle",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 251,
+      "function_key": "windowTiltedCounter",
+      "normalized_function": "TBD",
+      "semantic_role": "TBD",
+      "capability": "TBD",
+      "confidence": "low",
+      "channel_type": "TBD",
+      "attributes": {},
+      "notes": "not yet classified; explicit coverage placeholder",
+      "review_status": "",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 252,
+      "function_key": "amPm",
+      "normalized_function": "datetime",
+      "semantic_role": "time.datetime",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "component": "am_pm"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"component\":\"am_pm\"}"
+    },
+    {
+      "source_row": 253,
+      "function_key": "day",
+      "normalized_function": "datetime",
+      "semantic_role": "time.datetime",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "component": "day"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"component\":\"day\"}"
+    },
+    {
+      "source_row": 254,
+      "function_key": "hour",
+      "normalized_function": "datetime",
+      "semantic_role": "time.datetime",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "component": "hour"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"component\":\"hour\"}"
+    },
+    {
+      "source_row": 255,
+      "function_key": "minute",
+      "normalized_function": "datetime",
+      "semantic_role": "time.datetime",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "component": "minute"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"component\":\"minute\"}"
+    },
+    {
+      "source_row": 256,
+      "function_key": "month",
+      "normalized_function": "datetime",
+      "semantic_role": "time.datetime",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "component": "month"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"component\":\"month\"}"
+    },
+    {
+      "source_row": 257,
+      "function_key": "second",
+      "normalized_function": "datetime",
+      "semantic_role": "time.datetime",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "component": "second"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"component\":\"second\"}"
+    },
+    {
+      "source_row": 258,
+      "function_key": "weekday",
+      "normalized_function": "datetime",
+      "semantic_role": "time.datetime",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "component": "weekday"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"component\":\"weekday\"}"
+    },
+    {
+      "source_row": 259,
+      "function_key": "timeFormat",
+      "normalized_function": "time_format",
+      "semantic_role": "device.time_format",
+      "capability": "configuration",
+      "confidence": "medium",
+      "channel_type": "device",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    },
+    {
+      "source_row": 260,
+      "function_key": "year",
+      "normalized_function": "datetime",
+      "semantic_role": "time.datetime",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {
+        "component": "year"
+      },
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": "{\"component\":\"year\"}"
+    },
+    {
+      "source_row": 261,
+      "function_key": "time",
+      "normalized_function": "duration",
+      "semantic_role": "time.duration",
+      "capability": "state",
+      "confidence": "high",
+      "channel_type": "semantic",
+      "attributes": {},
+      "notes": "",
+      "review_status": "ok",
+      "attributes_raw": ""
+    }
+  ]
+}

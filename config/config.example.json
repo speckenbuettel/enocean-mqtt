@@ -1,0 +1,110 @@
+{
+  "application": {
+    "name": "enocean-mqtt",
+    "timezone": "Europe/Berlin"
+  },
+  "enocean": {
+    "default_interface": "usb300",
+    "tx_enabled": false,
+    "interfaces": [
+      {
+        "interface_id": "usb300",
+        "enabled": true,
+        "tx_enabled": false,
+        "type": "serial_esp3",
+        "device": "/dev/serial/by-id/usb-EnOcean_GmbH_EnOcean_USB_300-example-if00-port0",
+        "baudrate": 57600,
+        "timeout_seconds": 1.0,
+        "base_id": "FF800000",
+        "reconnect": {
+          "enabled": true,
+          "initial_delay_seconds": 5,
+          "max_delay_seconds": 60
+        },
+        "network_bridge": {
+          "enabled": false,
+          "host": "0.0.0.0",
+          "port": 7000,
+          "ser2net_binary": "/usr/sbin/ser2net"
+        }
+      }
+    ]
+  },
+  "mqtt": {
+    "host": "mqtt.example.local",
+    "port": 1883,
+    "client_id": "enocean-mqtt",
+    "username": "enocean",
+    "password_file": "config/secrets/mqtt_password",
+    "base_topic": "enocean",
+    "keepalive_seconds": 30,
+    "clean_session": true,
+    "runtime_commands_enabled": true,
+    "reconnect": {
+      "initial_delay_seconds": 5,
+      "max_delay_seconds": 60
+    },
+    "tls": {
+      "enabled": false,
+      "ca_cert_file": null,
+      "client_cert_file": null,
+      "client_key_file": null,
+      "insecure_skip_verify": false
+    }
+  },
+  "topics": {
+    "device_topic_identifier": "device_id"
+  },
+  "paths": {
+    "eep_registry_directory": "eep/registry",
+    "devices_json": "config/devices.json",
+    "virtual_devices_json": "config/virtual-devices.json",
+    "sender_id_registry": "config/sender-id-registry.json",
+    "devices_csv_import": "testdata/devices.csv",
+    "devices_csv_export": "export/devices.csv",
+    "unknown_devices_csv_export": "export/unknown_devices.csv"
+  },
+  "gateway": {
+    "health_publish_interval_seconds": 300
+  },
+  "metrics": {
+    "peak_telegrams_window_seconds": 900,
+    "telegram_mean_interval_window_seconds": 3600,
+    "active_device_window_seconds": 86400
+  },
+  "sqlite": {
+    "enabled": false,
+    "database_path": "data/sqlite/enocean-mqtt.sqlite",
+    "persist_live": true,
+    "persist_replay": false,
+    "max_telegrams": 50000
+  },
+  "publish_defaults": {
+    "meta": true,
+    "state": true,
+    "value": true,
+    "retain": true,
+    "on_change_only": false,
+    "change_threshold": null,
+    "min_interval_seconds": null,
+    "max_interval_seconds": null
+  },
+  "web_api": {
+    "enabled": true,
+    "host": "0.0.0.0",
+    "port": 8001,
+    "reload": false,
+    "authentication": {
+      "enabled": false,
+      "token_file": "config/secrets/api-tokens.json"
+    },
+    "sse": {
+      "enabled": true,
+      "max_queue_size": 1000
+    }
+  },
+  "logging": {
+    "level": "INFO",
+    "format": "text"
+  }
+}

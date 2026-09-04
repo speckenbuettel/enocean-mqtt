@@ -1,0 +1,627 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:10.251+0200"
+   },
+   "profile": {
+      "eep": "D2-06-01",
+      "title": "Multisensor Window Handle, Alarm, Position Sensor, Vacation Mode, Optional Sensors",
+      "functionGroups": [
+         {
+            "title": "Sensor Values",
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "battery",
+                  "description": "State of the battery charge",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 5,
+                           "unit": "%"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "burglaryAlarm",
+                  "description": "Burglary Alarm Trigger Signal",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "Burglary Alarm not triggered"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "Burglary Alarm Triggered"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "buttonLeft",
+                  "description": "Button left",
+                  "values": [
+                     {
+                        "value": "pressed",
+                        "meaning": "Button pressed"
+                     },
+                     {
+                        "value": "released",
+                        "meaning": "Button released"
+                     }
+                  ],
+                  "transmitOnConnect": false,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "buttonRight",
+                  "description": "Button right",
+                  "values": [
+                     {
+                        "value": "pressed",
+                        "meaning": "Button pressed"
+                     },
+                     {
+                        "value": "released",
+                        "meaning": "Button released"
+                     }
+                  ],
+                  "transmitOnConnect": false,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "handle",
+                  "description": "Position of Handle",
+                  "values": [
+                     {
+                        "value": "closed",
+                        "meaning": "Handle Down"
+                     },
+                     {
+                        "value": "open",
+                        "meaning": "Handle Left"
+                     },
+                     {
+                        "value": "open",
+                        "meaning": "Handle Right"
+                     },
+                     {
+                        "value": "undefined",
+                        "meaning": "Handle Position Undefined"
+                     },
+                     {
+                        "value": "up",
+                        "meaning": "Handle Up"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "humidity",
+                  "description": "Relative Humidity (linear)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 0.5,
+                           "unit": "%"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "illumination",
+                  "description": "Illumination (linear)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 60000,
+                           "step": 1,
+                           "unit": "lx"
+                        }
+                     },
+                     {
+                        "value": "overRange",
+                        "meaning": "Illumination is over sensor range"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "motionDetected",
+                  "description": "Motion sensing like typical PIR sensors",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "No motion detected"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Motion detected"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "protectionPlusAlarm",
+                  "description": "Protection Plus Alarm Trigger Signal",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "Protection Plus Alarm not Triggered"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "Protection Plus Alarm Triggered"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "state",
+                  "description": "State of Window",
+                  "values": [
+                     {
+                        "value": "notTilted",
+                        "meaning": "Window notTilted"
+                     },
+                     {
+                        "value": "tilted",
+                        "meaning": "Window tilted"
+                     },
+                     {
+                        "value": "undefined",
+                        "meaning": "Window State Undefined"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "temperature",
+                  "description": "Temperature (linear)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": -20,
+                           "max": 60,
+                           "step": 0.32,
+                           "unit": "°C"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "vacationMode",
+                  "description": "If Vacation Mode is active, the LEDs of the handle light up every few seconds.",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "Locally switched off"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "Locally switched on"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Configuration Report",
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "batteryLowClick",
+                  "description": "Status of battery low click feature",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "Battery low click feature is off"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "Battery low click feature is on"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "handleClosedClick",
+                  "description": "Status of handle closed click feature",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "Handle closed click feature is off"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "Handle closed click feature is on"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "sensorUpdateInverval",
+                  "description": "Interval between the update of the environmental sensors",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 5,
+                           "max": 65535,
+                           "step": 1,
+                           "unit": "s"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "vacationBlinkInverval",
+                  "description": "Interval between the LED blinks when vacation mode is active",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 3,
+                           "max": 255,
+                           "step": 1,
+                           "unit": "s"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "vacationMode",
+                  "description": "Status of vacation mode",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "Vacation mode is off"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "Vacation mode is on"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Log Data 01",
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "alarmCounter",
+                  "description": "Number of alarms",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 4294967295,
+                           "step": 1
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "powerOnCounter",
+                  "description": "Number of power ons",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 4294967295,
+                           "step": 1
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Log Data 02",
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "handleClosedCounter",
+                  "description": "Number of handle movements closed",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 4294967295,
+                           "step": 1
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "handleOpenedCounter",
+                  "description": "Number of handle movements opened",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 4294967295,
+                           "step": 1
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "handleTiltedCounter",
+                  "description": "Number of handle movements tilted",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 4294967295,
+                           "step": 1
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Log Data 03",
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "windowTiltedCounter",
+                  "description": "Number of window tilted",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 4294967295,
+                           "step": 1
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Log Data 04",
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "buttonLeftPressedCounter",
+                  "description": "Number of button left presses",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 4294967295,
+                           "step": 1
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "buttonRightPressedCounter",
+                  "description": "Number of button right presses",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 4294967295,
+                           "step": 1
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Control and Settings",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "batteryLowClick",
+                  "description": "Set battery low click feature",
+                  "values": [
+                     {
+                        "value": "noChange",
+                        "meaning": "Do not change battery low click feature"
+                     },
+                     {
+                        "value": "off",
+                        "meaning": "Set battery low click feature off"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "Set battery low click feature on"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "noChange"
+               },
+               {
+                  "key": "handleClosedClick",
+                  "description": "Set handle closed click feature",
+                  "values": [
+                     {
+                        "value": "noChange",
+                        "meaning": "Do not change handle closed click feature"
+                     },
+                     {
+                        "value": "off",
+                        "meaning": "Set handle closed click feature off"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "Set handle closed click feature on"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "noChange"
+               },
+               {
+                  "key": "query",
+                  "description": "Start transmission of configuration report or log data",
+                  "values": [
+                     {
+                        "value": "all",
+                        "meaning": "Query configuration and log data"
+                     },
+                     {
+                        "value": "configReport",
+                        "meaning": "Query configuration report"
+                     },
+                     {
+                        "value": "logData",
+                        "meaning": "Query log data"
+                     },
+                     {
+                        "value": "noQuery",
+                        "meaning": "Do not query"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "noQuery"
+               },
+               {
+                  "key": "sensorUpdateInverval",
+                  "description": "Set interval between the update of the environmental sensors",
+                  "values": [
+                     {
+                        "meaning": "Set the sensor update interval",
+                        "range": {
+                           "min": 5,
+                           "max": 65535,
+                           "step": 1,
+                           "unit": "s"
+                        }
+                     },
+                     {
+                        "value": "noChange",
+                        "meaning": "Do not change the sensor update interval"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "noChange"
+               },
+               {
+                  "key": "vacationBlinkInterval",
+                  "description": "Set interval between the update of the environmental sensors",
+                  "values": [
+                     {
+                        "meaning": "Set the vacation blink interval",
+                        "range": {
+                           "min": 3,
+                           "max": 255,
+                           "step": 1,
+                           "unit": "s"
+                        }
+                     },
+                     {
+                        "value": "noChange",
+                        "meaning": "Do not change the vacation blink interval"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "noChange"
+               },
+               {
+                  "key": "vacationMode",
+                  "description": "Set vacation mode",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "Set vacation mode off"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "Set vacation mode on"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

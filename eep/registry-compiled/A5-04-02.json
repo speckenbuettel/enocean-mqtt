@@ -1,0 +1,311 @@
+{
+  "profile_type": "standard",
+  "eep": "A5-04-02",
+  "rorg": "A5",
+  "func": "04",
+  "type": "02",
+  "func_description": "Temperature and Humidity Sensor",
+  "type_description": "Range -20°C to +60°C and 0% to 100%",
+  "description": "Temperature and Humidity Sensor, Range -20°C to +60°C and 0% to 100%",
+  "source": "EnOcean Equipment Profiles",
+  "source_version": "2.6.8",
+  "sources": {
+    "xml": [
+      "enocean/eeps/eep268.xml"
+    ],
+    "semantic_mapping": [
+      "eep/semantic-role-mapping.json"
+    ],
+    "eep_list": [
+      "eep/eep-list.csv"
+    ],
+    "json": [
+      "enocean/eeps/json/A5-04-02.json"
+    ]
+  },
+  "direction": "unidirectional",
+  "device_class": "sensor",
+  "function_groups": [
+    {
+      "name": "from",
+      "title": "",
+      "direction": "from",
+      "functions": [
+        "humidity",
+        "temperature"
+      ]
+    }
+  ],
+  "channels": [
+    {
+      "name": "telegram_type",
+      "display_name": null,
+      "semantic_role": "enocean.telegram_type",
+      "object_type": "state",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "teach_in_telegram"
+        },
+        {
+          "value": 1,
+          "label": "data_telegram"
+        }
+      ],
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": true,
+        "default_value": "data_telegram",
+        "required_for_snapshot": false
+      }
+    },
+    {
+      "name": "humidity",
+      "display_name": null,
+      "description": "Rel. Humidity (linear)",
+      "source_key": "humidity",
+      "function_group": "from",
+      "semantic_role": "climate.humidity",
+      "object_type": "measurement",
+      "semantic_confidence": "high",
+      "data_type": "float",
+      "unit": "%",
+      "ranges": [
+        {
+          "min": 0,
+          "max": 100,
+          "step": 0.4,
+          "unit": "%",
+          "description": null
+        }
+      ],
+      "value_resolution": 0.4,
+      "value_precision": 1,
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "temperature",
+      "display_name": null,
+      "description": "Temperature (linear)",
+      "source_key": "temperature",
+      "function_group": "from",
+      "semantic_role": "climate.temperature",
+      "object_type": "measurement",
+      "semantic_confidence": "high",
+      "data_type": "float",
+      "unit": "°C",
+      "ranges": [
+        {
+          "min": -20,
+          "max": 60,
+          "step": 0.32,
+          "unit": "°C",
+          "description": null
+        }
+      ],
+      "value_resolution": 0.32,
+      "value_precision": 1,
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "t_sensor",
+      "display_name": null,
+      "object_type": "state",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "not_available"
+        },
+        {
+          "value": 1,
+          "label": "available"
+        }
+      ],
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": true,
+        "runtime_default": "channel_enabled",
+        "required_for_snapshot": false
+      }
+    }
+  ],
+  "telegrams": [
+    {
+      "telegram_type_id": "a5-04-02.case1",
+      "telegram_id": {
+        "rorg": "A5"
+      },
+      "fields": [
+        {
+          "name": "reserved_0_8",
+          "offset": 0,
+          "size": 8,
+          "shortcut": "",
+          "description": "Reserved field 0:8",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_24_4",
+          "offset": 24,
+          "size": 4,
+          "shortcut": "",
+          "description": "Reserved field 24:4",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_29_1",
+          "offset": 29,
+          "size": 1,
+          "shortcut": "",
+          "description": "Reserved field 29:1",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_31_1",
+          "offset": 31,
+          "size": 1,
+          "shortcut": "",
+          "description": "Reserved field 31:1",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "telegram_type",
+          "offset": 28,
+          "size": 1,
+          "shortcut": "LRNB",
+          "description": "LRN Bit",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "humidity",
+          "offset": 8,
+          "size": 8,
+          "shortcut": "HUM",
+          "description": "Humidity",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "temperature",
+          "offset": 16,
+          "size": 8,
+          "shortcut": "TMP",
+          "description": "Temperature",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "t_sensor",
+          "offset": 30,
+          "size": 1,
+          "shortcut": "TSN",
+          "description": "T-Sensor",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "telegram_type",
+          "field_ref": "telegram_type",
+          "enum": [
+            {
+              "value": 0,
+              "label": "teach_in_telegram"
+            },
+            {
+              "value": 1,
+              "label": "data_telegram"
+            }
+          ]
+        },
+        {
+          "channel_ref": "humidity",
+          "field_ref": "humidity",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 250,
+            "scale_min": 0.0,
+            "scale_max": 100.0
+          }
+        },
+        {
+          "channel_ref": "temperature",
+          "field_ref": "temperature",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 250,
+            "scale_min": -20.0,
+            "scale_max": 60.0
+          }
+        },
+        {
+          "channel_ref": "t_sensor",
+          "field_ref": "t_sensor",
+          "enum": [
+            {
+              "value": 0,
+              "label": "not_available"
+            },
+            {
+              "value": 1,
+              "label": "available"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tx": {
+    "aggregation_window_seconds": 10
+  }
+}

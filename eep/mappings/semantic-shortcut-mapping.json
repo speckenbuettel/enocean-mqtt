@@ -1,0 +1,356 @@
+{
+  "metadata": {
+    "description": "Semantic shortcut mapping for EnOcean EEP compiler",
+    "source": "Derived from eep268.xml analysis and manually reviewed spreadsheet",
+    "status": "draft"
+  },
+  "shortcuts": {
+    "aco": {
+      "notes": ""
+    },
+    "ad0": {
+      "notes": ""
+    },
+    "ad1": {
+      "notes": ""
+    },
+    "ad2": {
+      "notes": ""
+    },
+    "ad3": {
+      "notes": ""
+    },
+    "adc": {
+      "notes": ""
+    },
+    "af": {
+      "notes": ""
+    },
+    "ail": {
+      "notes": ""
+    },
+    "alm": {
+      "notes": ""
+    },
+    "am": {
+      "notes": ""
+    },
+    "an": {
+      "notes": ""
+    },
+    "ao": {
+      "notes": ""
+    },
+    "ap": {
+      "notes": ""
+    },
+    "api": {
+      "notes": ""
+    },
+    "apm": {
+      "notes": ""
+    },
+    "as": {
+      "notes": ""
+    },
+    "av": {
+      "notes": ""
+    },
+    "bat": {
+      "notes": ""
+    },
+    "bcl": {
+      "notes": ""
+    },
+    "bcs": {
+      "notes": ""
+    },
+    "bda": {
+      "notes": ""
+    },
+    "bdm": {
+      "notes": ""
+    },
+    "beh": {
+      "notes": ""
+    },
+    "bls": {
+      "notes": ""
+    },
+    "bmp": {
+      "notes": ""
+    },
+    "boc": {
+      "notes": ""
+    },
+    "boo": {
+      "notes": ""
+    },
+    "bp": {
+      "notes": ""
+    },
+    "bri": {
+      "notes": ""
+    },
+    "bs": {
+      "notes": ""
+    },
+    "bso": {
+      "notes": ""
+    },
+    "bti": {
+      "notes": ""
+    },
+    "btn": {
+      "notes": ""
+    },
+    "bvo": {
+      "notes": ""
+    },
+    "cad": {
+      "notes": ""
+    },
+    "cal": {
+      "notes": ""
+    },
+    "ccf": {
+      "notes": ""
+    },
+    "cd": {
+      "notes": ""
+    },
+    "cf": {
+      "notes": ""
+    },
+    "cfc": {
+      "notes": ""
+    },
+    "cfr": {
+      "notes": ""
+    },
+    "ch": {
+      "notes": ""
+    },
+    "chn": {
+      "notes": ""
+    },
+    "cir": {
+      "notes": ""
+    },
+    "cl": {
+      "notes": ""
+    },
+    "clh": {
+      "notes": ""
+    },
+    "cll": {
+      "notes": ""
+    },
+    "clr": {
+      "notes": ""
+    },
+    "cm": {
+      "notes": ""
+    },
+    "cmd": {
+      "semantic_name": "command",
+      "notes": ""
+    },
+    "co2": {
+      "semantic_name": "co2",
+      "semantic_role": "environment.co2",
+      "notes": ""
+    },
+    "con": {
+      "notes": ""
+    },
+    "cor": {
+      "notes": ""
+    },
+    "cos": {
+      "notes": ""
+    },
+    "cov": {
+      "notes": ""
+    },
+    "cp": {
+      "notes": ""
+    },
+    "crc": {
+      "notes": ""
+    },
+    "crs": {
+      "notes": ""
+    },
+    "cs": {
+      "notes": ""
+    },
+    "ct": {
+      "semantic_name": "contact",
+      "semantic_role": "opening.contact",
+      "notes": ""
+    },
+    "cv": {
+      "semantic_name": "current_value",
+      "notes": ""
+    },
+    "cvo": {
+      "notes": ""
+    },
+    "d": {
+      "notes": ""
+    },
+    "db": {
+      "notes": ""
+    },
+    "dco": {
+      "notes": ""
+    },
+    "deg": {
+      "notes": ""
+    },
+    "dia": {
+      "notes": ""
+    },
+    "dim": {
+      "notes": ""
+    },
+    "dmd": {
+      "notes": ""
+    },
+    "dmx": {
+      "notes": ""
+    },
+    "dri": {
+      "notes": ""
+    },
+    "drp": {
+      "notes": ""
+    },
+    "dso": {
+      "notes": ""
+    },
+    "dt": {
+      "notes": ""
+    },
+    "dwo": {
+      "notes": ""
+    },
+    "eco": {
+      "notes": ""
+    },
+    "edim": {
+      "notes": ""
+    },
+    "ee": {
+      "notes": ""
+    },
+    "eh": {
+      "notes": ""
+    },
+    "eno": {
+      "notes": ""
+    },
+    "es": {
+      "notes": "context dependent"
+    },
+    "fan": {
+      "notes": "context dependent"
+    },
+    "fl": {
+      "notes": ""
+    },
+    "fla": {
+      "notes": ""
+    },
+    "flow": {
+      "notes": ""
+    },
+    "fr": {
+      "notes": ""
+    },
+    "fsb": {
+      "notes": ""
+    },
+    "fsm": {
+      "notes": ""
+    },
+    "ft": {
+      "notes": ""
+    },
+    "g": {
+      "notes": ""
+    },
+    "gas": {
+      "notes": ""
+    },
+    "hb": {
+      "notes": ""
+    },
+    "hbt": {
+      "notes": ""
+    },
+    "he": {
+      "notes": ""
+    },
+    "hl": {
+      "notes": ""
+    },
+    "hum": {
+      "semantic_name": "humidity",
+      "semantic_role": "environment.humidity",
+      "notes": ""
+    },
+    "ill": {
+      "semantic_name": "illuminance",
+      "semantic_role": "environment.illuminance",
+      "notes": ""
+    },
+    "key": {
+      "notes": ""
+    },
+    "lrnb": {
+      "semantic_name": "telegram_type",
+      "semantic_role": "enocean.telegram_type",
+      "notes": "teach-in/data telegram discriminator"
+    },
+    "mcf": {
+      "notes": "message control field"
+    },
+    "mid": {
+      "semantic_name": "message_identifier",
+      "notes": "protocol-level identifier"
+    },
+    "mt": {
+      "notes": "context dependent"
+    },
+    "occ": {
+      "semantic_name": "occupancy",
+      "semantic_role": "presence.occupancy",
+      "notes": ""
+    },
+    "sp": {
+      "notes": "context dependent"
+    },
+    "svc": {
+      "semantic_name": "supply_voltage",
+      "semantic_role": "power.supply_voltage",
+      "notes": ""
+    },
+    "tmp": {
+      "semantic_name": "temperature",
+      "semantic_role": "environment.temperature",
+      "notes": ""
+    },
+    "tmp9": {
+      "semantic_name": "temperature",
+      "semantic_role": "environment.temperature",
+      "notes": "variant"
+    },
+    "vib": {
+      "semantic_name": "vibration",
+      "semantic_role": "security.vibration",
+      "notes": ""
+    }
+  }
+}

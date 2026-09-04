@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% set active_page = "documentation" %}
+
+{% block title %}enocean-mqtt Documentation{% endblock %}
+
+{% block content %}
+  <header class="page-header compact-card">
+    <div>
+      <p class="eyebrow">Documentation</p>
+      <h1>Project Documentation</h1>
+    </div>
+    <div class="overall-health ok"><span class="status-dot"></span>Available</div>
+  </header>
+
+  <section class="page-grid two-columns">
+    <article class="compact-card">
+      <div class="card-heading"><h2>API</h2><span class="card-tag">Interactive</span></div>
+      <div class="quick-actions-v2 one-column">
+        <a href="/docs">OpenAPI / Swagger</a>
+        <a href="/api/v1/openapi.json">OpenAPI JSON</a>
+        <a href="/api/v1/metrics">Metrics JSON</a>
+      </div>
+    </article>
+    <article class="compact-card">
+      <div class="card-heading"><h2>Core Models</h2><span class="card-tag">Project</span></div>
+      <dl class="status-list-v2">
+        <div><dt>MQTT Model</dt><dd>docs/specifications/mqtt-model.md</dd></div>
+        <div><dt>Device Model</dt><dd>docs/device-model.md</dd></div>
+        <div><dt>Runtime Commands</dt><dd>docs/runtime-commands.md</dd></div>
+      </dl>
+    </article>
+  </section>
+{% endblock %}

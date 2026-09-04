@@ -1,0 +1,308 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:09.876+0200"
+   },
+   "profile": {
+      "eep": "D2-05-00",
+      "title": "Blinds Control for Position and Angle",
+      "functionGroups": [
+         {
+            "title": "Go to Position and Angle",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "angle",
+                  "description": "Rotation angle",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 1,
+                           "unit": "%"
+                        }
+                     },
+                     {
+                        "value": "noChange",
+                        "meaning": "Do not change"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "testExists": true,
+                  "defaultValue": "noChange"
+               },
+               {
+                  "key": "lockingMode",
+                  "description": "Set/reset locking modes",
+                  "values": [
+                     {
+                        "value": "alarm",
+                        "meaning": "Set alarm mode"
+                     },
+                     {
+                        "value": "block",
+                        "meaning": "Set blockage mode"
+                     },
+                     {
+                        "value": "noChange",
+                        "meaning": "Do not change"
+                     },
+                     {
+                        "value": "unblock",
+                        "meaning": "Deblockage"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "testExists": true,
+                  "defaultValue": "noChange"
+               },
+               {
+                  "key": "position",
+                  "description": "Vertical position",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 1,
+                           "unit": "%"
+                        }
+                     },
+                     {
+                        "value": "noChange",
+                        "meaning": "Do not change"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "testExists": true,
+                  "defaultValue": "noChange"
+               },
+               {
+                  "key": "repositioning",
+                  "description": "How to adjust the internal positioning tracker, before going to the new position",
+                  "values": [
+                     {
+                        "value": "direct",
+                        "meaning": "Go directly to POS/ANG"
+                     },
+                     {
+                        "value": "firstDown",
+                        "meaning": "Go down (100%), then to POS/ANG"
+                     },
+                     {
+                        "value": "firstUp",
+                        "meaning": "Go up (0%), then to POS/ANG"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "testExists": true,
+                  "defaultValue": "direct"
+               }
+            ]
+         },
+         {
+            "title": "Stop",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "stop",
+                  "description": "Stops actuator immediately",
+                  "values": [
+                     {
+                        "value": "true",
+                        "meaning": "Stop command"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Query Position and Angle",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "query",
+                  "description": "Command identifier",
+                  "values": [
+                     {
+                        "value": "status",
+                        "meaning": "Query command"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Reply Position and Angle",
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "angle",
+                  "description": "Current rotation angle",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 1,
+                           "unit": "%"
+                        }
+                     },
+                     {
+                        "value": "unknown",
+                        "meaning": "Angle currently unknown"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "lockingMode",
+                  "description": "Current locking mode",
+                  "values": [
+                     {
+                        "value": "alarm",
+                        "meaning": "Alarm mode"
+                     },
+                     {
+                        "value": "block",
+                        "meaning": "Blockage mode"
+                     },
+                     {
+                        "value": "unblock",
+                        "meaning": "Normal (no lock)"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "position",
+                  "description": "Current vertical position",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 1,
+                           "unit": "%"
+                        }
+                     },
+                     {
+                        "value": "unknown",
+                        "meaning": "Position currently unknown"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Set parameters",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "alarmAction",
+                  "description": "Besides locking all other commands entering the alarm mode results in",
+                  "values": [
+                     {
+                        "value": "goDown",
+                        "meaning": "Besides locking all other commands entering the alarm mode results in go down (100%)"
+                     },
+                     {
+                        "value": "goUp",
+                        "meaning": "Besides locking all other commands entering the alarm mode results in go up (0%)"
+                     },
+                     {
+                        "value": "noAction",
+                        "meaning": "Besides locking all other commands entering the alarm mode results in no action"
+                     },
+                     {
+                        "value": "noChange",
+                        "meaning": "Do not change"
+                     },
+                     {
+                        "value": "stop",
+                        "meaning": "Besides locking all other commands entering the alarm mode results in immediate stop"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "noChange"
+               },
+               {
+                  "key": "rotationTime",
+                  "description": "Measured duration of rotation",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 10,
+                           "max": 2540,
+                           "step": 10,
+                           "unit": "ms"
+                        }
+                     },
+                     {
+                        "value": "noChange",
+                        "meaning": "Do not change"
+                     },
+                     {
+                        "value": "noRotation",
+                        "meaning": "No rotation"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "noChange"
+               },
+               {
+                  "key": "verticalMovementTime",
+                  "description": "Measured duration of a vertical run",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 5000,
+                           "max": 300000,
+                           "step": 10,
+                           "unit": "ms"
+                        }
+                     },
+                     {
+                        "value": "noChange",
+                        "meaning": "Do not change"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "defaultValue": "noChange"
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% set active_page = "runtime" %}
+{% block title %}enocean-mqtt System{% endblock %}
+{% block styles %}<link rel="stylesheet" href="/static/css/runtime.css?v=20260828-2">{% endblock %}
+{% block main_class %} system-main{% endblock %}
+{% block content %}
+<div class="system-page">
+  <header class="system-header compact-card">
+    <div><p class="eyebrow">Runtime</p><h1>System</h1></div>
+    <div id="systemStatus" class="overall-health neutral"><span class="status-dot"></span><span id="systemStatusText">Loading</span></div>
+  </header>
+
+  <section class="system-detail-grid dashboard-order">
+    <article class="compact-card"><div class="card-heading"><h2>System</h2><span class="card-tag">gateway/health</span></div><dl class="compact-list">
+      <div><dt>Status</dt><dd id="runtimeStatus">–</dd></div><div><dt>Version</dt><dd id="runtimeVersion">–</dd></div><div><dt>Uptime</dt><dd id="serviceUptimeDetail">–</dd></div><div><dt>Memory</dt><dd id="processMemoryDetail">–</dd></div><div><dt>Mode</dt><dd id="runtimeMode">–</dd></div><div><dt>API</dt><dd id="webApiStatus">–</dd></div>
+    </dl></article>
+    <article class="compact-card"><div class="card-heading"><h2>EnOcean</h2><span class="card-tag">gateway/health</span></div><dl class="compact-list">
+      <div><dt>Status</dt><dd id="enoceanStatus">–</dd></div><div><dt>Interfaces</dt><dd id="enoceanCount">–</dd></div><div><dt>Interface</dt><dd id="enoceanDefault">–</dd></div><div><dt>Base ID</dt><dd id="enoceanBaseId">–</dd></div><div><dt>RX</dt><dd id="enoceanRx">–</dd></div><div><dt>TX</dt><dd id="enoceanTx">–</dd></div>
+    </dl></article>
+    <article class="compact-card"><div class="card-heading"><h2>MQTT</h2><span class="card-tag">connection</span></div><dl class="compact-list">
+      <div><dt>Status</dt><dd id="mqttStatus">–</dd></div><div><dt>Host</dt><dd id="mqttBroker">–</dd></div><div><dt>Uptime</dt><dd id="mqttUptime">–</dd></div><div><dt>Reconnects</dt><dd id="mqttReconnects">–</dd></div><div><dt>Published (last 15 min)</dt><dd id="mqttPublished">–</dd></div><div><dt>Received (last 15 min)</dt><dd id="mqttReceived">–</dd></div>
+    </dl></article>
+    <article class="compact-card"><div class="card-heading"><h2>SQLite</h2><span class="card-tag">storage</span></div><dl class="compact-list">
+      <div><dt>Status</dt><dd id="sqliteStatus">–</dd></div><div><dt>Devices</dt><dd id="registryDevices">–</dd></div><div><dt>Database size</dt><dd id="sqliteSize">–</dd></div><div><dt>Registry reload</dt><dd id="registryReload">–</dd></div><div><dt>Free disk</dt><dd id="diskFree">–</dd></div>
+    </dl></article>
+  </section>
+
+  <section class="system-kpis">
+    <article class="kpi-card"><span id="serviceUptime" class="kpi-value">–</span><span class="kpi-label">Service uptime</span></article>
+    <article class="kpi-card"><span id="processMemory" class="kpi-value">–</span><span class="kpi-label">Process memory</span></article>
+    <article class="kpi-card"><span id="hostCpu" class="kpi-value">–</span><span class="kpi-label">Host CPU</span></article>
+    <article class="kpi-card"><span id="hostMemory" class="kpi-value">–</span><span class="kpi-label">Host memory</span></article>
+    <article class="kpi-card"><span id="diskUsage" class="kpi-value">–</span><span class="kpi-label">Disk usage</span></article>
+    <article class="kpi-card"><span id="mqttLoad" class="kpi-value">–</span><span class="kpi-label">MQTT / 15 min</span><span id="mqttLoadDetail" class="metric-detail">–</span></article>
+  </section>
+
+  <section class="compact-card interface-section"><div class="card-heading"><h2>EnOcean Interfaces</h2><span class="card-tag">gateway/health</span></div><div class="system-table-wrap"><table class="system-table"><thead><tr><th>Interface</th><th>Status</th><th>Port</th><th>Base ID</th><th>TX</th><th>RX</th><th>Errors</th></tr></thead><tbody id="interfaceBody"><tr><td colspan="7">Loading…</td></tr></tbody></table></div></section>
+
+  <section class="system-operations-grid">
+    <article class="compact-card"><div class="card-heading"><h2>Host & Process</h2><span class="card-tag">live</span></div><dl class="compact-list">
+      <div><dt>Host uptime</dt><dd id="hostUptime">–</dd></div><div><dt>Health timestamp</dt><dd id="healthTimestamp">–</dd></div><div><dt>MQTT client ID</dt><dd id="mqttClientId">–</dd></div>
+    </dl></article>
+    <article class="compact-card"><div class="card-heading"><h2>Web & Logging</h2><span class="card-tag">configuration</span></div><dl class="compact-list">
+      <div><dt>Web UI</dt><dd id="webUiStatus">–</dd></div><div><dt>Log level</dt><dd id="logLevel">–</dd></div><div><dt>Log format</dt><dd id="logFormat">–</dd></div><div><dt>Destination</dt><dd id="logDestination">–</dd></div>
+    </dl></article>
+  </section>
+
+  <section class="compact-card logs-section">
+    <div class="card-heading logs-heading"><div><h2>Service Logs</h2><span id="logMeta" class="card-tag">systemd journal</span></div><div class="log-controls">
+      <select id="logLevelFilter" aria-label="Filter by log level"><option value="">All levels</option><option>DEBUG</option><option>INFO</option><option>WARNING</option><option>ERROR</option><option>CRITICAL</option></select>
+      <input id="logSearch" type="search" placeholder="Search logs" aria-label="Search logs"><select id="logLimit" aria-label="Number of log entries"><option>100</option><option selected>200</option><option>500</option><option>1000</option></select>
+      <button id="refreshLogs" type="button">Refresh</button><button id="exportCsv" type="button" class="secondary">CSV</button><button id="exportText" type="button" class="secondary">Text</button>
+    </div></div>
+    <div class="log-table-wrap"><table class="log-table"><thead><tr><th>Time</th><th>Level</th><th>Logger</th><th>Message</th></tr></thead><tbody id="logBody"><tr><td colspan="4">Loading logs…</td></tr></tbody></table></div>
+  </section>
+</div>
+{% endblock %}
+{% block scripts %}<script src="/static/js/runtime.js?v=20260828-2"></script>{% endblock %}

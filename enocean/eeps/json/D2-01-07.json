@@ -1,0 +1,78 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:08.213+0200"
+   },
+   "profile": {
+      "eep": "D2-01-07",
+      "title": "Electronic switches and dimmers with Energy Measurement and Local Control",
+      "functionGroups": [
+         {
+            "title": "Actuator Set Output",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "switch",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "Output value OFF"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "Output value ON"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false,
+                  "testExists": true
+               }
+            ]
+         },
+         {
+            "title": "Actuator Status Response",
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "switch",
+                  "values": [
+                     {
+                        "value": "off",
+                        "meaning": "Output value OFF"
+                     },
+                     {
+                        "value": "on",
+                        "meaning": "Output value ON"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         },
+         {
+            "title": "Actuator Query",
+            "direction": "to",
+            "functions": [
+               {
+                  "key": "query",
+                  "values": [
+                     {
+                        "value": "status",
+                        "meaning": "Query status"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

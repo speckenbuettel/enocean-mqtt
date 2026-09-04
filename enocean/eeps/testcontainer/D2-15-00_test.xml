@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProfileCertification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="./Certification_EEP.xsd"  schemaVersion="0.9">
+	<EEP rorg="0xD2"	func="0x15"	type="0x00">
+	<TestCase>
+	<Name>Teach-in Test</Name>
+	<Test>
+		<Name>Unidirectional Teach-in Test</Name>
+	    <Step>
+			<Dataset>
+	<Telegram rorg="0xD4" length="7">
+	<Byte order="0" ignoremask="0xFF">0x80</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	<Byte order="3" ignoremask="0xFF">0x00</Byte>
+	<Byte order="4" ignoremask="0x00">0x00</Byte>
+	<Byte order="5" ignoremask="0x00">0x15</Byte>
+	<Byte order="6" ignoremask="0x00">0xD2</Byte>
+	</Telegram>
+	<RealData>
+  	<Data>
+    	<Type>RORG</Type>
+    	<Value>0xD2</Value>
+  	</Data>
+  	<Data>
+    	<Type>FUNC</Type>
+    	<Value>0x15</Value>
+  	</Data>
+  	<Data>
+    	<Type>TYPE</Type>
+    	<Value>0x00</Value>
+  	</Data>
+  	</RealData>
+    </Dataset>
+    </Step>
+    </Test>
+   	</TestCase>
+    <TestCase>
+	<Name>Presence</Name>
+	<Test>
+            <Name>  Presence Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="3">
+	<Byte order="0" ignoremask="0x3F">0x0</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Presence</Type>
+                <Value>0x0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+
+
+	<Test>
+            <Name>  Presence Test - 1 Present</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="3">
+	<Byte order="0" ignoremask="0x3F">0x40</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Presence</Type>
+                <Value>0x1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+            
+	<Test>
+            <Name>  Presence Test- 2 Not detectable</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="3">
+	<Byte order="0" ignoremask="0x3F">0x80</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Presence</Type>
+                <Value>0x2</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+
+	<Test>
+            <Name> Presence Test-3 Presence Detection Error</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="3">
+	<Byte order="0" ignoremask="0x3F">0xC0</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Presence</Type>
+                <Value>0x3</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Energy Storage</Name>
+	<Test>
+            <Name> High Energy Storage Test </Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="3">
+	<Byte order="0" ignoremask="0xCF">0x0</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Energy Storage</Type>
+                <Value>0x0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+            	<Test>
+            <Name> Medium Energy Storage Test </Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="3">
+	<Byte order="0" ignoremask="0xCF">0x10</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Energy Storage</Type>
+                <Value>0x1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+            	<Test>
+            <Name> Low Energy Storage Test </Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="3">
+	<Byte order="0" ignoremask="0xCF">0x20</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Energy Storage</Type>
+                <Value>0x2</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+            	<Test>
+            <Name> Critical Energy Storage Test </Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="3">
+	<Byte order="0" ignoremask="0xCF">0x30</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Energy Storage</Type>
+                <Value>0x3</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        	</Step>
+        	</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Pir Update Rate</Name>
+	<Test>
+            <Name>Minimum Pir Update Rate Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="3">
+	<Byte order="0" ignoremask="0xF0">0x0</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Pir Update Rate</Type>
+                <Value>1</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	<Test>
+            <Name>Medium Pir Update Rate Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="3">
+	<Byte order="0" ignoremask="0xF0">0x7</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Pir Update Rate</Type>
+                <Value>8</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	<Test>
+            <Name>Max Pir Update Rate Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="3">
+	<Byte order="0" ignoremask="0xF0">0xF</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Pir Update rate</Type>
+                <Value>16</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	</TestCase>
+	<TestCase>
+	<Name>Pir Update Counter</Name>
+	<Test>
+            <Name>Min Pir Update Counter Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="3">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0x00">0</Byte>
+	<Byte order="1" ignoremask="0x00">0</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Pir Update Counter</Type>
+                <Value>0</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	<Test>
+            <Name>Mid Pir Update Counter Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="3">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0x00">0x7F</Byte>
+	<Byte order="2" ignoremask="0x00">0xFF</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Pir Update Counter</Type>
+                <Value>32767</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	<Test>
+            <Name>Max Pir Update Counter Test</Name>
+            <Step>
+            <DataSet>
+            <Telegram rorg="0xD2" length="3">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0</Byte>
+	<Byte order="2" ignoremask="0xFF">0</Byte>
+	</Telegram>
+            <RealData>
+              <Data>
+                <Type>Pir Update Counter</Type>
+                <Value>65535</Value>
+              </Data>
+            </RealData>
+          </DataSet>
+        </Step>
+      </Test>
+	</TestCase>
+	<TestCase>
+      <Name>unusedFieldTest</Name>
+      <Test>
+        <Name>unused field test</Name>
+        <Step>
+          <DataSet>
+            <Telegram rorg="3" length="3">
+	<Byte order="0" ignoremask="0xFF">0x00</Byte>
+	<Byte order="1" ignoremask="0xFF">0x00</Byte>
+	<Byte order="2" ignoremask="0xFF">0x00</Byte>
+	</Telegram>
+          </DataSet>
+        </Step>
+      </Test>
+    </TestCase>
+	</EEP>
+ </ProfileCertification>

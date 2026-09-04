@@ -1,0 +1,18 @@
+{
+  "tokens": [
+    {
+      "name": "Web-UI",
+      "token": "MDEyMzQ1Njc4OUFCQ0RFRjAxMjM0NTY3ODlBQkNERUY=",
+      "roles": [
+        "read"
+      ]
+    },
+    {
+      "name": "Development",
+      "token": "QUJDREVGMDEyMzQ1Njc4OUFCQ0RFRjAxMjM0NTY3ODk=",
+      "roles": [
+        "admin"
+      ]
+    }
+  ]
+}

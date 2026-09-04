@@ -1,0 +1,37 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:12.538+0200"
+   },
+   "profile": {
+      "eep": "F6-05-01",
+      "title": "Detectors, Liquid Leakage Sensor (mechanic harvester)",
+      "functionGroups": [
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "liquidDetected",
+                  "description": "Alert signal that the sensor detected water leakage",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "No water detected"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Water detected"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

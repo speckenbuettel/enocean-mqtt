@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProfileCertification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./Certification_EEP.xsd"  schemaVersion="0.9">
+<EEP rorg="0xD2" func="0x06" type="0x11">
+<TestCase>
+<Name>Teach-in Test</Name>
+<Test>
+<Name>Unidirectional Teach-in Test</Name>
+<Step>
+<Dataset>
+<Telegram rorg="0xD4" length="7">
+<Byte order="0" ignoremask="0xFF">0x00</Byte>
+<Byte order="1" ignoremask="0xFF">0x00</Byte>
+<Byte order="2" ignoremask="0xFF">0x00</Byte>
+<Byte order="3" ignoremask="0xFF">0x00</Byte>
+<Byte order="4" ignoremask="0x00">0x11</Byte>
+<Byte order="5" ignoremask="0x00">0x06</Byte>
+<Byte order="6" ignoremask="0x00">0xD2</Byte>
+</Telegram>
+<RealData>
+<Data>
+<Type>RORG</Type>
+<Value>0xD2</Value>
+</Data>
+<Data>
+<Type>FUNC</Type>
+<Value>0x06</Value>
+</Data>
+<Data>
+<Type>TYPE</Type>
+<Value>0x11</Value>
+</Data>
+</RealData>
+</Dataset>
+</Step>
+</Test>
+</TestCase>
+	<TestCase>
+	<Name>Pre-alarm
+			
+			
+			</Name>
+	<Test>
+		<Name>no pre-alarm Pre-alarm
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+				<Byte order="0" ignoremask="0x7E">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Pre-alarm
+			
+			
+			</Type>
+			<Value>no pre-alarm</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>pre-alarm occured Pre-alarm
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+				<Byte order="0" ignoremask="0x7E">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Pre-alarm
+			
+			
+			</Type>
+			<Value>pre-alarm occured</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Alarm
+			
+			
+			</Name>
+	<Test>
+		<Name>no alarm Alarm
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+				<Byte order="0" ignoremask="0xBE">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Alarm
+			
+			
+			</Type>
+			<Value>no alarm</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>alarm occurred Alarm
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+				<Byte order="0" ignoremask="0xBE">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Alarm
+			
+			
+			</Type>
+			<Value>alarm occurred</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Window-contact
+			
+			
+			</Name>
+	<Test>
+		<Name>contact open Window-contact
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+				<Byte order="0" ignoremask="0xDE">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Window-contact
+			
+			
+			</Type>
+			<Value>contact open</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>contact closed Window-contact
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+				<Byte order="0" ignoremask="0xDE">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Window-contact
+			
+			
+			</Type>
+			<Value>contact closed</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Pre-alarm En-/Disabled
+			
+			
+			</Name>
+	<Test>
+		<Name>pre-alarm disabled Pre-alarm En-/Disabled
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+				<Byte order="0" ignoremask="0xEE">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Pre-alarm En-/Disabled
+			
+			
+			</Type>
+			<Value>pre-alarm disabled</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>pre-alarm enabled Pre-alarm En-/Disabled
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+				<Byte order="0" ignoremask="0xEE">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Pre-alarm En-/Disabled
+			
+			
+			</Type>
+			<Value>pre-alarm enabled</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Tilt Position
+			
+			
+			</Name>
+	<Test>
+		<Name>unknown Tilt Position
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+				<Byte order="0" ignoremask="0xF2">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Tilt Position
+			
+			
+			</Type>
+			<Value>unknown</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>tilt Tilt Position
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+				<Byte order="0" ignoremask="0xF2">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Tilt Position
+			
+			
+			</Type>
+			<Value>tilt</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>not tilt Tilt Position
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+				<Byte order="0" ignoremask="0xF2">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Tilt Position
+			
+			
+			</Type>
+			<Value>not tilt</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	<TestCase>
+	<Name>PIR Sensitivity
+			
+			
+			</Name>
+	<Test>
+		<Name>normal sensitivity PIR Sensitivity
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+				<Byte order="0" ignoremask="0xFC">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>PIR Sensitivity
+			
+			
+			</Type>
+			<Value>normal sensitivity</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>low sensitivity PIR Sensitivity
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+				<Byte order="0" ignoremask="0xFC">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>PIR Sensitivity
+			
+			
+			</Type>
+			<Value>low sensitivity</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Set Alert-Level
+			
+			
+			</Name>
+	<Test>
+		<Name>disable alarm-system Set Alert-Level
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+				<Byte order="0" ignoremask="0x7C">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Set Alert-Level
+			
+			
+			</Type>
+			<Value>disable alarm-system</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>enable alarm-system Set Alert-Level
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+				<Byte order="0" ignoremask="0x7C">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Set Alert-Level
+			
+			
+			</Type>
+			<Value>enable alarm-system</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Pre-alarm En-/Disabled
+			
+			
+			</Name>
+	<Test>
+		<Name>pre-alarm disabled Pre-alarm En-/Disabled
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+				<Byte order="0" ignoremask="0xEC">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Pre-alarm En-/Disabled
+			
+			
+			</Type>
+			<Value>pre-alarm disabled</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>pre-alarm enabled Pre-alarm En-/Disabled
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+				<Byte order="0" ignoremask="0xEC">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Pre-alarm En-/Disabled
+			
+			
+			</Type>
+			<Value>pre-alarm enabled</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	<TestCase>
+	<Name>Set PIR sensitivity
+			
+			
+			</Name>
+	<Test>
+		<Name>no change Set PIR sensitivity
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+				<Byte order="0" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Set PIR sensitivity
+			
+			
+			</Type>
+			<Value>no change</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>normal sensitivity Set PIR sensitivity
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+				<Byte order="0" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Set PIR sensitivity
+			
+			
+			</Type>
+			<Value>normal sensitivity</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>low sensitivity Set PIR sensitivity
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="1">
+				<Byte order="0" ignoremask="0xF0">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Set PIR sensitivity
+			
+			
+			</Type>
+			<Value>low sensitivity</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	</EEP>
+</ProfileCertification>

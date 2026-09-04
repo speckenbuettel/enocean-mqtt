@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProfileCertification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./Certification_EEP.xsd"  schemaVersion="0.9">
+<EEP rorg="0xD2" func="0x14" type="0x56">
+<TestCase>
+<Name>Teach-in Test</Name>
+<Test>
+<Name>Unidirectional Teach-in Test</Name>
+<Step>
+<Dataset>
+<Telegram rorg="0xD4" length="7">
+<Byte order="0" ignoremask="0xFF">0x00</Byte>
+<Byte order="1" ignoremask="0xFF">0x00</Byte>
+<Byte order="2" ignoremask="0xFF">0x00</Byte>
+<Byte order="3" ignoremask="0xFF">0x00</Byte>
+<Byte order="4" ignoremask="0x00">0x56</Byte>
+<Byte order="5" ignoremask="0x00">0x14</Byte>
+<Byte order="6" ignoremask="0x00">0xD2</Byte>
+</Telegram>
+<RealData>
+<Data>
+<Type>RORG</Type>
+<Value>0xD2</Value>
+</Data>
+<Data>
+<Type>FUNC</Type>
+<Value>0x14</Value>
+</Data>
+<Data>
+<Type>TYPE</Type>
+<Value>0x56</Value>
+</Data>
+</RealData>
+</Dataset>
+</Step>
+</Test>
+</TestCase>
+	<TestCase>
+	<Name>Illumination
+			
+			
+			
+			
+			</Name>
+	<Test>
+		<Name>Min Illumination
+			
+			
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="7">
+				<Byte order="0" ignoremask="0x00">0x00</Byte>
+				<Byte order="1" ignoremask="0x00">0x00</Byte>
+				<Byte order="2" ignoremask="0x0F">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFE">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Illumination
+			
+			
+			
+			
+			</Type>
+			<Value>0</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Mid Illumination
+			
+			
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="7">
+				<Byte order="0" ignoremask="0x00">0x7A</Byte>
+				<Byte order="1" ignoremask="0x00">0x12</Byte>
+				<Byte order="2" ignoremask="0x0F">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFE">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Illumination
+			
+			
+			
+			
+			</Type>
+			<Value>500000</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Max Illumination
+			
+			
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="7">
+				<Byte order="0" ignoremask="0x00">0xF4</Byte>
+				<Byte order="1" ignoremask="0x00">0x24</Byte>
+				<Byte order="2" ignoremask="0x0F">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFE">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Illumination
+			
+			
+			
+			
+			</Type>
+			<Value>1000000</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Error:Illumination out of range Illumination
+			
+			
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="7">
+				<Byte order="0" ignoremask="0x00">0x00</Byte>
+				<Byte order="1" ignoremask="0x00">0x00</Byte>
+				<Byte order="2" ignoremask="0x0F">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xFF">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFE">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>Illumination
+			
+			
+			
+			
+			</Type>
+			<Value>Error:Illumination out of range</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	<TestCase>
+	<Name>ColorTemperature
+			
+			
+			
+			
+			</Name>
+	<Test>
+		<Name>Min ColorTemperature
+			
+			
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="7">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xF0">0x00</Byte>
+				<Byte order="3" ignoremask="0x00">0x00</Byte>
+				<Byte order="4" ignoremask="0x1F">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFE">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>ColorTemperature
+			
+			
+			
+			
+			</Type>
+			<Value>0</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Mid ColorTemperature
+			
+			
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="7">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xF0">0x07</Byte>
+				<Byte order="3" ignoremask="0x00">0x53</Byte>
+				<Byte order="4" ignoremask="0x1F">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFE">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>ColorTemperature
+			
+			
+			
+			
+			</Type>
+			<Value>15000</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Max ColorTemperature
+			
+			
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="7">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xF0">0x0E</Byte>
+				<Byte order="3" ignoremask="0x00">0xA6</Byte>
+				<Byte order="4" ignoremask="0x1F">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFE">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>ColorTemperature
+			
+			
+			
+			
+			</Type>
+			<Value>30000</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Error:color temperature out of range ColorTemperature
+			
+			
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="7">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xF0">0x00</Byte>
+				<Byte order="3" ignoremask="0x00">0x00</Byte>
+				<Byte order="4" ignoremask="0x1F">0x00</Byte>
+				<Byte order="5" ignoremask="0xFF">0x00</Byte>
+				<Byte order="6" ignoremask="0xFE">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>ColorTemperature
+			
+			
+			
+			
+			</Type>
+			<Value>Error:color temperature out of range</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	<TestCase>
+	<Name>PPFD
+			
+			
+			
+			
+			</Name>
+	<Test>
+		<Name>Min PPFD
+			
+			
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="7">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xE0">0x00</Byte>
+				<Byte order="5" ignoremask="0x00">0x00</Byte>
+				<Byte order="6" ignoremask="0x00">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>PPFD
+			
+			
+			
+			
+			</Type>
+			<Value>0</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Mid PPFD
+			
+			
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="7">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xE0">0x0F</Byte>
+				<Byte order="5" ignoremask="0x00">0x42</Byte>
+				<Byte order="6" ignoremask="0x00">0x40</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>PPFD
+			
+			
+			
+			
+			</Type>
+			<Value>500000</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Max PPFD
+			
+			
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="7">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xE0">0x1E</Byte>
+				<Byte order="5" ignoremask="0x00">0x84</Byte>
+				<Byte order="6" ignoremask="0x00">0x80</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>PPFD
+			
+			
+			
+			
+			</Type>
+			<Value>1000000</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	<Test>
+		<Name>Error:PPFD out of range PPFD
+			
+			
+			
+			
+			 Test</Name>
+		<Step>
+		<DataSet>
+		<Telegram rorg="0xD2" length="7">
+				<Byte order="0" ignoremask="0xFF">0x00</Byte>
+				<Byte order="1" ignoremask="0xFF">0x00</Byte>
+				<Byte order="2" ignoremask="0xFF">0x00</Byte>
+				<Byte order="3" ignoremask="0xFF">0x00</Byte>
+				<Byte order="4" ignoremask="0xE0">0x00</Byte>
+				<Byte order="5" ignoremask="0x00">0x00</Byte>
+				<Byte order="6" ignoremask="0x00">0x00</Byte>
+	</Telegram>
+			<RealData>
+			<Data>
+			<Type>PPFD
+			
+			
+			
+			
+			</Type>
+			<Value>Error:PPFD out of range</Value>
+			</Data>
+			</RealData>
+			</DataSet>
+			</Step>
+			</Test>
+	</TestCase>
+	</EEP>
+</ProfileCertification>

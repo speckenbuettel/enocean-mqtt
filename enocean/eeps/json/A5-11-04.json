@@ -1,0 +1,277 @@
+{
+  "header" : {
+    "httpStatus" : 200,
+    "content" : "profile",
+    "gateway" : "DC-GW/EO-IP v1.15.010",
+    "timestamp" : "2020-08-18T16:08:05.257+0200"
+  },
+  "profile" : {
+    "eep" : "A5-11-04",
+    "title" : "Controller Status, Extended Lighting Status",
+    "functionGroups" : [ {
+      "direction" : "from",
+      "functions" : [ {
+        "key" : "dimming",
+        "description" : "Dimming output level (manufacturer specific)",
+        "values" : [ {
+          "range" : {
+            "min" : 0,
+            "max" : 255,
+            "step" : 1
+          }
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "errorCode",
+        "description" : "Error state",
+        "values" : [ {
+          "value" : "external",
+          "meaning" : "Failure on the external periphery"
+        }, {
+          "value" : "internal",
+          "meaning" : "Internal failure"
+        }, {
+          "value" : "lamp",
+          "meaning" : "Lamp-failure"
+        }, {
+          "value" : "noError",
+          "meaning" : "No error is present"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "operatingHours",
+        "description" : "Lamp operating hours",
+        "values" : [ {
+          "range" : {
+            "min" : 0,
+            "max" : 65535,
+            "step" : 1,
+            "unit" : "h"
+          }
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "serviceMode",
+        "description" : "Service mode",
+        "values" : [ {
+          "value" : "normal",
+          "meaning" : "Normal mode is activated"
+        }, {
+          "value" : "service",
+          "meaning" : "Service mode is activated"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "status",
+        "values" : [ {
+          "value" : "off",
+          "meaning" : "Lighting is off"
+        }, {
+          "value" : "on",
+          "meaning" : "Lighting is on"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      } ]
+    }, {
+      "direction" : "from",
+      "functions" : [ {
+        "key" : "blue",
+        "description" : "Blue value",
+        "values" : [ {
+          "range" : {
+            "min" : 0,
+            "max" : 255,
+            "step" : 1
+          }
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "errorCode",
+        "description" : "Error state",
+        "values" : [ {
+          "value" : "external",
+          "meaning" : "Failure on the external periphery"
+        }, {
+          "value" : "internal",
+          "meaning" : "Internal failure"
+        }, {
+          "value" : "lamp",
+          "meaning" : "Lamp-failure"
+        }, {
+          "value" : "noError",
+          "meaning" : "No error is present"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "green",
+        "description" : "Green value",
+        "values" : [ {
+          "range" : {
+            "min" : 0,
+            "max" : 255,
+            "step" : 1
+          }
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "red",
+        "description" : "Red value",
+        "values" : [ {
+          "range" : {
+            "min" : 0,
+            "max" : 255,
+            "step" : 1
+          }
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "serviceMode",
+        "description" : "Service mode",
+        "values" : [ {
+          "value" : "normal",
+          "meaning" : "Normal mode is activated"
+        }, {
+          "value" : "service",
+          "meaning" : "Service mode is activated"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "status",
+        "values" : [ {
+          "value" : "off",
+          "meaning" : "Lighting is off"
+        }, {
+          "value" : "on",
+          "meaning" : "Lighting is on"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      } ]
+    }, {
+      "direction" : "from",
+      "functions" : [ {
+        "key" : "amperage",
+        "description" : "Amperage",
+        "values" : [ {
+          "range" : {
+            "min" : 0,
+            "max" : 6553.5,
+            "step" : 0.001,
+            "unit" : "A"
+          }
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "energy",
+        "description" : "Energy",
+        "values" : [ {
+          "range" : {
+            "min" : 0,
+            "max" : 65535000000000,
+            "step" : 1,
+            "unit" : "Wh"
+          }
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "errorCode",
+        "description" : "Error state",
+        "values" : [ {
+          "value" : "external",
+          "meaning" : "Failure on the external periphery"
+        }, {
+          "value" : "internal",
+          "meaning" : "Internal failure"
+        }, {
+          "value" : "lamp",
+          "meaning" : "Lamp-failure"
+        }, {
+          "value" : "noError",
+          "meaning" : "No error is present"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "power",
+        "description" : "Power",
+        "values" : [ {
+          "range" : {
+            "min" : 0,
+            "max" : 65535000000,
+            "step" : 0.001,
+            "unit" : "W"
+          }
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "serviceMode",
+        "description" : "Service mode",
+        "values" : [ {
+          "value" : "normal",
+          "meaning" : "Normal mode is activated"
+        }, {
+          "value" : "service",
+          "meaning" : "Service mode is activated"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "status",
+        "values" : [ {
+          "value" : "off",
+          "meaning" : "Lighting is off"
+        }, {
+          "value" : "on",
+          "meaning" : "Lighting is on"
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      }, {
+        "key" : "voltage",
+        "description" : "Voltage",
+        "values" : [ {
+          "range" : {
+            "min" : 0,
+            "max" : 6553.5,
+            "step" : 0.001,
+            "unit" : "V"
+          }
+        } ],
+        "transmitOnConnect" : true,
+        "transmitOnEvent" : true,
+        "transmitOnDuplicate" : false
+      } ]
+    } ],
+    "version" : 0.9
+  }
+}

@@ -1,0 +1,146 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:01.785+0200"
+   },
+   "profile": {
+      "eep": "A5-10-1D",
+      "title": "Room Operating Panel, Humidity, Humidity Set Point, Temperature Sensor, Fan Speed and Occupancy Control",
+      "functionGroups": [
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "fanSpeed",
+                  "description": "Fan Speed",
+                  "values": [
+                     {
+                        "value": "auto",
+                        "meaning": "Fan speed auto"
+                     },
+                     {
+                        "value": "off",
+                        "meaning": "Fan is off"
+                     },
+                     {
+                        "value": "speed0",
+                        "meaning": "Fan speed 0"
+                     },
+                     {
+                        "value": "speed1",
+                        "meaning": "Fan speed 1"
+                     },
+                     {
+                        "value": "speed2",
+                        "meaning": "Fan speed 2"
+                     },
+                     {
+                        "value": "speed3",
+                        "meaning": "Fan speed 3"
+                     },
+                     {
+                        "value": "speed4",
+                        "meaning": "Fan speed 4"
+                     },
+                     {
+                        "value": "speed5",
+                        "meaning": "Fan speed 5"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "humidity",
+                  "description": "Rel. Humidity (linear)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 0.4,
+                           "unit": "%"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "humiditySetpoint",
+                  "description": "Humidity Set Point (linear)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 100,
+                           "step": 0.4,
+                           "unit": "%"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "occupancyButton",
+                  "description": "Occupancy button",
+                  "values": [
+                     {
+                        "value": "pressed",
+                        "meaning": "Button is pressed"
+                     },
+                     {
+                        "value": "released",
+                        "meaning": "Button is released"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "occupancyEnabled",
+                  "description": "Occupancy status (enabled /disabled)",
+                  "values": [
+                     {
+                        "value": "false",
+                        "meaning": "Occupancy is disabled"
+                     },
+                     {
+                        "value": "true",
+                        "meaning": "Occupancy is enabled"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "temperature",
+                  "description": "Temperature (linear)",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 40,
+                           "step": 0.16,
+                           "unit": "°C"
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}

@@ -1,0 +1,377 @@
+{
+  "profile_type": "standard",
+  "eep": "F6-02-01",
+  "rorg": "F6",
+  "func": "02",
+  "type": "01",
+  "func_description": "Rocker Switch, 2 Rocker",
+  "type_description": "Light and Blind Control - Application Style 1",
+  "description": "Light and Blind Control - Application Style 1",
+  "source": "EnOcean Equipment Profiles",
+  "source_version": "2.6.8",
+  "channels": [
+    {
+      "name": "rocker_1st_action",
+      "display_name": null,
+      "channel_type": "event",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "button_ai"
+        },
+        {
+          "value": 1,
+          "label": "button_a0"
+        },
+        {
+          "value": 2,
+          "label": "button_bi"
+        },
+        {
+          "value": 3,
+          "label": "button_b0"
+        }
+      ]
+    },
+    {
+      "name": "energy_bow",
+      "display_name": null,
+      "channel_type": "event",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "released"
+        },
+        {
+          "value": 1,
+          "label": "pressed"
+        }
+      ]
+    },
+    {
+      "name": "rocker_2nd_action",
+      "display_name": null,
+      "channel_type": "event",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "button_ai"
+        },
+        {
+          "value": 1,
+          "label": "button_a0"
+        },
+        {
+          "value": 2,
+          "label": "button_bi"
+        },
+        {
+          "value": 3,
+          "label": "button_b0"
+        }
+      ]
+    },
+    {
+      "name": "2nd_action",
+      "display_name": null,
+      "channel_type": "event",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "no_2nd_action"
+        },
+        {
+          "value": 1,
+          "label": "2nd_action_valid"
+        }
+      ]
+    },
+    {
+      "name": "number_of_buttons_pressed_simultaneously_other_bit_combinations_are_not_valid",
+      "display_name": null,
+      "channel_type": "event",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "no_button"
+        },
+        {
+          "value": 3,
+          "label": "3_or_4_buttons"
+        }
+      ]
+    }
+  ],
+  "telegrams": [
+    {
+      "telegram_type_id": "f6-02-01.case1",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "fields": [
+        {
+          "name": "rocker_1st_action",
+          "offset": 0,
+          "size": 3,
+          "shortcut": "R1",
+          "description": "Rocker 1st action",
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload"
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "shortcut": "EB",
+          "description": "Energy Bow",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "rocker_2nd_action",
+          "offset": 4,
+          "size": 3,
+          "shortcut": "R2",
+          "description": "Rocker 2nd action",
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload"
+        },
+        {
+          "name": "2nd_action",
+          "offset": 7,
+          "size": 1,
+          "shortcut": "SA",
+          "description": "2nd Action",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "shortcut": "",
+          "description": "T21",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status"
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "shortcut": "",
+          "description": "NU",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "rocker_1st_action",
+          "field_ref": "rocker_1st_action",
+          "bitfield_ref": "rocker_1st_action",
+          "enum": [
+            {
+              "value": 0,
+              "label": "button_ai"
+            },
+            {
+              "value": 1,
+              "label": "button_a0"
+            },
+            {
+              "value": 2,
+              "label": "button_bi"
+            },
+            {
+              "value": 3,
+              "label": "button_b0"
+            }
+          ]
+        },
+        {
+          "channel_ref": "energy_bow",
+          "field_ref": "energy_bow",
+          "bitfield_ref": "energy_bow",
+          "enum": [
+            {
+              "value": 0,
+              "label": "released"
+            },
+            {
+              "value": 1,
+              "label": "pressed"
+            }
+          ]
+        },
+        {
+          "channel_ref": "rocker_2nd_action",
+          "field_ref": "rocker_2nd_action",
+          "bitfield_ref": "rocker_2nd_action",
+          "enum": [
+            {
+              "value": 0,
+              "label": "button_ai"
+            },
+            {
+              "value": 1,
+              "label": "button_a0"
+            },
+            {
+              "value": 2,
+              "label": "button_bi"
+            },
+            {
+              "value": 3,
+              "label": "button_b0"
+            }
+          ]
+        },
+        {
+          "channel_ref": "2nd_action",
+          "field_ref": "2nd_action",
+          "bitfield_ref": "2nd_action",
+          "enum": [
+            {
+              "value": 0,
+              "label": "no_2nd_action"
+            },
+            {
+              "value": 1,
+              "label": "2nd_action_valid"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-01.case2",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "fields": [
+        {
+          "name": "number_of_buttons_pressed_simultaneously_other_bit_combinations_are_not_valid",
+          "offset": 0,
+          "size": 3,
+          "shortcut": "R1",
+          "description": "Number of buttons pressed simultaneously (other bit combinations are not valid)",
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload"
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "shortcut": "EB",
+          "description": "Energy Bow",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_4_4",
+          "offset": 4,
+          "size": 4,
+          "shortcut": "",
+          "description": "Reserved field 4:4",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "shortcut": "",
+          "description": "T21",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status"
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "shortcut": "",
+          "description": "NU",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "number_of_buttons_pressed_simultaneously_other_bit_combinations_are_not_valid",
+          "field_ref": "number_of_buttons_pressed_simultaneously_other_bit_combinations_are_not_valid",
+          "bitfield_ref": "number_of_buttons_pressed_simultaneously_other_bit_combinations_are_not_valid",
+          "enum": [
+            {
+              "value": 0,
+              "label": "no_button"
+            },
+            {
+              "value": 3,
+              "label": "3_or_4_buttons"
+            }
+          ]
+        },
+        {
+          "channel_ref": "energy_bow",
+          "field_ref": "energy_bow",
+          "bitfield_ref": "energy_bow",
+          "enum": [
+            {
+              "value": 0,
+              "label": "released"
+            },
+            {
+              "value": 1,
+              "label": "pressed"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

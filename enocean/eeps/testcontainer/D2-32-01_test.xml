@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProfileCertification
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./Certification_EEP.xsd" schemaVersion="0.9">
+    <EEP rorg="0xD2" func="0x32" type="0x01">
+        <TestCase>
+            <Name>Teach-in Test</Name>
+            <Test>
+                <Name>Universal Teach-in Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD4" length="7">
+                            <!--UTE-->
+                            <Byte order="0" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="4" ignoremask="0x00">0x01</Byte>
+                            <Byte order="5" ignoremask="0x00">0x32</Byte>
+                            <Byte order="6" ignoremask="0x00">0xD2</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>0</Value>
+                            </Data>
+                            <Data>
+                                <Type>RORG</Type>
+                                <Value>210</Value>
+                            </Data>
+                            <Data>
+                                <Type>FUNC</Type>
+                                <Value>50</Value>
+                            </Data>
+                            <Data>
+                                <Type>TYPE</Type>
+                                <Value>01</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+        <TestCase>
+            <Name>Power Fail Test</Name>
+            <Test>
+                <Name> Power Fail False</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0x40">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xFF">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Type>PowerFail</Type>
+                                <Value>0</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name> Power Fail True</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0x40">0x80</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xFF">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Type>PowerFail</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+        <TestCase>
+            <Name>Divisor Test</Name>
+            <Test>
+                <Name> x/1 Divisor</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0x80">0x00</Byte>
+                            <Byte order="1" ignoremask="0x00">0xFF</Byte>
+                            <Byte order="2" ignoremask="0x00">0xFF</Byte>
+                            <Byte order="3" ignoremask="0x00">0xFF</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Type>DIV</Type>
+                                <Value>0</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name> x/10 Divisor</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0x80">0x40</Byte>
+                            <Byte order="1" ignoremask="0x00">0xFF</Byte>
+                            <Byte order="2" ignoremask="0x00">0xFF</Byte>
+                            <Byte order="3" ignoremask="0x00">0xFF</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Type>DIV</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+        <TestCase>
+            <Name>Channel 1 Test</Name>
+            <Test>
+                <Name> Min Current value CH1</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0xC0">0x00</Byte>
+                            <Byte order="1" ignoremask="0x00">0x00</Byte>
+                            <Byte order="2" ignoremask="0x0F">0x00</Byte>
+                            <Byte order="3" ignoremask="0xFF">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Type>Current</Type>
+                                <Value>0</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name> Max Current value CH1</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0xC0">0x00</Byte>
+                            <Byte order="1" ignoremask="0x00">0xFF</Byte>
+                            <Byte order="2" ignoremask="0x0F">0xF0</Byte>
+                            <Byte order="3" ignoremask="0xFF">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Type>Current</Type>
+                                <Value>4095</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name> Mid Current Value CH1</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0xC0">0x00</Byte>
+                            <Byte order="1" ignoremask="0x00">0x7F</Byte>
+                            <Byte order="2" ignoremask="0x0F">0xF0</Byte>
+                            <Byte order="3" ignoremask="0xFF">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Type>Current</Type>
+                                <Value>2047</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+        <TestCase>
+            <Name>Channel 2 Test</Name>
+            <Test>
+                <Name> Min Current value CH2</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0xC0">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xF0">0x00</Byte>
+                            <Byte order="3" ignoremask="0x00">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Type>Current</Type>
+                                <Value>0</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name> Max Current value CH2</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0xC0">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xF0">0x0F</Byte>
+                            <Byte order="3" ignoremask="0x00">0xFF</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Type>Current</Type>
+                                <Value>4095</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name> Mid Current Value CH2</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0xC0">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0xF0">0x07</Byte>
+                            <Byte order="3" ignoremask="0x00">0xFF</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Type>Current</Type>
+                                <Value>2047</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+    </EEP>
+</ProfileCertification>

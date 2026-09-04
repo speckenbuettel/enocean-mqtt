@@ -1,0 +1,938 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ProfileCertification xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./Certification_EEP.xsd" schemaVersion="0.9">
+    <EEP rorg="0xD2" func="0x06" type="0x10">
+        <TestCase onlyValidFor="OutboundDevice">
+            <Name>Teach-in Test</Name>
+            <Test>
+                <Name>Universal Teach-in Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD4" length="7">
+                            <!--UTE-->
+                            <Byte order="0" ignoremask="0x00">0xC0</Byte>
+                            <Byte order="1" ignoremask="0x00">0xFF</Byte>
+                            <Byte order="2" ignoremask="0x00">0x71</Byte>
+                            <Byte order="3" ignoremask="0x00">0x00</Byte>
+                            <Byte order="4" ignoremask="0x00">0x10</Byte>
+                            <Byte order="5" ignoremask="0x00">0x06</Byte>
+                            <Byte order="6" ignoremask="0x00">0xD2</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>RORG</Type>
+                                <Value>210</Value>
+                            </Data>
+                            <Data>
+                                <Type>FUNC</Type>
+                                <Value>6</Value>
+                            </Data>
+                            <Data>
+                                <Type>TYPE</Type>
+                                <Value>16</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+        <TestCase onlyValidFor="InboundDevice">
+            <Name>Teach-in Test</Name>
+            <Test>
+                <Name>Universal Teach-in Response Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD4" length="7">
+                            <!--UTE-->
+                            <Byte order="0" ignoremask="0x00">0x91</Byte>
+                            <Byte order="1" ignoremask="0x00">0xFF</Byte>
+                            <Byte order="2" ignoremask="0x00">0x71</Byte>
+                            <Byte order="3" ignoremask="0x00">0x00</Byte>
+                            <Byte order="4" ignoremask="0x00">0x10</Byte>
+                            <Byte order="5" ignoremask="0x00">0x06</Byte>
+                            <Byte order="6" ignoremask="0x00">0xD2</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <Type>Direction</Type>
+                                <Value>1</Value>
+                            </Data>
+                            <Data>
+                                <Type>RORG</Type>
+                                <Value>210</Value>
+                            </Data>
+                            <Data>
+                                <Type>FUNC</Type>
+                                <Value>6</Value>
+                            </Data>
+                            <Data>
+                                <Type>TYPE</Type>
+                                <Value>16</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+        <TestCase onlyValidFor="InboundDevice">
+            <Name>Set Window Position Test</Name>
+            <Test>
+                <Name>Close and Unlock Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0x00">0x00</Byte>
+                            <Byte order="1" ignoremask="0x00">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0xFF</Byte>
+                            <Byte order="3" ignoremask="0xFF">0xFF</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>WP</ShortCut>
+                                <Type>Window Position</Type>
+                                <Value>0</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>	
+			<Test>
+                <Name>Tilt 1% Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0x00">0x00</Byte>
+                            <Byte order="1" ignoremask="0x00">0x01</Byte>
+                            <Byte order="2" ignoremask="0xFF">0xFF</Byte>
+                            <Byte order="3" ignoremask="0xFF">0xFF</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>WP</ShortCut>
+                                <Type>Window Position</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>	
+			<Test>				
+                <Name>Tilt 50% Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0x00">0x00</Byte>
+                            <Byte order="1" ignoremask="0x00">0x32</Byte>
+                            <Byte order="2" ignoremask="0xFF">0xFF</Byte>
+                            <Byte order="3" ignoremask="0xFF">0xFF</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>WP</ShortCut>
+                                <Type>Window Position</Type>
+                                <Value>50</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>	
+            </Test>	
+			<Test>				
+                <Name>Tilt 100% Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0x00">0x00</Byte>
+                            <Byte order="1" ignoremask="0x00">0x64</Byte>
+                            <Byte order="2" ignoremask="0xFF">0xFF</Byte>
+                            <Byte order="3" ignoremask="0xFF">0xFF</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>WP</ShortCut>
+                                <Type>Window Position</Type>
+                                <Value>100</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>				
+			<Test>
+                <Name>Do not change Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0x00">0x00</Byte>
+                            <Byte order="1" ignoremask="0x00">0xFD</Byte>
+                            <Byte order="2" ignoremask="0xFF">0xFF</Byte>
+                            <Byte order="3" ignoremask="0xFF">0xFF</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>WP</ShortCut>
+                                <Type>Window Position</Type>
+                                <Value>253</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+			<Test>			
+                <Name>Stop Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0x00">0x00</Byte>
+                            <Byte order="1" ignoremask="0x00">0xFE</Byte>
+                            <Byte order="2" ignoremask="0xFF">0xFF</Byte>
+                            <Byte order="3" ignoremask="0xFF">0xFF</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>WP</ShortCut>
+                                <Type>Window Position</Type>
+                                <Value>254</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>					
+			<Test>			
+                <Name>Close and Lock Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0x00">0x00</Byte>
+                            <Byte order="1" ignoremask="0x00">0xFF</Byte>
+                            <Byte order="2" ignoremask="0xFF">0xFF</Byte>
+                            <Byte order="3" ignoremask="0xFF">0xFF</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>WP</ShortCut>
+                                <Type>Window Position</Type>
+                                <Value>255</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>	           	
+        </TestCase>					
+        <TestCase onlyValidFor="InboundDevice">
+			<Name>Aeration Timer Test</Name>
+            <Test>
+                <Name>Min. Aeration Timer Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0x00">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x64</Byte>
+                            <Byte order="2" ignoremask="0x00">0x00</Byte>
+                            <Byte order="3" ignoremask="0x00">0x‭01</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>AT</ShortCut>
+                                <Type>Aeration Timer</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>			
+            <Test>
+                <Name>Medium Aeration Timer Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0x00">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x64</Byte>
+                            <Byte order="2" ignoremask="0x00">0x7E</Byte>
+                            <Byte order="3" ignoremask="0x00">0x‭90</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>AT</ShortCut>
+                                <Type>Aeration Timer</Type>
+                                <Value>32400</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>				
+            <Test>
+                <Name>Max. Aeration Timer Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0x00">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x64</Byte>
+                            <Byte order="2" ignoremask="0x00">0xFD</Byte>
+                            <Byte order="3" ignoremask="0x00">0x‭20</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>AT</ShortCut>
+                                <Type>Aeration Timer</Type>
+                                <Value>64800</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>				
+            <Test>
+                <Name>Aeration Timer do not change Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0x00">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x64</Byte>
+                            <Byte order="2" ignoremask="0x00">0xFF</Byte>
+                            <Byte order="3" ignoremask="0x00">0x‭FE</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>AT</ShortCut>
+                                <Type>Aeration Timer</Type>
+                                <Value>‭65534</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>				
+            <Test>
+                <Name>Aeration Timer Continous Aeration Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0x00">0x00</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x64</Byte>
+                            <Byte order="2" ignoremask="0x00">0xFF</Byte>
+                            <Byte order="3" ignoremask="0x00">0x‭FF</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>AT</ShortCut>
+                                <Type>Aeration Timer</Type>
+                                <Value>‭65535‬</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>					
+		</TestCase>	
+        <TestCase onlyValidFor="InboundDevice">
+			<Name>Query Test</Name>
+            <Test>
+                <Name>Query Status Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="2">
+                            <Byte order="0" ignoremask="0x00">0x01</Byte>
+                            <Byte order="1" ignoremask="0x00">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>RT</ShortCut>
+                                <Type>Response Type</Type>
+                                <Value>0</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>	
+            <Test>
+                <Name>Query Service Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="2">
+                            <Byte order="0" ignoremask="0x00">0x01</Byte>
+                            <Byte order="1" ignoremask="0x00">0x01</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>RT</ShortCut>
+                                <Type>Response Type</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>	
+        </TestCase>			
+        <TestCase onlyValidFor="OutboundDevice">
+            <Name>Position Status Test</Name>
+            <Test>
+                <Name>Closed and Locked</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="5">
+                            <Byte order="0" ignoremask="0x00">0x02</Byte>
+                            <Byte order="1" ignoremask="0x00">0x00</Byte>
+                            <Byte order="2" ignoremask="0x00">0x00</Byte>
+                            <Byte order="3" ignoremask="0x00">0x00</Byte>
+                            <Byte order="4" ignoremask="0x00">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>PS</ShortCut>
+                                <Type>Position Status</Type>
+                                <Value>0</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>	
+			<Test>
+                <Name>Move unlocking</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="5">
+                            <Byte order="0" ignoremask="0x00">0x02</Byte>
+                            <Byte order="1" ignoremask="0x00">0x01</Byte>
+                            <Byte order="2" ignoremask="0x00">0x00</Byte>
+                            <Byte order="3" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="4" ignoremask="0xFF">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>PS</ShortCut>
+                                <Type>Position Status</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+			<Test>
+                <Name>Move unlocking stopped</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="5">
+                            <Byte order="0" ignoremask="0x00">0x02</Byte>
+                            <Byte order="1" ignoremask="0x00">0x02</Byte>
+                            <Byte order="2" ignoremask="0x00">0x00</Byte>
+                            <Byte order="3" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="4" ignoremask="0xFF">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>PS</ShortCut>
+                                <Type>Position Status</Type>
+                                <Value>2</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>			
+			<Test>
+                <Name>Move tilting</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="5">
+                            <Byte order="0" ignoremask="0x00">0x02</Byte>
+                            <Byte order="1" ignoremask="0x00">0x03</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="4" ignoremask="0xFF">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>PS</ShortCut>
+                                <Type>Position Status</Type>
+                                <Value>3</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>					
+			<Test>
+                <Name>Tilt and Stopped</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="5">
+                            <Byte order="0" ignoremask="0x00">0x02</Byte>
+                            <Byte order="1" ignoremask="0x00">0x04</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="4" ignoremask="0xFF">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>PS</ShortCut>
+                                <Type>Position Status</Type>
+                                <Value>4</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>					
+			<Test>
+                <Name>Move closeing</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="5">
+                            <Byte order="0" ignoremask="0x00">0x02</Byte>
+                            <Byte order="1" ignoremask="0x00">0x05</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="4" ignoremask="0xFF">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>PS</ShortCut>
+                                <Type>Position Status</Type>
+                                <Value>5</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+			<Test>
+                <Name>Move locking</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="5">
+                            <Byte order="0" ignoremask="0x00">0x02</Byte>
+                            <Byte order="1" ignoremask="0x00">0x06</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="4" ignoremask="0xFF">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>PS</ShortCut>
+                                <Type>Position Status</Type>
+                                <Value>6</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>	
+			<Test>
+                <Name>Move locking stopped</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="5">
+                            <Byte order="0" ignoremask="0x00">0x02</Byte>
+                            <Byte order="1" ignoremask="0x00">0x07</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="4" ignoremask="0xFF">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>PS</ShortCut>
+                                <Type>Position Status</Type>
+                                <Value>7</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>	
+			<Test>
+                <Name>Position unknown</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="5">
+                            <Byte order="0" ignoremask="0x00">0x02</Byte>
+                            <Byte order="1" ignoremask="0x00">0x08</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="4" ignoremask="0xFF">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>PS</ShortCut>
+                                <Type>Position Status</Type>
+                                <Value>8</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>		
+			<Test>
+                <Name>Position unknown stopped</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="5">
+                            <Byte order="0" ignoremask="0x00">0x02</Byte>
+                            <Byte order="1" ignoremask="0x00">0x09</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="4" ignoremask="0xFF">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>PS</ShortCut>
+                                <Type>Position Status</Type>
+                                <Value>9</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>					
+        </TestCase>	
+        <TestCase onlyValidFor="OutboundDevice">
+            <Name>Tilt Position Test</Name>
+            <Test>
+                <Name>Tilt 0% Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="5">
+                            <Byte order="0" ignoremask="0x00">0x02</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x04</Byte>
+                            <Byte order="2" ignoremask="0x00">0x00</Byte>
+                            <Byte order="3" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="4" ignoremask="0xFF">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>TP</ShortCut>
+                                <Type>Tilt Position</Type>
+                                <Value>0</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Tilt 50% Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="5">
+                            <Byte order="0" ignoremask="0x00">0x02</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x04</Byte>
+                            <Byte order="2" ignoremask="0x00">0x32</Byte>
+                            <Byte order="3" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="4" ignoremask="0xFF">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>TP</ShortCut>
+                                <Type>Tilt Position</Type>
+                                <Value>50</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+            <Test>
+                <Name>Tilt 100% Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="5">
+                            <Byte order="0" ignoremask="0x00">0x02</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x04</Byte>
+                            <Byte order="2" ignoremask="0x00">0x64</Byte>
+                            <Byte order="3" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="4" ignoremask="0xFF">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>TP</ShortCut>
+                                <Type>Tilt Position</Type>
+                                <Value>100</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>					
+        </TestCase>	
+        <TestCase onlyValidFor="OutboundDevice">
+            <Name>Remaining Aeration Time Test</Name>
+            <Test>
+                <Name>Continous Aeration Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="5">
+                            <Byte order="0" ignoremask="0x00">0x02</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x04</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x64</Byte>
+                            <Byte order="3" ignoremask="0x00">0xFF</Byte>
+                            <Byte order="4" ignoremask="0x00">0xFF</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>RAT</ShortCut>
+                                <Type>Remaining Aeration Time</Type>
+                                <Value>‭65535‬</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>	
+            <Test>
+                <Name>Max. Aeration Timer Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="5">
+                            <Byte order="0" ignoremask="0x00">0x02</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x04</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x64</Byte>
+                            <Byte order="3" ignoremask="0x00">0xFD</Byte>
+                            <Byte order="4" ignoremask="0x00">0x20</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>RAT</ShortCut>
+                                <Type>Remaining Aeration Time</Type>
+                                <Value>64800</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>	
+            <Test>
+                <Name>Medium Aeration Timer Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="5">
+                            <Byte order="0" ignoremask="0x00">0x02</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x04</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x64</Byte>
+                            <Byte order="3" ignoremask="0x00">0x‭7E</Byte>
+                            <Byte order="4" ignoremask="0x00">0x90‬</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>RAT</ShortCut>
+                                <Type>Remaining Aeration Time</Type>
+                                <Value>‭32400‬</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>	
+            <Test>
+                <Name>Min. Aeration Timer Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="5">
+                            <Byte order="0" ignoremask="0x00">0x02</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x04</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x64</Byte>
+                            <Byte order="3" ignoremask="0x00">0x‭00</Byte>
+                            <Byte order="4" ignoremask="0x00">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>RAT</ShortCut>
+                                <Type>Remaining Aeration Time</Type>
+                                <Value>0</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+        <TestCase onlyValidFor="OutboundDevice">
+            <Name>Failure Code Test</Name>
+            <Test>
+                <Name>No Failure Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0x00">0x03</Byte>
+                            <Byte order="1" ignoremask="0x00">0x00</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xFF">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>FC</ShortCut>
+                                <Type>Failure Code</Type>
+                                <Value>0</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>	
+			<Test>
+				<Name>Close Failure Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0x00">0x03</Byte>
+                            <Byte order="1" ignoremask="0x00">0x01</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xFF">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>FC</ShortCut>
+                                <Type>Failure Code</Type>
+                                <Value>1</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+			<Test>
+				<Name>Tilt Failure Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0x00">0x03</Byte>
+                            <Byte order="1" ignoremask="0x00">0x02</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xFF">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>FC</ShortCut>
+                                <Type>Failure Code</Type>
+                                <Value>2</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>			
+			<Test>
+				<Name>Drive Connection Failure Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0x00">0x03</Byte>
+                            <Byte order="1" ignoremask="0x00">0x03</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xFF">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>FC</ShortCut>
+                                <Type>Failure Code</Type>
+                                <Value>3</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>					
+			<Test>
+				<Name>Drive Overcurrent Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0x00">0x03</Byte>
+                            <Byte order="1" ignoremask="0x00">0x04</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xFF">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>FC</ShortCut>
+                                <Type>Failure Code</Type>
+                                <Value>4</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>					
+			<Test>
+				<Name>Drive Timeout Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0x00">0x03</Byte>
+                            <Byte order="1" ignoremask="0x00">0x05</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xFF">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>FC</ShortCut>
+                                <Type>Failure Code</Type>
+                                <Value>5</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>	
+			<Test>
+				<Name>Drive Failure Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0x00">0x03</Byte>
+                            <Byte order="1" ignoremask="0x00">0x06</Byte>
+                            <Byte order="2" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="3" ignoremask="0xFF">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>FC</ShortCut>
+                                <Type>Failure Code</Type>
+                                <Value>6</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>	
+        </TestCase>
+        <TestCase onlyValidFor="OutboundDevice">
+            <Name>Tilt Cycles Test</Name>
+            <Test>
+                <Name>Min. Tilt Cycles Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0x00">0x03</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0x00">0x00</Byte>
+                            <Byte order="3" ignoremask="0x00">0x00</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>TC</ShortCut>
+                                <Type>Tilt Cycles</Type>
+                                <Value>0</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>	
+            <Test>
+                <Name>Medium Tilt Cycles Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0x00">0x04</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0x00">0x7F</Byte>
+                            <Byte order="3" ignoremask="0x00">0x‭FF</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>TC</ShortCut>
+                                <Type>Tilt Cycles</Type>
+                                <Value>‭‭32767‬‬</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>	
+            <Test>
+                <Name>Max. Tilt Cycles Test</Name>
+                <Step>
+                    <DataSet>
+                        <Telegram rorg="0xD2" length="4">
+                            <Byte order="0" ignoremask="0x00">0x03</Byte>
+                            <Byte order="1" ignoremask="0xFF">0x00</Byte>
+                            <Byte order="2" ignoremask="0x00">0xFF</Byte>
+                            <Byte order="3" ignoremask="0x00">0x‭FF</Byte>
+                        </Telegram>
+                        <RealData>
+                            <Data>
+                                <ShortCut>TC</ShortCut>
+                                <Type>Tilt Cycles</Type>
+                                <Value>65535</Value>
+                            </Data>
+                        </RealData>
+                    </DataSet>
+                </Step>
+            </Test>
+        </TestCase>
+    </EEP>
+</ProfileCertification>

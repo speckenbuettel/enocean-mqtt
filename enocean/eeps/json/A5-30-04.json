@@ -1,0 +1,87 @@
+{
+   "header": {
+      "httpStatus": 200,
+      "content": "profile",
+      "gateway": "DC-GW/EO-IP v1.0.14",
+      "timestamp": "2020-04-28T10:29:06.097+0200"
+   },
+   "profile": {
+      "eep": "A5-30-04",
+      "title": "Digital Input, 3 Digital Inputs, 1 Analog Input 8 Bits",
+      "functionGroups": [
+         {
+            "direction": "from",
+            "functions": [
+               {
+                  "key": "analogInput",
+                  "description": "Analog input 8 bits resolution",
+                  "values": [
+                     {
+                        "range": {
+                           "min": 0,
+                           "max": 255,
+                           "step": 1
+                        }
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "digitalInput0",
+                  "description": "Digital Input 0",
+                  "values": [
+                     {
+                        "value": "high",
+                        "meaning": "Digital Input 0 is High"
+                     },
+                     {
+                        "value": "low",
+                        "meaning": "Digital Input 0 is Low"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "digitalInput1",
+                  "description": "Digital Input 1",
+                  "values": [
+                     {
+                        "value": "high",
+                        "meaning": "Digital Input 1 is High"
+                     },
+                     {
+                        "value": "low",
+                        "meaning": "Digital Input 1 is Low"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               },
+               {
+                  "key": "digitalInput2",
+                  "description": "Digital Input 2",
+                  "values": [
+                     {
+                        "value": "high",
+                        "meaning": "Digital Input 2 is High"
+                     },
+                     {
+                        "value": "low",
+                        "meaning": "Digital Input 2 is Low"
+                     }
+                  ],
+                  "transmitOnConnect": true,
+                  "transmitOnEvent": true,
+                  "transmitOnDuplicate": false
+               }
+            ]
+         }
+      ],
+      "version": 0.9
+   }
+}
