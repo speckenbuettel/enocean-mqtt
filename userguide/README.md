@@ -158,6 +158,22 @@ For physical transmission, TX must be enabled both globally and for the selected
 
 If `base_id` is configured manually, it must contain exactly eight hexadecimal digits and represent an EnOcean Base ID with the lowest seven bits cleared.
 
+### Operation without radio hardware
+
+An EnOcean interface is not required for replay, API/UI exploration or MQTT-based testing. The complete `enocean` section can be omitted from `config/config.json`. This uses the equivalent defaults:
+
+```json
+"enocean": {
+  "default_interface": null,
+  "tx_enabled": false,
+  "interfaces": []
+}
+```
+
+With no configured interfaces, no serial connection is attempted. The Web API, Web UI, MQTT processing, SQLite storage and replay remain available when their respective sections are configured. Live EnOcean RX and physical TX are unavailable until an interface is added.
+
+This is preferable to leaving a sample interface enabled when no USB or UART adapter is connected: an enabled but unavailable device is correctly reported as disconnected and the runtime continues trying to reconnect it.
+
 ---
 
 ## Configuration
@@ -170,9 +186,24 @@ config/config.json
 
 It is strict JSON. Unknown fields are rejected. Relative paths are resolved from the repository root, so start the runtime with the repository root as its working directory.
 
-Only the `mqtt` object is structurally mandatory in the configuration model; all other sections have defaults. For a useful live EnOcean gateway, however, configure **MQTT plus at least one enabled EnOcean interface**.
+Only the `mqtt` object is structurally mandatory in the configuration model; all other sections have defaults. For a useful live EnOcean gateway, however, configure **MQTT plus at least one enabled EnOcean interface**. For replay-only operation, omit `enocean` as described above.
 
-### Minimal configuration
+### Minimal configuration without radio hardware
+
+The smallest configuration for replay and MQTT-based tests contains only the required MQTT settings:
+
+```json
+{
+  "mqtt": {
+    "host": "192.0.2.10",
+    "base_topic": "enocean"
+  }
+}
+```
+
+Replace the example broker address. Add `sqlite` and `web_api` sections from `config/config.example.json` when telegram history or the Web UI and Swagger are wanted.
+
+### Minimal live configuration
 
 The following is a practical minimal receive-only configuration:
 
@@ -399,7 +430,7 @@ enocean-mqtt
 
 Keep the explicit `--config` form when testing or documenting an installation because it makes the active configuration unambiguous.
 
-During startup verify that there is no configuration traceback, the MQTT connection succeeds and the configured serial interface opens.
+During startup verify that there is no configuration traceback and the MQTT connection succeeds. For a live gateway, also verify that the configured serial interface opens. In operation without radio hardware, the absence of an EnOcean connection is expected.
 
 Stop the foreground process with `Ctrl+C` after the initial test.
 
@@ -459,6 +490,8 @@ Displayed information can include direction, sender ID, raw telegram, decoded da
 
 Replay processes previously captured EnOcean traffic through the same runtime pipeline as live traffic. It is intended for reproducible testing, regression testing and decoder validation. DolphinView and Weinzierl capture workflows are supported by the replay subsystem.
 
+Replay does not require an `enocean` configuration section or a connected radio adapter. Start the service with the hardware-free configuration above, then use the replay controls in the Web UI/API, or supply a supported capture file to the command-line replay workflow.
+
 ---
 
 ## REST API and Swagger
@@ -472,6 +505,8 @@ http://<gateway-host>:8001/docs
 ```
 
 when the Web API uses its default port.
+
+The API version displayed by Swagger/OpenAPI is read from the repository-root `VERSION` file when the service starts. Restart the service after changing that file.
 
 <!-- Screenshot: images/swagger.png -->
 
@@ -491,7 +526,13 @@ The example below assumes:
 
 Replace these paths with the actual installation values.
 
-Create `/etc/systemd/system/enocean-mqtt.service`:
+Create and open `/etc/systemd/system/enocean-mqtt.service` with the `nano` text editor:
+
+```bash
+sudo nano /etc/systemd/system/enocean-mqtt.service
+```
+
+Paste the following content into the editor and replace the user name and paths with the actual installation values:
 
 ```ini
 [Unit]
@@ -511,6 +552,8 @@ RestartSec=5
 [Install]
 WantedBy=multi-user.target
 ```
+
+In `nano`, save the file with `Ctrl+O`, confirm the file name with `Enter`, and close the editor with `Ctrl+X`.
 
 The service user must have access to the repository files, secret files and EnOcean serial device. Add it to `dialout` if required:
 
