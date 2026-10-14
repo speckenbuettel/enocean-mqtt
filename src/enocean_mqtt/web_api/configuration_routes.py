@@ -14,7 +14,13 @@ from zoneinfo import available_timezones
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import ValidationError
 
-from enocean_mqtt.runtime_config import RuntimeConfig
+from enocean_mqtt.notifications import (
+    Notification,
+    NotificationError,
+    PushoverClient,
+    validate_token,
+)
+from enocean_mqtt.runtime_config import NotificationsConfig, RuntimeConfig
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
 CONFIG_FILE = PROJECT_ROOT / "config" / "config.json"
@@ -62,6 +68,20 @@ def create_configuration_router(
     def put_configuration(payload: dict[str, Any]) -> dict[str, Any]:
         config = _extract_config_payload(payload)
         _validate_configuration(config)
+        pushover = RuntimeConfig.model_validate(config).notifications.pushover
+        token_writes: list[tuple[Path, str]] = []
+        for name in ("user_token", "api_token"):
+            value = payload.get(f"pushover_{name}")
+            if value is not None:
+                try:
+                    if not isinstance(value, str):
+                        raise NotificationError("Pushover token must be a string")
+                    token_writes.append((
+                        _resolve_path(getattr(pushover, f"{name}_file"), config_file),
+                        validate_token(value),
+                    ))
+                except NotificationError as exc:
+                    raise HTTPException(status_code=422, detail=str(exc)) from None
         mqtt_password = payload.get("mqtt_password")
         if mqtt_password is not None:
             if not isinstance(mqtt_password, str) or not mqtt_password:
@@ -70,6 +90,8 @@ def create_configuration_router(
             if not isinstance(password_file, str) or not password_file:
                 raise HTTPException(status_code=422, detail="MQTT password_file is not configured")
             _write_text_atomic(_resolve_path(password_file, config_file), mqtt_password)
+        for token_path, token_value in token_writes:
+            _write_text_atomic(token_path, token_value)
         _write_configuration_atomic(config_file, config)
         return {
             "saved": True,
@@ -78,6 +100,24 @@ def create_configuration_router(
             "config": config,
             "schema": _build_schema(config, config_file),
         }
+
+    @router.post("/api/v1/notifications/pushover/send")
+    def send_pushover(notification: Notification) -> dict[str, bool]:
+        """Admin-only through global middleware; send using saved settings."""
+        config = _load_configuration(config_file)
+        _validate_configuration(config)
+        settings = RuntimeConfig.model_validate(config).notifications.pushover
+        settings = settings.model_copy(update={
+            "user_token_file": str(_resolve_path(settings.user_token_file, config_file)),
+            "api_token_file": str(_resolve_path(settings.api_token_file, config_file)),
+        })
+        if not settings.enabled:
+            raise HTTPException(status_code=409, detail="Pushover is disabled")
+        try:
+            PushoverClient(settings).send(notification)
+        except NotificationError as exc:
+            raise HTTPException(status_code=502, detail=str(exc)) from None
+        return {"accepted_by_pushover": True}
 
     @router.get("/api/v1/config/api-tokens")
     def list_api_tokens() -> dict[str, Any]:
@@ -129,6 +169,15 @@ def _load_configuration(config_file: Path) -> dict[str, Any]:
     if not isinstance(payload, dict):
         raise HTTPException(status_code=500, detail="Configuration root must be an object")
 
+    # Surface the optional section for existing installations without rewriting the file.
+    if "notifications" not in payload:
+        payload["notifications"] = NotificationsConfig().model_dump(mode="json")
+    elif isinstance(payload["notifications"], dict):
+        existing = payload["notifications"].get("pushover", {})
+        if isinstance(existing, dict):
+            payload["notifications"]["pushover"] = {
+                **NotificationsConfig().pushover.model_dump(mode="json"), **existing,
+            }
     return payload
 
 
@@ -251,6 +300,13 @@ def _schema_node(
     elif path == "mqtt.password_file":
         node["control"] = "password-secret"
         node["label"] = "Password"
+        node["configured"] = _resolve_path(str(value), config_file).is_file() if value else False
+    elif path in {
+        "notifications.pushover.user_token_file", "notifications.pushover.api_token_file",
+    }:
+        node["control"] = "pushover-secret"
+        node["secret_name"] = f"pushover_{key.removesuffix('_file')}"
+        node["label"] = "User Token" if key == "user_token_file" else "API Token"
         node["configured"] = _resolve_path(str(value), config_file).is_file() if value else False
     elif path == "web_api.authentication.token_file":
         node["control"] = "api-tokens"

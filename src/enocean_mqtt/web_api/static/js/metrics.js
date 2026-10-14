@@ -7,6 +7,7 @@ const ACTIVITY_RANGES = {
   '24h': { label: '24 h' },
   '3d': { label: '3 d' },
   '7d': { label: '7 d' },
+  '30d': { label: '30 d' },
 };
 
 let selectedActivityRange = '24h';
@@ -19,7 +20,7 @@ function text(id, value) {
 
 function number(value, digits = 0) {
   const numeric = Number(value);
-  if (!Number.isFinite(numeric)) return '–';
+  if (!Number.isFinite(numeric)) return '\u2013';
   return numeric.toLocaleString(undefined, {
     minimumFractionDigits: digits,
     maximumFractionDigits: digits,
@@ -28,19 +29,19 @@ function number(value, digits = 0) {
 
 function rate(value) {
   const numeric = Number(value);
-  if (!Number.isFinite(numeric)) return '–';
+  if (!Number.isFinite(numeric)) return '\u2013';
   return number(numeric, numeric < 10 ? 1 : 0);
 }
 
 function interval(value) {
   const numeric = Number(value);
-  if (!Number.isFinite(numeric)) return '–';
+  if (!Number.isFinite(numeric)) return '\u2013';
   if (numeric === 0) return '0 s';
   return `${number(numeric, numeric < 10 ? 2 : 1)} s`;
 }
 
 function displayLastRx(value) {
-  if (value === null || value === undefined || value === '') return '–';
+  if (value === null || value === undefined || value === '') return '\u2013';
   if (typeof value === 'string') return value;
   if (typeof value === 'object') {
     return value.raw_telegram || value.raw || value.data || JSON.stringify(value);
@@ -85,7 +86,7 @@ function renderUnknownRorgMetrics(rorg) {
   }
   body.innerHTML = entries.map(([name, item]) => {
     const metric = item && typeof item === 'object' ? item : {};
-    return `<tr><td>${escapeHtml(name)}</td><td>${escapeHtml(number(metric.devices_total))}</td><td>${escapeHtml(number(metric.telegrams_total))}</td><td>${escapeHtml(rate(metric.telegrams_per_minute))}</td></tr>`;
+    return `<tr><td>${escapeHtml(name)}</td><td>${escapeHtml(number(metric.unique_senders))}</td><td>${escapeHtml(number(metric.telegrams_total))}</td><td>${escapeHtml(rate(metric.telegrams_per_minute))}</td></tr>`;
   }).join('');
 }
 
@@ -112,6 +113,39 @@ function chartLabel(index, length, bucket, rangeKey) {
   return activityLabel(bucket.start, rangeKey === '1h');
 }
 
+function activityScale(values) {
+  const rawMaximum = Math.max(0, ...values.filter(Number.isFinite));
+  if (rawMaximum <= 0) return { maximum: 1, ticks: [1, 0] };
+
+  const targetStep = rawMaximum / 4;
+  const magnitude = 10 ** Math.floor(Math.log10(targetStep));
+  const normalized = targetStep / magnitude;
+  const factor = normalized <= 1 ? 1
+    : normalized <= 2 ? 2
+      : normalized <= 2.5 ? 2.5
+        : normalized <= 5 ? 5 : 10;
+  const step = Math.max(1, factor * magnitude);
+  const maximum = Math.ceil(rawMaximum / step) * step;
+  const ticks = [];
+  for (let value = maximum; value >= 0; value -= step) {
+    ticks.push(Math.max(0, Math.round(value)));
+  }
+  if (ticks[ticks.length - 1] !== 0) ticks.push(0);
+  return { maximum, ticks: [...new Set(ticks)] };
+}
+
+function activityChartFrame(bucketMarkup, scale) {
+  const tickMarkup = scale.ticks.map((value) => {
+    const position = (1 - value / scale.maximum) * 100;
+    return `<span class="metric-chart-y-tick" style="--tick-position:${position}">${escapeHtml(number(value))}</span>`;
+  }).join('');
+  const lineMarkup = scale.ticks.map((value) => {
+    const position = (1 - value / scale.maximum) * 100;
+    return `<span class="metric-chart-grid-line" style="--tick-position:${position}"></span>`;
+  }).join('');
+  return `<div class="metric-chart-y-axis" aria-hidden="true">${tickMarkup}</div><div class="metric-chart-plot"><div class="metric-chart-grid-lines" aria-hidden="true">${lineMarkup}</div><div class="metric-chart-buckets">${bucketMarkup}</div></div>`;
+}
+
 function renderRxActivityChart(buckets, rangeKey) {
   const chart = document.getElementById('rxChart');
   if (!chart) return;
@@ -125,16 +159,25 @@ function renderRxActivityChart(buckets, rangeKey) {
     Number(bucket?.rx?.unknown ?? 0),
   ]);
   chart.style.setProperty('--chart-columns', String(buckets.length));
-  const maximum = Math.max(1, ...values);
-  chart.innerHTML = buckets.map((bucket, index) => {
+  const scale = activityScale(values);
+  const bucketMarkup = buckets.map((bucket, index) => {
     const known = Number(bucket?.rx?.known ?? 0);
     const unknown = Number(bucket?.rx?.unknown ?? 0);
-    const knownHeight = known > 0 ? Math.max(2, Math.round((known / maximum) * 100)) : 0;
-    const unknownHeight = unknown > 0 ? Math.max(2, Math.round((unknown / maximum) * 100)) : 0;
     const label = chartLabel(index, buckets.length, bucket, rangeKey);
-    const tooltip = `${activityLabel(bucket.start)} | RX known ${number(known)} | unknown ${number(unknown)}`;
-    return `<div class="metric-chart-bucket" title="${escapeHtml(tooltip)}"><div class="metric-chart-bar-area"><div class="metric-chart-bars"><span class="metric-chart-bar rx known" style="height:${knownHeight}%"></span><span class="metric-chart-bar rx unknown" style="height:${unknownHeight}%"></span></div></div><div class="metric-chart-label">${escapeHtml(label)}</div></div>`;
+    const segments = ['original_telegrams', 'repeated_telegrams', 'unclassified_telegrams'];
+    const labels = ['Original', 'Repeated', 'Unclassified'];
+    const bar = (category, total) => {
+      const counts = segments.map((key) => Number(bucket?.rx?.[key]?.[category] ?? 0));
+      // Older API responses have no breakdown; preserve their total as unclassified.
+      counts[2] += Math.max(0, total - counts.reduce((sum, value) => sum + value, 0));
+      const tooltip = labels.map((name, i) => `${name} ${number(counts[i])}`).join(' | ');
+      const height = total / scale.maximum * 100;
+      const parts = counts.map((count, i) => `<span class="rx-segment ${segments[i]}" style="height:${total ? count / total * 100 : 0}%"></span>`).join('');
+      return `<span class="metric-chart-bar rx-stack ${category}" style="height:${height}%" title="${escapeHtml(`${activityLabel(bucket.start)} | ${category}: ${tooltip}`)}">${parts}</span>`;
+    };
+    return `<div class="metric-chart-bucket"><div class="metric-chart-bar-area"><div class="metric-chart-bars">${bar('known', known)}${bar('unknown', unknown)}</div></div><div class="metric-chart-label">${escapeHtml(label)}</div></div>`;
   }).join('');
+  chart.innerHTML = activityChartFrame(bucketMarkup, scale);
 }
 
 function renderTxActivityChart(buckets, rangeKey) {
@@ -147,14 +190,15 @@ function renderTxActivityChart(buckets, rangeKey) {
 
   const values = buckets.map((bucket) => Number(bucket?.tx ?? 0));
   chart.style.setProperty('--chart-columns', String(buckets.length));
-  const maximum = Math.max(1, ...values);
-  chart.innerHTML = buckets.map((bucket, index) => {
+  const scale = activityScale(values);
+  const bucketMarkup = buckets.map((bucket, index) => {
     const total = Number(bucket?.tx ?? 0);
-    const height = total > 0 ? Math.max(2, Math.round((total / maximum) * 100)) : 0;
+    const height = total > 0 ? Math.max(2, total / scale.maximum * 100) : 0;
     const label = chartLabel(index, buckets.length, bucket, rangeKey);
     const tooltip = `${activityLabel(bucket.start)} | TX ${number(total)}`;
     return `<div class="metric-chart-bucket" title="${escapeHtml(tooltip)}"><div class="metric-chart-bar-area"><div class="metric-chart-bars"><span class="metric-chart-bar tx" style="height:${height}%"></span></div></div><div class="metric-chart-label">${escapeHtml(label)}</div></div>`;
   }).join('');
+  chart.innerHTML = activityChartFrame(bucketMarkup, scale);
 }
 
 function renderMetrics(busmonitor, gateway) {
@@ -176,17 +220,20 @@ function renderMetrics(busmonitor, gateway) {
   text('rxMeanInterval', interval(rx.telegram_mean_interval_seconds));
   text('rxPeak', rate(rx.peak_telegrams_per_minute));
   text('rxRepeated', number(rx.repeated_telegrams_total));
+  text('rxOriginal', number(rx.original_telegrams?.telegrams_total));
+  text('rxOriginalRate', rate(rx.original_telegrams?.telegrams_per_minute));
+  text('rxRepeatedRate', rate(rx.repeated_telegrams?.telegrams_per_minute));
   text('txMeanInterval', interval(tx.telegram_mean_interval_seconds));
   text('unknownTelegrams', number(unknown.telegrams_total));
 
   text('activeDevices', number(devices.active_devices_total));
   text('gatewayKnownDevices', number(devices.known_devices_total));
   text('gatewayUnknownDevices', number(devices.unknown_devices_total));
-  text('lastSender', gateway.last_sender_id || busmonitor.last_sender_id || '–');
-  text('lastRorg', busmonitor.last_rorg || '–');
+  text('lastSender', gateway.last_sender_id || busmonitor.last_sender_id || '\u2013');
+  text('lastRorg', busmonitor.last_rorg || '\u2013');
 
-  text('observationSender', busmonitor.last_sender_id || gateway.last_sender_id || '–');
-  text('observationRorg', busmonitor.last_rorg || '–');
+  text('observationSender', busmonitor.last_sender_id || gateway.last_sender_id || '\u2013');
+  text('observationRorg', busmonitor.last_rorg || '\u2013');
   text('lastRx', displayLastRx(busmonitor.last_rx ?? gateway.last_rx));
 
   renderRorgMetrics(busmonitor.rorg);

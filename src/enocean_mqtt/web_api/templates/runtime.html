@@ -47,6 +47,7 @@
 
   <section class="compact-card logs-section">
     <div class="card-heading logs-heading"><div><h2>Service Logs</h2><span id="logMeta" class="card-tag">systemd journal</span></div><div class="log-controls">
+      <select id="logTimeFilter" aria-label="Log time range"><option value="true" selected>Since service start</option><option value="false">All retained logs</option></select>
       <select id="logLevelFilter" aria-label="Filter by log level"><option value="">All levels</option><option>DEBUG</option><option>INFO</option><option>WARNING</option><option>ERROR</option><option>CRITICAL</option></select>
       <input id="logSearch" type="search" placeholder="Search logs" aria-label="Search logs"><select id="logLimit" aria-label="Number of log entries"><option>100</option><option selected>200</option><option>500</option><option>1000</option></select>
       <button id="refreshLogs" type="button">Refresh</button><button id="exportCsv" type="button" class="secondary">CSV</button><button id="exportText" type="button" class="secondary">Text</button>
@@ -55,4 +56,4 @@
   </section>
 </div>
 {% endblock %}
-{% block scripts %}<script src="/static/js/runtime.js?v=20260828-2"></script>{% endblock %}
+{% block scripts %}<script src="/static/js/runtime.js?v={{ runtime_script_version }}"></script>{% endblock %}

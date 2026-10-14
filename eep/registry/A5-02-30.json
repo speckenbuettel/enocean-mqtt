@@ -1,0 +1,145 @@
+{
+  "profile_type": "standard",
+  "eep": "A5-02-30",
+  "rorg": "A5",
+  "func": "02",
+  "type": "30",
+  "func_description": "Temperature Sensor",
+  "type_description": "Range -40 °C to +62.3 °C (10 bit measurement)",
+  "description": "Temperature Sensor, Range -40 °C to +62.3 °C (10 bit measurement)",
+  "source": "EnOcean Equipment Profiles",
+  "source_version": "2.6.8",
+  "sources": [
+    "enocean/eeps/eep268.xml",
+    "enocean/eeps/json/A5-02-30.json",
+    "enocean/eeps/ip/A5-02-30_ip.pdf",
+    "eep/semantic-role-mapping.xlsx",
+    "eep/eep-list.csv"
+  ],
+  "direction": "unidirectional",
+  "device_class": "sensor",
+  "channels": [
+    {
+      "name": "temperature",
+      "display_name": null,
+      "description": "Temperature (linear)",
+      "source_key": "temperature",
+      "semantic_role": "climate.temperature.measurement",
+      "object_type": "measurement",
+      "data_type": "float",
+      "unit": "°C",
+      "value_precision": 1,
+      "value_resolution": 0.1,
+      "ranges": [
+        {
+          "min": -40,
+          "max": 62.3,
+          "step": 0.1,
+          "unit": "°C"
+        }
+      ],
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    }
+  ],
+  "messages": [],
+  "telegrams": [
+    {
+      "telegram_type_id": "a5-02-30.data",
+      "telegram_id": {
+        "rorg": "A5"
+      },
+      "direction": null,
+      "fields": [
+        {
+          "name": "reserved_0_14",
+          "offset": 0,
+          "size": 14,
+          "raw_min": 0,
+          "raw_max": 16383,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0,
+          "description": "Not Used (=0)"
+        },
+        {
+          "name": "reserved_24_4",
+          "offset": 24,
+          "size": 4,
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0,
+          "description": "Not Used (=0)"
+        },
+        {
+          "name": "reserved_29_3",
+          "offset": 29,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0,
+          "description": "Not Used (=0)"
+        },
+        {
+          "name": "lrn",
+          "offset": 28,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "shortcut": "LRNB",
+          "description": "LRN Bit",
+          "constant": 1
+        },
+        {
+          "name": "temperature",
+          "offset": 14,
+          "size": 10,
+          "raw_min": 0,
+          "raw_max": 1023,
+          "source": "payload",
+          "shortcut": "TMP",
+          "description": "Temperature (linear)"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "temperature",
+          "field_ref": "temperature",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 1023,
+            "scale_min": 62.3,
+            "scale_max": -40
+          }
+        }
+      ],
+      "constraints": [
+        {
+          "name": "data_only",
+          "field": "lrn",
+          "equals": 1
+        }
+      ]
+    }
+  ],
+  "tx": {
+    "aggregation_window_seconds": 10
+  }
+}

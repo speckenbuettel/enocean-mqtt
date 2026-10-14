@@ -1,5 +1,5 @@
 const managementUrl = '/api/v1/device-management';
-const state = { physical: [], virtual: [], unknown: [], canWrite: false };
+const state = { physical: [], virtual: [], unknown: [], foreign: [], canWrite: false };
 
 const elements = {
   status: document.getElementById('deviceRegistryStatus'),
@@ -155,6 +155,7 @@ function renderPhysical() {
   const devices = state.physical
     .filter((item) => matchesSearch([item.device_name, item.device_id, item.alias, item.eep, item.profile, item.manufacturer, item.model]))
     .filter((item) => matchesState(item, 'physical'))
+    .filter((item) => !(state.foreign || []).some((foreign) => foreign.sender_id === item.device_id))
     .sort((a, b) => text(a.device_name).localeCompare(text(b.device_name)));
   document.getElementById('physicalPanelCount').textContent = `${devices.length} devices`;
   if (devices.length === 0) return emptyRow(elements.physicalBody, 8, 'No physical devices match the current filters.');
@@ -181,6 +182,7 @@ function renderVirtual() {
   const devices = state.virtual
     .filter((item) => matchesSearch([item.metadata?.device_name, item.virtual_device_id, item.sender_id, item.eep, item.profile, ...(item.channels || [])]))
     .filter((item) => matchesState(item, 'virtual'))
+    .filter((item) => !(state.foreign || []).some((foreign) => foreign.sender_id === item.sender_id))
     .sort((a, b) => text(a.metadata?.device_name || a.virtual_device_id).localeCompare(text(b.metadata?.device_name || b.virtual_device_id)));
   document.getElementById('virtualPanelCount').textContent = `${devices.length} devices`;
   if (devices.length === 0) return emptyRow(elements.virtualBody, 8, 'No virtual devices match the current filters.');
@@ -262,6 +264,8 @@ async function loadDevices() {
     state.virtual = payload.virtual_devices || [];
     state.unknown = payload.unknown_devices || [];
     state.canWrite = Boolean(payload.can_write);
+    state.foreign = payload.foreign_devices || [];
+    if (typeof migrateForeignDevices === 'function') await migrateForeignDevices();
     document.getElementById('physicalCount').textContent = payload.counts?.devices ?? 0;
     document.getElementById('unknownCount').textContent = payload.counts?.unknown_devices ?? 0;
     document.getElementById('virtualCount').textContent = payload.counts?.virtual_devices ?? 0;

@@ -11,6 +11,7 @@ let configurationSchema = null;
 let canWrite = false;
 let dirty = false;
 let pendingMqttPassword = '';
+let pendingPushoverTokens = {};
 
 const configurationGroups = [
   {
@@ -34,6 +35,7 @@ const configurationGroups = [
   { key: 'sqlite', label: 'SQLite', description: 'Telegram persistence', sections: ['sqlite'] },
   { key: 'api', label: 'API', description: 'Web API and authentication', sections: ['web_api'] },
   { key: 'logging', label: 'Logging', description: 'Runtime logging', sections: ['logging'] },
+  { key: 'notifications', label: 'Notifications', description: 'Pushover messages', sections: ['notifications'] },
 ];
 
 const configurationGroupStorageKey = 'enocean-mqtt.settings.open-groups';
@@ -115,7 +117,8 @@ function canonical(value) {
 }
 
 function updateDirtyState() {
-  dirty = canonical(draftConfig) !== canonical(originalConfig) || pendingMqttPassword !== '';
+  dirty = canonical(draftConfig) !== canonical(originalConfig) || pendingMqttPassword !== ''
+    || Object.keys(pendingPushoverTokens).length > 0;
   if (saveConfigurationButton) saveConfigurationButton.disabled = !canWrite || !dirty;
   if (restartGatewayButton) restartGatewayButton.disabled = !canWrite || dirty;
 
@@ -132,6 +135,21 @@ function updateDirtyState() {
 }
 
 function createControl(node) {
+  if (node.control === 'pushover-secret') {
+    const input = document.createElement('input');
+    input.className = 'configuration-control';
+    input.type = 'password';
+    input.autocomplete = 'new-password';
+    input.placeholder = node.configured ? '••••••••' : `Enter ${node.label}`;
+    input.value = pendingPushoverTokens[node.secret_name] || '';
+    input.disabled = !canWrite;
+    input.addEventListener('input', () => {
+      if (input.value.trim()) pendingPushoverTokens[node.secret_name] = input.value.trim();
+      else delete pendingPushoverTokens[node.secret_name];
+      updateDirtyState();
+    });
+    return input;
+  }
   if (node.control === 'password-secret') {
     const input = document.createElement('input');
     input.className = 'configuration-control';
@@ -544,6 +562,35 @@ function createConfigurationSection(section, showHeading) {
   if (section.type === 'object') appendObjectFields(fields, section);
   else appendScalarField(fields, section);
   article.append(fields);
+  if (section.key === 'notifications') {
+    const testButton = document.createElement('button');
+    testButton.type = 'button';
+    testButton.className = 'configuration-button';
+    testButton.textContent = 'Send Pushover test message';
+    testButton.disabled = !canWrite;
+    testButton.addEventListener('click', async () => {
+      if (dirty) {
+        setMessage('Save settings before sending a test message.', 'configuration-warning');
+        return;
+      }
+      testButton.disabled = true;
+      try {
+        await apiJson('/api/v1/notifications/pushover/send', {
+          method: 'POST',
+          body: JSON.stringify({
+            title: (draftConfig.application?.name || 'enocean-mqtt').slice(0, 250),
+            message: 'Pushover test message from your EnOcean gateway.',
+          }),
+        });
+        setMessage('Test message accepted by Pushover.');
+      } catch (error) {
+        setMessage(error.message, 'configuration-error');
+      } finally {
+        testButton.disabled = !canWrite;
+      }
+    });
+    article.append(testButton);
+  }
   return article;
 }
 
@@ -627,6 +674,7 @@ async function loadConfiguration() {
     configurationSchema = payload.schema || { sections: [] };
     canWrite = Boolean(payload.can_write);
     pendingMqttPassword = '';
+    pendingPushoverTokens = {};
     normalizeDefaultInterface();
     renderConfiguration();
     updateDirtyState();
@@ -647,7 +695,11 @@ async function saveConfiguration() {
   try {
     const payload = await apiJson('/api/v1/config', {
       method: 'PUT',
-      body: JSON.stringify({ config: draftConfig, ...(pendingMqttPassword ? { mqtt_password: pendingMqttPassword } : {}) }),
+      body: JSON.stringify({
+        config: draftConfig,
+        ...(pendingMqttPassword ? { mqtt_password: pendingMqttPassword } : {}),
+        ...pendingPushoverTokens,
+      }),
     });
 
     originalConfig = clone(payload.config || draftConfig);
@@ -655,6 +707,7 @@ async function saveConfiguration() {
     configurationSchema = payload.schema || configurationSchema;
     dirty = false;
     pendingMqttPassword = '';
+    pendingPushoverTokens = {};
     renderConfiguration();
     if (saveConfigurationButton) saveConfigurationButton.disabled = true;
     setStatus('Saved', 'ok');

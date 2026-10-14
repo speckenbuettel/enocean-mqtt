@@ -4,11 +4,52 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import UTC, datetime
+from typing import Any
 
 from enocean_mqtt.esp3.packets import ESP3Packet, ESP3PacketType, build_esp3_frame
 from enocean_mqtt.replay.models import ReplayTelegram
 
 BROADCAST_DESTINATION_ID = "FFFFFFFF"
+
+
+def decode_f6_status(status: str | None) -> dict[str, Any] | None:
+    """Decode ERP1 RPS status, independently of device/EEP assignment.
+
+    Sources: EEP V3.1 section 3.1.1 (T21/NU), ERP1 V1.2 section 5.2.3
+    (repeating), and EnOcean Knowledge Base, ERP1 STATUS Field Encoding
+    (2024-07-11). F6 has no dedicated Teach-In bit.
+    """
+    if status is None:
+        return None
+    try:
+        raw = bytes.fromhex(status)
+    except ValueError:
+        return None
+    if len(raw) != 1:
+        return None
+    value = raw[0]
+    repeater = value & 0x0F
+    t21 = (value >> 5) & 1
+    nu = (value >> 4) & 1
+    return {
+        # Preserve the existing raw nibble contract; 15 is not fifteen hops.
+        "repeater_count": repeater,
+        "repeater_permitted": None if 3 <= repeater <= 14 else repeater != 15,
+        "repeater_status": {
+            0: "original",
+            1: "repeated_once",
+            2: "repeated_twice",
+            15: "do_not_repeat",
+        }.get(repeater, "reserved"),
+        "hash_type": "crc8" if value & 0x80 else "checksum",
+        "contains_teach_in": False,
+        "rps": {
+            "t21": t21,
+            "nu": nu,
+            "ptm_type": 2 if t21 else 1,
+            "message_type": "N" if nu else "U",
+        },
+    }
 
 
 class ESP3RadioError(Exception):

@@ -56,7 +56,22 @@ def derived_value(
     if semantic_role is None:
         return None
 
-    role_mapping = _load_derived_values().get(semantic_role)
+    mappings = _load_derived_values()
+    role_mapping = mappings.get(semantic_role)
+    if role_mapping is None:
+        parts = semantic_role.split(".")
+        if len(parts) == 3 and parts[2] in {
+            "measurement",
+            "state",
+            "setpoint",
+            "command",
+            "configuration",
+            "diagnostic",
+            "selector",
+        }:
+            # Keep existing configured base-role derivations during the v3 migration.
+            # An explicitly configured final role always takes precedence.
+            role_mapping = mappings.get(".".join(parts[:2]))
     if role_mapping is None:
         return None
 
@@ -106,8 +121,7 @@ def _load_derived_values() -> dict[str, dict[str, dict[str, Any]]]:
                 continue
 
             normalized_role_mapping[value_name] = {
-                key.strip().lower(): value
-                for key, value in values.items()
+                key.strip().lower(): value for key, value in values.items()
             }
 
         derived_values[semantic_role] = normalized_role_mapping

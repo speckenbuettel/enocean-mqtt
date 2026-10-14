@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}enocean-mqtt{% endblock %}</title>
-  <link rel="stylesheet" href="/static/css/web-ui.css">
+  <link rel="stylesheet" href="/static/css/web-ui.css?v={{ shared_styles_version | default('20261014-1') }}">
   <link rel="icon" type="image/png" href="/static/favicon.png">
   {% block styles %}{% endblock %}
 </head>

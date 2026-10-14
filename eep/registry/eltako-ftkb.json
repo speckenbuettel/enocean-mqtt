@@ -1,23 +1,34 @@
 {
-  "profile_type": "manufacturer_extension",
+  "profile_type": "proprietary",
+  "manufacturer": "Eltako",
+  "model": "FTKB",
   "eep": "eltako-ftkb",
   "base_eep": "D5-00-01",
   "rorg": "D5",
   "func": "00",
   "type": "01",
-  "manufacturer": "Eltako",
-  "model": "FTKB",
-  "func_description": "Contact and proprietary voltage telegrams",
-  "type_description": "Eltako FTKB window and door contact with additional voltage telegram",
-  "description": "Eltako FTKB window and door contact with solar cell, battery backup and additional voltage telegram",
+  "func_description": "Door/Window Contact",
+  "type_description": "Eltako FTKB door/windows contact with supply voltage monitoring",
+  "description": "Door/Window Contact, Eltako FTKB door/windows contact with supply voltage monitoring",
   "source": "Eltako FTKB documentation",
   "source_version": "30 000 424 - 1 / 38-2022",
   "sources": {
     "manufacturer_pdf": [
-      "Eltako FTKB - Bedienungsanleitung (30 000 424 - 1, 2022-38).pdf"
+      "Eltako FTKB - Bedienungsanleitung (30 000 424 - 1, 2022-38).pdf",
+      "Inhalte der Eltako-Funktelegramme (~2025).pdf"
     ],
     "legacy_profile": [
-      "eltako-ftkb.json"
+      "eep/registry/eltako-ftkb.json"
+    ],
+    "format_spec": [
+      "docs/eep-registry-schema.md",
+      "docs/eep-json-schema.md"
+    ],
+    "semantic_spec": [
+      "docs/semantic-roles.md"
+    ],
+    "authoring_prompt": [
+      "userguide/prompts/eep-profile-v1.8.md"
     ]
   },
   "direction": "unidirectional",
@@ -27,7 +38,7 @@
       "name": "contact",
       "display_name": null,
       "description": "Window or door contact state",
-      "semantic_role": "opening.contact",
+      "semantic_role": "security.contact.state",
       "object_type": "state",
       "semantic_confidence": "high",
       "data_type": "enum",
@@ -51,13 +62,16 @@
       "tx": {
         "managed": false,
         "required_for_snapshot": true
-      }
+      },
+      "source_key": "contact",
+      "function_group": "from",
+      "channel_type": "state"
     },
     {
       "name": "battery_voltage",
       "display_name": null,
       "description": "Battery voltage",
-      "semantic_role": "power.battery_voltage",
+      "semantic_role": "device.battery_voltage.measurement",
       "object_type": "measurement",
       "semantic_confidence": "high",
       "data_type": "float",
@@ -80,13 +94,19 @@
       "tx": {
         "managed": false,
         "required_for_snapshot": true
+      },
+      "source_key": "battery_voltage",
+      "function_group": "from",
+      "channel_type": "measurement",
+      "semantic_attributes": {
+        "voltage_source": "battery"
       }
     },
     {
       "name": "energy_storage_voltage",
       "display_name": null,
       "description": "Energy storage voltage",
-      "semantic_role": "power.energy_storage_voltage",
+      "semantic_role": "device.energy_storage_voltage.measurement",
       "object_type": "measurement",
       "semantic_confidence": "high",
       "data_type": "float",
@@ -109,6 +129,12 @@
       "tx": {
         "managed": false,
         "required_for_snapshot": true
+      },
+      "source_key": "energy_storage_voltage",
+      "function_group": "from",
+      "channel_type": "measurement",
+      "semantic_attributes": {
+        "voltage_source": "energy_storage"
       }
     }
   ],
@@ -117,7 +143,9 @@
       "telegram_type_id": "eltako-ftkb.contact_status",
       "telegram_id": {
         "rorg": "D5",
-        "legacy_org": "0x06"
+        "metadata": {
+          "legacy_org": "0x06"
+        }
       },
       "description": "Standard D5-00-01 contact telegram",
       "fields": [
@@ -147,13 +175,24 @@
             }
           ]
         }
+      ],
+      "constraints": [
+        {
+          "field": "contact",
+          "values": [
+            8,
+            9
+          ]
+        }
       ]
     },
     {
       "telegram_type_id": "eltako-ftkb.voltage_status",
       "telegram_id": {
         "rorg": "A5",
-        "legacy_org": "0x07"
+        "metadata": {
+          "legacy_org": "0x07"
+        }
       },
       "description": "FTKB proprietary voltage telegram",
       "fields": [
@@ -244,7 +283,33 @@
       "Migrated from the legacy proprietary profile to Registry v3.",
       "The contact telegram follows the legacy D5-00-01/ORG 0x06 contact representation used by the existing runtime profile.",
       "The voltage telegram is manufacturer-specific and uses legacy ORG 0x07 with DB3=energy storage voltage, DB2=battery voltage, DB1=0x00 and DB0=0x08.",
-      "Telegram direction is intentionally omitted so the same semantic telegram definition can be used for physical RX decoding and virtual-device TX encoding."
-    ]
-  }
+      "Telegram direction is intentionally omitted so the same semantic telegram definition can be used for physical RX decoding and virtual-device TX encoding.",
+      "Legacy metadata and channel names retained; roles replaced by user-approved three-part roles.",
+      "Legacy ORG annotations moved into telegram_id.metadata so the normalized loader retains them.",
+      "Top-level manufacturer/model/base_eep are mirrored in metadata because normalization ignores these compatibility annotations.",
+      "No installed profile, controller mapping, service or hardware changed."
+    ],
+    "manufacturer": "Eltako",
+    "model": "FTKB",
+    "base_eep": "D5-00-01",
+    "authoring_prompt": "v1.8",
+    "hardware_tested": false,
+    "description_decision": "User approved legacy func_description/type_description as profile-local CSV exception; description recombined.",
+    "tx_profile_source": "self_profile_sensor_emulation",
+    "tx_profile_ref": "eltako-ftkb",
+    "tx_mapping_file": null
+  },
+  "messages": [],
+  "function_groups": [
+    {
+      "name": "from",
+      "title": "Device feedback",
+      "direction": "from",
+      "functions": [
+        "contact",
+        "battery_voltage",
+        "energy_storage_voltage"
+      ]
+    }
+  ]
 }

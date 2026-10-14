@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import time
+from pathlib import Path
 from typing import Any
 
 from enocean_mqtt.devices.registry import DeviceRegistry
@@ -22,12 +23,13 @@ from enocean_mqtt.gateway.status import GatewayStatusPublisher
 from enocean_mqtt.gateway.unknown_devices import UnknownDeviceRegistry
 from enocean_mqtt.logging_config import configure_logging
 from enocean_mqtt.mqtt.client import MQTTClient
+from enocean_mqtt.notifications import NotificationService
 from enocean_mqtt.replay.controller import ReplayController
 from enocean_mqtt.replay.models import ReplayTelegram
 from enocean_mqtt.replay.runtime_runner import ReplayRuntimeRunner
 from enocean_mqtt.replay.session import ReplaySession
 from enocean_mqtt.runtime.state_manager import RuntimeStateManager
-from enocean_mqtt.runtime_config import load_runtime_config
+from enocean_mqtt.runtime_config import RuntimeConfig, load_runtime_config
 from enocean_mqtt.storage.sqlite_store import SQLiteRuntimeStore
 from enocean_mqtt.virtual_devices.registry import VirtualDeviceRegistry
 from enocean_mqtt.virtual_devices.runtime import VirtualDeviceRuntime
@@ -72,9 +74,30 @@ def main() -> None:
             limit=args.limit,
         )
 
-    replay_controller = ReplayController()
-
     runtime_config = load_runtime_config(args.config)
+    configure_logging(runtime_config.logging)
+    notifications = NotificationService(
+        runtime_config.notifications.pushover, runtime_config.application.name,
+    )
+    notifications.start()
+    try:
+        restart_requested = _run_gateway(runtime_config, replay_session, notifications)
+    except Exception:
+        notifications.gateway_error("gateway", "Runtime failed. See the gateway log for details.")
+        raise
+    finally:
+        notifications.gateway_stopped()
+        notifications.close()
+    if restart_requested:
+        restart_current_process()
+
+
+def _run_gateway(
+    runtime_config: RuntimeConfig,
+    replay_session: ReplaySession | None,
+    notifications: NotificationService,
+) -> bool:
+    replay_controller = ReplayController()
     mqtt_config = runtime_config.mqtt
     runtime_paths = runtime_config.paths
     gateway_config = runtime_config.gateway
@@ -84,8 +107,6 @@ def main() -> None:
     web_api_config = runtime_config.web_api
     interface_configs = runtime_config.configured_interfaces()
     default_tx_base_id = runtime_config.default_tx_base_id()
-
-    configure_logging(runtime_config.logging)
 
     base_topic = mqtt_config.base_topic.rstrip("/")
 
@@ -117,6 +138,7 @@ def main() -> None:
         sqlite_database_path=(
             sqlite_config.database_path
         ),
+        error_notifier=notifications.gateway_error,
     )
 
     runtime_state_manager = RuntimeStateManager(
@@ -132,6 +154,7 @@ def main() -> None:
             max_telegrams=sqlite_config.max_telegrams,
             persist_live=sqlite_config.persist_live,
             persist_replay=sqlite_config.persist_replay,
+            foreign_devices_file=Path(runtime_paths.devices_json).parent / "foreign-devices.json",
         )
 
     initial_registry = DeviceRegistry.from_json(
@@ -442,6 +465,7 @@ def main() -> None:
     embedded_web_api = EmbeddedWebAPIServer(
         config=web_api_config,
         device_publisher=device_publisher,
+        device_tx_runtime=device_tx_runtime,
         virtual_device_runtime=virtual_device_runtime,
         interface_status_provider=interface_manager.status,
         interface_connect=interface_manager.connect,
@@ -513,6 +537,7 @@ def main() -> None:
         runtime_mode="live",
     )
 
+    notifications.gateway_started()
     try:
         if replay_session is not None:
             replay_runtime_runner.run_sync(replay_session)
@@ -554,8 +579,7 @@ def main() -> None:
 
         mqtt_client.disconnect()
 
-    if runtime_commands.restart_requested:
-        restart_current_process()
+    return runtime_commands.restart_requested
 
 
 if __name__ == "__main__":

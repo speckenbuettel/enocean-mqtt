@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 import sqlite3
@@ -15,6 +16,7 @@ import psutil
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 
+from enocean_mqtt.devices.foreign_registry import foreign_registry
 from enocean_mqtt.eep.decoder import EEPDecodeError
 from enocean_mqtt.eep.json_registry import EEPRegistryError, load_eep_definition
 from enocean_mqtt.eep.runtime_decoder import decode_runtime_with_definition
@@ -30,6 +32,21 @@ _UI_PAGES = {
     "/configuration-ui": ("configuration.html", "configuration"),
     "/documentation-ui": ("documentation.html", "documentation"),
 }
+
+
+def _busmonitor_asset_versions() -> dict[str, str]:
+    """Invalidate browser caches when a busmonitor asset's contents change."""
+    static = Path(__file__).parent / "static"
+    paths = (
+        "css/busmonitor.css",
+        "js/busmonitor.js",
+        "js/busmonitor-controls.js",
+        "js/busmonitor-tooltips.js",
+    )
+    return {
+        path: hashlib.sha256((static / path).read_bytes()).hexdigest()[:16]
+        for path in paths
+    }
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -67,6 +84,7 @@ def _journal_entries(
     limit: int = 200,
     level: str | None = None,
     search: str | None = None,
+    since_start: bool = False,
 ) -> dict[str, Any]:
     """Read normalized entries from the service's persistent system journal."""
 
@@ -80,6 +98,10 @@ def _journal_entries(
         "--reverse",
         f"--lines={requested_limit * 4}",
     ]
+    if since_start:
+        # Web API and gateway share this service process. No journal is deleted.
+        started = datetime.fromtimestamp(psutil.Process().create_time(), tz=UTC)
+        command.append(f"--since={started.strftime('%Y-%m-%d %H:%M:%S.%f UTC')}")
     try:
         result = subprocess.run(
             command,
@@ -515,10 +537,27 @@ def install_ui_routes(
         active_page: str,
     ) -> Callable[[Request], Any]:
         def handler(request: Request) -> Any:
+            context: dict[str, Any] = {"active_page": active_page}
+            shared_styles = Path(__file__).parent / "static/css/web-ui.css"
+            context["shared_styles_version"] = (
+                hashlib.sha256(shared_styles.read_bytes()).hexdigest()[:16]
+            )
+            if active_page == "busmonitor":
+                context["asset_versions"] = _busmonitor_asset_versions()
+            elif active_page == "dashboard":
+                script = Path(__file__).parent / "static/js/dashboard.js"
+                context["dashboard_script_version"] = (
+                    hashlib.sha256(script.read_bytes()).hexdigest()[:16]
+                )
+            elif active_page == "runtime":
+                script = Path(__file__).parent / "static/js/runtime.js"
+                context["runtime_script_version"] = (
+                    hashlib.sha256(script.read_bytes()).hexdigest()[:16]
+                )
             return templates.TemplateResponse(
                 request=request,
                 name=template_name,
-                context={"active_page": active_page},
+                context=context,
             )
 
         return handler
@@ -680,6 +719,9 @@ def install_ui_routes(
                 "physical": physical_devices,
                 "virtual": virtual_devices,
                 "unknown": unknown_devices,
+                "foreign": len(
+                    foreign_registry(config_file.parent / "foreign-devices.json").snapshot()
+                ),
                 "total": physical_devices + virtual_devices,
                 "last_reload": registry.get("last_reload"),
             },
@@ -715,8 +757,9 @@ def install_ui_routes(
         limit: int = 200,
         level: str | None = None,
         search: str | None = None,
+        since_start: bool = False,
     ) -> dict[str, Any]:
-        return _journal_entries(limit=limit, level=level, search=search)
+        return _journal_entries(limit=limit, level=level, search=search, since_start=since_start)
 
     app.add_api_route(
         "/api/v1/ui/system",

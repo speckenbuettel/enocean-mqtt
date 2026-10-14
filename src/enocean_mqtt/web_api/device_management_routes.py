@@ -17,6 +17,7 @@ from typing import Any
 from fastapi import APIRouter, HTTPException, Request, Response
 
 from enocean_mqtt.devices.csv_format import export_csv, import_csv
+from enocean_mqtt.devices.foreign_registry import ForeignDevice, foreign_registry
 from enocean_mqtt.devices.models import Device
 from enocean_mqtt.devices.registry import DeviceRegistry
 from enocean_mqtt.gateway.runtime_commands import RuntimeCommandExecutionError
@@ -56,11 +57,17 @@ def create_device_management_router(
         tags=["Device Management"],
     )
     physical_path = Path(devices_file)
+    foreign_devices = foreign_registry(physical_path.parent / "foreign-devices.json")
     virtual_path = Path(virtual_devices_file)
     database_path = Path(sqlite_database)
     runtime_config_path = Path(config_file)
     profile_directory = Path(eep_registry_directory)
     controller_mapping_path = runtime_config_path.parent / "device-controller-mappings.json"
+
+    def can_write(request: Request) -> bool:
+        roles = set(getattr(request.state, "web_roles", set()))
+        roles.update(getattr(request.state, "api_roles", set()))
+        return "admin" in roles
 
     def dispatch(command: str, payload: dict[str, Any] | None = None) -> dict[str, Any]:
         dispatcher = runtime_command_dispatcher_provider()
@@ -75,6 +82,32 @@ def create_device_management_router(
             raise HTTPException(status_code=400, detail=exc.message) from exc
         except RuntimeCommandExecutionError as exc:
             raise HTTPException(status_code=409, detail=exc.message) from exc
+
+    @router.get("/foreign")
+    def get_foreign_devices() -> dict[str, Any]:
+        devices = foreign_devices.snapshot()
+        return {"foreign_devices": [devices[key].model_dump() for key in sorted(devices)]}
+
+    @router.put("/foreign/{sender_id}")
+    def mark_foreign(sender_id: str, payload: dict[str, Any], request: Request) -> dict[str, Any]:
+        if not can_write(request):
+            raise HTTPException(status_code=403, detail="Administrator privileges required")
+        try:
+            device = ForeignDevice.model_validate({**payload, "sender_id": sender_id})
+        except ValueError as exc:
+            raise HTTPException(status_code=422, detail="Invalid foreign device fields") from exc
+        foreign_devices.upsert(device)
+        return {"status": "ok", "foreign_device": device.model_dump()}
+
+    @router.delete("/foreign/{sender_id}")
+    def unmark_foreign(sender_id: str, request: Request) -> dict[str, Any]:
+        if not can_write(request):
+            raise HTTPException(status_code=403, detail="Administrator privileges required")
+        try:
+            foreign_devices.remove(sender_id)
+        except ValueError as exc:
+            raise HTTPException(status_code=422, detail="Invalid sender ID") from exc
+        return {"status": "ok"}
 
     @router.get("")
     def get_device_management(request: Request) -> dict[str, Any]:
@@ -125,7 +158,7 @@ def create_device_management_router(
 
         return {
             "status": "ok" if not physical_issues and not virtual_issues else "warning",
-            "can_write": "admin" in getattr(request.state, "web_roles", set()),
+            "can_write": can_write(request),
             "counts": {
                 "devices": len(physical_devices),
                 "unknown_devices": len(unknown_devices),
@@ -136,6 +169,7 @@ def create_device_management_router(
             "physical_devices": physical_devices,
             "virtual_devices": virtual_devices,
             "unknown_devices": unknown_devices,
+            "foreign_devices": get_foreign_devices()["foreign_devices"],
             "unknown_source": unknown_payload.get("source"),
             "issues": [
                 *physical_issues,
@@ -192,7 +226,9 @@ def create_device_management_router(
             raise HTTPException(status_code=404, detail="Physical device not found")
         supplied_device_id = str(payload.get("device_id") or normalized).strip().upper()
         if supplied_device_id != normalized:
-            raise HTTPException(status_code=422, detail="device_id cannot be changed after registration")
+            raise HTTPException(
+                status_code=422, detail="device_id cannot be changed after registration"
+            )
         device = _prepare_physical_device(
             {**payload, "device_id": normalized},
             registry=registry,
@@ -445,7 +481,9 @@ def _registry_definitions(profile_directory: Path) -> list[dict[str, Any]]:
     for path in sorted(profile_directory.glob("*.json"), key=lambda item: item.stem.casefold()):
         if not path.is_file():
             continue
-        identifier = path.stem.upper() if EEP_PATTERN.fullmatch(path.stem.upper()) else path.stem.lower()
+        identifier = (
+            path.stem.upper() if EEP_PATTERN.fullmatch(path.stem.upper()) else path.stem.lower()
+        )
         payload: dict[str, Any] = {}
         try:
             loaded = json.loads(path.read_text(encoding="utf-8"))
@@ -487,20 +525,28 @@ def _apply_registry_binding(
     if eep:
         eep = eep.upper()
         if eep not in definitions or definitions[eep]["kind"] != "eep":
-            raise HTTPException(status_code=422, detail=f"EEP '{eep}' is not available in the EEP registry")
+            raise HTTPException(
+                status_code=422, detail=f"EEP '{eep}' is not available in the EEP registry"
+            )
         candidate["eep"] = eep
     else:
         candidate["eep"] = None
 
     if profile:
-        normalized_profile = profile.upper() if EEP_PATTERN.fullmatch(profile.upper()) else profile.lower()
+        normalized_profile = (
+            profile.upper() if EEP_PATTERN.fullmatch(profile.upper()) else profile.lower()
+        )
         if normalized_profile not in definitions:
-            raise HTTPException(status_code=422, detail=f"Profile '{profile}' is not available in the registry")
+            raise HTTPException(
+                status_code=422, detail=f"Profile '{profile}' is not available in the registry"
+            )
         candidate["profile"] = normalized_profile
     elif eep:
         candidate["profile"] = eep
     else:
-        raise HTTPException(status_code=422, detail="An EEP or proprietary profile must be selected")
+        raise HTTPException(
+            status_code=422, detail="An EEP or proprietary profile must be selected"
+        )
 
     selected_profile = str(candidate.get("profile") or "")
     selected_definition = definitions.get(selected_profile) or definitions.get(eep)
@@ -519,17 +565,24 @@ def _apply_registry_binding(
     if mapping:
         sender = str(mapping.get("sender_eep") or "").strip()
         if sender:
-            normalized_sender = sender.upper() if EEP_PATTERN.fullmatch(sender.upper()) else sender.lower()
+            normalized_sender = (
+                sender.upper() if EEP_PATTERN.fullmatch(sender.upper()) else sender.lower()
+            )
             if normalized_sender not in definitions:
                 raise HTTPException(
                     status_code=422,
-                    detail=f"Mapped TX profile '{normalized_sender}' is not available in the registry",
+                    detail=(
+                        f"Mapped TX profile '{normalized_sender}' is not available in the registry"
+                    ),
                 )
             if definitions[normalized_sender]["kind"] == "eep":
                 candidate["tx_eep"] = normalized_sender
             candidate["tx_profile"] = normalized_sender
         candidate["communication"] = "bidirectional_eep_pair"
-    elif selected_definition and str(selected_definition.get("direction") or "").lower() == "bidirectional":
+    elif (
+        selected_definition
+        and str(selected_definition.get("direction") or "").lower() == "bidirectional"
+    ):
         candidate["communication"] = "bidirectional_eep"
     else:
         candidate["communication"] = "unidirectional"

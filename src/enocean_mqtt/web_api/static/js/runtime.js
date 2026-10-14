@@ -49,6 +49,7 @@ let currentLogEntries = [];
 async function refreshLogs() {
   const params = new URLSearchParams({ limit: $('logLimit').value }), level = $('logLevelFilter').value, search = $('logSearch').value.trim();
   if (level) params.set('level', level); if (search) params.set('search', search);
+  params.set('since_start', $('logTimeFilter').value);
   try {
     const payload = await apiJson(`/api/v1/ui/system/logs?${params}`), entries = payload.entries || [];
     currentLogEntries = entries;
@@ -64,5 +65,5 @@ function downloadLog(format) {
   const blob = new Blob([format === 'csv' ? `\uFEFF${content}` : content], { type: format === 'csv' ? 'text/csv;charset=utf-8' : 'text/plain;charset=utf-8' });
   const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = `enocean-mqtt-logs-${new Date().toISOString().replaceAll(':', '-')}.${format === 'csv' ? 'csv' : 'txt'}`; link.click(); URL.revokeObjectURL(link.href);
 }
-let searchTimer; $('refreshLogs').addEventListener('click', refreshLogs); $('logLevelFilter').addEventListener('change', refreshLogs); $('logLimit').addEventListener('change', refreshLogs); $('logSearch').addEventListener('input', () => { clearTimeout(searchTimer); searchTimer = setTimeout(refreshLogs, 300); }); $('exportCsv').addEventListener('click', () => downloadLog('csv')); $('exportText').addEventListener('click', () => downloadLog('text'));
+let searchTimer; $('refreshLogs').addEventListener('click', refreshLogs); $('logTimeFilter').addEventListener('change', refreshLogs); $('logLevelFilter').addEventListener('change', refreshLogs); $('logLimit').addEventListener('change', refreshLogs); $('logSearch').addEventListener('input', () => { clearTimeout(searchTimer); searchTimer = setTimeout(refreshLogs, 300); }); $('exportCsv').addEventListener('click', () => downloadLog('csv')); $('exportText').addEventListener('click', () => downloadLog('text'));
 refreshSystem(); refreshLogs(); setInterval(refreshSystem, 30000); setInterval(refreshLogs, 30000);

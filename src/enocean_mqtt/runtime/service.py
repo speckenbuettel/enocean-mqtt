@@ -24,6 +24,20 @@ class DeviceStateProvider(Protocol):
         """Return a copy or projection of current state for one device."""
 
 
+class PhysicalDatapointWriter(Protocol):
+    """Writer for TX-capable physical-device message datapoints."""
+
+    def set_value(self, device_id: str, message: str, value: Any) -> None:
+        """Submit one semantic message value for radio transmission."""
+
+
+class VirtualDatapointWriter(Protocol):
+    """Writer for virtual-device channel datapoints."""
+
+    def set_value(self, virtual_device_id: str, channel: str, value: Any) -> None:
+        """Submit one virtual channel value for radio transmission."""
+
+
 @dataclass(frozen=True, slots=True)
 class DeviceStatePayloads:
     """Device-state payloads with their semantic source label."""
@@ -44,6 +58,8 @@ class RuntimeService:
     api_device_registry: ApiDeviceRegistry
     device_publisher: DeviceStateProvider | None = None
     virtual_device_runtime: DeviceStateProvider | None = None
+    device_tx_runtime: PhysicalDatapointWriter | None = None
+    virtual_device_writer: VirtualDatapointWriter | None = None
     fallback_device_states_provider: DeviceStatesProvider | None = None
     fallback_source: str = "fallback"
 
@@ -105,6 +121,34 @@ class RuntimeService:
         runtime.issues.extend(self.datapoint_registry.issues)
 
         return runtime
+
+    def set_datapoint_value(self, datapoint_id: str, value: Any) -> None:
+        """Route a writable semantic datapoint to its owning TX runtime."""
+
+        datapoint = self.datapoint_registry.get(datapoint_id)
+        if datapoint is None:
+            raise KeyError(datapoint_id)
+        if not datapoint.writable:
+            raise PermissionError(f"Datapoint is read-only: {datapoint_id}")
+
+        source = datapoint.source
+        if source.collection == "messages" and source.device_id is not None:
+            if self.device_tx_runtime is None:
+                raise RuntimeError("Physical-device TX runtime is unavailable")
+            self.device_tx_runtime.set_value(source.device_id, source.name, value)
+            return
+
+        if (
+            source.collection == "virtual_channels"
+            and source.virtual_device_id is not None
+        ):
+            writer = self.virtual_device_writer
+            if writer is None:
+                raise RuntimeError("Virtual-device TX runtime is unavailable")
+            writer.set_value(source.virtual_device_id, source.name, value)
+            return
+
+        raise RuntimeError(f"Unsupported writable datapoint source: {datapoint_id}")
 
     def _device_state_payloads(self) -> DeviceStatePayloads:
         states: dict[str, dict[str, Any]] = {}

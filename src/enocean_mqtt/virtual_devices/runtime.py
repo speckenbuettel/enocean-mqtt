@@ -9,7 +9,7 @@ from collections.abc import Callable
 from dataclasses import dataclass, field as dataclass_field
 from typing import Any, Final, cast
 
-from enocean_mqtt.eep.json_registry import load_eep_definition
+from enocean_mqtt.eep.json_registry import EEPRegistryError, load_eep_definition
 from enocean_mqtt.eep.models import ChannelDefinition, EEPDefinition
 from enocean_mqtt.eep.runtime_encoder import (
     EEPEncodeError,
@@ -152,10 +152,21 @@ class VirtualDeviceRuntime:
     def register(self) -> None:
         for device in self.registry.devices:
             if device.enabled:
-                self.register_device(device)
+                try:
+                    self._validate_device_channels(device)
+                except (EEPRegistryError, ValueError, OSError, KeyError, TypeError) as exc:
+                    LOGGER.error(
+                        "Skipping virtual device %s: EEP profile %s unavailable or invalid: %s",
+                        device.virtual_device_id, device.registry_profile, exc,
+                    )
+                    continue
+                self._register_validated_device(device)
 
     def register_device(self, device: VirtualDevice) -> None:
         self._validate_device_channels(device)
+        self._register_validated_device(device)
+
+    def _register_validated_device(self, device: VirtualDevice) -> None:
         self._publish_info(device)
 
         with self._lock:
@@ -247,6 +258,42 @@ class VirtualDeviceRuntime:
             EncodedVirtualTelegram.from_teach_in(device.teach_in_telegram)
         )
 
+    def set_value(self, virtual_device_id: str, channel: str, value: Any) -> None:
+        """Update one virtual channel and schedule its radio transmission."""
+
+        normalized_id = virtual_device_id.strip().lower()
+        device = self.registry.get_by_id(normalized_id)
+        if device is None:
+            raise VirtualDeviceRuntimeError(f"Unknown virtual device: {normalized_id}")
+        if channel not in device.channels:
+            raise VirtualDeviceRuntimeError(
+                f"Channel {channel!r} is not enabled for virtual device {normalized_id}"
+            )
+
+        serialized = _serialize_channel_value(value)
+        if serialized == "":
+            raise VirtualDeviceRuntimeError("Virtual device value must not be empty")
+
+        timestamp_fields = build_timestamp_fields()
+        last_update = str(timestamp_fields["timestamp_local"])
+
+        with self._lock:
+            state = self._states.setdefault(normalized_id, VirtualDeviceState())
+            state.values[channel] = serialized
+            state.channel_updates[channel] = last_update
+            state.pending_channels.add(channel)
+            snapshot = dict(state.values)
+            channel_updates = dict(state.channel_updates)
+            self._schedule_snapshot_locked(device, state)
+
+        self._publish_channel_state(device, channel, serialized, timestamp_fields)
+        self._publish_device_state(
+            device,
+            snapshot,
+            channel_updates,
+            timestamp_fields,
+        )
+
     def _handle_set_message(self, topic: str, payload: bytes) -> None:
         try:
             virtual_device_id, channel = self._parse_set_topic(topic)
@@ -271,32 +318,7 @@ class VirtualDeviceRuntime:
                 )
                 return
 
-            last_update = str(timestamp_fields["timestamp_local"])
-
-            with self._lock:
-                state = self._states.setdefault(
-                    virtual_device_id,
-                    VirtualDeviceState(),
-                )
-                state.values[channel] = value
-                state.channel_updates[channel] = last_update
-                state.pending_channels.add(channel)
-                snapshot = dict(state.values)
-                channel_updates = dict(state.channel_updates)
-                self._schedule_snapshot_locked(device, state)
-
-            self._publish_channel_state(
-                device,
-                channel,
-                value,
-                timestamp_fields,
-            )
-            self._publish_device_state(
-                device,
-                snapshot,
-                channel_updates,
-                timestamp_fields,
-            )
+            self.set_value(virtual_device_id, channel, value)
 
         except Exception as exc:
             self._publish_error(topic=topic, error=str(exc))
@@ -831,6 +853,14 @@ def _coerce_payload_value(value: str) -> Any:
         return int(normalized)
     except ValueError:
         return value
+
+
+def _serialize_channel_value(value: Any) -> str:
+    if value is None or isinstance(value, (dict, list)):
+        raise VirtualDeviceRuntimeError("Virtual device value must be a scalar")
+    if isinstance(value, bool):
+        return "true" if value else "false"
+    return str(value).strip()
 
 
 def _add_derived_values(

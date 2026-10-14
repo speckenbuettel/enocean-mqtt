@@ -9,6 +9,8 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Any, TypedDict
 
+from enocean_mqtt.esp3.radio import decode_f6_status
+from enocean_mqtt.esp3.signal import radio_diagnostics
 from enocean_mqtt.replay.models import ReplayTelegram
 from enocean_mqtt.runtime.event import RuntimeTelegramEvent, tx_event_to_mqtt_payload
 from enocean_mqtt.time import build_timestamp_fields
@@ -56,6 +58,7 @@ def replay_telegram_to_runtime_event(
 
     erp1_status = _decode_erp1_status(
         erp1_status_hex,
+        rorg=telegram.eno_rorg,
     )
 
     runtime_mode = "live" if telegram.source in LIVE_TELEGRAM_SOURCES else "replay"
@@ -88,7 +91,9 @@ def runtime_event_to_payload(
     """Convert RuntimeTelegramEvent into MQTT payload."""
 
     if event.direction == "tx":
-        return tx_event_to_mqtt_payload(event)
+        tx_payload = tx_event_to_mqtt_payload(event)
+        tx_payload.update(radio_diagnostics(event.rorg, event.data))
+        return tx_payload
 
     payload: dict[str, Any] = {
         "timestamp_local": event.timestamp_local,
@@ -110,6 +115,7 @@ def runtime_event_to_payload(
         "transmission": event.transmission,
     }
 
+    payload.update(radio_diagnostics(event.rorg, event.data))
     return {key: value for key, value in payload.items() if value is not None}
 
 
@@ -156,6 +162,8 @@ def _extract_erp1_status(
 def _event_erp1_status_decoded(
     event: RuntimeTelegramEvent,
 ) -> dict[str, Any] | None:
+    if (event.rorg or "").upper() == "F6":
+        return decode_f6_status(event.erp1_status)
     erp1_status_decoded: dict[str, Any] = {
         "repeater_count": event.repeater_count,
         "repeater_permitted": event.repeater_permitted,
@@ -245,8 +253,13 @@ def _build_timestamp_fields(
 
 def _decode_erp1_status(
     status: str | None,
-) -> ERP1Status | None:
+    *,
+    rorg: str | None = None,
+) -> dict[str, Any] | None:
     """Decode ERP1 status byte into protocol-oriented fields."""
+
+    if (rorg or "").upper() == "F6":
+        return decode_f6_status(status)
 
     if status is None:
         return None

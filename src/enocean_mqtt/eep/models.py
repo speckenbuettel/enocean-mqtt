@@ -277,11 +277,19 @@ class ChannelDefinition:
 
 
 @dataclass(slots=True)
+class FieldPartDefinition:
+    """Whole unsigned payload field placed at an LSB-based raw value offset."""
+
+    field_ref: str
+    value_offset: int
+
+
+@dataclass(slots=True)
 class ChannelBindingDefinition:
     """Telegram-specific mapping from a raw field to a semantic channel."""
 
     channel_ref: str
-    field_ref: str
+    field_ref: str | None = None
     scale: LinearScale | None = None
     enum: list[ValueMapping] = dataclass_field(default_factory=list)
     ranges: list[ValueRangeMapping] = dataclass_field(default_factory=list)
@@ -290,6 +298,7 @@ class ChannelBindingDefinition:
 
     # Transitional compatibility for older registry files.
     bitfield_ref: str | None = None
+    field_parts: list[FieldPartDefinition] = dataclass_field(default_factory=list)
 
 
 @dataclass(slots=True)
@@ -297,7 +306,7 @@ class MessageBindingDefinition:
     """Telegram-specific mapping from a semantic message to a raw field."""
 
     message_ref: str
-    field_ref: str
+    field_ref: str | None = None
     scale: LinearScale | None = None
     enum: list[ValueMapping] = dataclass_field(default_factory=list)
     ranges: list[ValueRangeMapping] = dataclass_field(default_factory=list)
@@ -306,6 +315,7 @@ class MessageBindingDefinition:
 
     # Transitional compatibility for older registry files.
     bitfield_ref: str | None = None
+    field_parts: list[FieldPartDefinition] = dataclass_field(default_factory=list)
 
 
 @dataclass(slots=True)

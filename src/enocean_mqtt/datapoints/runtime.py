@@ -31,6 +31,7 @@ class DatapointValue:
     timestamp: str | None = None
     source: str | None = None
     message: str | None = None
+    meaning: str | None = None
 
     def to_api_dict(self) -> dict[str, Any]:
         """Return the API value representation."""
@@ -44,6 +45,7 @@ class DatapointValue:
                 "timestamp": self.timestamp,
                 "source": self.source,
                 "message": self.message,
+                "meaning": self.meaning,
             }
         )
 
@@ -103,6 +105,7 @@ class DatapointRuntimeRegistry:
             values[datapoint.id] = DatapointValue(
                 datapoint_id=datapoint.id,
                 value=channel_state.get("value"),
+                meaning=channel_state.get("meaning"),
                 unit=channel_state.get("unit") or datapoint.unit,
                 quality="good",
                 timestamp=(

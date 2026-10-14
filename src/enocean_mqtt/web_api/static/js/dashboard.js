@@ -132,6 +132,7 @@ function updateInterfaceSelector(enocean) {
   }
   if (value) value.hidden = dashboardInterfaces.length > 1;
   showSelectedInterface();
+  updateCommandButtons();
 }
 
 function updateDashboard(payload) {
@@ -195,6 +196,7 @@ function updateDashboard(payload) {
   setText('virtualDeviceCount', formatInteger(registry.virtual));
   setText('activeRegistryCount', formatInteger(metrics.active_devices_total));
   setText('unknownDeviceCount', formatInteger(registry.unknown));
+  setText('foreignDeviceCount', formatInteger(registry.foreign));
   setText('registryReload', registry.last_reload ? `reloaded ${formatRelativeTimestamp(registry.last_reload)}` : null);
 }
 
@@ -228,7 +230,8 @@ async function loadCommands() {
 function updateCommandButtons() {
   const buttons = [...document.querySelectorAll('[data-command]')];
   for (const button of buttons) {
-    button.disabled = !commandDispatchAvailable || !commandAuthorization || !discoveredCommands.has(button.dataset.command);
+    button.disabled = !commandDispatchAvailable || !commandAuthorization || !discoveredCommands.has(button.dataset.command)
+      || (button.dataset.command.startsWith('interface.') && !selectedInterfaceId);
   }
   if (!commandDispatchAvailable) setText('commandAvailability', 'unavailable');
   else if (!commandAuthorization) setText('commandAvailability', 'admin required');
@@ -237,6 +240,11 @@ function updateCommandButtons() {
 
 async function executeCommand(button) {
   const command = button.dataset.command;
+  const commandPayload = {};
+  if (command.startsWith('interface.')) {
+    if (!selectedInterfaceId) { setText('commandResult', 'Select an EnOcean interface first.'); return; }
+    commandPayload.interface_id = selectedInterfaceId;
+  }
   if (button.dataset.confirm && !window.confirm(button.dataset.confirm)) return;
   button.disabled = true;
   setText('commandResult', `Executing ${command}…`);
@@ -247,12 +255,14 @@ async function executeCommand(button) {
         'Content-Type': 'application/json',
         'X-CSRF-Token': cookieValue('enocean_web_csrf'),
       },
-      body: '{}',
+      body: JSON.stringify(commandPayload),
     });
     const payload = await response.json();
     if (!response.ok) {
-      const detail = typeof payload.detail === 'string' ? payload.detail : payload.detail?.message;
-      throw new Error(detail ?? `Command returned ${response.status}`);
+      const detail = typeof payload.detail === 'string'
+        ? payload.detail
+        : [payload.detail?.message, payload.detail?.error].filter(Boolean).join(': ');
+      throw new Error(detail || `Command returned ${response.status}`);
     }
     setText('commandResult', `${command}: ${payload.status ?? 'accepted'}`);
   } catch (error) {
@@ -268,6 +278,7 @@ for (const button of document.querySelectorAll('[data-command]')) {
 document.getElementById('enoceanInterfaceSelect')?.addEventListener('change', (event) => {
   selectedInterfaceId = event.target.value;
   showSelectedInterface();
+  updateCommandButtons();
 });
 loadDashboard();
 loadCommands();

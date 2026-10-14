@@ -90,8 +90,20 @@ class Datapoint:
                 "value_precision": self.value_precision,
                 "metadata": self.metadata or None,
                 "source": self.source.to_api_dict(),
+                "representations": self.representations(),
             }
         )
+
+    def representations(self) -> list[dict[str, Any]]:
+        """Selectors are fields of one datapoint, not independent stateful IDs."""
+        result = [{"field": "value", "data_type": self.data_type,
+                   "readable": self.readable, "writable": self.writable}]
+        if self.readable and self.data_type == "integer" and (
+            self.enum or self.metadata.get("enum_variants")
+        ):
+            result.append({"field": "meaning", "data_type": "string",
+                           "readable": True, "writable": False})
+        return result
 
 
 def _drop_none(payload: dict[str, Any]) -> dict[str, Any]:

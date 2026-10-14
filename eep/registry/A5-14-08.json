@@ -1,0 +1,692 @@
+{
+  "profile_type": "standard",
+  "eep": "A5-14-08",
+  "rorg": "A5",
+  "func": "14",
+  "type": "08",
+  "func_description": "Multi-Func Sensor",
+  "type_description": "Dual Door Contact with States Open/Closed and Locked/Unlocked, Supply Voltage Monitor and Vibration Detection",
+  "source": "EnOcean Equipment Profiles",
+  "source_version": "2.6.8",
+  "sources": [
+    "enocean/eeps/eep268.xml",
+    "enocean/eeps/json/A5-14-08.json",
+    "enocean/eeps/ip/A5-14-08_ip.pdf",
+    "eep/semantic-role-mapping.xlsx",
+    "eep/eep-list.csv"
+  ],
+  "direction": "unidirectional",
+  "device_class": "sensor",
+  "channels": [
+    {
+      "name": "supply_voltage",
+      "display_name": null,
+      "description": "Supply voltage (linear)",
+      "source_key": "supplyVoltage",
+      "function_group": "from",
+      "semantic_role": "device.supply_voltage.measurement",
+      "object_type": "measurement",
+      "semantic_attributes": {},
+      "data_type": "float",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      },
+      "unit": "V",
+      "value_precision": 2,
+      "value_resolution": 0.02,
+      "ranges": [
+        {
+          "min": 0.0,
+          "max": 5.0,
+          "step": 0.02,
+          "unit": "V"
+        }
+      ]
+    },
+    {
+      "name": "door_contact",
+      "display_name": null,
+      "description": "Door contact",
+      "source_key": "contact",
+      "function_group": "from",
+      "semantic_role": "security.contact.state",
+      "object_type": "state",
+      "semantic_attributes": {},
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "door_closed"
+        },
+        {
+          "value": 1,
+          "label": "door_open"
+        }
+      ]
+    },
+    {
+      "name": "lock_contact",
+      "display_name": null,
+      "description": "Lock contact",
+      "source_key": "locked",
+      "function_group": "from",
+      "semantic_role": "security.lock.state",
+      "object_type": "state",
+      "semantic_attributes": {},
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "door_locked"
+        },
+        {
+          "value": 1,
+          "label": "door_unlocked"
+        }
+      ]
+    },
+    {
+      "name": "vibration",
+      "display_name": "intrusion",
+      "description": "Vibration sensor",
+      "source_key": "vibration",
+      "function_group": "from",
+      "semantic_role": "security.intrusion_alarm.state",
+      "object_type": "state",
+      "semantic_attributes": {},
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "no_intrusion_detected"
+        },
+        {
+          "value": 1,
+          "label": "intrusion_detected"
+        }
+      ]
+    }
+  ],
+  "messages": [],
+  "telegrams": [
+    {
+      "telegram_type_id": "a5-14-08.data",
+      "telegram_id": {
+        "rorg": "A5"
+      },
+      "direction": "rx",
+      "fields": [
+        {
+          "name": "telegram_type",
+          "offset": 28,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "shortcut": "LRNB",
+          "description": "LRN Bit",
+          "constant": 1
+        },
+        {
+          "name": "supply_voltage",
+          "offset": 0,
+          "size": 8,
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload",
+          "shortcut": "SVC",
+          "description": "Supply voltage"
+        },
+        {
+          "name": "reserved_8_20",
+          "offset": 8,
+          "size": 20,
+          "raw_min": 0,
+          "raw_max": 1048575,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
+        },
+        {
+          "name": "door_contact",
+          "offset": 29,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "shortcut": "DCT",
+          "description": "Door Contact"
+        },
+        {
+          "name": "lock_contact",
+          "offset": 30,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "shortcut": "LCT",
+          "description": "Lock Contact"
+        },
+        {
+          "name": "vibration",
+          "offset": 31,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "shortcut": "VIB",
+          "description": "Vibration"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "supply_voltage",
+          "field_ref": "supply_voltage",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 250,
+            "scale_min": 0.0,
+            "scale_max": 5.0
+          },
+          "depends_on": {
+            "source": "field",
+            "field": "supply_voltage",
+            "values": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              46,
+              47,
+              48,
+              49,
+              50,
+              51,
+              52,
+              53,
+              54,
+              55,
+              56,
+              57,
+              58,
+              59,
+              60,
+              61,
+              62,
+              63,
+              64,
+              65,
+              66,
+              67,
+              68,
+              69,
+              70,
+              71,
+              72,
+              73,
+              74,
+              75,
+              76,
+              77,
+              78,
+              79,
+              80,
+              81,
+              82,
+              83,
+              84,
+              85,
+              86,
+              87,
+              88,
+              89,
+              90,
+              91,
+              92,
+              93,
+              94,
+              95,
+              96,
+              97,
+              98,
+              99,
+              100,
+              101,
+              102,
+              103,
+              104,
+              105,
+              106,
+              107,
+              108,
+              109,
+              110,
+              111,
+              112,
+              113,
+              114,
+              115,
+              116,
+              117,
+              118,
+              119,
+              120,
+              121,
+              122,
+              123,
+              124,
+              125,
+              126,
+              127,
+              128,
+              129,
+              130,
+              131,
+              132,
+              133,
+              134,
+              135,
+              136,
+              137,
+              138,
+              139,
+              140,
+              141,
+              142,
+              143,
+              144,
+              145,
+              146,
+              147,
+              148,
+              149,
+              150,
+              151,
+              152,
+              153,
+              154,
+              155,
+              156,
+              157,
+              158,
+              159,
+              160,
+              161,
+              162,
+              163,
+              164,
+              165,
+              166,
+              167,
+              168,
+              169,
+              170,
+              171,
+              172,
+              173,
+              174,
+              175,
+              176,
+              177,
+              178,
+              179,
+              180,
+              181,
+              182,
+              183,
+              184,
+              185,
+              186,
+              187,
+              188,
+              189,
+              190,
+              191,
+              192,
+              193,
+              194,
+              195,
+              196,
+              197,
+              198,
+              199,
+              200,
+              201,
+              202,
+              203,
+              204,
+              205,
+              206,
+              207,
+              208,
+              209,
+              210,
+              211,
+              212,
+              213,
+              214,
+              215,
+              216,
+              217,
+              218,
+              219,
+              220,
+              221,
+              222,
+              223,
+              224,
+              225,
+              226,
+              227,
+              228,
+              229,
+              230,
+              231,
+              232,
+              233,
+              234,
+              235,
+              236,
+              237,
+              238,
+              239,
+              240,
+              241,
+              242,
+              243,
+              244,
+              245,
+              246,
+              247,
+              248,
+              249,
+              250
+            ]
+          }
+        },
+        {
+          "channel_ref": "door_contact",
+          "field_ref": "door_contact"
+        },
+        {
+          "channel_ref": "lock_contact",
+          "field_ref": "lock_contact"
+        },
+        {
+          "channel_ref": "vibration",
+          "field_ref": "vibration"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "data_only",
+          "field": "telegram_type",
+          "equals": 1
+        },
+        {
+          "name": "exclude_voltage_251",
+          "field": "supply_voltage",
+          "not_equals": 251
+        },
+        {
+          "name": "exclude_voltage_252",
+          "field": "supply_voltage",
+          "not_equals": 252
+        },
+        {
+          "name": "exclude_voltage_253",
+          "field": "supply_voltage",
+          "not_equals": 253
+        },
+        {
+          "name": "exclude_voltage_254",
+          "field": "supply_voltage",
+          "not_equals": 254
+        },
+        {
+          "name": "exclude_voltage_255",
+          "field": "supply_voltage",
+          "not_equals": 255
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "a5-14-08.emulated_data",
+      "telegram_id": {
+        "rorg": "A5"
+      },
+      "direction": "tx",
+      "fields": [
+        {
+          "name": "telegram_type",
+          "offset": 28,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "shortcut": "LRNB",
+          "description": "LRN Bit",
+          "constant": 1
+        },
+        {
+          "name": "supply_voltage",
+          "offset": 0,
+          "size": 8,
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload",
+          "shortcut": "SVC",
+          "description": "Supply voltage"
+        },
+        {
+          "name": "reserved_8_20",
+          "offset": 8,
+          "size": 20,
+          "raw_min": 0,
+          "raw_max": 1048575,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
+        },
+        {
+          "name": "door_contact",
+          "offset": 29,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "shortcut": "DCT",
+          "description": "Door Contact"
+        },
+        {
+          "name": "lock_contact",
+          "offset": 30,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "shortcut": "LCT",
+          "description": "Lock Contact"
+        },
+        {
+          "name": "vibration",
+          "offset": 31,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "shortcut": "VIB",
+          "description": "Vibration"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "supply_voltage",
+          "field_ref": "supply_voltage",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 250,
+            "scale_min": 0.0,
+            "scale_max": 5.0
+          }
+        },
+        {
+          "channel_ref": "door_contact",
+          "field_ref": "door_contact"
+        },
+        {
+          "channel_ref": "lock_contact",
+          "field_ref": "lock_contact"
+        },
+        {
+          "channel_ref": "vibration",
+          "field_ref": "vibration"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "data_only",
+          "field": "telegram_type",
+          "equals": 1
+        },
+        {
+          "name": "exclude_voltage_251",
+          "field": "supply_voltage",
+          "not_equals": 251
+        },
+        {
+          "name": "exclude_voltage_252",
+          "field": "supply_voltage",
+          "not_equals": 252
+        },
+        {
+          "name": "exclude_voltage_253",
+          "field": "supply_voltage",
+          "not_equals": 253
+        },
+        {
+          "name": "exclude_voltage_254",
+          "field": "supply_voltage",
+          "not_equals": 254
+        },
+        {
+          "name": "exclude_voltage_255",
+          "field": "supply_voltage",
+          "not_equals": 255
+        }
+      ]
+    }
+  ],
+  "tx": {
+    "aggregation_window_seconds": 10
+  },
+  "description": "Multi-Func Sensor, Dual Door Contact with States Open/Closed and Locked/Unlocked, Supply Voltage Monitor and Vibration Detection",
+  "function_groups": [
+    {
+      "name": "from",
+      "title": "",
+      "direction": "from",
+      "functions": [
+        "supply_voltage",
+        "door_contact",
+        "lock_contact",
+        "vibration"
+      ]
+    }
+  ]
+}

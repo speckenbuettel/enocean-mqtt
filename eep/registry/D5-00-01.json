@@ -4,22 +4,44 @@
   "rorg": "D5",
   "func": "00",
   "type": "01",
-  "func_description": "Contacts and Switches",
+  "func_description": "Contact or Switch",
   "type_description": "Single Input Contact",
-  "description": "Single Input Contact",
+  "description": "Contact or Switch, Single Input Contact",
   "source": "EnOcean Equipment Profiles",
-  "source_version": "2.6.8",
+  "source_version": "2.6.8; IP 0.9",
+  "sources": [
+    "enocean/eeps/eep268.xml",
+    "enocean/eeps/json/D5-00-01.json",
+    "enocean/eeps/ip/D5-00-01_ip.pdf",
+    "eep/semantic-role-mapping.xlsx",
+    "eep/eep-list.csv"
+  ],
+  "direction": "unidirectional",
+  "device_class": "sensor",
   "channels": [
     {
       "name": "contact",
       "display_name": null,
-      "channel_type": "state",
+      "source_key": "contact",
+      "description": "contact",
+      "function_group": "from",
+      "semantic_role": "security.contact.state",
+      "object_type": "state",
+      "semantic_attributes": {},
       "data_type": "enum",
-      "semantic_role": "opening.contact",
       "output": {
         "mqtt": true,
         "api": true,
         "storage": true
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
       },
       "enum": [
         {
@@ -30,57 +52,61 @@
           "value": 1,
           "label": "closed"
         }
-      ],
-      "tx": {
-        "managed": false,
-        "required_for_snapshot": true
-      }
-    },
+      ]
+    }
+  ],
+  "messages": [],
+  "function_groups": [
     {
-      "name": "learn_button",
-      "display_name": null,
-      "channel_type": "status",
-      "data_type": "enum",
-      "output": {
-        "mqtt": true,
-        "api": true,
-        "storage": true
-      },
-      "enum": [
-        {
-          "value": 0,
-          "label": "pressed"
-        },
-        {
-          "value": 1,
-          "label": "not_pressed"
-        }
+      "name": "from",
+      "title": "",
+      "direction": "from",
+      "functions": [
+        "contact"
       ]
     }
   ],
   "telegrams": [
     {
-      "telegram_type_id": "d5-00-01.case1",
+      "telegram_type_id": "d5-00-01.data",
       "telegram_id": {
         "rorg": "D5"
       },
+      "direction": null,
       "fields": [
         {
-          "name": "contact",
-          "offset": 7,
-          "size": 1,
-          "shortcut": "CO",
-          "description": "Contact",
+          "name": "reserved_0_4",
+          "offset": 0,
+          "size": 4,
           "raw_min": 0,
-          "raw_max": 1,
-          "source": "payload"
+          "raw_max": 15,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
         },
         {
           "name": "learn_button",
           "offset": 4,
           "size": 1,
-          "shortcut": "LRN",
-          "description": "Learn Button",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        },
+        {
+          "name": "reserved_5_2",
+          "offset": 5,
+          "size": 2,
+          "raw_min": 0,
+          "raw_max": 3,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
+        },
+        {
+          "name": "contact",
+          "offset": 7,
+          "size": 1,
           "raw_min": 0,
           "raw_max": 1,
           "source": "payload"
@@ -89,33 +115,13 @@
       "channel_bindings": [
         {
           "channel_ref": "contact",
-          "field_ref": "contact",
-          "bitfield_ref": "contact",
-          "enum": [
-            {
-              "value": 0,
-              "label": "open"
-            },
-            {
-              "value": 1,
-              "label": "closed"
-            }
-          ]
-        },
+          "field_ref": "contact"
+        }
+      ],
+      "constraints": [
         {
-          "channel_ref": "learn_button",
-          "field_ref": "learn_button",
-          "bitfield_ref": "learn_button",
-          "enum": [
-            {
-              "value": 0,
-              "label": "pressed"
-            },
-            {
-              "value": 1,
-              "label": "not_pressed"
-            }
-          ]
+          "field": "learn_button",
+          "equals": 1
         }
       ]
     }

@@ -5,6 +5,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Literal
 
+from enocean_mqtt.esp3.radio import decode_f6_status
+
 TransmissionStatus = Literal["accepted", "disabled", "failed"]
 
 
@@ -64,7 +66,7 @@ class RuntimeTelegramEvent:
 def tx_event_to_mqtt_payload(event: RuntimeTelegramEvent) -> dict[str, object]:
     """Serialize a TX event according to the canonical MQTT model."""
 
-    return {
+    payload: dict[str, object] = {
         "timestamp_local": event.timestamp_local,
         "timestamp_unix": event.timestamp_unix,
         "direction": "tx",
@@ -80,3 +82,9 @@ def tx_event_to_mqtt_payload(event: RuntimeTelegramEvent) -> dict[str, object]:
         "port": event.port,
         "transmission": event.transmission,
     }
+    if (event.rorg or "").upper() == "F6":
+        payload["teach_in"] = False
+        decoded = decode_f6_status(event.erp1_status)
+        if decoded is not None:
+            payload["erp1_status_decoded"] = decoded
+    return payload

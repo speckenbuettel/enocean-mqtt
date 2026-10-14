@@ -6,75 +6,80 @@
   "type": "03",
   "func_description": "Digital Input",
   "type_description": "4 Digital Inputs, Wake and Temperature",
-  "description": "4 Digital Inputs, Wake and Temperature",
+  "description": "Digital Input, 4 Digital Inputs, Wake and Temperature",
   "source": "EnOcean Equipment Profiles",
-  "source_version": "2.6.8",
+  "source_version": "2.6.8; IP 0.9",
+  "sources": [
+    "enocean/eeps/eep268.xml",
+    "enocean/eeps/json/A5-30-03.json",
+    "enocean/eeps/ip/A5-30-03_ip.pdf",
+    "eep/semantic-role-mapping.xlsx",
+    "eep/eep-list.csv"
+  ],
+  "direction": "unidirectional",
+  "device_class": "sensor",
   "channels": [
     {
-      "name": "telegram_type",
-      "channel_type": "status",
-      "data_type": "enum",
-      "semantic_role": "enocean.telegram_type",
-      "field_ref": "telegram_type",
-      "bitfield": {
-        "name": "telegram_type",
-        "offset": 28,
-        "size": 1,
-        "shortcut": "LRNB",
-        "description": "LRN Bit",
-        "raw_min": 0,
-        "raw_max": 1,
-        "source": "payload"
+      "name": "temperature",
+      "display_name": null,
+      "source_key": "temperature",
+      "description": "Temperature (linear)",
+      "function_group": "from",
+      "semantic_role": "climate.temperature.measurement",
+      "object_type": "measurement",
+      "semantic_attributes": {},
+      "data_type": "float",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
       },
-      "enum": [
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      },
+      "unit": "°C",
+      "value_precision": 1,
+      "value_resolution": 0.157,
+      "ranges": [
         {
-          "value": 0,
-          "label": "teach_in_telegram"
-        },
-        {
-          "value": 1,
-          "label": "data_telegram"
+          "min": 0,
+          "max": 40,
+          "step": 0.157,
+          "unit": "°C"
         }
       ]
     },
     {
-      "name": "temperature",
-      "channel_type": "measurement",
-      "data_type": "float",
-      "unit": "°C",
-      "semantic_role": "environment.temperature",
-      "field_ref": "temperature",
-      "bitfield": {
-        "name": "temperature",
-        "offset": 8,
-        "size": 8,
-        "shortcut": "TMP",
-        "description": "Temperature",
-        "raw_min": 0,
-        "raw_max": 255,
-        "source": "payload"
-      },
-      "scale": {
-        "raw_min": 0,
-        "raw_max": 255,
-        "scale_min": 0.0,
-        "scale_max": 40.0
-      }
-    },
-    {
       "name": "status_of_wake",
-      "channel_type": "status",
+      "display_name": null,
+      "source_key": "wakeStatus",
+      "description": "Value of wake signal",
+      "function_group": "from",
+      "semantic_role": "io.input.state",
+      "object_type": "state",
+      "semantic_attributes": {
+        "signal_type": "trigger"
+      },
       "data_type": "enum",
-      "field_ref": "status_of_wake",
-      "bitfield": {
-        "name": "status_of_wake",
-        "offset": 19,
-        "size": 1,
-        "shortcut": "WA0",
-        "description": "Status of Wake",
-        "raw_min": 0,
-        "raw_max": 1,
-        "source": "payload"
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
       },
       "enum": [
         {
@@ -89,18 +94,30 @@
     },
     {
       "name": "digital_input_3",
-      "channel_type": "status",
+      "display_name": null,
+      "source_key": "digitalInput3",
+      "description": "Digital Input 3",
+      "function_group": "from",
+      "semantic_role": "io.input.state",
+      "object_type": "state",
+      "semantic_attributes": {
+        "signal_type": "digital",
+        "channel": 3
+      },
       "data_type": "enum",
-      "field_ref": "digital_input_3",
-      "bitfield": {
-        "name": "digital_input_3",
-        "offset": 20,
-        "size": 1,
-        "shortcut": "DI3",
-        "description": "Digital Input 3",
-        "raw_min": 0,
-        "raw_max": 1,
-        "source": "payload"
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
       },
       "enum": [
         {
@@ -115,18 +132,30 @@
     },
     {
       "name": "digital_input_2",
-      "channel_type": "status",
+      "display_name": null,
+      "source_key": "digitalInput2",
+      "description": "Digital Input 2",
+      "function_group": "from",
+      "semantic_role": "io.input.state",
+      "object_type": "state",
+      "semantic_attributes": {
+        "signal_type": "digital",
+        "channel": 2
+      },
       "data_type": "enum",
-      "field_ref": "digital_input_2",
-      "bitfield": {
-        "name": "digital_input_2",
-        "offset": 21,
-        "size": 1,
-        "shortcut": "DI2",
-        "description": "Digital Input 2",
-        "raw_min": 0,
-        "raw_max": 1,
-        "source": "payload"
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
       },
       "enum": [
         {
@@ -141,18 +170,30 @@
     },
     {
       "name": "digital_input_1",
-      "channel_type": "status",
+      "display_name": null,
+      "source_key": "digitalInput1",
+      "description": "Digital Input 1",
+      "function_group": "from",
+      "semantic_role": "io.input.state",
+      "object_type": "state",
+      "semantic_attributes": {
+        "signal_type": "digital",
+        "channel": 1
+      },
       "data_type": "enum",
-      "field_ref": "digital_input_1",
-      "bitfield": {
-        "name": "digital_input_1",
-        "offset": 22,
-        "size": 1,
-        "shortcut": "DI1",
-        "description": "Digital Input 1",
-        "raw_min": 0,
-        "raw_max": 1,
-        "source": "payload"
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
       },
       "enum": [
         {
@@ -167,18 +208,30 @@
     },
     {
       "name": "digital_input_0",
-      "channel_type": "status",
+      "display_name": null,
+      "source_key": "digitalInput0",
+      "description": "Digital Input 0",
+      "function_group": "from",
+      "semantic_role": "io.input.state",
+      "object_type": "state",
+      "semantic_attributes": {
+        "signal_type": "digital",
+        "channel": 0
+      },
       "data_type": "enum",
-      "field_ref": "digital_input_0",
-      "bitfield": {
-        "name": "digital_input_0",
-        "offset": 23,
-        "size": 1,
-        "shortcut": "DI0",
-        "description": "Digital Input 0",
-        "raw_min": 0,
-        "raw_max": 1,
-        "source": "payload"
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
       },
       "enum": [
         {
@@ -192,19 +245,44 @@
       ]
     }
   ],
+  "messages": [],
+  "function_groups": [
+    {
+      "name": "from",
+      "title": "",
+      "direction": "from",
+      "functions": [
+        "temperature",
+        "status_of_wake",
+        "digital_input_3",
+        "digital_input_2",
+        "digital_input_1",
+        "digital_input_0"
+      ]
+    }
+  ],
   "telegrams": [
     {
-      "telegram_type_id": "a5-30-03.case1",
+      "telegram_type_id": "a5-30-03.data",
       "telegram_id": {
         "rorg": "A5"
       },
+      "direction": null,
       "fields": [
         {
           "name": "reserved_0_8",
           "offset": 0,
           "size": 8,
-          "shortcut": "",
-          "description": "Reserved field 0:8",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
+        },
+        {
+          "name": "temperature",
+          "offset": 8,
+          "size": 8,
           "raw_min": 0,
           "raw_max": 255,
           "source": "payload"
@@ -213,58 +291,45 @@
           "name": "reserved_16_3",
           "offset": 16,
           "size": 3,
-          "shortcut": "",
-          "description": "Reserved field 16:3",
           "raw_min": 0,
           "raw_max": 7,
-          "source": "payload"
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
         },
         {
           "name": "reserved_24_4",
           "offset": 24,
           "size": 4,
-          "shortcut": "",
-          "description": "Reserved field 24:4",
           "raw_min": 0,
           "raw_max": 15,
-          "source": "payload"
-        },
-        {
-          "name": "reserved_29_3",
-          "offset": 29,
-          "size": 3,
-          "shortcut": "",
-          "description": "Reserved field 29:3",
-          "raw_min": 0,
-          "raw_max": 7,
-          "source": "payload"
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
         },
         {
           "name": "telegram_type",
           "offset": 28,
           "size": 1,
-          "shortcut": "LRNB",
-          "description": "LRN Bit",
           "raw_min": 0,
           "raw_max": 1,
-          "source": "payload"
+          "source": "payload",
+          "constant": 1
         },
         {
-          "name": "temperature",
-          "offset": 8,
-          "size": 8,
-          "shortcut": "TMP",
-          "description": "Temperature",
+          "name": "reserved_29_3",
+          "offset": 29,
+          "size": 3,
           "raw_min": 0,
-          "raw_max": 255,
-          "source": "payload"
+          "raw_max": 7,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
         },
         {
           "name": "status_of_wake",
           "offset": 19,
           "size": 1,
-          "shortcut": "WA0",
-          "description": "Status of Wake",
           "raw_min": 0,
           "raw_max": 1,
           "source": "payload"
@@ -273,8 +338,6 @@
           "name": "digital_input_3",
           "offset": 20,
           "size": 1,
-          "shortcut": "DI3",
-          "description": "Digital Input 3",
           "raw_min": 0,
           "raw_max": 1,
           "source": "payload"
@@ -283,8 +346,6 @@
           "name": "digital_input_2",
           "offset": 21,
           "size": 1,
-          "shortcut": "DI2",
-          "description": "Digital Input 2",
           "raw_min": 0,
           "raw_max": 1,
           "source": "payload"
@@ -293,8 +354,6 @@
           "name": "digital_input_1",
           "offset": 22,
           "size": 1,
-          "shortcut": "DI1",
-          "description": "Digital Input 1",
           "raw_min": 0,
           "raw_max": 1,
           "source": "payload"
@@ -303,196 +362,52 @@
           "name": "digital_input_0",
           "offset": 23,
           "size": 1,
-          "shortcut": "DI0",
-          "description": "Digital Input 0",
           "raw_min": 0,
           "raw_max": 1,
           "source": "payload"
         }
       ],
-      "channels": [
+      "channel_bindings": [
         {
-          "name": "telegram_type",
-          "channel_type": "status",
-          "data_type": "enum",
-          "semantic_role": "enocean.telegram_type",
-          "field_ref": "telegram_type",
-          "bitfield": {
-            "name": "telegram_type",
-            "offset": 28,
-            "size": 1,
-            "shortcut": "LRNB",
-            "description": "LRN Bit",
-            "raw_min": 0,
-            "raw_max": 1,
-            "source": "payload"
-          },
-          "enum": [
-            {
-              "value": 0,
-              "label": "teach_in_telegram"
-            },
-            {
-              "value": 1,
-              "label": "data_telegram"
-            }
-          ]
-        },
-        {
-          "name": "temperature",
-          "channel_type": "measurement",
-          "data_type": "float",
-          "unit": "°C",
-          "semantic_role": "environment.temperature",
+          "channel_ref": "temperature",
           "field_ref": "temperature",
-          "bitfield": {
-            "name": "temperature",
-            "offset": 8,
-            "size": 8,
-            "shortcut": "TMP",
-            "description": "Temperature",
-            "raw_min": 0,
-            "raw_max": 255,
-            "source": "payload"
-          },
           "scale": {
             "raw_min": 0,
             "raw_max": 255,
-            "scale_min": 0.0,
-            "scale_max": 40.0
+            "scale_min": 40,
+            "scale_max": 0
           }
         },
         {
-          "name": "status_of_wake",
-          "channel_type": "status",
-          "data_type": "enum",
-          "field_ref": "status_of_wake",
-          "bitfield": {
-            "name": "status_of_wake",
-            "offset": 19,
-            "size": 1,
-            "shortcut": "WA0",
-            "description": "Status of Wake",
-            "raw_min": 0,
-            "raw_max": 1,
-            "source": "payload"
-          },
-          "enum": [
-            {
-              "value": 0,
-              "label": "low"
-            },
-            {
-              "value": 1,
-              "label": "high"
-            }
-          ]
+          "channel_ref": "status_of_wake",
+          "field_ref": "status_of_wake"
         },
         {
-          "name": "digital_input_3",
-          "channel_type": "status",
-          "data_type": "enum",
-          "field_ref": "digital_input_3",
-          "bitfield": {
-            "name": "digital_input_3",
-            "offset": 20,
-            "size": 1,
-            "shortcut": "DI3",
-            "description": "Digital Input 3",
-            "raw_min": 0,
-            "raw_max": 1,
-            "source": "payload"
-          },
-          "enum": [
-            {
-              "value": 0,
-              "label": "low"
-            },
-            {
-              "value": 1,
-              "label": "high"
-            }
-          ]
+          "channel_ref": "digital_input_3",
+          "field_ref": "digital_input_3"
         },
         {
-          "name": "digital_input_2",
-          "channel_type": "status",
-          "data_type": "enum",
-          "field_ref": "digital_input_2",
-          "bitfield": {
-            "name": "digital_input_2",
-            "offset": 21,
-            "size": 1,
-            "shortcut": "DI2",
-            "description": "Digital Input 2",
-            "raw_min": 0,
-            "raw_max": 1,
-            "source": "payload"
-          },
-          "enum": [
-            {
-              "value": 0,
-              "label": "low"
-            },
-            {
-              "value": 1,
-              "label": "high"
-            }
-          ]
+          "channel_ref": "digital_input_2",
+          "field_ref": "digital_input_2"
         },
         {
-          "name": "digital_input_1",
-          "channel_type": "status",
-          "data_type": "enum",
-          "field_ref": "digital_input_1",
-          "bitfield": {
-            "name": "digital_input_1",
-            "offset": 22,
-            "size": 1,
-            "shortcut": "DI1",
-            "description": "Digital Input 1",
-            "raw_min": 0,
-            "raw_max": 1,
-            "source": "payload"
-          },
-          "enum": [
-            {
-              "value": 0,
-              "label": "low"
-            },
-            {
-              "value": 1,
-              "label": "high"
-            }
-          ]
+          "channel_ref": "digital_input_1",
+          "field_ref": "digital_input_1"
         },
         {
-          "name": "digital_input_0",
-          "channel_type": "status",
-          "data_type": "enum",
-          "field_ref": "digital_input_0",
-          "bitfield": {
-            "name": "digital_input_0",
-            "offset": 23,
-            "size": 1,
-            "shortcut": "DI0",
-            "description": "Digital Input 0",
-            "raw_min": 0,
-            "raw_max": 1,
-            "source": "payload"
-          },
-          "enum": [
-            {
-              "value": 0,
-              "label": "low"
-            },
-            {
-              "value": 1,
-              "label": "high"
-            }
-          ]
+          "channel_ref": "digital_input_0",
+          "field_ref": "digital_input_0"
+        }
+      ],
+      "constraints": [
+        {
+          "field": "telegram_type",
+          "equals": 1
         }
       ]
     }
-  ]
+  ],
+  "tx": {
+    "aggregation_window_seconds": 10
+  }
 }

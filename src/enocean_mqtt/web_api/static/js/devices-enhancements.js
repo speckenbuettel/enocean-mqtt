@@ -153,12 +153,23 @@ function enhancePhysicalDeviceForm() {
   applyProtocolBinding(form);
 }
 
+function validateVirtualDeviceProfile(form) {
+  const eep = form.elements.namedItem('eep');
+  const profile = form.elements.namedItem('profile');
+  if (eep) eep.required = !String(profile?.value || '').trim();
+}
+
 function enhanceVirtualDeviceForm() {
   const form = document.getElementById('virtualDeviceForm');
   const options = deviceEnhancementState.options;
   if (!form || !options) return;
-  registrySelect(form, 'eep', options.eeps || [], false);
+  registrySelect(form, 'eep', options.eeps || []);
   registrySelect(form, 'profile', options.profiles || []);
+  if (form.dataset.virtualProfileValidation !== 'true') {
+    form.addEventListener('change', () => validateVirtualDeviceProfile(form));
+    form.dataset.virtualProfileValidation = 'true';
+  }
+  validateVirtualDeviceProfile(form);
 }
 
 async function loadRegistryOptions() {

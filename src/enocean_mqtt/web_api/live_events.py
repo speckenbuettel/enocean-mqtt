@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 import logging
 import queue
+import threading
 from typing import Any
 
 logger = logging.getLogger(__name__)
@@ -21,6 +22,24 @@ class LiveEventQueue:
             maxsize=maxsize,
         )
         self._shutdown_requested = False
+        self._clients = 0
+        self._lock = threading.Lock()
+
+    def connect(self) -> None:
+        """Register a live consumer before accepting new events."""
+        with self._lock:
+            self._clients += 1
+
+    def disconnect(self) -> None:
+        """Discard pending live events when the last consumer leaves."""
+        with self._lock:
+            self._clients = max(0, self._clients - 1)
+            if not self._clients:
+                while True:
+                    try:
+                        self._queue.get_nowait()
+                    except queue.Empty:
+                        break
 
     def configure(self, max_queue_size: int | None = None) -> None:
         """Reconfigure queue size and clear buffered events."""
@@ -39,6 +58,13 @@ class LiveEventQueue:
     def put_nowait(self, payload: dict[str, Any]) -> None:
         """Publish one live event without blocking runtime processing."""
 
+        with self._lock:
+            if not self._clients:
+                return
+            self._put_nowait(payload)
+
+    def _put_nowait(self, payload: dict[str, Any]) -> None:
+
         try:
             self._queue.put_nowait(payload)
             logger.debug(
@@ -56,7 +82,7 @@ class LiveEventQueue:
 
             self._queue.put_nowait(payload)
 
-    async def get(self) -> dict[str, Any] | None:
+    async def get(self, *, poll: bool = False) -> dict[str, Any] | None:
         """Return one event without blocking the ASGI event loop."""
 
         while True:
@@ -70,6 +96,8 @@ class LiveEventQueue:
                     0.5,
                 )
             except queue.Empty:
+                if poll:
+                    raise TimeoutError("No live event available") from None
                 continue
 
             if payload.get("event") == SHUTDOWN_EVENT_TYPE:
@@ -104,7 +132,7 @@ def request_live_event_shutdown() -> None:
     LIVE_EVENT_QUEUE.request_shutdown()
 
 
-async def get_live_event() -> dict[str, Any] | None:
+async def get_live_event(*, poll: bool = False) -> dict[str, Any] | None:
     """Return the next live event without blocking the ASGI loop."""
 
-    return await LIVE_EVENT_QUEUE.get()
+    return await LIVE_EVENT_QUEUE.get(poll=poll)

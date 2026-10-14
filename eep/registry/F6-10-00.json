@@ -6,72 +6,130 @@
   "type": "00",
   "func_description": "Mechanical Handle",
   "type_description": "Window Handle",
-  "description": "Window Handle",
+  "description": "Mechanical Handle, Window Handle",
   "source": "EnOcean Equipment Profiles",
-  "source_version": "2.6.8",
+  "source_version": "2.6.8; IP 0.9",
+  "sources": [
+    "enocean/eeps/eep268.xml",
+    "enocean/eeps/json/F6-10-00.json",
+    "enocean/eeps/ip/F6-10-00_ip.pdf",
+    "eep/semantic-role-mapping.xlsx",
+    "eep/eep-list.csv"
+  ],
+  "direction": "unidirectional",
+  "device_class": "sensor",
   "channels": [
     {
       "name": "window_handle",
       "display_name": null,
-      "channel_type": "event",
+      "source_key": "handle",
+      "description": "Movement of the window handle",
+      "function_group": "from",
+      "semantic_role": "security.handle_position.state",
+      "object_type": "state",
+      "semantic_attributes": {},
       "data_type": "enum",
       "output": {
         "mqtt": true,
         "api": true,
         "storage": true
       },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      },
       "enum": [
         {
-          "value": 3,
-          "label": "moved_from_up_to_right"
+          "value": 12,
+          "label": "open"
         },
         {
-          "value": 15,
-          "label": "moved_from_right_to_down"
-        },
-        {
-          "value": 3,
-          "label": "moved_from_down_to_left"
+          "value": 14,
+          "label": "open"
         },
         {
           "value": 13,
-          "label": "moved_from_left_to_up"
-        },
-        {
-          "value": 3,
-          "label": "moved_from_up_to_left"
+          "label": "tilted"
         },
         {
           "value": 15,
-          "label": "moved_from_left_to_down"
-        },
-        {
-          "value": 3,
-          "label": "moved_from_down_to_right"
-        },
-        {
-          "value": 13,
-          "label": "moved_from_right_to_up"
+          "label": "closed"
         }
+      ]
+    }
+  ],
+  "messages": [],
+  "function_groups": [
+    {
+      "name": "from",
+      "title": "",
+      "direction": "from",
+      "functions": [
+        "window_handle"
       ]
     }
   ],
   "telegrams": [
     {
-      "telegram_type_id": "f6-10-00.case1",
+      "telegram_type_id": "f6-10-00.data",
       "telegram_id": {
         "rorg": "F6"
       },
+      "direction": null,
       "fields": [
         {
           "name": "window_handle",
           "offset": 0,
-          "size": 8,
-          "shortcut": "WIN",
-          "description": "Window handle",
+          "size": 4,
           "raw_min": 0,
-          "raw_max": 255,
+          "raw_max": 15,
           "source": "payload"
+        },
+        {
+          "name": "unused_low_nibble",
+          "offset": 4,
+          "size": 4,
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "window_handle",
+          "field_ref": "window_handle"
+        }
+      ],
+      "constraints": [
+        {
+          "field": "window_handle",
+          "values": [
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 0
+          }
         }
       ],
       "status_fields": [
@@ -79,64 +137,24 @@
           "name": "t21",
           "offset": 2,
           "size": 1,
-          "shortcut": "",
-          "description": "T21",
           "raw_min": 0,
           "raw_max": 1,
-          "source": "status"
+          "source": "status",
+          "constant": 1
         },
         {
           "name": "nu",
           "offset": 3,
           "size": 1,
-          "shortcut": "",
-          "description": "NU",
           "raw_min": 0,
           "raw_max": 1,
-          "source": "status"
-        }
-      ],
-      "channel_bindings": [
-        {
-          "channel_ref": "window_handle",
-          "field_ref": "window_handle",
-          "bitfield_ref": "window_handle",
-          "enum": [
-            {
-              "value": 3,
-              "label": "moved_from_up_to_right"
-            },
-            {
-              "value": 15,
-              "label": "moved_from_right_to_down"
-            },
-            {
-              "value": 3,
-              "label": "moved_from_down_to_left"
-            },
-            {
-              "value": 13,
-              "label": "moved_from_left_to_up"
-            },
-            {
-              "value": 3,
-              "label": "moved_from_up_to_left"
-            },
-            {
-              "value": 15,
-              "label": "moved_from_left_to_down"
-            },
-            {
-              "value": 3,
-              "label": "moved_from_down_to_right"
-            },
-            {
-              "value": 13,
-              "label": "moved_from_right_to_up"
-            }
-          ]
+          "source": "status",
+          "constant": 0
         }
       ]
     }
-  ]
+  ],
+  "tx": {
+    "aggregation_window_seconds": 10
+  }
 }

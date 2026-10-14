@@ -5,6 +5,7 @@ from __future__ import annotations
 import logging
 import os
 from collections import Counter
+from collections.abc import Callable
 from pathlib import Path
 from time import time
 from typing import Any
@@ -13,6 +14,7 @@ import psutil
 
 from enocean_mqtt.mqtt.client import MQTTClient
 from enocean_mqtt.time import build_timestamp_fields
+from enocean_mqtt.version import load_project_version
 
 
 class GatewayStatusPublisher:
@@ -29,8 +31,10 @@ class GatewayStatusPublisher:
         enocean_tx_enabled: bool = False,
         sqlite_enabled: bool = False,
         sqlite_database_path: str | None = None,
+        error_notifier: Callable[[str, str], None] | None = None,
     ) -> None:
         self._mqtt_client = mqtt_client
+        self._error_notifier = error_notifier
         self._base_topic = base_topic.rstrip("/")
         self._source = source
         self._startup_time = time()
@@ -161,12 +165,7 @@ class GatewayStatusPublisher:
 
     @staticmethod
     def load_version() -> str:
-        version_file = Path("VERSION")
-
-        if not version_file.exists():
-            return "unknown"
-
-        return version_file.read_text(encoding="utf-8").strip()
+        return load_project_version()
 
     @staticmethod
     def memory_rss_mb() -> float | None:
@@ -384,6 +383,16 @@ class GatewayStatusPublisher:
             ),
         }
 
+        rx_total = rx_payload["telegrams_total"]
+        for category in ("original", "repeated", "unclassified"):
+            count = statistics.get(f"{category}_telegrams_total", 0)
+            rx_payload[f"{category}_telegrams"] = {
+                "telegrams_total": count,
+                "telegrams_per_minute": round(
+                    telegrams_per_minute * count / rx_total if rx_total else 0.0, 2
+                ),
+            }
+
         tx_payload = {
             "telegrams_total": statistics.get(
                 "tx_telegrams_total",
@@ -552,6 +561,8 @@ class GatewayStatusPublisher:
         message: str,
         **details: Any,
     ) -> None:
+        if self._error_notifier is not None:
+            self._error_notifier(component, message)
         payload: dict[str, Any] = {
             **self.build_timestamp_fields(),
             "level": "error",

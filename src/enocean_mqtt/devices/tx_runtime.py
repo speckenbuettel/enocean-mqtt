@@ -138,6 +138,12 @@ class DeviceTxRuntime:
                 tx_profile=tx_profile,
             )
 
+    def set_value(self, device_id: str, message: str, value: Any) -> None:
+        """Submit one physical-device message value for TX aggregation."""
+
+        device = self._resolve_device(namespace="device", identifier=device_id)
+        self._submit_message(device=device, message=message, value=value)
+
     def _handle_message_set(self, topic: str, payload: bytes) -> None:
         try:
             namespace, identifier, message = self._parse_message_set_topic(topic)
@@ -147,31 +153,14 @@ class DeviceTxRuntime:
                 return
 
             device = self._resolve_device(namespace=namespace, identifier=identifier)
-            self._validate_device_tx_capable(device)
-            tx_profile = resolve_device_tx_profile(
-                device,
-                controller_mapping_path=self._controller_mapping_path,
-            )
-            tx_definition = load_tx_definition(tx_profile)
-            self._validate_message(
-                message=message,
-                tx_profile=tx_profile,
-                tx_definition=tx_definition,
-            )
             value = _message_value(_parse_payload(payload_text))
-            sender_id = _required_sender_id(device)
-            device_id = normalize_device_id(device.device_id)
-
-            self._aggregator.submit(
-                key=device_id,
-                semantic_ref=message,
+            tx_profile = self._submit_message(
+                device=device,
+                message=message,
                 value=value,
-                eep_definition=tx_definition,
-                source="messages",
-                sender_id=sender_id,
-                destination_id=device_id,
-                port="physical-device",
             )
+            device_id = normalize_device_id(device.device_id)
+            sender_id = _required_sender_id(device)
 
             LOGGER.debug(
                 "Accepted physical device TX message: device_id=%s tx_profile=%s message=%s",
@@ -210,6 +199,39 @@ class DeviceTxRuntime:
             self.teach_in(device.device_id, command_payload)
         except Exception as exc:
             self._publish_invalid(topic=topic, exc=exc)
+
+    def _submit_message(
+        self,
+        *,
+        device: Device,
+        message: str,
+        value: Any,
+    ) -> str:
+        self._validate_device_tx_capable(device)
+        tx_profile = resolve_device_tx_profile(
+            device,
+            controller_mapping_path=self._controller_mapping_path,
+        )
+        tx_definition = load_tx_definition(tx_profile)
+        self._validate_message(
+            message=message,
+            tx_profile=tx_profile,
+            tx_definition=tx_definition,
+        )
+        sender_id = _required_sender_id(device)
+        device_id = normalize_device_id(device.device_id)
+
+        self._aggregator.submit(
+            key=device_id,
+            semantic_ref=message,
+            value=value,
+            eep_definition=tx_definition,
+            source="messages",
+            sender_id=sender_id,
+            destination_id=device_id,
+            port="physical-device",
+        )
+        return tx_profile
 
     def _parse_message_set_topic(
         self,

@@ -2,15 +2,20 @@
 
 from __future__ import annotations
 
+import asyncio
+import json
 import logging
-from collections.abc import Callable
+from collections.abc import AsyncGenerator, Callable
+from time import monotonic
 from typing import Any
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Query, Request
+from fastapi.responses import StreamingResponse
 
 from enocean_mqtt.gateway.status import GatewayStatusPublisher
 
 GatewayStatusProvider = Callable[[], GatewayStatusPublisher]
+GATEWAY_STATUS_HEARTBEAT_SECONDS = 15.0
 
 
 def _mqtt_connected(status: GatewayStatusPublisher) -> bool:
@@ -82,6 +87,20 @@ def _health_payload(status: GatewayStatusPublisher) -> dict[str, Any]:
     }
 
 
+def adapter_status_payload(status: GatewayStatusPublisher) -> dict[str, Any]:
+    """Return the stable gateway values exposed as OBS status datapoints."""
+
+    return {
+        "values": {
+            "gateway.online": True,
+            "gateway.enocean_connected": status.enocean_state() == "connected",
+            "gateway.tx_enabled": bool(status._enocean_tx_enabled),
+            "gateway.mqtt_connected": _mqtt_connected(status),
+            "gateway.devices_total": int(status._device_registry_devices_total),
+        }
+    }
+
+
 def gateway_runtime_snapshot(status: GatewayStatusPublisher) -> dict[str, Any]:
     """Return all retained-style gateway runtime state in one API payload."""
 
@@ -141,6 +160,30 @@ def create_gateway_status_router(
     def get_health() -> dict[str, Any]:
         return _health_payload(status())
 
+    @router.get("/adapter-status")
+    def get_adapter_status() -> dict[str, Any]:
+        return adapter_status_payload(status())
+
+    @router.get("/adapter-status/stream")
+    async def stream_adapter_status(
+        request: Request,
+        include_initial: bool = True,
+        interval: float = Query(default=1.0, ge=0.25, le=60.0),
+    ) -> StreamingResponse:
+        return StreamingResponse(
+            _adapter_status_event_stream(
+                request=request,
+                status_provider=status_provider,
+                include_initial=include_initial,
+                interval=interval,
+            ),
+            media_type="text/event-stream",
+            headers={
+                "Cache-Control": "no-cache",
+                "X-Accel-Buffering": "no",
+            },
+        )
+
     @router.get("/metrics")
     def get_metrics() -> dict[str, Any]:
         return dict(status()._last_gateway_metrics_payload or {})
@@ -154,3 +197,34 @@ def create_gateway_status_router(
         return dict(status()._last_busmonitor_metrics_payload or {})
 
     return router
+
+
+async def _adapter_status_event_stream(
+    *,
+    request: Request,
+    status_provider: GatewayStatusProvider,
+    include_initial: bool,
+    interval: float,
+) -> AsyncGenerator[str, None]:
+    previous: str | None = None
+    first_snapshot = True
+    next_heartbeat = monotonic() + GATEWAY_STATUS_HEARTBEAT_SECONDS
+
+    while True:
+        if await request.is_disconnected():
+            break
+
+        payload = adapter_status_payload(status_provider())
+        serialized = json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
+
+        if serialized != previous and (include_initial or not first_snapshot):
+            yield f"event: gateway_status\ndata: {serialized}\n\n"
+        previous = serialized
+        first_snapshot = False
+
+        now = monotonic()
+        if now >= next_heartbeat:
+            yield ": heartbeat\n\n"
+            next_heartbeat = now + GATEWAY_STATUS_HEARTBEAT_SECONDS
+
+        await asyncio.sleep(interval)

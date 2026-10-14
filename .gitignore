@@ -1,9 +1,18 @@
-# Python bytecode
+# Python bytecode and tool caches
 __pycache__/
 *.py[codz]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
 
 # Virtual environments
 .venv/
+.ci-venv/
 venv/
 env/
 
@@ -18,9 +27,13 @@ wheels/
 /config/config.json
 /config/config.json_old
 /config/devices.json
+/config/foreign-devices.json
+/config/.foreign-devices.json.*
+# Compatibility input retained until the foreign-device registry has been written.
+/config/external-devices.json
+/config/.external-devices.json.*
 /config/virtual-devices.json
 /config/sender-id-registry.json
-/config/device-controller-mappings.json
 /config/secrets/
 .env
 .env.*
@@ -36,8 +49,25 @@ wheels/
 *.log
 *.pid
 
-# Local development output
+# Local test and development output
+/tmp/
+/output/
+*.sqlite
+*.sqlite3
+*.db
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite3-wal
+*.sqlite3-shm
+*.db-wal
+*.db-shm
+*.sqlite-journal
+*.sqlite3-journal
+*.db-journal
+/.pytest-tmp/
 /.cache/
+/.tox/
+/.nox/
 /docs/_build/
 /site/
 *.tmp

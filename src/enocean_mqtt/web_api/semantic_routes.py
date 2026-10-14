@@ -13,6 +13,8 @@ from fastapi.responses import StreamingResponse
 
 from enocean_mqtt.datapoints import DatapointRegistry
 from enocean_mqtt.datapoints.models import Datapoint
+from enocean_mqtt.gateway.runtime_commands import RuntimeCommandExecutionError
+from enocean_mqtt.gateway.runtime_schema import RuntimeCommandValidationError
 from enocean_mqtt.runtime.service import RuntimeService
 from enocean_mqtt.web_api.configuration_routes import create_configuration_router
 
@@ -43,10 +45,16 @@ def create_semantic_router(
             else None
         )
         if dispatcher is None:
-            raise _not_implemented(
-                "Runtime command dispatch is not configured for this API process.",
+            raise HTTPException(
+                status_code=503,
+                detail="Runtime command dispatch is not configured for this API process.",
             )
-        return dispatcher(command, payload)
+        try:
+            return dispatcher(command, payload)
+        except RuntimeCommandValidationError as exc:
+            raise HTTPException(status_code=400, detail=exc.message) from exc
+        except RuntimeCommandExecutionError as exc:
+            raise HTTPException(status_code=409, detail=exc.message) from exc
 
     @router.get("/api/v1/devices")
     def get_api_devices() -> dict[str, Any]:
@@ -327,9 +335,28 @@ def create_semantic_router(
         datapoint_id: str,
         payload: dict[str, Any],
     ) -> dict[str, Any]:
-        raise _not_implemented(
-            "Datapoint write access via HTTP is not implemented yet.",
-        )
+        if "value" not in payload:
+            raise HTTPException(
+                status_code=422,
+                detail="Request body requires a value field",
+            )
+
+        try:
+            get_service().set_datapoint_value(datapoint_id, payload["value"])
+        except KeyError as exc:
+            raise HTTPException(status_code=404, detail="Datapoint not found") from exc
+        except PermissionError as exc:
+            raise HTTPException(status_code=409, detail=str(exc)) from exc
+        except ValueError as exc:
+            raise HTTPException(status_code=422, detail=str(exc)) from exc
+        except RuntimeError as exc:
+            raise HTTPException(status_code=503, detail=str(exc)) from exc
+
+        return {
+            "status": "accepted",
+            "datapoint_id": datapoint_id,
+            "value": payload["value"],
+        }
 
     return router
 

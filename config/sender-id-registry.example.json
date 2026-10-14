@@ -1,26 +1,4 @@
 {
   "manufacturer_id": "760",
-  "interfaces": [
-    {
-      "interface_id": "usb300_01",
-      "base_id": "FFAA8000",
-      "allocated_sender_ids": [
-        {
-          "sender_id": "FFAA8001",
-          "device_type": "virtual_device",
-          "device_reference": "virt_temp_bathroom"
-        },
-        {
-          "sender_id": "FFAA8002",
-          "device_type": "virtual_device",
-          "device_reference": "enocean_gateway_01"
-        },
-        {
-          "sender_id": "FFAA8003",
-          "device_type": "emulated_sender",
-          "destination_id": "053636F5"
-        }
-      ]
-    }
-  ]
+  "interfaces": []
 }

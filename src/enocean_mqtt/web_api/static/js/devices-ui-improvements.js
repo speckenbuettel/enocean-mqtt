@@ -1,8 +1,7 @@
 /* Additional Device Management behaviour kept separate from the core page logic. */
 
 const UNKNOWN_DISCOVERY_RESET_KEY = 'enocean_mqtt_unknown_devices_reset_at';
-const EXTERNAL_SENDER_IDS_KEY = 'enocean_mqtt_external_sender_ids';
-const HIDE_EXTERNAL_DEVICES_KEY = 'enocean_mqtt_hide_external_devices';
+const LEGACY_SENDER_IDS_KEY = 'enocean_mqtt_external_sender_ids';
 const HIDE_OWN_SENDER_IDS_KEY = 'enocean_mqtt_hide_own_sender_ids';
 
 let gatewaySenderPools = [];
@@ -13,23 +12,83 @@ function storedBoolean(key, fallback) {
   return value === 'true';
 }
 
-function externalSenderIds() {
-  try {
-    const value = JSON.parse(localStorage.getItem(EXTERNAL_SENDER_IDS_KEY) || '[]');
-    return new Set(Array.isArray(value) ? value.map((item) => String(item).toUpperCase()) : []);
-  } catch (_error) {
-    return new Set();
+function foreignSenderIds() {
+  return new Set((state.foreign || []).map((device) => device.sender_id));
+}
+
+async function setForeignSenderId(senderId, foreign, excludeFromSqlite = false) {
+  const normalized = String(senderId || '').trim().toUpperCase();
+  if (!normalized) return;
+  await apiJson(`${managementUrl}/foreign/${encodeURIComponent(normalized)}`, {
+    method: foreign ? 'PUT' : 'DELETE',
+    ...(foreign ? { body: JSON.stringify({ exclude_from_sqlite: excludeFromSqlite }) } : {}),
+  });
+}
+
+async function migrateForeignDevices() {
+  if (!state.canWrite) return;
+  const stored = localStorage.getItem(LEGACY_SENDER_IDS_KEY);
+  if (!stored) return;
+  let values;
+  try { values = JSON.parse(stored); } catch (_error) { return; }
+  if (!Array.isArray(values)) return;
+  const existing = foreignSenderIds();
+  for (const value of values) {
+    const senderId = String(value).trim().toUpperCase();
+    if (!/^[0-9A-F]{8}$/.test(senderId) || existing.has(senderId)) continue;
+    await setForeignSenderId(senderId, true);
+    state.foreign.push({ sender_id: senderId, exclude_from_sqlite: false });
+    existing.add(senderId);
+  }
+  localStorage.removeItem(LEGACY_SENDER_IDS_KEY);
+}
+
+function renderForeignDevices() {
+  const body = document.getElementById('foreignDevicesBody');
+  if (!body) return;
+  body.replaceChildren();
+  const devices = (state.foreign || []).filter((device) => matchesSearch([device.sender_id]));
+  document.getElementById('foreignPanelCount').textContent = `${devices.length} devices`;
+  if (!devices.length) return emptyRow(body, 3, 'No foreign devices registered.');
+  for (const device of devices) {
+    const row = body.insertRow();
+    row.append(cell(device.sender_id, 'device-mono'));
+    const label = document.createElement('label');
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.checked = device.exclude_from_sqlite;
+    checkbox.disabled = !state.canWrite;
+    checkbox.addEventListener('change', async () => {
+      checkbox.disabled = true;
+      try {
+        await setForeignSenderId(device.sender_id, true, checkbox.checked);
+        await loadDevices();
+      } catch (error) {
+        checkbox.checked = device.exclude_from_sqlite;
+        setMessage(error.message, 'error');
+      } finally { checkbox.disabled = !state.canWrite; }
+    });
+    label.append(checkbox, ' Exclude future telegrams from SQLite');
+    row.append(cell(label));
+    const remove = document.createElement('button');
+    remove.type = 'button';
+    remove.className = 'device-button';
+    remove.textContent = 'Unmark as foreign';
+    remove.disabled = !state.canWrite;
+    remove.addEventListener('click', async () => {
+      remove.disabled = true;
+      try { await setForeignSenderId(device.sender_id, false); await loadDevices(); }
+      catch (error) { setMessage(error.message, 'error'); remove.disabled = !state.canWrite; }
+    });
+    row.append(cell(remove));
   }
 }
 
-function setExternalSenderId(senderId, external) {
-  const values = externalSenderIds();
-  const normalized = String(senderId || '').trim().toUpperCase();
-  if (!normalized) return;
-  if (external) values.add(normalized);
-  else values.delete(normalized);
-  localStorage.setItem(EXTERNAL_SENDER_IDS_KEY, JSON.stringify([...values].sort()));
-}
+const foreignAwareRenderPanels = renderPanels;
+renderPanels = function () {
+  foreignAwareRenderPanels();
+  renderForeignDevices();
+};
 
 function gatewayManagedSenderIds() {
   const senderIds = new Set();
@@ -81,42 +140,44 @@ function unknownDiscoveryResetAt() {
 
 function visibleUnknownDevices() {
   const resetAt = unknownDiscoveryResetAt();
-  const hiddenExternal = document.getElementById('hideExternalDevices')?.checked ?? false;
   const hiddenOwn = document.getElementById('hideOwnSenderIds')?.checked ?? true;
-  const external = externalSenderIds();
+  const foreign = foreignSenderIds();
 
   return (state.unknown || []).filter((device) => {
     const senderId = String(device.sender_id || '').trim().toUpperCase();
     if (!senderId) return false;
     if (hiddenOwn && isOwnSenderId(senderId)) return false;
-    if (hiddenExternal && external.has(senderId)) return false;
+    if (foreign.has(senderId)) return false;
     if (!resetAt) return true;
     const lastSeen = Date.parse(device.last_seen || '');
     return Number.isFinite(lastSeen) && lastSeen >= resetAt;
   });
 }
 
-function appendExternalActions() {
-  const external = externalSenderIds();
+function appendForeignActions() {
+  const foreign = foreignSenderIds();
   document.querySelectorAll('#unknownDevicesBody tr').forEach((row) => {
     const senderId = row.cells[0]?.textContent?.trim().toUpperCase();
     if (!senderId || row.querySelector('.device-empty')) return;
     const actions = row.cells[7]?.querySelector('.device-row-actions');
-    if (!actions || actions.querySelector('[data-external-toggle]')) return;
+    if (!actions || actions.querySelector('[data-foreign-toggle]')) return;
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'device-button';
-    button.dataset.externalToggle = senderId;
-    button.textContent = external.has(senderId) ? 'Unmark external' : 'Mark external';
+    button.dataset.foreignToggle = senderId;
+    button.textContent = foreign.has(senderId) ? 'Unmark as foreign' : 'Mark as foreign';
     button.disabled = !state.canWrite;
-    button.addEventListener('click', () => {
-      const currentlyExternal = externalSenderIds().has(senderId);
-      setExternalSenderId(senderId, !currentlyExternal);
-      renderPanels();
-      setMessage(`${senderId} ${currentlyExternal ? 'removed from' : 'marked as'} external devices.`);
+    button.addEventListener('click', async () => {
+      const currentlyForeign = foreignSenderIds().has(senderId);
+      button.disabled = true;
+      try {
+        await setForeignSenderId(senderId, !currentlyForeign);
+        await loadDevices();
+        setMessage(`${senderId} ${currentlyForeign ? 'removed from' : 'marked as'} foreign devices.`);
+      } catch (error) { setMessage(error.message, 'error'); button.disabled = !state.canWrite; }
     });
     actions.append(button);
-    if (external.has(senderId)) row.classList.add('device-external');
+    if (foreign.has(senderId)) row.classList.add('device-foreign');
   });
 }
 
@@ -128,7 +189,7 @@ if (typeof renderUnknown === 'function') {
     state.unknown = visible;
     try {
       originalRenderUnknown();
-      appendExternalActions();
+      appendForeignActions();
       const counter = document.getElementById('unknownCount');
       if (counter) counter.textContent = String(visible.length);
       const panelCounter = document.getElementById('unknownPanelCount');
@@ -140,15 +201,7 @@ if (typeof renderUnknown === 'function') {
 }
 
 function installUnknownFilters() {
-  const hideExternal = document.getElementById('hideExternalDevices');
   const hideOwn = document.getElementById('hideOwnSenderIds');
-  if (hideExternal) {
-    hideExternal.checked = storedBoolean(HIDE_EXTERNAL_DEVICES_KEY, true);
-    hideExternal.addEventListener('change', () => {
-      localStorage.setItem(HIDE_EXTERNAL_DEVICES_KEY, String(hideExternal.checked));
-      renderPanels();
-    });
-  }
   if (hideOwn) {
     hideOwn.checked = storedBoolean(HIDE_OWN_SENDER_IDS_KEY, true);
     hideOwn.addEventListener('change', () => {

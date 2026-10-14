@@ -1,22 +1,33 @@
 {
   "profile_type": "proprietary",
-  "eep": "eltako-fud70s",
-  "rorg": "F6",
-  "func": "00",
-  "type": "00",
   "manufacturer": "Eltako",
   "model": "FUD70S-230V",
-  "func_description": "Eltako proprietary dimmer actuator feedback",
-  "type_description": "Eltako FUD70S bidirectional universal dimmer actuator with proprietary feedback and A5-38-08 controller telegrams",
-  "description": "Eltako FUD70S bidirectional dimmer actuator. The device sends proprietary feedback telegrams and receives control telegrams from an A5-38-08-compatible controller profile.",
+  "eep": "eltako-fud70s",
+  "rorg": "00",
+  "func": "00",
+  "type": "00",
+  "func_description": "Dimming Actuator",
+  "type_description": "Eltako FUD70S bidirectional universal dimming actuator with proprietary feedback, controlled via A5-38-08 telegrams",
+  "description": "Dimming Actuator, Eltako FUD70S bidirectional universal dimming actuator with proprietary feedback, controlled via A5-38-08 telegrams",
   "source": "Eltako FUD70S documentation and legacy proprietary profile",
   "source_version": "30 100 852 - 1 / 12-2021",
   "sources": {
     "manufacturer_pdf": [
-      "Eltako FUD70S-230V - Bedienungsanleitung (30 100 852 - 1, 2021-12).pdf"
+      "Eltako FUD70S-230V - Bedienungsanleitung (30 100 852 - 1, 2021-12).pdf",
+      "Inhalte der Eltako-Funktelegramme (~2025).pdf"
     ],
     "legacy_profile": [
-      "eltako-fud70s.json"
+      "eep/registry/eltako-fud70s.json"
+    ],
+    "format_spec": [
+      "docs/eep-registry-schema.md",
+      "docs/eep-json-schema.md"
+    ],
+    "semantic_spec": [
+      "docs/semantic-roles.md"
+    ],
+    "authoring_prompt": [
+      "userguide/prompts/eep-profile-v1.8.md"
     ],
     "tx_profile_mapping": [
       "config/device-controller-mappings.json"
@@ -29,7 +40,7 @@
       "name": "switch_state_ptm200",
       "display_name": null,
       "description": "Switch state feedback encoded like a PTM200 rocker telegram",
-      "semantic_role": "lighting.switch",
+      "semantic_role": "lighting.control.state",
       "channel_type": "state",
       "object_type": "state",
       "semantic_confidence": "medium",
@@ -50,13 +61,19 @@
         "mqtt": true,
         "api": true,
         "storage": true
+      },
+      "source_key": "switch_state_ptm200",
+      "function_group": "from",
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
       }
     },
     {
       "name": "dimming_value",
       "display_name": null,
       "description": "Dimmer brightness feedback",
-      "semantic_role": "lighting.dim_value",
+      "semantic_role": "lighting.brightness.state",
       "channel_type": "state",
       "object_type": "state",
       "semantic_confidence": "high",
@@ -76,13 +93,19 @@
         "mqtt": true,
         "api": true,
         "storage": true
+      },
+      "source_key": "dimming_value",
+      "function_group": "from",
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
       }
     },
     {
       "name": "switch_state",
       "display_name": null,
       "description": "Dimmer switching state feedback from 4BS status telegram",
-      "semantic_role": "lighting.switch",
+      "semantic_role": "lighting.control.state",
       "channel_type": "state",
       "object_type": "state",
       "semantic_confidence": "high",
@@ -103,6 +126,12 @@
         "mqtt": true,
         "api": true,
         "storage": true
+      },
+      "source_key": "switch_state",
+      "function_group": "from",
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
       }
     }
   ],
@@ -111,7 +140,9 @@
       "telegram_type_id": "eltako-fud70s.ptm200_switch_feedback",
       "telegram_id": {
         "rorg": "F6",
-        "legacy_org": "0x05"
+        "metadata": {
+          "legacy_org": "0x05"
+        }
       },
       "direction": "rx",
       "description": "Proprietary PTM200-style switch feedback telegram",
@@ -142,13 +173,24 @@
             }
           ]
         }
+      ],
+      "constraints": [
+        {
+          "field": "switch_state_ptm200",
+          "values": [
+            80,
+            112
+          ]
+        }
       ]
     },
     {
       "telegram_type_id": "eltako-fud70s.dimmer_status",
       "telegram_id": {
         "rorg": "A5",
-        "legacy_org": "0x07"
+        "metadata": {
+          "legacy_org": "0x07"
+        }
       },
       "direction": "rx",
       "description": "Proprietary 4BS dimmer status telegram",
@@ -199,13 +241,7 @@
       "channel_bindings": [
         {
           "channel_ref": "dimming_value",
-          "field_ref": "dimming_value",
-          "scale": {
-            "raw_min": 0,
-            "raw_max": 100,
-            "scale_min": 0.0,
-            "scale_max": 100.0
-          }
+          "field_ref": "dimming_value"
         },
         {
           "channel_ref": "switch_state",
@@ -230,22 +266,134 @@
         {
           "field": "reserved_db1",
           "equals": 0
+        },
+        {
+          "field": "switch_state",
+          "values": [
+            8,
+            9
+          ]
+        },
+        {
+          "field": "dimming_value",
+          "values": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100
+          ]
         }
       ]
     }
   ],
-  "metadata": {
-    "curation_status": "curated",
-    "curated_by": "llm_assisted_review",
-    "tx_profile_source": "mapped_controller_profile",
-    "tx_profile_ref": "A5-38-08",
-    "tx_mapping_file": "config/device-controller-mappings.json",
-    "source_notes": [
-      "Migrated from the legacy proprietary FUD70S/FUD71 profile to Registry v3.",
-      "The manufacturer documentation confirms bidirectional operation and status feedback: ORG 0x05 sends one PTM200-style byte with DB3=0x70 for on and DB3=0x50 for off; ORG 0x07 sends a 4BS status telegram with DB3=0x02, DB2=dimming value in percent, DB1=0x00 and DB0=0x08/0x09 for off/on.",
-      "The physical actuator receives control telegrams from a corresponding A5-38-08 controller profile. TX messages are intentionally not duplicated in this proprietary profile; runtime resolves them through config/device-controller-mappings.json.",
-      "Profile is intentionally bidirectional at device level, although this registry file only contains proprietary RX telegram definitions.",
-      "Profile-level channels include both channel_type and object_type while the runtime transition to the documented channel_type terminology is completed."
-    ]
-  }
+  "messages": [],
+  "function_groups": [
+    {
+      "name": "from",
+      "title": "Device feedback",
+      "direction": "from",
+      "functions": [
+        "switch_state_ptm200",
+        "dimming_value",
+        "switch_state"
+      ]
+    }
+  ]
 }

@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import re
 from collections.abc import Mapping
+from dataclasses import replace
 from pathlib import Path
 from typing import Any
 
@@ -85,7 +86,7 @@ def _project_physical_device(
                     sender_id=sender_id,
                     profile=profile,
                     eep=eep_definition.eep,
-                    channels=eep_definition.channels,
+                    channels=_discovery_channels(eep_definition),
                     writable=False,
                 )
             )
@@ -310,7 +311,7 @@ def _build_datapoint(
         display_name=display_name,
         semantic_role=semantic_role,
         object_type=object_type,
-        data_type=data_type,
+        data_type="integer" if readable and (data_type == "enum" or enum) else data_type,
         unit=unit,
         readable=readable,
         writable=writable,
@@ -325,6 +326,31 @@ def _build_datapoint(
         metadata=metadata,
         source=source,
     )
+
+
+def _discovery_channels(definition: EEPDefinition) -> list[ChannelDefinition]:
+    """Include binding-only enum metadata; runtime meaning remains variant-specific."""
+    result = []
+    for channel in definition.channels:
+        variants = [
+            {"telegram_type_id": telegram.telegram_type_id,
+             "enum": [_enum_to_dict(item) for item in binding.enum]}
+            for telegram in definition.telegrams for binding in telegram.channel_bindings
+            if binding.channel_ref == channel.name and binding.enum
+        ]
+        bindings = [binding for telegram in definition.telegrams
+                    for binding in telegram.channel_bindings
+                    if binding.channel_ref == channel.name and binding.enum]
+        enum = channel.enum
+        if bindings:
+            enum = bindings[0].enum if all(b.enum == bindings[0].enum for b in bindings) else []
+        result.append(replace(
+            channel, enum=enum,
+            data_type="enum" if variants else channel.data_type,
+            metadata={**channel.metadata, "enum_variants": variants}
+            if variants else channel.metadata,
+        ))
+    return result
 
 
 def _safe_load_eep(

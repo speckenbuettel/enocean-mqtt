@@ -12,10 +12,12 @@ The storage layer intentionally operates on RuntimeTelegramEvent.
 
 from __future__ import annotations
 
+import logging
 import sqlite3
 from pathlib import Path
 from threading import RLock
 
+from enocean_mqtt.devices.foreign_registry import foreign_registry
 from enocean_mqtt.runtime.event import RuntimeTelegramEvent
 
 SCHEMA_VERSION = 2
@@ -30,12 +32,17 @@ class SQLiteRuntimeStore:
         max_telegrams: int = 0,
         persist_live: bool = True,
         persist_replay: bool = False,
+        foreign_devices_file: str | Path | None = None,
     ) -> None:
         self.database_path = Path(database_path)
         self.max_telegrams = max_telegrams
         self.persist_live = persist_live
         self.persist_replay = persist_replay
         self._lock = RLock()
+        self._foreign_registry = (
+            foreign_registry(foreign_devices_file) if foreign_devices_file is not None else None
+        )
+        self._foreign_registry_error = False
 
         self.database_path.parent.mkdir(
             parents=True,
@@ -184,6 +191,21 @@ class SQLiteRuntimeStore:
         event: RuntimeTelegramEvent,
     ) -> bool:
         """Return whether event should be persisted."""
+
+        if self._foreign_registry is not None:
+            try:
+                device = self._foreign_registry.snapshot().get(
+                    (event.sender_id or "").strip().upper()
+                )
+                self._foreign_registry_error = False
+                if device is not None and device.exclude_from_sqlite:
+                    return False
+            except (OSError, ValueError):
+                if not self._foreign_registry_error:
+                    logging.getLogger(__name__).warning(
+                        "Foreign-device registry unavailable; retaining telegrams in SQLite"
+                    )
+                self._foreign_registry_error = True
 
         if event.runtime_mode == "live":
             return self.persist_live

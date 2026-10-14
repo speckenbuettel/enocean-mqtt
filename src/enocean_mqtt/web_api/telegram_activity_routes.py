@@ -7,7 +7,7 @@ import sqlite3
 import time
 from datetime import datetime
 from pathlib import Path
-from typing import Any
+from typing import Any, TypedDict
 
 from fastapi import APIRouter, HTTPException, Query
 
@@ -20,7 +20,15 @@ _ACTIVITY_RANGES: dict[str, tuple[int, int]] = {
     "24h": (24 * 60 * 60, 60 * 60),
     "3d": (3 * 24 * 60 * 60, 3 * 60 * 60),
     "7d": (7 * 24 * 60 * 60, 6 * 60 * 60),
+    "30d": (30 * 24 * 60 * 60, 24 * 60 * 60),
 }
+
+
+class ActivityBucket(TypedDict):
+    start: str
+    start_unix: float
+    rx: dict[str, Any]
+    tx: int
 
 
 def create_telegram_activity_router(
@@ -72,11 +80,16 @@ def build_telegram_activity(
     bucket_count = duration_seconds // bucket_seconds
     known_sender_ids = _load_known_sender_ids(devices_file)
 
-    buckets = [
+    buckets: list[ActivityBucket] = [
         {
             "start": _iso_timestamp(start + index * bucket_seconds),
             "start_unix": start + index * bucket_seconds,
-            "rx": {"known": 0, "unknown": 0},
+            "rx": {
+                "known": 0, "unknown": 0,
+                "original_telegrams": {"known": 0, "unknown": 0},
+                "repeated_telegrams": {"known": 0, "unknown": 0},
+                "unclassified_telegrams": {"known": 0, "unknown": 0},
+            },
             "tx": 0,
         }
         for index in range(bucket_count)
@@ -112,12 +125,17 @@ def build_telegram_activity(
             CAST((timestamp_unix - ?) / ? AS INTEGER) AS bucket_index,
             lower(direction) AS direction,
             {category_sql} AS category,
+            CASE
+                WHEN repeater_count IN (0, 15) THEN 'original_telegrams'
+                WHEN repeater_count IN (1, 2) THEN 'repeated_telegrams'
+                ELSE 'unclassified_telegrams'
+            END AS repetition,
             COUNT(*) AS telegram_count
         FROM telegrams
         WHERE timestamp_unix >= ?
           AND timestamp_unix < ?
           AND lower(direction) IN ('rx', 'tx')
-        GROUP BY bucket_index, direction, category
+        GROUP BY bucket_index, direction, category, repetition
         ORDER BY bucket_index
     """
 
@@ -126,7 +144,7 @@ def build_telegram_activity(
     parameters.extend([start, end])
 
     try:
-        with sqlite3.connect(database_path) as connection:
+        with sqlite3.connect(f"{database_path.resolve().as_uri()}?mode=ro", uri=True) as connection:
             connection.row_factory = sqlite3.Row
             rows = connection.execute(query, parameters).fetchall()
     except sqlite3.Error as exc:
@@ -144,6 +162,7 @@ def build_telegram_activity(
         category = str(row["category"] or "")
         if direction == "rx" and category in {"known", "unknown"}:
             buckets[index]["rx"][category] += count
+            buckets[index]["rx"][str(row["repetition"])][category] += count
         elif direction == "tx":
             buckets[index]["tx"] += count
 
@@ -164,7 +183,7 @@ def _activity_payload(
     start: float,
     end: float,
     bucket_seconds: int,
-    buckets: list[dict[str, Any]],
+    buckets: list[ActivityBucket],
     available: bool,
     issues: list[str],
 ) -> dict[str, Any]:

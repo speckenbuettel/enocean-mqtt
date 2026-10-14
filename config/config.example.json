@@ -15,7 +15,7 @@
         "device": "/dev/serial/by-id/usb-EnOcean_GmbH_EnOcean_USB_300-example-if00-port0",
         "baudrate": 57600,
         "timeout_seconds": 1.0,
-        "base_id": "FF800000",
+        "base_id": null,
         "reconnect": {
           "enabled": true,
           "initial_delay_seconds": 5,
@@ -101,6 +101,20 @@
     "sse": {
       "enabled": true,
       "max_queue_size": 1000
+    }
+  },
+  "notifications": {
+    "pushover": {
+      "enabled": false,
+      "user_token_file": "config/secrets/pushover_user_token",
+      "api_token_file": "config/secrets/pushover_api_token",
+      "device": "",
+      "priority": 0,
+      "timeout_seconds": 5.0,
+      "notify_start": true,
+      "notify_stop": true,
+      "notify_errors": true,
+      "error_cooldown_seconds": 300
     }
   },
   "logging": {

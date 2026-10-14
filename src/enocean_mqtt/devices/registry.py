@@ -58,7 +58,7 @@ class DeviceRegistry:
         }
 
         json_path.write_text(
-            json.dumps(payload, indent=2, ensure_ascii=False),
+            json.dumps(payload, indent=2, ensure_ascii=False) + "\n",
             encoding="utf-8",
         )
 

@@ -510,15 +510,19 @@ class DevicePublisher:
                     continue
 
                 channel_payload: dict[str, Any] = {
-                    "value": channel.value,
+                    "value": channel.published_value,
                     "last_update": timestamp_fields["timestamp_local"],
                 }
 
                 channel_state_payload: dict[str, Any] = {
                     **timestamp_fields,
                     "channel": channel_name,
-                    "value": channel.value,
+                    "value": channel.published_value,
                 }
+
+                if channel.meaning is not None:
+                    channel_payload["meaning"] = channel.meaning
+                    channel_state_payload["meaning"] = channel.meaning
 
                 if channel.unit is not None:
                     channel_state_payload["unit"] = channel.unit
@@ -562,7 +566,7 @@ class DevicePublisher:
                             topic_ref,
                             channel_name,
                         ),
-                        channel.value,
+                        channel.published_value,
                         retain=True,
                     )
 

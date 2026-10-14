@@ -22,6 +22,7 @@ import logging
 import os
 import re
 from pathlib import Path
+from threading import RLock
 from typing import Any
 
 from enocean_mqtt.eep.models import (
@@ -33,6 +34,7 @@ from enocean_mqtt.eep.models import (
     DependencyDescription,
     EEPDefinition,
     FieldDefinition,
+    FieldPartDefinition,
     FunctionGroupDefinition,
     LinearScale,
     MessageBindingDefinition,
@@ -58,6 +60,51 @@ STANDARD_EEP_PATTERN = re.compile(
 
 class EEPRegistryError(RuntimeError):
     """Raised when EEP registry loading fails."""
+
+
+_cache_lock = RLock()
+_definition_cache: dict[tuple[Path, Path], dict[str, EEPDefinition]] = {}
+
+
+def _cache_scope() -> tuple[Path, Path]:
+    # Do not inspect files or follow changed symlinks on a cache hit.
+    return (_registry_path().absolute(), DEFAULT_REGISTRY_PATH.absolute())
+
+
+def load_eep_definition(eep: str) -> EEPDefinition:
+    """Return a shared profile, loading on first use until explicit reload.
+
+    Consumers must treat the returned definition as read-only.
+    """
+    filename = _resolve_registry_filename(eep)
+    with _cache_lock:
+        cache = _definition_cache.setdefault(_cache_scope(), {})
+        if filename not in cache:
+            cache[filename] = _read_eep_definition(eep)
+        return cache[filename]
+
+
+def reload_eep_definitions() -> list[str]:
+    """Validate all available and cached profiles, then replace atomically.
+
+    A missing or invalid profile leaves the previous cache unchanged. The lock
+    also prevents a concurrent first load from being lost during replacement.
+    """
+    with _cache_lock:
+        scope = _cache_scope()
+        filenames = set(_definition_cache.get(scope, {}))
+        for directory in set(scope):
+            filenames.update(path.name for path in directory.glob("*.json"))
+        candidate: dict[str, EEPDefinition] = {}
+        for filename in sorted(filenames):
+            try:
+                candidate[filename] = _read_eep_definition(filename[:-5])
+            except Exception as exc:
+                raise EEPRegistryError(
+                    f"EEP reload rejected for {filename}: {exc}"
+                ) from exc
+        _definition_cache[scope] = candidate
+        return sorted(candidate)
 
 
 def _registry_path() -> Path:
@@ -335,15 +382,35 @@ def _load_message(data: dict[str, Any]) -> MessageDefinition:
     )
 
 
+def _load_field_parts(data: dict[str, Any]) -> list[FieldPartDefinition]:
+    if "field_parts" not in data:
+        return []
+    parts = data["field_parts"]
+    if not isinstance(parts, list) or len(parts) < 2:
+        raise EEPRegistryError("field_parts requires a list of at least two parts")
+    if data.get("field_ref") is not None or data.get("bitfield_ref") is not None:
+        raise EEPRegistryError("field_parts is mutually exclusive with field_ref/bitfield_ref")
+    result = []
+    for part in parts:
+        if (not isinstance(part, dict) or set(part) != {"field_ref", "value_offset"}
+                or not isinstance(part["field_ref"], str) or not part["field_ref"]
+                or type(part["value_offset"]) is not int or part["value_offset"] < 0):
+            raise EEPRegistryError("invalid field_parts entry: expected field_ref and value_offset")
+        result.append(FieldPartDefinition(**part))
+    return result
+
+
 def _load_channel_binding(data: dict[str, Any]) -> ChannelBindingDefinition:
     field_ref = data.get("field_ref") or data.get("bitfield_ref")
 
-    if field_ref is None:
-        raise EEPRegistryError("Invalid channel binding: missing field_ref")
+    parts = _load_field_parts(data)
+    if field_ref is None and not parts:
+        raise EEPRegistryError("Invalid channel binding: missing field_ref or field_parts")
 
     return ChannelBindingDefinition(
         channel_ref=data["channel_ref"],
         field_ref=field_ref,
+        field_parts=parts,
         scale=_load_scale(data.get("scale")),
         enum=_load_enum(data.get("enum")),
         ranges=_load_ranges(data.get("ranges")),
@@ -356,12 +423,14 @@ def _load_channel_binding(data: dict[str, Any]) -> ChannelBindingDefinition:
 def _load_message_binding(data: dict[str, Any]) -> MessageBindingDefinition:
     field_ref = data.get("field_ref") or data.get("bitfield_ref")
 
-    if field_ref is None:
-        raise EEPRegistryError("Invalid message binding: missing field_ref")
+    parts = _load_field_parts(data)
+    if field_ref is None and not parts:
+        raise EEPRegistryError("Invalid message binding: missing field_ref or field_parts")
 
     return MessageBindingDefinition(
         message_ref=data["message_ref"],
         field_ref=field_ref,
+        field_parts=parts,
         scale=_load_scale(data.get("scale")),
         enum=_load_enum(data.get("enum")),
         ranges=_load_ranges(data.get("ranges")),
@@ -470,7 +539,7 @@ def _resolve_registry_file(eep: str) -> Path:
     )
 
 
-def load_eep_definition(eep: str) -> EEPDefinition:
+def _read_eep_definition(eep: str) -> EEPDefinition:
     """Load normalized EEP definition from runtime registry."""
 
     path = _resolve_registry_file(eep)
@@ -542,7 +611,13 @@ def _validate_profile_references(definition: EEPDefinition, path: Path) -> None:
     channel_names = {channel.name for channel in definition.channels}
     message_names = {message.name for message in definition.messages}
 
+    from enocean_mqtt.eep.field_parts import validate_telegram_composites
+
     for telegram in definition.telegrams:
+        try:
+            validate_telegram_composites(telegram)
+        except ValueError as exc:
+            raise EEPRegistryError(f"Invalid EEP registry schema in {path}: {exc}") from exc
         field_names = {field.name for field in telegram.fields}
         field_names.update(field.name for field in telegram.status_fields)
 
@@ -554,7 +629,7 @@ def _validate_profile_references(definition: EEPDefinition, path: Path) -> None:
                     f"in telegram {telegram.telegram_type_id!r}"
                 )
 
-            if binding.field_ref not in field_names:
+            if not binding.field_parts and binding.field_ref not in field_names:
                 raise EEPRegistryError(
                     "Invalid EEP registry schema in "
                     f"{path}: unknown field_ref {binding.field_ref!r} "
@@ -569,7 +644,7 @@ def _validate_profile_references(definition: EEPDefinition, path: Path) -> None:
                     f"in telegram {telegram.telegram_type_id!r}"
                 )
 
-            if message_binding.field_ref not in field_names:
+            if not message_binding.field_parts and message_binding.field_ref not in field_names:
                 raise EEPRegistryError(
                     "Invalid EEP registry schema in "
                     f"{path}: unknown field_ref {message_binding.field_ref!r} "

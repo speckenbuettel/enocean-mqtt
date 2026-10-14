@@ -1,0 +1,3538 @@
+{
+  "profile_type": "standard",
+  "eep": "F6-02-02",
+  "rorg": "F6",
+  "func": "02",
+  "type": "02",
+  "func_description": "Rocker Switch, 2 Rockers",
+  "type_description": "Light and Blind Control, Application Style 2",
+  "description": "Rocker Switch, 2 Rockers, Light and Blind Control, Application Style 2",
+  "source": "EnOcean Equipment Profiles",
+  "source_version": "2.6.8; IP 0.9",
+  "sources": [
+    "enocean/eeps/eep268.xml",
+    "enocean/eeps/json/F6-02-02.json",
+    "enocean/eeps/ip/F6-02-02_ip.pdf",
+    "eep/semantic-role-mapping.xlsx",
+    "eep/eep-list.csv"
+  ],
+  "direction": "unidirectional",
+  "device_class": "sensor",
+  "channels": [
+    {
+      "name": "button_ai",
+      "display_name": null,
+      "source_key": "buttonAI",
+      "description": "button ai",
+      "function_group": "from",
+      "semantic_role": "io.button.state",
+      "object_type": "state",
+      "semantic_attributes": {},
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "runtime": {
+        "transmit_on_connect": false,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "released"
+        },
+        {
+          "value": 1,
+          "label": "pressed"
+        }
+      ]
+    },
+    {
+      "name": "button_a0",
+      "display_name": null,
+      "source_key": "buttonA0",
+      "description": "button a0",
+      "function_group": "from",
+      "semantic_role": "io.button.state",
+      "object_type": "state",
+      "semantic_attributes": {},
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "runtime": {
+        "transmit_on_connect": false,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "released"
+        },
+        {
+          "value": 1,
+          "label": "pressed"
+        }
+      ]
+    },
+    {
+      "name": "button_bi",
+      "display_name": null,
+      "source_key": "buttonBI",
+      "description": "button bi",
+      "function_group": "from",
+      "semantic_role": "io.button.state",
+      "object_type": "state",
+      "semantic_attributes": {},
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "runtime": {
+        "transmit_on_connect": false,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "released"
+        },
+        {
+          "value": 1,
+          "label": "pressed"
+        }
+      ]
+    },
+    {
+      "name": "button_b0",
+      "display_name": null,
+      "source_key": "buttonB0",
+      "description": "button b0",
+      "function_group": "from",
+      "semantic_role": "io.button.state",
+      "object_type": "state",
+      "semantic_attributes": {},
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "runtime": {
+        "transmit_on_connect": false,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "released"
+        },
+        {
+          "value": 1,
+          "label": "pressed"
+        }
+      ]
+    },
+    {
+      "name": "multiple_buttons",
+      "display_name": null,
+      "source_key": "multipleButtons",
+      "description": "multiple buttons",
+      "function_group": "from",
+      "semantic_role": "io.button.state",
+      "object_type": "state",
+      "semantic_attributes": {},
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "runtime": {
+        "transmit_on_connect": false,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "released"
+        },
+        {
+          "value": 1,
+          "label": "pressed"
+        }
+      ]
+    }
+  ],
+  "messages": [],
+  "function_groups": [
+    {
+      "name": "from",
+      "title": "",
+      "direction": "from",
+      "functions": [
+        "button_ai",
+        "button_a0",
+        "button_bi",
+        "button_b0",
+        "multiple_buttons"
+      ]
+    }
+  ],
+  "telegrams": [
+    {
+      "telegram_type_id": "f6-02-02.received.n0",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "rx",
+      "fields": [
+        {
+          "name": "rocker_1st_action",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "rocker_2nd_action",
+          "offset": 4,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "second_action",
+          "offset": 7,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "button_ai",
+          "field_ref": "energy_bow"
+        }
+      ],
+      "constraints": [
+        {
+          "field": "rocker_1st_action",
+          "equals": 0
+        },
+        {
+          "field": "second_action",
+          "equals": 0
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 1
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.emulated.n0",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "tx",
+      "fields": [
+        {
+          "name": "rocker_1st_action",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "rocker_2nd_action",
+          "offset": 4,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "second_action",
+          "offset": 7,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "button_ai",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_a0",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        },
+        {
+          "channel_ref": "button_bi",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        },
+        {
+          "channel_ref": "button_b0",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        },
+        {
+          "channel_ref": "multiple_buttons",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        }
+      ],
+      "constraints": [
+        {
+          "field": "rocker_1st_action",
+          "equals": 0
+        },
+        {
+          "field": "second_action",
+          "equals": 0
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 1
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.received.n0_1",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "rx",
+      "fields": [
+        {
+          "name": "rocker_1st_action",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "rocker_2nd_action",
+          "offset": 4,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 1
+        },
+        {
+          "name": "second_action",
+          "offset": 7,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "button_ai",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_a0",
+          "field_ref": "energy_bow"
+        }
+      ],
+      "constraints": [
+        {
+          "field": "rocker_1st_action",
+          "equals": 0
+        },
+        {
+          "field": "second_action",
+          "equals": 1
+        },
+        {
+          "field": "rocker_2nd_action",
+          "equals": 1
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 1
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.emulated.n0_1",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "tx",
+      "fields": [
+        {
+          "name": "rocker_1st_action",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "rocker_2nd_action",
+          "offset": 4,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 1
+        },
+        {
+          "name": "second_action",
+          "offset": 7,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "button_ai",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_a0",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_bi",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        },
+        {
+          "channel_ref": "button_b0",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        },
+        {
+          "channel_ref": "multiple_buttons",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        }
+      ],
+      "constraints": [
+        {
+          "field": "rocker_1st_action",
+          "equals": 0
+        },
+        {
+          "field": "second_action",
+          "equals": 1
+        },
+        {
+          "field": "rocker_2nd_action",
+          "equals": 1
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 1
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.received.n0_2",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "rx",
+      "fields": [
+        {
+          "name": "rocker_1st_action",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "rocker_2nd_action",
+          "offset": 4,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 2
+        },
+        {
+          "name": "second_action",
+          "offset": 7,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "button_ai",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_bi",
+          "field_ref": "energy_bow"
+        }
+      ],
+      "constraints": [
+        {
+          "field": "rocker_1st_action",
+          "equals": 0
+        },
+        {
+          "field": "second_action",
+          "equals": 1
+        },
+        {
+          "field": "rocker_2nd_action",
+          "equals": 2
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 1
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.emulated.n0_2",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "tx",
+      "fields": [
+        {
+          "name": "rocker_1st_action",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "rocker_2nd_action",
+          "offset": 4,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 2
+        },
+        {
+          "name": "second_action",
+          "offset": 7,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "button_ai",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_bi",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_a0",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        },
+        {
+          "channel_ref": "button_b0",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        },
+        {
+          "channel_ref": "multiple_buttons",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        }
+      ],
+      "constraints": [
+        {
+          "field": "rocker_1st_action",
+          "equals": 0
+        },
+        {
+          "field": "second_action",
+          "equals": 1
+        },
+        {
+          "field": "rocker_2nd_action",
+          "equals": 2
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 1
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.received.n0_3",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "rx",
+      "fields": [
+        {
+          "name": "rocker_1st_action",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "rocker_2nd_action",
+          "offset": 4,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 3
+        },
+        {
+          "name": "second_action",
+          "offset": 7,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "button_ai",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_b0",
+          "field_ref": "energy_bow"
+        }
+      ],
+      "constraints": [
+        {
+          "field": "rocker_1st_action",
+          "equals": 0
+        },
+        {
+          "field": "second_action",
+          "equals": 1
+        },
+        {
+          "field": "rocker_2nd_action",
+          "equals": 3
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 1
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.emulated.n0_3",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "tx",
+      "fields": [
+        {
+          "name": "rocker_1st_action",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "rocker_2nd_action",
+          "offset": 4,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 3
+        },
+        {
+          "name": "second_action",
+          "offset": 7,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "button_ai",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_b0",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_a0",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        },
+        {
+          "channel_ref": "button_bi",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        },
+        {
+          "channel_ref": "multiple_buttons",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        }
+      ],
+      "constraints": [
+        {
+          "field": "rocker_1st_action",
+          "equals": 0
+        },
+        {
+          "field": "second_action",
+          "equals": 1
+        },
+        {
+          "field": "rocker_2nd_action",
+          "equals": 3
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 1
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.received.n1",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "rx",
+      "fields": [
+        {
+          "name": "rocker_1st_action",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 1
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "rocker_2nd_action",
+          "offset": 4,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "second_action",
+          "offset": 7,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "button_a0",
+          "field_ref": "energy_bow"
+        }
+      ],
+      "constraints": [
+        {
+          "field": "rocker_1st_action",
+          "equals": 1
+        },
+        {
+          "field": "second_action",
+          "equals": 0
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 1
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.emulated.n1",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "tx",
+      "fields": [
+        {
+          "name": "rocker_1st_action",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 1
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "rocker_2nd_action",
+          "offset": 4,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "second_action",
+          "offset": 7,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "button_a0",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_ai",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        },
+        {
+          "channel_ref": "button_bi",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        },
+        {
+          "channel_ref": "button_b0",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        },
+        {
+          "channel_ref": "multiple_buttons",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        }
+      ],
+      "constraints": [
+        {
+          "field": "rocker_1st_action",
+          "equals": 1
+        },
+        {
+          "field": "second_action",
+          "equals": 0
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 1
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.received.n1_0",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "rx",
+      "fields": [
+        {
+          "name": "rocker_1st_action",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 1
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "rocker_2nd_action",
+          "offset": 4,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "second_action",
+          "offset": 7,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "button_a0",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_ai",
+          "field_ref": "energy_bow"
+        }
+      ],
+      "constraints": [
+        {
+          "field": "rocker_1st_action",
+          "equals": 1
+        },
+        {
+          "field": "second_action",
+          "equals": 1
+        },
+        {
+          "field": "rocker_2nd_action",
+          "equals": 0
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 1
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.received.n1_2",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "rx",
+      "fields": [
+        {
+          "name": "rocker_1st_action",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 1
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "rocker_2nd_action",
+          "offset": 4,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 2
+        },
+        {
+          "name": "second_action",
+          "offset": 7,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "button_a0",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_bi",
+          "field_ref": "energy_bow"
+        }
+      ],
+      "constraints": [
+        {
+          "field": "rocker_1st_action",
+          "equals": 1
+        },
+        {
+          "field": "second_action",
+          "equals": 1
+        },
+        {
+          "field": "rocker_2nd_action",
+          "equals": 2
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 1
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.emulated.n1_2",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "tx",
+      "fields": [
+        {
+          "name": "rocker_1st_action",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 1
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "rocker_2nd_action",
+          "offset": 4,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 2
+        },
+        {
+          "name": "second_action",
+          "offset": 7,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "button_a0",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_bi",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_ai",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        },
+        {
+          "channel_ref": "button_b0",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        },
+        {
+          "channel_ref": "multiple_buttons",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        }
+      ],
+      "constraints": [
+        {
+          "field": "rocker_1st_action",
+          "equals": 1
+        },
+        {
+          "field": "second_action",
+          "equals": 1
+        },
+        {
+          "field": "rocker_2nd_action",
+          "equals": 2
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 1
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.received.n1_3",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "rx",
+      "fields": [
+        {
+          "name": "rocker_1st_action",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 1
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "rocker_2nd_action",
+          "offset": 4,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 3
+        },
+        {
+          "name": "second_action",
+          "offset": 7,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "button_a0",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_b0",
+          "field_ref": "energy_bow"
+        }
+      ],
+      "constraints": [
+        {
+          "field": "rocker_1st_action",
+          "equals": 1
+        },
+        {
+          "field": "second_action",
+          "equals": 1
+        },
+        {
+          "field": "rocker_2nd_action",
+          "equals": 3
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 1
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.emulated.n1_3",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "tx",
+      "fields": [
+        {
+          "name": "rocker_1st_action",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 1
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "rocker_2nd_action",
+          "offset": 4,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 3
+        },
+        {
+          "name": "second_action",
+          "offset": 7,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "button_a0",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_b0",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_ai",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        },
+        {
+          "channel_ref": "button_bi",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        },
+        {
+          "channel_ref": "multiple_buttons",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        }
+      ],
+      "constraints": [
+        {
+          "field": "rocker_1st_action",
+          "equals": 1
+        },
+        {
+          "field": "second_action",
+          "equals": 1
+        },
+        {
+          "field": "rocker_2nd_action",
+          "equals": 3
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 1
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.received.n2",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "rx",
+      "fields": [
+        {
+          "name": "rocker_1st_action",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 2
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "rocker_2nd_action",
+          "offset": 4,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "second_action",
+          "offset": 7,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "button_bi",
+          "field_ref": "energy_bow"
+        }
+      ],
+      "constraints": [
+        {
+          "field": "rocker_1st_action",
+          "equals": 2
+        },
+        {
+          "field": "second_action",
+          "equals": 0
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 1
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.emulated.n2",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "tx",
+      "fields": [
+        {
+          "name": "rocker_1st_action",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 2
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "rocker_2nd_action",
+          "offset": 4,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "second_action",
+          "offset": 7,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "button_bi",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_ai",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        },
+        {
+          "channel_ref": "button_a0",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        },
+        {
+          "channel_ref": "button_b0",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        },
+        {
+          "channel_ref": "multiple_buttons",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        }
+      ],
+      "constraints": [
+        {
+          "field": "rocker_1st_action",
+          "equals": 2
+        },
+        {
+          "field": "second_action",
+          "equals": 0
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 1
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.received.n2_0",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "rx",
+      "fields": [
+        {
+          "name": "rocker_1st_action",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 2
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "rocker_2nd_action",
+          "offset": 4,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "second_action",
+          "offset": 7,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "button_bi",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_ai",
+          "field_ref": "energy_bow"
+        }
+      ],
+      "constraints": [
+        {
+          "field": "rocker_1st_action",
+          "equals": 2
+        },
+        {
+          "field": "second_action",
+          "equals": 1
+        },
+        {
+          "field": "rocker_2nd_action",
+          "equals": 0
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 1
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.received.n2_1",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "rx",
+      "fields": [
+        {
+          "name": "rocker_1st_action",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 2
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "rocker_2nd_action",
+          "offset": 4,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 1
+        },
+        {
+          "name": "second_action",
+          "offset": 7,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "button_bi",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_a0",
+          "field_ref": "energy_bow"
+        }
+      ],
+      "constraints": [
+        {
+          "field": "rocker_1st_action",
+          "equals": 2
+        },
+        {
+          "field": "second_action",
+          "equals": 1
+        },
+        {
+          "field": "rocker_2nd_action",
+          "equals": 1
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 1
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.received.n2_3",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "rx",
+      "fields": [
+        {
+          "name": "rocker_1st_action",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 2
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "rocker_2nd_action",
+          "offset": 4,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 3
+        },
+        {
+          "name": "second_action",
+          "offset": 7,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "button_bi",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_b0",
+          "field_ref": "energy_bow"
+        }
+      ],
+      "constraints": [
+        {
+          "field": "rocker_1st_action",
+          "equals": 2
+        },
+        {
+          "field": "second_action",
+          "equals": 1
+        },
+        {
+          "field": "rocker_2nd_action",
+          "equals": 3
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 1
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.emulated.n2_3",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "tx",
+      "fields": [
+        {
+          "name": "rocker_1st_action",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 2
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "rocker_2nd_action",
+          "offset": 4,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 3
+        },
+        {
+          "name": "second_action",
+          "offset": 7,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "button_bi",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_b0",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_ai",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        },
+        {
+          "channel_ref": "button_a0",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        },
+        {
+          "channel_ref": "multiple_buttons",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        }
+      ],
+      "constraints": [
+        {
+          "field": "rocker_1st_action",
+          "equals": 2
+        },
+        {
+          "field": "second_action",
+          "equals": 1
+        },
+        {
+          "field": "rocker_2nd_action",
+          "equals": 3
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 1
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.received.n3",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "rx",
+      "fields": [
+        {
+          "name": "rocker_1st_action",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 3
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "rocker_2nd_action",
+          "offset": 4,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "second_action",
+          "offset": 7,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "button_b0",
+          "field_ref": "energy_bow"
+        }
+      ],
+      "constraints": [
+        {
+          "field": "rocker_1st_action",
+          "equals": 3
+        },
+        {
+          "field": "second_action",
+          "equals": 0
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 1
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.emulated.n3",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "tx",
+      "fields": [
+        {
+          "name": "rocker_1st_action",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 3
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "rocker_2nd_action",
+          "offset": 4,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "second_action",
+          "offset": 7,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "button_b0",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_ai",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        },
+        {
+          "channel_ref": "button_a0",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        },
+        {
+          "channel_ref": "button_bi",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        },
+        {
+          "channel_ref": "multiple_buttons",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "rocker_1st_action",
+            "equals": 7
+          }
+        }
+      ],
+      "constraints": [
+        {
+          "field": "rocker_1st_action",
+          "equals": 3
+        },
+        {
+          "field": "second_action",
+          "equals": 0
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 1
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.received.n3_0",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "rx",
+      "fields": [
+        {
+          "name": "rocker_1st_action",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 3
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "rocker_2nd_action",
+          "offset": 4,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "second_action",
+          "offset": 7,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "button_b0",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_ai",
+          "field_ref": "energy_bow"
+        }
+      ],
+      "constraints": [
+        {
+          "field": "rocker_1st_action",
+          "equals": 3
+        },
+        {
+          "field": "second_action",
+          "equals": 1
+        },
+        {
+          "field": "rocker_2nd_action",
+          "equals": 0
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 1
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.received.n3_1",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "rx",
+      "fields": [
+        {
+          "name": "rocker_1st_action",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 3
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "rocker_2nd_action",
+          "offset": 4,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 1
+        },
+        {
+          "name": "second_action",
+          "offset": 7,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "button_b0",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_a0",
+          "field_ref": "energy_bow"
+        }
+      ],
+      "constraints": [
+        {
+          "field": "rocker_1st_action",
+          "equals": 3
+        },
+        {
+          "field": "second_action",
+          "equals": 1
+        },
+        {
+          "field": "rocker_2nd_action",
+          "equals": 1
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 1
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.received.n3_2",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "rx",
+      "fields": [
+        {
+          "name": "rocker_1st_action",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 3
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "rocker_2nd_action",
+          "offset": 4,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 2
+        },
+        {
+          "name": "second_action",
+          "offset": 7,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "button_b0",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_bi",
+          "field_ref": "energy_bow"
+        }
+      ],
+      "constraints": [
+        {
+          "field": "rocker_1st_action",
+          "equals": 3
+        },
+        {
+          "field": "second_action",
+          "equals": 1
+        },
+        {
+          "field": "rocker_2nd_action",
+          "equals": 2
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 1
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.received.u_no_buttons",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "rx",
+      "fields": [
+        {
+          "name": "button_count",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "reserved_4_4",
+          "offset": 4,
+          "size": 4,
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "button_ai",
+          "field_ref": "button_count",
+          "enum": [
+            {
+              "value": 0,
+              "label": "released"
+            }
+          ]
+        },
+        {
+          "channel_ref": "button_a0",
+          "field_ref": "button_count",
+          "enum": [
+            {
+              "value": 0,
+              "label": "released"
+            }
+          ]
+        },
+        {
+          "channel_ref": "button_bi",
+          "field_ref": "button_count",
+          "enum": [
+            {
+              "value": 0,
+              "label": "released"
+            }
+          ]
+        },
+        {
+          "channel_ref": "button_b0",
+          "field_ref": "button_count",
+          "enum": [
+            {
+              "value": 0,
+              "label": "released"
+            }
+          ]
+        },
+        {
+          "channel_ref": "multiple_buttons",
+          "field_ref": "button_count",
+          "enum": [
+            {
+              "value": 0,
+              "label": "released"
+            }
+          ]
+        }
+      ],
+      "constraints": [
+        {
+          "field": "button_count",
+          "equals": 0
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 0
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 0
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.emulated.u_no_buttons",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "tx",
+      "fields": [
+        {
+          "name": "button_count",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "reserved_4_4",
+          "offset": 4,
+          "size": 4,
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "button_ai",
+          "field_ref": "button_count",
+          "enum": [
+            {
+              "value": 0,
+              "label": "released"
+            }
+          ]
+        },
+        {
+          "channel_ref": "button_a0",
+          "field_ref": "button_count",
+          "enum": [
+            {
+              "value": 0,
+              "label": "released"
+            }
+          ]
+        },
+        {
+          "channel_ref": "button_bi",
+          "field_ref": "button_count",
+          "enum": [
+            {
+              "value": 0,
+              "label": "released"
+            }
+          ]
+        },
+        {
+          "channel_ref": "button_b0",
+          "field_ref": "button_count",
+          "enum": [
+            {
+              "value": 0,
+              "label": "released"
+            }
+          ]
+        },
+        {
+          "channel_ref": "multiple_buttons",
+          "field_ref": "button_count",
+          "enum": [
+            {
+              "value": 0,
+              "label": "released"
+            }
+          ]
+        }
+      ],
+      "constraints": [
+        {
+          "field": "button_count",
+          "equals": 0
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 0
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 0
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.received.u_multiple",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "rx",
+      "fields": [
+        {
+          "name": "button_count",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 3
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_4_4",
+          "offset": 4,
+          "size": 4,
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "multiple_buttons",
+          "field_ref": "energy_bow"
+        }
+      ],
+      "constraints": [
+        {
+          "field": "button_count",
+          "equals": 3
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 0
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 0
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "f6-02-02.emulated.u_multiple",
+      "telegram_id": {
+        "rorg": "F6"
+      },
+      "direction": "tx",
+      "fields": [
+        {
+          "name": "button_count",
+          "offset": 0,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "constant": 3
+        },
+        {
+          "name": "energy_bow",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_4_4",
+          "offset": 4,
+          "size": 4,
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "multiple_buttons",
+          "field_ref": "energy_bow"
+        },
+        {
+          "channel_ref": "button_ai",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "button_count",
+            "equals": 7
+          }
+        },
+        {
+          "channel_ref": "button_a0",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "button_count",
+            "equals": 7
+          }
+        },
+        {
+          "channel_ref": "button_bi",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "button_count",
+            "equals": 7
+          }
+        },
+        {
+          "channel_ref": "button_b0",
+          "field_ref": "energy_bow",
+          "depends_on": {
+            "field": "button_count",
+            "equals": 7
+          }
+        }
+      ],
+      "constraints": [
+        {
+          "field": "button_count",
+          "equals": 3
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "t21",
+            "equals": 1
+          }
+        },
+        {
+          "requires": {
+            "source": "status_field",
+            "field": "nu",
+            "equals": 0
+          }
+        }
+      ],
+      "status_fields": [
+        {
+          "name": "t21",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 1
+        },
+        {
+          "name": "nu",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "status",
+          "constant": 0
+        }
+      ]
+    }
+  ],
+  "tx": {
+    "aggregation_window_seconds": 10
+  },
+  "metadata": {
+    "authoring_prompt": "v1.8",
+    "source_decision": "User confirmed Application Style 2; IP JSON/PDF title Style 10 is a metadata error.",
+    "snapshot_contract": "Sparse active event keys for single/pair/multiple events; all five keys 0 for universal release. Full cached inactive keys may conflict with TX selection.",
+    "hardware_tested": false
+  }
+}

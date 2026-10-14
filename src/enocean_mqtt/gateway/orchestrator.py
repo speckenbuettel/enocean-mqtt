@@ -7,6 +7,7 @@ import logging
 from enocean_mqtt.devices.registry import DeviceRegistry
 from enocean_mqtt.eep.json_registry import EEPRegistryError, load_eep_definition
 from enocean_mqtt.eep.runtime_decode_service import decode_runtime_telegram
+from enocean_mqtt.esp3.signal import RORG_NAMES
 from enocean_mqtt.gateway.publisher import DevicePublisher
 from enocean_mqtt.gateway.status import GatewayStatusPublisher
 from enocean_mqtt.replay.models import ReplayTelegram
@@ -42,6 +43,11 @@ class GatewayOrchestrator:
         """Decode and publish one semantic device telegram."""
 
         sender_id = telegram.sender_id
+
+        # SIGNAL is independent of EEPs; unknown RORGs remain in the raw archive.
+        incoming_rorg = (telegram.eno_rorg or "").upper()
+        if incoming_rorg == "D0" or (incoming_rorg and incoming_rorg not in RORG_NAMES):
+            return False
 
         if not sender_id:
             return False
@@ -137,7 +143,8 @@ class GatewayOrchestrator:
                     status_fields=decoded.status_fields,
                     decoded_channels={
                         channel_name: {
-                            "value": channel.value,
+                            "value": channel.published_value,
+                            **({"meaning": channel.meaning} if channel.meaning is not None else {}),
                             "raw_value": channel.raw_value,
                             "unit": channel.unit,
                             "semantic_role": channel.semantic_role,

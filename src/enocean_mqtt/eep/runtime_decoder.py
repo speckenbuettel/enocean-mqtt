@@ -22,6 +22,7 @@ from enocean_mqtt.eep.decoder import (
     decode_field,
     parse_payload_hex,
 )
+from enocean_mqtt.eep.field_parts import validate_telegram_composites
 from enocean_mqtt.eep.models import (
     ChannelBindingDefinition,
     ChannelDefinition,
@@ -64,6 +65,13 @@ class RuntimeDecodedChannel:
     semantic_role: str | None = None
     object_type: str | None = None
     range_label: str | None = None
+    enum_encoded: bool = False
+    meaning: str | None = None
+
+    @property
+    def published_value(self) -> DecodedValue:
+        """Enum state uses its numeric code; internal semantic decoding is retained."""
+        return self.raw_value if self.enum_encoded or self.data_type == "enum" else self.value
 
 
 @dataclass(slots=True)
@@ -102,6 +110,11 @@ def build_runtime_context(
 
     if telegram is None:
         return decode_context
+
+    try:
+        validate_telegram_composites(telegram)
+    except ValueError as exc:
+        raise EEPDecodeError(str(exc)) from exc
 
     for field_definition in telegram.fields:
         _extract_named_field(field_definition, payload, decode_context.fields)
@@ -164,12 +177,22 @@ def select_telegram(
         )
 
     candidate_errors: list[str] = []
+    incoming_rorg = (
+        _normalize_rorg(rorg or (external_context or {}).get("rorg"))
+        or eep_definition.rorg.upper()
+    )
 
     for telegram in eep_definition.telegrams:
         if telegram.direction not in (None, "rx"):
             continue
 
         if telegram_id and telegram.telegram_type_id != telegram_id:
+            continue
+
+        # Reject other radio telegram types before reading their payload fields.
+        # A short D5/F6 payload cannot be interpreted using A5 field offsets.
+        if telegram.telegram_id.rorg.upper() != incoming_rorg:
+            candidate_errors.append(f"{telegram.telegram_type_id}: identity mismatch")
             continue
 
         decode_context = build_runtime_context(
@@ -261,7 +284,16 @@ def decode_runtime_binding(
     if channel is None:
         raise EEPDecodeError(f"Unknown channel_ref in binding: {binding.channel_ref}")
 
-    raw_value = _field_value(binding.field_ref, decode_context)
+    raw_value: int | None
+    if binding.field_parts:
+        raw_value = 0
+        for part in binding.field_parts:
+            part_value = decode_context.fields.get(part.field_ref)
+            if part_value is None:
+                raise EEPDecodeError(f"Unknown field_parts field_ref: {part.field_ref}")
+            raw_value |= part_value << part.value_offset
+    else:
+        raw_value = _field_value(binding.field_ref, decode_context)
 
     if raw_value is None:
         raise EEPDecodeError(f"Unknown field_ref in binding: {binding.field_ref}")
@@ -288,6 +320,9 @@ def decode_runtime_binding(
         semantic_role=channel.semantic_role,
         object_type=channel.object_type or channel.channel_type,
         range_label=range_label,
+        enum_encoded=bool(binding.enum or channel.enum),
+        meaning=next((item.label for item in (binding.enum or channel.enum)
+                      if item.value == raw_value), None),
     )
 
 
@@ -334,6 +369,8 @@ def decode_runtime_channel(
         semantic_role=channel.semantic_role,
         object_type=channel.object_type or channel.channel_type,
         range_label=range_label,
+        enum_encoded=bool(channel.enum),
+        meaning=next((item.label for item in channel.enum if item.value == raw_value), None),
     )
 
 
@@ -469,9 +506,11 @@ def _extract_named_field(
 
 
 def _field_value(
-    field_ref: str,
+    field_ref: str | None,
     decode_context: RuntimeDecodeContext,
 ) -> int | None:
+    if field_ref is None:
+        return None
     raw_value = decode_context.fields.get(field_ref)
 
     if raw_value is None:

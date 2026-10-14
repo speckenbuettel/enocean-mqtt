@@ -5,24 +5,17 @@
   "func": "14",
   "type": "0A",
   "func_description": "Multi-Func Sensor",
-  "type_description": "Window/Door-Sensor with States Open/Closed/Tilt, Supply voltage monitor and Vibration detection",
-  "description": "Window/Door-Sensor with States Open/Closed/Tilt, Supply voltage monitor and Vibration detection",
+  "type_description": "Door/Window Sensor with States Open/Closed/Tilted, Supply Voltage Monitor and Vibration Detection",
+  "description": "Multi-Func Sensor, Door/Window Sensor with States Open/Closed/Tilted, Supply Voltage Monitor and Vibration Detection",
   "source": "EnOcean Equipment Profiles",
   "source_version": "2.6.8",
-  "sources": {
-    "xml": [
-      "enocean/eeps/eep268.xml"
-    ],
-    "semantic_mapping": [
-      "eep/semantic-role-mapping.json"
-    ],
-    "eep_list": [
-      "eep/eep-list.csv"
-    ],
-    "json": [
-      "enocean/eeps/json/A5-14-0A.json"
-    ]
-  },
+  "sources": [
+    "enocean/eeps/eep268.xml",
+    "enocean/eeps/json/A5-14-0A.json",
+    "enocean/eeps/ip/A5-14-0A_ip.pdf",
+    "eep/semantic-role-mapping.xlsx",
+    "eep/eep-list.csv"
+  ],
   "direction": "unidirectional",
   "device_class": "sensor",
   "function_groups": [
@@ -39,30 +32,42 @@
   ],
   "channels": [
     {
-      "name": "telegram_type",
+      "name": "contact",
       "display_name": null,
-      "semantic_role": "enocean.telegram_type",
+      "description": "Window/Door contact",
+      "source_key": "contact",
+      "function_group": "from",
+      "semantic_role": "security.contact.state",
       "object_type": "state",
+      "semantic_attributes": {},
       "data_type": "enum",
-      "enum": [
-        {
-          "value": 0,
-          "label": "teach_in_telegram"
-        },
-        {
-          "value": 1,
-          "label": "data_telegram"
-        }
-      ],
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
       "output": {
         "mqtt": true,
         "api": true,
         "storage": true
       },
+      "enum": [
+        {
+          "value": 0,
+          "label": "closed"
+        },
+        {
+          "value": 1,
+          "label": "tilted"
+        },
+        {
+          "value": 3,
+          "label": "open"
+        }
+      ],
       "tx": {
-        "managed": true,
-        "default_value": "data_telegram",
-        "required_for_snapshot": false
+        "managed": false,
+        "required_for_snapshot": true
       }
     },
     {
@@ -71,74 +76,31 @@
       "description": "Supply voltage (linear)",
       "source_key": "supplyVoltage",
       "function_group": "from",
-      "semantic_role": "device.supply_voltage",
+      "semantic_role": "device.supply_voltage.measurement",
       "object_type": "measurement",
-      "semantic_confidence": "high",
+      "semantic_attributes": {},
       "data_type": "float",
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
       "unit": "V",
       "ranges": [
         {
           "min": 0,
           "max": 5,
           "step": 0.02,
-          "unit": "V",
-          "description": null
+          "unit": "V"
         }
       ],
       "value_resolution": 0.02,
       "value_precision": 2,
-      "runtime": {
-        "transmit_on_connect": true,
-        "transmit_on_event": true,
-        "transmit_on_duplicate": false
-      },
-      "output": {
-        "mqtt": true,
-        "api": true,
-        "storage": true
-      },
-      "tx": {
-        "managed": false,
-        "required_for_snapshot": true
-      }
-    },
-    {
-      "name": "contact",
-      "display_name": null,
-      "description": "Window/Door contact",
-      "source_key": "contact",
-      "function_group": "from",
-      "semantic_role": "security.contact_state",
-      "object_type": "state",
-      "semantic_confidence": "high",
-      "data_type": "enum",
-      "enum": [
-        {
-          "value": "closed",
-          "label": "closed",
-          "description": "Window/door closed"
-        },
-        {
-          "value": "open",
-          "label": "open",
-          "description": "Window/door open"
-        },
-        {
-          "value": "tilted",
-          "label": "tilted",
-          "description": "Window/door tilted"
-        }
-      ],
-      "runtime": {
-        "transmit_on_connect": true,
-        "transmit_on_event": true,
-        "transmit_on_duplicate": false
-      },
-      "output": {
-        "mqtt": true,
-        "api": true,
-        "storage": true
-      },
       "tx": {
         "managed": false,
         "required_for_snapshot": true
@@ -146,26 +108,14 @@
     },
     {
       "name": "vibration",
-      "display_name": null,
+      "display_name": "intrusion_alarm",
       "description": "Vibration sensor",
       "source_key": "vibration",
       "function_group": "from",
-      "semantic_role": "security.intrusion_alarm",
+      "semantic_role": "security.intrusion_alarm.state",
       "object_type": "state",
-      "semantic_confidence": "high",
+      "semantic_attributes": {},
       "data_type": "enum",
-      "enum": [
-        {
-          "value": false,
-          "label": "no_vibration_detected",
-          "description": "No vibration detected"
-        },
-        {
-          "value": true,
-          "label": "vibration_detected",
-          "description": "Vibration detected"
-        }
-      ],
       "runtime": {
         "transmit_on_connect": true,
         "transmit_on_event": true,
@@ -176,84 +126,92 @@
         "api": true,
         "storage": true
       },
+      "enum": [
+        {
+          "value": 0,
+          "label": "no_intrusion_detected"
+        },
+        {
+          "value": 1,
+          "label": "intrusion_detected"
+        }
+      ],
       "tx": {
         "managed": false,
         "required_for_snapshot": true
       }
     }
   ],
+  "messages": [],
   "telegrams": [
     {
-      "telegram_type_id": "a5-14-0a.case1",
+      "telegram_type_id": "a5-14-0a.data",
       "telegram_id": {
         "rorg": "A5"
       },
+      "direction": "rx",
       "fields": [
         {
           "name": "telegram_type",
           "offset": 28,
           "size": 1,
-          "shortcut": "LRNB",
-          "description": "LRN Bit",
           "raw_min": 0,
           "raw_max": 1,
-          "source": "payload"
+          "source": "payload",
+          "shortcut": "LRNB",
+          "description": "LRN Bit",
+          "constant": 1
         },
         {
           "name": "supply_voltage",
           "offset": 0,
           "size": 8,
-          "shortcut": "SVC",
-          "description": "Supply voltage",
           "raw_min": 0,
           "raw_max": 255,
-          "source": "payload"
+          "source": "payload",
+          "shortcut": "SVC",
+          "description": "Supply voltage / super cap. (linear)"
         },
         {
           "name": "reserved_8_20",
           "offset": 8,
           "size": 20,
-          "shortcut": "",
-          "description": "Reserved field 8:20",
           "raw_min": 0,
           "raw_max": 1048575,
-          "source": "payload"
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
         },
         {
           "name": "contact",
           "offset": 29,
           "size": 2,
-          "shortcut": "CT",
-          "description": "Contact",
           "raw_min": 0,
           "raw_max": 3,
-          "source": "payload"
+          "source": "payload",
+          "shortcut": "CT",
+          "description": "Contact"
         },
         {
           "name": "vibration",
           "offset": 31,
           "size": 1,
-          "shortcut": "VIB",
-          "description": "Vibration",
           "raw_min": 0,
           "raw_max": 1,
-          "source": "payload"
+          "source": "payload",
+          "shortcut": "VIB",
+          "description": "Vibration"
         }
       ],
       "channel_bindings": [
         {
-          "channel_ref": "telegram_type",
-          "field_ref": "telegram_type",
-          "enum": [
-            {
-              "value": 0,
-              "label": "teach_in_telegram"
-            },
-            {
-              "value": 1,
-              "label": "data_telegram"
-            }
-          ]
+          "channel_ref": "contact",
+          "field_ref": "contact",
+          "depends_on": {
+            "source": "field",
+            "field": "contact",
+            "not_equals": 2
+          }
         },
         {
           "channel_ref": "supply_voltage",
@@ -266,40 +224,167 @@
           }
         },
         {
+          "channel_ref": "vibration",
+          "field_ref": "vibration"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "data_only",
+          "field": "telegram_type",
+          "equals": 1
+        },
+        {
+          "name": "exclude_voltage_251",
+          "field": "supply_voltage",
+          "not_equals": 251,
+          "description": "Outside documented semantic raw range 0..250."
+        },
+        {
+          "name": "exclude_voltage_252",
+          "field": "supply_voltage",
+          "not_equals": 252,
+          "description": "Outside documented semantic raw range 0..250."
+        },
+        {
+          "name": "exclude_voltage_253",
+          "field": "supply_voltage",
+          "not_equals": 253,
+          "description": "Outside documented semantic raw range 0..250."
+        },
+        {
+          "name": "exclude_voltage_254",
+          "field": "supply_voltage",
+          "not_equals": 254,
+          "description": "Outside documented semantic raw range 0..250."
+        },
+        {
+          "name": "exclude_voltage_255",
+          "field": "supply_voltage",
+          "not_equals": 255,
+          "description": "Outside documented semantic raw range 0..250."
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "a5-14-0a.emulated_data",
+      "telegram_id": {
+        "rorg": "A5"
+      },
+      "direction": "tx",
+      "fields": [
+        {
+          "name": "telegram_type",
+          "offset": 28,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "shortcut": "LRNB",
+          "description": "LRN Bit",
+          "constant": 1
+        },
+        {
+          "name": "supply_voltage",
+          "offset": 0,
+          "size": 8,
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload",
+          "shortcut": "SVC",
+          "description": "Supply voltage / super cap. (linear)"
+        },
+        {
+          "name": "reserved_8_20",
+          "offset": 8,
+          "size": 20,
+          "raw_min": 0,
+          "raw_max": 1048575,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
+        },
+        {
+          "name": "contact",
+          "offset": 29,
+          "size": 2,
+          "raw_min": 0,
+          "raw_max": 3,
+          "source": "payload",
+          "shortcut": "CT",
+          "description": "Contact"
+        },
+        {
+          "name": "vibration",
+          "offset": 31,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "shortcut": "VIB",
+          "description": "Vibration"
+        }
+      ],
+      "channel_bindings": [
+        {
           "channel_ref": "contact",
-          "field_ref": "contact",
-          "enum": [
-            {
-              "value": 0,
-              "label": "closed"
-            },
-            {
-              "value": 1,
-              "label": "tilt"
-            },
-            {
-              "value": 2,
-              "label": "reserved"
-            },
-            {
-              "value": 3,
-              "label": "open"
-            }
-          ]
+          "field_ref": "contact"
+        },
+        {
+          "channel_ref": "supply_voltage",
+          "field_ref": "supply_voltage",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 250,
+            "scale_min": 0.0,
+            "scale_max": 5.0
+          }
         },
         {
           "channel_ref": "vibration",
-          "field_ref": "vibration",
-          "enum": [
-            {
-              "value": 0,
-              "label": "no_vibration_detected"
-            },
-            {
-              "value": 1,
-              "label": "vibration_detected"
-            }
-          ]
+          "field_ref": "vibration"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "data_only",
+          "field": "telegram_type",
+          "equals": 1
+        },
+        {
+          "name": "exclude_voltage_251",
+          "field": "supply_voltage",
+          "not_equals": 251,
+          "description": "Outside documented semantic raw range 0..250."
+        },
+        {
+          "name": "exclude_voltage_252",
+          "field": "supply_voltage",
+          "not_equals": 252,
+          "description": "Outside documented semantic raw range 0..250."
+        },
+        {
+          "name": "exclude_voltage_253",
+          "field": "supply_voltage",
+          "not_equals": 253,
+          "description": "Outside documented semantic raw range 0..250."
+        },
+        {
+          "name": "exclude_voltage_254",
+          "field": "supply_voltage",
+          "not_equals": 254,
+          "description": "Outside documented semantic raw range 0..250."
+        },
+        {
+          "name": "exclude_voltage_255",
+          "field": "supply_voltage",
+          "not_equals": 255,
+          "description": "Outside documented semantic raw range 0..250."
+        },
+        {
+          "name": "exclude_reserved_contact",
+          "field": "contact",
+          "not_equals": 2
         }
       ]
     }

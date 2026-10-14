@@ -12,9 +12,15 @@ scales, enum mappings and binding dependencies.
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass
-from typing import Any, Literal, Protocol
+from typing import Any, Literal
 
+from enocean_mqtt.eep.field_parts import (
+    Binding as _Binding,
+    composite_fields,
+    validate_telegram_composites,
+)
 from enocean_mqtt.eep.models import (
     ChannelBindingDefinition,
     ChannelDefinition,
@@ -46,13 +52,6 @@ class EncodedRuntimeTelegram:
     data: str
     status: str
     telegram_type_id: str | None
-
-
-class _Binding(Protocol):
-    field_ref: str
-    scale: LinearScale | None
-    enum: list[ValueMapping]
-    depends_on: DependencyDefinition | None
 
 
 _MISSING = object()
@@ -160,6 +159,10 @@ def _encode_telegram(
     source: SemanticSource,
     trigger_refs: set[str] | None,
 ) -> EncodedRuntimeTelegram:
+    try:
+        validate_telegram_composites(telegram)
+    except ValueError as exc:
+        raise EEPEncodeError(str(exc)) from exc
     telegram_rorg = telegram.telegram_id.rorg.upper()
     payload = bytearray(_payload_size_bytes(telegram, telegram_rorg))
     raw_fields: dict[str, int] = {}
@@ -223,9 +226,30 @@ def _encode_telegram(
     return EncodedRuntimeTelegram(
         rorg=telegram_rorg,
         data=payload.hex(" ").upper(),
-        status="00",
+        status=_encode_status(telegram),
         telegram_type_id=telegram.telegram_type_id,
     )
+
+
+def _encode_status(telegram: TelegramDefinition) -> str:
+    """Encode declared ERP1 status constants without changing payload offsets."""
+    status = bytearray(1)
+    occupied: set[int] = set()
+    for field in telegram.status_fields:
+        positions = set(range(field.offset, field.offset + field.size))
+        if field.size <= 0 or not positions <= set(range(8)):
+            raise EEPEncodeError(f"invalid status field bounds: {field.name}")
+        if occupied & positions:
+            raise EEPEncodeError(f"overlapping status field: {field.name}")
+        occupied.update(positions)
+        value = field.constant
+        if value is None:
+            value = field.default_value
+        if value is None and field.reserved:
+            value = 0
+        if value is not None:
+            _set_bits(status, field.offset, field.size, _to_int(value))
+    return status.hex().upper()
 
 
 def _encode_binding(
@@ -261,7 +285,10 @@ def _encode_binding(
             raise EEPEncodeError(f"missing required value: {semantic_ref}")
         return
 
-    field = _field_for_binding(telegram, binding)
+    parts = composite_fields(binding, telegram) if binding.field_parts else []
+    field = (FieldDefinition(name=semantic_ref, offset=0,
+                             size=sum(part.size for part in parts), data_type="integer")
+             if parts else _field_for_binding(telegram, binding))
     enum = binding.enum or semantic_definition.enum
     raw_value = _encode_semantic_value(
         value=value,
@@ -270,8 +297,19 @@ def _encode_binding(
         field=field,
         semantic_ref=semantic_ref,
     )
-    _set_raw_field(raw_fields, field.name, raw_value)
-    encoded_fields.add(field.name)
+    if parts:
+        if not 0 <= raw_value < (1 << field.size):
+            raise EEPEncodeError(f"composite value {raw_value} exceeds width {field.size}")
+        for part, target in zip(binding.field_parts, parts, strict=True):
+            piece = (raw_value >> part.value_offset) & ((1 << target.size) - 1)
+            if ((target.raw_min is not None and piece < target.raw_min)
+                    or (target.raw_max is not None and piece > target.raw_max)):
+                raise EEPEncodeError(f"composite part outside raw range: {target.name}")
+            _set_raw_field(raw_fields, target.name, piece)
+            encoded_fields.add(target.name)
+    else:
+        _set_raw_field(raw_fields, field.name, raw_value)
+        encoded_fields.add(field.name)
 
 
 def _bindings_for_source(
@@ -409,21 +447,35 @@ def _encode_semantic_value(
     semantic_ref: str,
 ) -> int:
     if enum:
-        return _encode_enum_value(enum, value, semantic_ref)
+        return _encode_enum_value(enum, value, semantic_ref, strict=bool(binding.field_parts))
 
     if binding.scale is not None:
-        return _encode_linear_scaled_value(binding.scale, value)
+        return _encode_linear_scaled_value(binding.scale, value, strict=bool(binding.field_parts))
 
     if field.data_type == "boolean":
         return int(_to_bool(value))
 
+    if binding.field_parts:
+        return _to_composite_int(value)
     return _to_int(value)
+
+
+def _to_composite_int(value: Any) -> int:
+    try:
+        raw = int(value)
+        if not isinstance(value, (int, str)) and value != raw:
+            raise ValueError("fractional value")
+    except (ValueError, TypeError, OverflowError) as exc:
+        raise EEPEncodeError(f"composite value {value!r} must be an integer") from exc
+    return raw
 
 
 def _encode_enum_value(
     enum: list[ValueMapping],
     value: Any,
     semantic_ref: str,
+    *,
+    strict: bool = False,
 ) -> int:
     candidates = {
         str(value),
@@ -450,21 +502,25 @@ def _encode_enum_value(
             )
 
         if candidates & allowed:
-            return _to_int(item.value)
+            return _to_composite_int(item.value) if strict else _to_int(item.value)
 
     for item in enum:
         if semantic_value_matches_label(value, item.label):
-            return _to_int(item.value)
+            return _to_composite_int(item.value) if strict else _to_int(item.value)
 
     raise EEPEncodeError(f"value {value!r} not allowed for {semantic_ref}")
 
 
-def _encode_linear_scaled_value(scale: LinearScale, value: Any) -> int:
+def _encode_linear_scaled_value(scale: LinearScale, value: Any, *, strict: bool = False) -> int:
     try:
         physical = float(value)
     except (TypeError, ValueError) as exc:
         raise EEPEncodeError(f"value {value!r} cannot be converted to float") from exc
 
+    if strict and (not math.isfinite(physical)
+                   or not min(scale.scale_min, scale.scale_max) <= physical
+                   <= max(scale.scale_min, scale.scale_max)):
+        raise EEPEncodeError(f"composite value {value!r} outside scale range")
     if scale.scale_min == scale.scale_max:
         raise EEPEncodeError("invalid scale: scale_min equals scale_max")
 

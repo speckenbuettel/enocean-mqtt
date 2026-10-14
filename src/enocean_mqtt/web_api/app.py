@@ -29,6 +29,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 from enocean_mqtt.datapoints import DatapointRegistry
+from enocean_mqtt.devices.foreign_registry import foreign_registry
 from enocean_mqtt.devices.projection import ApiDeviceRegistry
 from enocean_mqtt.eep.decoder import EEPDecodeError
 from enocean_mqtt.eep.json_registry import (
@@ -36,13 +37,16 @@ from enocean_mqtt.eep.json_registry import (
     load_eep_definition,
 )
 from enocean_mqtt.eep.runtime_decoder import decode_runtime_with_definition
+from enocean_mqtt.esp3.radio import decode_f6_status
+from enocean_mqtt.esp3.signal import RORG_NAMES, radio_diagnostics
 from enocean_mqtt.gateway.runtime_commands import RuntimeCommandExecutionError
 from enocean_mqtt.gateway.runtime_schema import RuntimeCommandValidationError
 from enocean_mqtt.runtime.service import RuntimeService
+from enocean_mqtt.version import load_project_version
 from enocean_mqtt.web_api.device_management_routes import (
     create_device_management_router,
 )
-from enocean_mqtt.web_api.live_events import get_live_event
+from enocean_mqtt.web_api.live_events import LIVE_EVENT_QUEUE, get_live_event
 from enocean_mqtt.web_api.runtime_controls import (
     interface_connect,
     interface_controls_available,
@@ -104,7 +108,7 @@ IDENTIFIER_RE = re.compile(r"[^A-Za-z0-9_.-]+")
 
 app = FastAPI(
     title="enocean-mqtt Web API",
-    version="0.6.0-prototype",
+    version=load_project_version(),
     description="REST API for enocean-mqtt runtime, busmonitor and integration clients.",
 )
 
@@ -384,6 +388,9 @@ async def api_token_middleware(
     request: Request,
     call_next: Callable[[Request], Awaitable[Response]],
 ) -> Response:
+    request.state.api_roles = (
+        set() if api_authentication_config.enabled else {"read", "admin"}
+    )
     if request.url.path.startswith("/api/v1/") and api_authentication_config.enabled:
         provided_token = _extract_bearer_token(request)
 
@@ -408,6 +415,7 @@ async def api_token_middleware(
         for api_token in api_tokens:
             if hmac.compare_digest(provided_token, api_token.token):
                 if required_role in api_token.roles:
+                    request.state.api_roles = api_token.roles
                     return await call_next(request)
 
                 return JSONResponse(
@@ -678,6 +686,9 @@ def _decode_telegram(
     telegram: dict[str, Any],
     device_index: dict[str, dict[str, Any]],
 ) -> tuple[dict[str, Any] | None, str | None]:
+    rorg = str(telegram.get("rorg") or "").upper()
+    if rorg == "D0" or rorg not in RORG_NAMES:
+        return None, None
     normalized_sender_id = _normalize_sender_id(telegram.get("sender_id"))
 
     if normalized_sender_id is None:
@@ -776,6 +787,21 @@ def _normalize_telegram_payload(
     telegram["raw_telegram"] = _hex_or_none(telegram.get("raw_telegram"))
     telegram["data"] = _hex_or_none(telegram.get("data"))
     telegram["erp1_status"] = _hex_or_none(telegram.get("erp1_status"))
+    rorg = str(telegram.get("rorg") or "").upper()
+    data = telegram["data"] or ""
+    telegram["contains_teach_in"] = bool(
+        ((rorg == "A5" and len(data) == 8) or (rorg == "D5" and len(data) == 2))
+        and re.fullmatch(r"[0-9A-Fa-f]+", data)
+        and not (int(data[-2:], 16) & 0x08)
+    )
+    if str(telegram.get("rorg") or "").upper() == "F6":
+        # Recompute old archive metadata too; the raw status is authoritative.
+        status = decode_f6_status(telegram["erp1_status"])
+        telegram["erp1_status_decoded"] = status
+        telegram["contains_teach_in"] = False
+        if status is not None:
+            for key in ("repeater_count", "repeater_permitted", "hash_type", "contains_teach_in"):
+                telegram[key] = status[key]
 
     normalized_sender_id = _normalize_sender_id(telegram.get("sender_id"))
     known_device = (
@@ -788,7 +814,11 @@ def _normalize_telegram_payload(
         telegram["sender_id"] = normalized_sender_id
 
     telegram["known_device"] = known_device
+    telegram["foreign_device"] = normalized_sender_id in foreign_registry(
+        DEVICES_FILE.parent / "foreign-devices.json"
+    ).snapshot()
     telegram["device"] = _device_summary(normalized_sender_id, device_index)
+    telegram.update(radio_diagnostics(telegram.get("rorg"), telegram.get("data")))
 
     decoded = None
     decode_error = None
@@ -797,12 +827,32 @@ def _normalize_telegram_payload(
         decoded, decode_error = _decode_telegram(telegram, device_index)
 
     telegram["decoded_tooltip"] = _decoded_tooltip(decoded, decode_error)
+    telegram["decode_error"] = decode_error
+    if "signal" in telegram:
+        signal = telegram["signal"]
+        telegram["decoded_tooltip"] = "\n".join(
+            [f"SIGNAL MID: {signal.get('mid', '?')} | {signal.get('name', 'Malformed')}"]
+            + [f"{key}: {value}" for key, value in signal["fields"].items()]
+            + ([f"Error: {signal['error']}"] if "error" in signal else [])
+        )
+    elif "protocol_warning" in telegram:
+        telegram["decoded_tooltip"] = telegram["protocol_warning"]
 
     if include_decoded:
         telegram["decoded"] = decoded
-        telegram["decode_error"] = decode_error
 
     return telegram
+
+
+def _selected_device_types(value: str | None) -> set[str]:
+    if value is None:
+        return {"known", "unknown", "foreign"}
+    if value == "none":
+        return set()
+    selected = {item.strip() for item in value.split(",")}
+    if not selected or not selected <= {"known", "unknown", "foreign"}:
+        raise HTTPException(status_code=422, detail="Invalid device_types selection")
+    return selected
 
 
 class SQLiteTelegramQuery:
@@ -829,11 +879,62 @@ class SQLiteTelegramQuery:
         time_to: float | None,
         cursor_timestamp: float | None,
         cursor_telegram_id: int | None,
+        hide_foreign: bool = False,
+        device_types: str | None = None,
+        teach_in: bool | None = None,
     ) -> tuple[list[dict[str, Any]], dict[str, Any] | None]:
         conditions: list[str] = []
         parameters: list[Any] = []
         device_index = _load_device_index()
         known_devices = set(device_index.keys())
+
+        if teach_in is not None:
+            # Match the raw LRN bit, not stale archive status/Teach-In metadata.
+            payload = (
+                "CASE WHEN typeof(data) = 'blob' THEN HEX(data) "
+                "ELSE UPPER(REPLACE(REPLACE(REPLACE(COALESCE(data, ''), "
+                "' ', ''), '-', ''), ':', '')) END"
+            )
+            is_teach_in = (
+                f"(((UPPER(rorg) = 'A5' AND LENGTH({payload}) = 8) OR "
+                f"(UPPER(rorg) = 'D5' AND LENGTH({payload}) = 2)) "
+                f"AND ({payload}) NOT GLOB '*[^0-9A-F]*' "
+                f"AND SUBSTR({payload}, -1) IN ('0','1','2','3','4','5','6','7'))"
+            )
+            conditions.append(f"COALESCE({is_teach_in}, 0) = ?")
+            parameters.append(int(teach_in))
+
+        if device_types is not None:
+            selected = _selected_device_types(device_types)
+            foreign_ids = set(
+                foreign_registry(DEVICES_FILE.parent / "foreign-devices.json").snapshot()
+            )
+            clauses = []
+            for category in sorted(selected):
+                ids = sorted(foreign_ids if category == "foreign" else known_devices - foreign_ids)
+                if category == "unknown":
+                    ids = sorted(known_devices | foreign_ids)
+                    placeholders = ", ".join("?" for _ in ids)
+                    clauses.append(
+                        f"(sender_id IS NULL OR UPPER(sender_id) NOT IN ({placeholders}))"
+                        if ids else "1 = 1"
+                    )
+                else:
+                    placeholders = ", ".join("?" for _ in ids)
+                    clauses.append(f"UPPER(sender_id) IN ({placeholders})" if ids else "1 = 0")
+                parameters.extend(ids)
+            conditions.append("(" + " OR ".join(clauses) + ")" if clauses else "1 = 0")
+
+        if hide_foreign:
+            excluded_foreign_ids = sorted(
+                foreign_registry(DEVICES_FILE.parent / "foreign-devices.json").snapshot()
+            )
+            if excluded_foreign_ids:
+                placeholders = ", ".join("?" for _ in excluded_foreign_ids)
+                conditions.append(
+                    f"(sender_id IS NULL OR UPPER(sender_id) NOT IN ({placeholders}))"
+                )
+                parameters.extend(excluded_foreign_ids)
 
         if sender_id:
             sender_values = [
@@ -1172,18 +1273,23 @@ def _normalize_live_telegram(payload: dict[str, Any]) -> dict[str, Any]:
 
 
 async def _live_event_stream(request: Request) -> AsyncIterator[str]:
-    while True:
-        if await request.is_disconnected():
-            break
+    LIVE_EVENT_QUEUE.connect()
+    try:
+        while True:
+            if await request.is_disconnected():
+                break
+            try:
+                payload = await get_live_event(poll=True)
+            except TimeoutError:
+                continue
+            if payload is None:
+                break
 
-        payload = await get_live_event()
-
-        if payload is None:
-            break
-
-        telegram = _normalize_live_telegram(payload)
-        data = json.dumps(telegram, separators=(",", ":"))
-        yield f"event: telegram\ndata: {data}\n\n"
+            telegram = _normalize_live_telegram(payload)
+            data = json.dumps(telegram, separators=(",", ":"))
+            yield f"event: telegram\ndata: {data}\n\n"
+    finally:
+        LIVE_EVENT_QUEUE.disconnect()
 
 
 def _health_payload() -> dict[str, str]:
@@ -1193,10 +1299,30 @@ def _health_payload() -> dict[str, str]:
     }
 
 
-def _busmonitor_devices_payload() -> dict[str, Any]:
+def _busmonitor_devices_payload(
+    hide_foreign: bool = False, device_types: str | None = None,
+) -> dict[str, Any]:
     device_index = _load_device_index()
+    known_ids = set(device_index)
+    foreign_ids = foreign_registry(DEVICES_FILE.parent / "foreign-devices.json").snapshot()
+    if device_types is not None:
+        for sender_id in foreign_ids:
+            device_index.setdefault(sender_id, {"device_id": sender_id})
+        selected = _selected_device_types(device_types)
+        device_index = {
+            key: device for key, device in device_index.items()
+            if ("foreign" if key in foreign_ids else "known") in selected
+        }
+    if hide_foreign:
+        device_index = {
+            key: device for key, device in device_index.items() if key not in foreign_ids
+        }
     return {
-        "devices": _device_list(device_index),
+        "devices": [
+            {**device, "known": device["sender_id"] in known_ids,
+             "foreign_device": device["sender_id"] in foreign_ids}
+            for device in _device_list(device_index)
+        ],
         "count": len(device_index),
     }
 
@@ -1206,7 +1332,10 @@ def _runtime_commands_payload() -> dict[str, Any]:
         _runtime_command_payload("gateway.exit"),
         _runtime_command_payload("gateway.restart"),
         _runtime_command_payload("gateway.republish"),
+        _runtime_command_payload("eeps.reload"),
         _runtime_command_payload("devices.republish"),
+        _runtime_command_payload("interface.connect", optional=["interface_id"]),
+        _runtime_command_payload("interface.disconnect", optional=["interface_id"]),
         _runtime_command_payload("devices.import", optional=["import_file"]),
         _runtime_command_payload("devices.reload"),
         _runtime_command_payload("devices.export", optional=["export_file"]),
@@ -1714,6 +1843,9 @@ def _query_telegrams_payload(
     time_to_expression: str | None,
     cursor_timestamp: float | None,
     cursor_telegram_id: int | None,
+    hide_foreign: bool = False,
+    device_types: str | None = None,
+    teach_in: bool | None = None,
 ) -> dict[str, Any]:
     backend = get_query_backend()
     time_from = parse_time_expression(time_from_expression)
@@ -1725,6 +1857,9 @@ def _query_telegrams_payload(
         direction=direction,
         runtime_mode=runtime_mode,
         known_filter=known_filter,
+        hide_foreign=hide_foreign,
+        device_types=device_types,
+        teach_in=teach_in,
         time_from=time_from,
         time_to=time_to,
         cursor_timestamp=cursor_timestamp,
@@ -1782,6 +1917,9 @@ def _export_csv_response(
     known_filter: str | None,
     time_from_expression: str | None,
     time_to_expression: str | None,
+    hide_foreign: bool = False,
+    device_types: str | None = None,
+    teach_in: bool | None = None,
 ) -> PlainTextResponse:
     backend = get_query_backend()
     telegrams, _ = backend.query_telegrams(
@@ -1791,6 +1929,9 @@ def _export_csv_response(
         direction=direction,
         runtime_mode=runtime_mode,
         known_filter=known_filter,
+        hide_foreign=hide_foreign,
+        device_types=device_types,
+        teach_in=teach_in,
         time_from=parse_time_expression(time_from_expression),
         time_to=parse_time_expression(time_to_expression),
         cursor_timestamp=None,
@@ -2071,8 +2212,10 @@ def get_busmonitor_devices() -> dict[str, Any]:
 
 
 @app.get("/api/v1/busmonitor/devices")
-def get_busmonitor_api_devices() -> dict[str, Any]:
-    return _busmonitor_devices_payload()
+def get_busmonitor_api_devices(
+    hide_foreign: bool = False, device_types: str | None = None,
+) -> dict[str, Any]:
+    return _busmonitor_devices_payload(hide_foreign=hide_foreign, device_types=device_types)
 
 
 @app.get("/api/v1/busmonitor/unknown-devices")
@@ -2115,6 +2258,9 @@ def get_telegrams(
     ),
     cursor_timestamp: float | None = None,
     cursor_telegram_id: int | None = None,
+    hide_foreign: bool = False,
+    device_types: str | None = None,
+    teach_in: bool | None = None,
 ) -> dict[str, Any]:
     return _query_telegrams_payload(
         limit=limit,
@@ -2123,6 +2269,9 @@ def get_telegrams(
         direction=direction,
         runtime_mode=runtime_mode,
         known_filter=known_filter,
+        hide_foreign=hide_foreign,
+        device_types=device_types,
+        teach_in=teach_in,
         time_from_expression=time_from_expression,
         time_to_expression=time_to_expression,
         cursor_timestamp=cursor_timestamp,
@@ -2326,6 +2475,9 @@ def export_csv(
         default=None,
         alias="to",
     ),
+    hide_foreign: bool = False,
+    device_types: str | None = None,
+    teach_in: bool | None = None,
 ) -> PlainTextResponse:
     return _export_csv_response(
         limit=limit,
@@ -2334,6 +2486,9 @@ def export_csv(
         direction=direction,
         runtime_mode=runtime_mode,
         known_filter=known_filter,
+        hide_foreign=hide_foreign,
+        device_types=device_types,
+        teach_in=teach_in,
         time_from_expression=time_from_expression,
         time_to_expression=time_to_expression,
     )

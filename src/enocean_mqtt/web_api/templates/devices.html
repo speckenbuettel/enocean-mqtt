@@ -6,7 +6,7 @@
 
 {% block styles %}
   <link rel="stylesheet" href="/static/css/devices.css?v=20260903-2">
-  <link rel="stylesheet" href="/static/css/devices-ui-improvements.css?v=20260903-2">
+  <link rel="stylesheet" href="/static/css/devices-ui-improvements.css?v=20261014-1">
 {% endblock %}
 
 {% block main_class %} devices-main{% endblock %}
@@ -39,6 +39,7 @@
           <option value="physical">Physical devices</option>
           <option value="virtual">Virtual devices</option>
           <option value="unknown">Unknown devices</option>
+          <option value="foreign">Foreign devices</option>
         </select>
         <select id="deviceStateFilter" class="device-control" aria-label="Device state">
           <option value="all">All states</option>
@@ -77,12 +78,16 @@
       <div class="card-heading device-panel-heading unknown-panel-heading">
         <h2>Unknown Devices</h2>
         <div class="unknown-device-controls">
-          <label><input id="hideExternalDevices" type="checkbox"> Hide external devices</label>
           <label><input id="hideOwnSenderIds" type="checkbox"> Hide own sender IDs</label>
           <span id="unknownPanelCount" class="card-tag">0 recent devices</span>
         </div>
       </div>
       <div class="device-table-wrap"><table class="device-table"><thead><tr><th>Sender ID</th><th>RORG</th><th>Telegrams</th><th>First seen</th><th>Last seen</th><th>RSSI</th><th>Last telegram</th><th>Actions</th></tr></thead><tbody id="unknownDevicesBody"></tbody></table></div>
+    </section>
+    <section id="foreignPanel" class="compact-card device-panel" data-panel="foreign">
+      <div class="card-heading device-panel-heading"><h2>Foreign Devices</h2><span id="foreignPanelCount" class="card-tag">0 devices</span></div>
+      <p>Foreign devices are devices that do not belong to your own network. They are listed separately from known and unknown devices. SQLite exclusion applies to future telegrams only; existing history is kept.</p>
+      <div class="device-table-wrap"><table class="device-table"><thead><tr><th>Sender ID</th><th>SQLite storage</th><th>Actions</th></tr></thead><tbody id="foreignDevicesBody"></tbody></table></div>
     </section>
   </div>
 
@@ -130,7 +135,7 @@
 {% endblock %}
 
 {% block scripts %}
-  <script src="/static/js/devices.js?v=20260903-1"></script>
-  <script src="/static/js/devices-enhancements.js?v=20260903-1"></script>
-  <script src="/static/js/devices-ui-improvements.js?v=20260903-2"></script>
+  <script src="/static/js/devices.js?v=20261014-1"></script>
+  <script src="/static/js/devices-enhancements.js?v=20261013-1"></script>
+  <script src="/static/js/devices-ui-improvements.js?v=20261014-1"></script>
 {% endblock %}

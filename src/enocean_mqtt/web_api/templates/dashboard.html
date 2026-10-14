@@ -81,18 +81,23 @@
 
   <section class="bottom-grid">
     <article class="compact-card">
-      <div class="card-heading"><h2>Device Registry</h2><span id="registryReload" class="card-tag">loading</span></div>
+      <div class="card-heading"><h2>Devices</h2><span id="registryReload" class="card-tag">loading</span></div>
       <div class="registry-grid">
         <div><strong id="registeredDeviceCount">0</strong><span>physical</span></div>
         <div><strong id="activeRegistryCount">0</strong><span>active</span></div>
         <div><strong id="unknownDeviceCount" class="warning-text">0</strong><span>unknown</span></div>
         <div><strong id="virtualDeviceCount">0</strong><span>virtual</span></div>
+        <div><strong id="foreignDeviceCount">0</strong><span>foreign</span></div>
       </div>
     </article>
     <article class="compact-card">
       <div class="card-heading"><h2>Runtime Commands</h2><span id="commandAvailability" class="card-tag">checking</span></div>
       <div id="commandButtons" class="command-grid">
         <button type="button" data-command="devices.reload">Reload devices</button>
+        <button type="button" data-command="devices.republish">Republish devices (to MQTT)</button>
+        <button type="button" data-command="interface.connect">Connect selected interface</button>
+        <button type="button" data-command="interface.disconnect" data-confirm="Disconnect the selected EnOcean interface?">Disconnect selected interface</button>
+        <button type="button" data-command="eeps.reload">Validate and reload EEPs</button>
         <button type="button" data-command="gateway.republish">Republish gateway status (to MQTT)</button>
         <button type="button" data-command="gateway.restart" data-confirm="Restart the gateway runtime?">Restart gateway</button>
         <button type="button" class="danger-action" data-command="gateway.exit" data-confirm="Shut down the gateway runtime?">Shut down</button>
@@ -102,4 +107,4 @@
   </section>
 {% endblock %}
 
-{% block scripts %}<script src="/static/js/dashboard.js?v=20260821-7"></script>{% endblock %}
+{% block scripts %}<script src="/static/js/dashboard.js?v={{ dashboard_script_version }}"></script>{% endblock %}

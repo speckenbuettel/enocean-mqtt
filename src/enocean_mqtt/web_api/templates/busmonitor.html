@@ -5,7 +5,7 @@
 {% block title %}enocean-mqtt Bus Monitor{% endblock %}
 
 {% block styles %}
-  <link rel="stylesheet" href="/static/css/busmonitor.css?v=20260822-2">
+  <link rel="stylesheet" href="/static/css/busmonitor.css?v={{ asset_versions['css/busmonitor.css'] }}">
 {% endblock %}
 
 {% block main_class %} busmonitor-main{% endblock %}
@@ -43,7 +43,6 @@
               <option value="now-12h">Last 12 hours</option>
               <option value="now-24h">Last 24 hours</option>
               <option value="now-7d">Last 7 days</option>
-              <option value="custom">Custom</option>
             </select>
           </div>
 
@@ -73,10 +72,33 @@
               <button type="button" id="rorgFilterButton" class="multi-select-button">any RORG</button>
               <div id="rorgFilterPanel" class="multi-select-panel" hidden>
                 <label class="multi-select-option"><input type="checkbox" id="rorgFilterAll" checked>any RORG</label>
-                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="F6" checked>F6 | RPS</label>
-                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="D5" checked>D5 | 1BS</label>
-                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="A5" checked>A5 | 4BS</label>
-                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="D2" checked>D2 | VLD</label>
+                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="D2">D2 | VLD</label>
+                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="D5">D5 | 1BS</label>
+                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="A5">A5 | 4BS</label>
+                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="F6">F6 | RPS</label>
+                <hr class="rorg-filter-separator" aria-label="Other telegram types">
+                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="D1">D1 | MSC</label>
+                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="A6">A6 | ADT</label>
+                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="C6">C6 | SM_LRN_REQ</label>
+                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="C7">C7 | SM_LRN_ANS</label>
+                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="A7">A7 | SM_REC</label>
+                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="C5">C5 | SYS_EX</label>
+                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="30">30 | SEC</label>
+                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="31">31 | SEC_ENCAPS</label>
+                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="34">34 | SEC_MAN</label>
+                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="35">35 | SEC_TI</label>
+                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="D0">D0 | SIGNAL</label>
+                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="D4">D4 | UTE</label>
+                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="32">32 | NON_SEC</label>
+                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="33">33 | SEC_CDM</label>
+                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="40">40 | CDM</label>
+                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="A3">A3 | HRC</label>
+                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="A4">A4 | SYS</label>
+                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="A8">A8 | ACK</label>
+                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="B0">B0 | GP_TEACH_IN</label>
+                <label class="multi-select-option"><input type="checkbox" class="rorg-filter" value="B2">B2 | GP_COMPLETE</label>
+                <hr class="rorg-filter-separator">
+                <div class="multi-select-option"><label for="customRorgEnabled"><input type="checkbox" id="customRorgEnabled">Other RORG</label> <input aria-label="Custom RORG" id="customRorg" placeholder="e.g. E5" maxlength="2" pattern="[0-9A-Fa-f]{2}" size="4"></div>
               </div>
             </div>
           </div>
@@ -99,30 +121,44 @@
             </select>
           </div>
 
-          <div class="filter-field filter-field-small">
-            <label for="knownFilter">Device visibility</label>
-            <select id="knownFilter">
-              <option value="all">all devices</option>
-              <option value="known">known devices</option>
-              <option value="unknown">unknown devices</option>
-            </select>
+          <div class="filter-field">
+            <span id="deviceTypesLabel" class="filter-label">Device types</span>
+            <div class="filter-choice-group" role="group" aria-labelledby="deviceTypesLabel">
+              <label><input class="device-type-filter" type="checkbox" value="known" checked>Known devices</label>
+              <label><input class="device-type-filter" type="checkbox" value="unknown" checked>Unknown devices</label>
+              <label><input class="device-type-filter" type="checkbox" value="foreign">Foreign devices</label>
+            </div>
           </div>
 
-          <fieldset class="filter-choice-group">
-            <legend>Sender display</legend>
-            <label><input type="radio" name="senderDisplayMode" value="id" checked>ID</label>
-            <label><input type="radio" name="senderDisplayMode" value="name">Name</label>
-          </fieldset>
+          <div class="filter-field">
+            <span id="senderDisplayLabel" class="filter-label">Sender display</span>
+            <div class="filter-choice-group" role="group" aria-labelledby="senderDisplayLabel">
+              <label><input type="radio" name="senderDisplayMode" value="id" checked>ID</label>
+              <label><input type="radio" name="senderDisplayMode" value="name">Name</label>
+            </div>
+          </div>
 
-          <fieldset class="filter-choice-group">
-            <legend>Table view</legend>
-            <label><input type="radio" name="tableViewMode" value="compact" checked>Compact</label>
-            <label><input type="radio" name="tableViewMode" value="extended">Extended</label>
-          </fieldset>
+          <div class="filter-field">
+            <span id="tableViewLabel" class="filter-label">Table view</span>
+            <div class="filter-choice-group" role="group" aria-labelledby="tableViewLabel">
+              <label><input type="radio" name="tableViewMode" value="compact" checked>Compact</label>
+              <label><input type="radio" name="tableViewMode" value="extended">Extended</label>
+            </div>
+          </div>
 
-          <div class="filter-choice-group filter-checkbox-group">
-            <span class="filter-label">Timestamp</span>
-            <label><input type="checkbox" id="showMilliseconds">Milliseconds</label>
+          <div class="filter-field">
+            <span id="timestampLabel" class="filter-label">Timestamp</span>
+            <div class="filter-choice-group" role="group" aria-labelledby="timestampLabel">
+              <label><input type="checkbox" id="showMilliseconds">Milliseconds</label>
+            </div>
+          </div>
+          <div class="filter-field">
+            <label for="teachInFilter">Teach-In</label>
+            <select id="teachInFilter">
+              <option value="all">All telegrams</option>
+              <option value="only">Teach-In only</option>
+              <option value="exclude">Exclude Teach-In</option>
+            </select>
           </div>
         </div>
 
@@ -156,6 +192,16 @@
       </div>
     </section>
 
+    <section class="busmonitor-color-legend compact-card" aria-label="Telegram color legend">
+      <strong>Colors</strong>
+      <span><i class="legend-known" aria-hidden="true"></i>Known device</span>
+      <span><i class="legend-unknown" aria-hidden="true"></i>Unknown device</span>
+      <span><i class="legend-foreign" aria-hidden="true"></i>Foreign device</span>
+      <span><i class="legend-teach-in" aria-hidden="true"></i>Teach-In</span>
+      <span><i class="legend-error" aria-hidden="true"></i>Decode error</span>
+      <small>Decode errors take precedence over Teach-In; Teach-In takes precedence over device colors.</small>
+    </section>
+
     <section class="details compact-card">
       <div class="card-heading">
         <h2>Telegram Details</h2>
@@ -166,6 +212,7 @@
 {% endblock %}
 
 {% block scripts %}
-  <script src="/static/js/busmonitor.js?v=20260822-1"></script>
-  <script src="/static/js/busmonitor-controls.js?v=20260822-1"></script>
+  <script src="/static/js/busmonitor.js?v={{ asset_versions['js/busmonitor.js'] }}"></script>
+  <script src="/static/js/busmonitor-controls.js?v={{ asset_versions['js/busmonitor-controls.js'] }}"></script>
+  <script src="/static/js/busmonitor-tooltips.js?v={{ asset_versions['js/busmonitor-tooltips.js'] }}"></script>
 {% endblock %}

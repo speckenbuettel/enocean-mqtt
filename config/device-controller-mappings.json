@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "description": "Maps device profiles to corresponding TX/controller profiles for devices that require an emulated sender profile. The mapping is internal to the physical device model; MQTT and API expose messages under the physical device, not as separate sender/controller devices.",
+  "mappings": [
+    {
+      "device_eep": "eltako-fud70s",
+      "device_class": "actuator_bidirectional",
+      "sender_eep": "A5-38-08",
+      "sender_class": "controller",
+      "devices": []
+    }
+  ]
+}

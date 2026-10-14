@@ -1,0 +1,1950 @@
+{
+  "profile_type": "standard",
+  "eep": "A5-20-01",
+  "rorg": "A5",
+  "func": "20",
+  "type": "01",
+  "source": "EnOcean Equipment Profiles",
+  "source_version": "2.6.8; IP 0.9",
+  "sources": [
+    "enocean/eeps/eep268.xml",
+    "enocean/eeps/json/A5-20-01.json",
+    "enocean/eeps/ip/A5-20-01_ip.pdf",
+    "eep/semantic-role-mapping.xlsx",
+    "eep/eep-list.csv",
+    "https://tools.enocean-alliance.org/EEPViewer/profiles/A5/20/01/A5-20-01.pdf"
+  ],
+  "channels": [
+    {
+      "name": "valve_position",
+      "source_key": "valve",
+      "semantic_role": "climate.valve_position.state",
+      "object_type": "state",
+      "data_type": "float",
+      "semantic_attributes": {},
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "unit": "%",
+      "value_resolution": 1,
+      "value_precision": 0,
+      "function_group": "from",
+      "description": "Current valve position"
+    },
+    {
+      "name": "temperature",
+      "source_key": "temperature",
+      "semantic_role": "climate.temperature.measurement",
+      "object_type": "measurement",
+      "data_type": "float",
+      "semantic_attributes": {},
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "unit": "°C",
+      "value_resolution": 0.157,
+      "value_precision": 3,
+      "function_group": "from",
+      "description": "Temperature (linear)"
+    },
+    {
+      "name": "service_mode",
+      "source_key": "serviceMode",
+      "semantic_role": "device.service_mode.state",
+      "object_type": "state",
+      "data_type": "enum",
+      "semantic_attributes": {},
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "off"
+        },
+        {
+          "value": 1,
+          "label": "on"
+        }
+      ],
+      "function_group": "from",
+      "description": "Service On"
+    },
+    {
+      "name": "energy_input_enabled",
+      "source_key": "energyInput",
+      "semantic_role": "device.energy_input.state",
+      "object_type": "state",
+      "data_type": "enum",
+      "semantic_attributes": {},
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "disabled"
+        },
+        {
+          "value": 1,
+          "label": "enabled"
+        }
+      ],
+      "function_group": "from",
+      "description": "Energy input enabled"
+    },
+    {
+      "name": "energy_storage_charged",
+      "source_key": "energyStorageCharged",
+      "semantic_role": "device.energy_storage.state",
+      "object_type": "state",
+      "data_type": "enum",
+      "semantic_attributes": {},
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "needs_charging"
+        },
+        {
+          "value": 1,
+          "label": "sufficiently_charged"
+        }
+      ],
+      "function_group": "from",
+      "description": "Energy storage sufficiently charged"
+    },
+    {
+      "name": "battery_low",
+      "source_key": "batteryLow",
+      "semantic_role": "device.battery.state",
+      "object_type": "state",
+      "data_type": "enum",
+      "semantic_attributes": {
+        "condition": "low"
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "battery_low"
+        },
+        {
+          "value": 1,
+          "label": "battery_ok"
+        }
+      ],
+      "function_group": "from",
+      "description": "Change battery next days"
+    },
+    {
+      "name": "contact_cover",
+      "source_key": "contact",
+      "semantic_role": "security.contact.state",
+      "object_type": "state",
+      "data_type": "enum",
+      "semantic_attributes": {},
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "closed"
+        },
+        {
+          "value": 1,
+          "label": "open"
+        }
+      ],
+      "function_group": "from",
+      "description": "Contact or cover"
+    },
+    {
+      "name": "window_open_detection",
+      "source_key": "window",
+      "semantic_role": "climate.window.state",
+      "object_type": "state",
+      "data_type": "enum",
+      "semantic_attributes": {},
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "closed"
+        },
+        {
+          "value": 1,
+          "label": "open"
+        }
+      ],
+      "function_group": "from",
+      "description": "Detection, window open"
+    },
+    {
+      "name": "actuator_obstructed",
+      "source_key": "actuatorObstructed",
+      "semantic_role": "device.actuator_obstructed.state",
+      "object_type": "state",
+      "data_type": "enum",
+      "semantic_attributes": {},
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "free"
+        },
+        {
+          "value": 1,
+          "label": "obstructed"
+        }
+      ],
+      "function_group": "from",
+      "description": "Actuator obstructed"
+    }
+  ],
+  "messages": [
+    {
+      "name": "valve_position",
+      "source_key": "valve",
+      "semantic_role": "climate.valve_position.setpoint",
+      "object_type": "setpoint",
+      "data_type": "float",
+      "semantic_attributes": {},
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "unit": "%",
+      "value_resolution": 1,
+      "value_precision": 0,
+      "function_group": "control_actuator_via_valve_position",
+      "description": "Valve position"
+    },
+    {
+      "name": "temperature_setpoint",
+      "source_key": "temperatureSetpoint",
+      "semantic_role": "climate.temperature.setpoint",
+      "object_type": "setpoint",
+      "data_type": "float",
+      "semantic_attributes": {},
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "unit": "°C",
+      "value_resolution": 0.157,
+      "value_precision": 3,
+      "function_group": "control_actuator_via_temperature",
+      "description": "Temperature set point"
+    },
+    {
+      "name": "room_temperature",
+      "source_key": "temperature",
+      "semantic_role": "climate.temperature.measurement",
+      "object_type": "measurement",
+      "data_type": "float",
+      "semantic_attributes": {},
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "unit": "°C",
+      "value_resolution": 0.157,
+      "value_precision": 3,
+      "function_group": "control_actuator_via_temperature",
+      "description": "Temperature from room control unit (RCU)"
+    },
+    {
+      "name": "setpoint_inverse",
+      "source_key": "setpointInverse",
+      "semantic_role": "device.setpoint_inversion.command",
+      "object_type": "command",
+      "data_type": "enum",
+      "semantic_attributes": {},
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": true,
+        "required_for_snapshot": false,
+        "default_value": 0
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "normal"
+        },
+        {
+          "value": 1,
+          "label": "inverted"
+        }
+      ],
+      "function_group": "control_actuator_via_valve_position",
+      "description": "Valve set point can be sent to the actuator normal or inverted. This function is used in dependence on the type of valve."
+    },
+    {
+      "name": "summer_mode",
+      "source_key": "summerMode",
+      "semantic_role": "device.summer_mode.state",
+      "object_type": "state",
+      "data_type": "enum",
+      "semantic_attributes": {},
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": true,
+        "required_for_snapshot": false,
+        "default_value": 0
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "off"
+        },
+        {
+          "value": 1,
+          "label": "on"
+        }
+      ],
+      "function_group": "control_actuator_via_valve_position",
+      "description": "The radio communication between the actuator and the controller is restricted, sleep mode is extended. This functionality can be used for battery powered actuators."
+    },
+    {
+      "name": "run_init_sequence",
+      "source_key": "runInitSequence",
+      "semantic_role": "device.reference_run.command",
+      "object_type": "command",
+      "data_type": "enum",
+      "semantic_attributes": {},
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": true,
+        "required_for_snapshot": false,
+        "default_value": 0
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "do_not_run"
+        },
+        {
+          "value": 1,
+          "label": "run_init_sequence"
+        }
+      ],
+      "function_group": "service_mode",
+      "description": "The limit switching measures the travel and signals when an end position has been reached. This end position (valve zero point) in the actuator is stored."
+    },
+    {
+      "name": "run_lift_set",
+      "source_key": "runLiftSet",
+      "semantic_role": "device.reference_run.command",
+      "object_type": "command",
+      "data_type": "enum",
+      "semantic_attributes": {},
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": true,
+        "required_for_snapshot": false,
+        "default_value": 0
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "done"
+        },
+        {
+          "value": 1,
+          "label": "initialization_running"
+        }
+      ],
+      "function_group": "service_mode",
+      "description": "Initialization, adjustment to the valve stroke. The Initialization is switched after receiving the command. The valve is completely opened and closed during initialization."
+    },
+    {
+      "name": "valve_maintenance",
+      "source_key": "valveMaintenance",
+      "semantic_role": "device.valve_maintenance.command",
+      "object_type": "command",
+      "data_type": "enum",
+      "semantic_attributes": {},
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": true,
+        "required_for_snapshot": false,
+        "default_value": 0
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "no_change"
+        },
+        {
+          "value": 1,
+          "label": "close"
+        },
+        {
+          "value": 2,
+          "label": "open"
+        }
+      ],
+      "function_group": "service_mode",
+      "description": "Operate valve in maintenance mode"
+    }
+  ],
+  "function_groups": [
+    {
+      "name": "from",
+      "title": "",
+      "direction": "from",
+      "functions": [
+        "valve_position",
+        "temperature",
+        "service_mode",
+        "energy_input_enabled",
+        "energy_storage_charged",
+        "battery_low",
+        "contact_cover",
+        "window_open_detection",
+        "actuator_obstructed"
+      ]
+    },
+    {
+      "name": "control_actuator_via_valve_position",
+      "title": "Control actuator via valve position",
+      "direction": "to",
+      "functions": [
+        "valve_position",
+        "setpoint_inverse",
+        "summer_mode"
+      ]
+    },
+    {
+      "name": "control_actuator_via_temperature",
+      "title": "Control actuator via temperature",
+      "direction": "to",
+      "functions": [
+        "temperature_setpoint",
+        "room_temperature",
+        "summer_mode"
+      ]
+    },
+    {
+      "name": "service_mode",
+      "title": "Service mode",
+      "direction": "to",
+      "functions": [
+        "run_init_sequence",
+        "run_lift_set",
+        "valve_maintenance"
+      ]
+    }
+  ],
+  "telegrams": [
+    {
+      "telegram_type_id": "a5-20-01.feedback",
+      "telegram_id": {
+        "rorg": "A5"
+      },
+      "direction": null,
+      "fields": [
+        {
+          "name": "valve_position",
+          "offset": 0,
+          "size": 8,
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "temperature",
+          "offset": 16,
+          "size": 8,
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "temperature_failure",
+          "offset": 13,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "reserved_24_4",
+          "offset": 24,
+          "size": 4,
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
+        },
+        {
+          "name": "telegram_type",
+          "offset": 28,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        },
+        {
+          "name": "reserved_29_3",
+          "offset": 29,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
+        },
+        {
+          "name": "service_mode",
+          "offset": 8,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "energy_input_enabled",
+          "offset": 9,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "energy_storage_charged",
+          "offset": 10,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "battery_low",
+          "offset": 11,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "contact_cover",
+          "offset": 12,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "window_open_detection",
+          "offset": 14,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "actuator_obstructed",
+          "offset": 15,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "valve_position",
+          "field_ref": "valve_position",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 100,
+            "scale_min": 0,
+            "scale_max": 100
+          }
+        },
+        {
+          "channel_ref": "temperature",
+          "field_ref": "temperature",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 255,
+            "scale_min": 0,
+            "scale_max": 40
+          }
+        },
+        {
+          "channel_ref": "service_mode",
+          "field_ref": "service_mode"
+        },
+        {
+          "channel_ref": "energy_input_enabled",
+          "field_ref": "energy_input_enabled"
+        },
+        {
+          "channel_ref": "energy_storage_charged",
+          "field_ref": "energy_storage_charged"
+        },
+        {
+          "channel_ref": "battery_low",
+          "field_ref": "battery_low"
+        },
+        {
+          "channel_ref": "contact_cover",
+          "field_ref": "contact_cover"
+        },
+        {
+          "channel_ref": "window_open_detection",
+          "field_ref": "window_open_detection"
+        },
+        {
+          "channel_ref": "actuator_obstructed",
+          "field_ref": "actuator_obstructed"
+        }
+      ],
+      "constraints": [
+        {
+          "field": "telegram_type",
+          "equals": 1
+        },
+        {
+          "field": "temperature_failure",
+          "equals": 0
+        },
+        {
+          "field": "valve_position",
+          "values": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "a5-20-01.feedback.sensor_failure",
+      "telegram_id": {
+        "rorg": "A5"
+      },
+      "direction": "rx",
+      "fields": [
+        {
+          "name": "valve_position",
+          "offset": 0,
+          "size": 8,
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "temperature",
+          "offset": 16,
+          "size": 8,
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "temperature_failure",
+          "offset": 13,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        },
+        {
+          "name": "reserved_24_4",
+          "offset": 24,
+          "size": 4,
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
+        },
+        {
+          "name": "telegram_type",
+          "offset": 28,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        },
+        {
+          "name": "reserved_29_3",
+          "offset": 29,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
+        },
+        {
+          "name": "service_mode",
+          "offset": 8,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "energy_input_enabled",
+          "offset": 9,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "energy_storage_charged",
+          "offset": 10,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "battery_low",
+          "offset": 11,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "contact_cover",
+          "offset": 12,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "window_open_detection",
+          "offset": 14,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "actuator_obstructed",
+          "offset": 15,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "valve_position",
+          "field_ref": "valve_position",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 100,
+            "scale_min": 0,
+            "scale_max": 100
+          }
+        },
+        {
+          "channel_ref": "temperature",
+          "field_ref": "temperature_failure",
+          "enum": [
+            {
+              "value": 1,
+              "label": "sensor_failure_or_out_of_range"
+            }
+          ]
+        },
+        {
+          "channel_ref": "service_mode",
+          "field_ref": "service_mode"
+        },
+        {
+          "channel_ref": "energy_input_enabled",
+          "field_ref": "energy_input_enabled"
+        },
+        {
+          "channel_ref": "energy_storage_charged",
+          "field_ref": "energy_storage_charged"
+        },
+        {
+          "channel_ref": "battery_low",
+          "field_ref": "battery_low"
+        },
+        {
+          "channel_ref": "contact_cover",
+          "field_ref": "contact_cover"
+        },
+        {
+          "channel_ref": "window_open_detection",
+          "field_ref": "window_open_detection"
+        },
+        {
+          "channel_ref": "actuator_obstructed",
+          "field_ref": "actuator_obstructed"
+        }
+      ],
+      "constraints": [
+        {
+          "field": "telegram_type",
+          "equals": 1
+        },
+        {
+          "field": "temperature_failure",
+          "equals": 1
+        },
+        {
+          "field": "valve_position",
+          "values": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "a5-20-01.emulated.sensor_failure",
+      "telegram_id": {
+        "rorg": "A5"
+      },
+      "direction": "tx",
+      "fields": [
+        {
+          "name": "valve_position",
+          "offset": 0,
+          "size": 8,
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "temperature",
+          "offset": 16,
+          "size": 8,
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "temperature_failure",
+          "offset": 13,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        },
+        {
+          "name": "reserved_24_4",
+          "offset": 24,
+          "size": 4,
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
+        },
+        {
+          "name": "telegram_type",
+          "offset": 28,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        },
+        {
+          "name": "reserved_29_3",
+          "offset": 29,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
+        },
+        {
+          "name": "service_mode",
+          "offset": 8,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "energy_input_enabled",
+          "offset": 9,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "energy_storage_charged",
+          "offset": 10,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "battery_low",
+          "offset": 11,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "contact_cover",
+          "offset": 12,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "window_open_detection",
+          "offset": 14,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "actuator_obstructed",
+          "offset": 15,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "valve_position",
+          "field_ref": "valve_position",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 100,
+            "scale_min": 0,
+            "scale_max": 100
+          }
+        },
+        {
+          "channel_ref": "temperature",
+          "field_ref": "temperature",
+          "enum": [
+            {
+              "value": 255,
+              "label": "sensor_failure_or_out_of_range"
+            }
+          ]
+        },
+        {
+          "channel_ref": "service_mode",
+          "field_ref": "service_mode"
+        },
+        {
+          "channel_ref": "energy_input_enabled",
+          "field_ref": "energy_input_enabled"
+        },
+        {
+          "channel_ref": "energy_storage_charged",
+          "field_ref": "energy_storage_charged"
+        },
+        {
+          "channel_ref": "battery_low",
+          "field_ref": "battery_low"
+        },
+        {
+          "channel_ref": "contact_cover",
+          "field_ref": "contact_cover"
+        },
+        {
+          "channel_ref": "window_open_detection",
+          "field_ref": "window_open_detection"
+        },
+        {
+          "channel_ref": "actuator_obstructed",
+          "field_ref": "actuator_obstructed"
+        }
+      ],
+      "constraints": [
+        {
+          "field": "telegram_type",
+          "equals": 1
+        },
+        {
+          "field": "temperature_failure",
+          "equals": 1
+        },
+        {
+          "field": "valve_position",
+          "values": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "telegram_id": {
+        "rorg": "A5"
+      },
+      "direction": "tx",
+      "fields": [
+        {
+          "name": "setpoint",
+          "offset": 0,
+          "size": 8,
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "room_temperature",
+          "offset": 8,
+          "size": 8,
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "run_init_sequence",
+          "offset": 16,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "run_lift_set",
+          "offset": 17,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "valve_maintenance",
+          "offset": 18,
+          "size": 2,
+          "raw_min": 0,
+          "raw_max": 3,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "summer_mode",
+          "offset": 20,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "setpoint_selection",
+          "offset": 21,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "setpoint_inverse",
+          "offset": 22,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "service_selection",
+          "offset": 23,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "reserved_24_4",
+          "offset": 24,
+          "size": 4,
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
+        },
+        {
+          "name": "telegram_type",
+          "offset": 28,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        },
+        {
+          "name": "reserved_29_3",
+          "offset": 29,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
+        }
+      ],
+      "constraints": [
+        {
+          "field": "telegram_type",
+          "equals": 1
+        }
+      ],
+      "telegram_type_id": "a5-20-01.command.valve",
+      "message_bindings": [
+        {
+          "message_ref": "valve_position",
+          "field_ref": "setpoint",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 100,
+            "scale_min": 0,
+            "scale_max": 100
+          },
+          "depends_on": {
+            "field": "setpoint_selection",
+            "equals": 0
+          }
+        },
+        {
+          "message_ref": "setpoint_inverse",
+          "field_ref": "setpoint_inverse"
+        },
+        {
+          "message_ref": "summer_mode",
+          "field_ref": "summer_mode"
+        },
+        {
+          "message_ref": "temperature_setpoint",
+          "field_ref": "setpoint",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 255,
+            "scale_min": 0,
+            "scale_max": 40
+          },
+          "depends_on": {
+            "field": "setpoint_selection",
+            "equals": 1
+          }
+        }
+      ]
+    },
+    {
+      "telegram_id": {
+        "rorg": "A5"
+      },
+      "direction": "tx",
+      "fields": [
+        {
+          "name": "setpoint",
+          "offset": 0,
+          "size": 8,
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "room_temperature",
+          "offset": 8,
+          "size": 8,
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "run_init_sequence",
+          "offset": 16,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "run_lift_set",
+          "offset": 17,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "valve_maintenance",
+          "offset": 18,
+          "size": 2,
+          "raw_min": 0,
+          "raw_max": 3,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "summer_mode",
+          "offset": 20,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "setpoint_selection",
+          "offset": 21,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        },
+        {
+          "name": "setpoint_inverse",
+          "offset": 22,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "service_selection",
+          "offset": 23,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "reserved_24_4",
+          "offset": 24,
+          "size": 4,
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
+        },
+        {
+          "name": "telegram_type",
+          "offset": 28,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        },
+        {
+          "name": "reserved_29_3",
+          "offset": 29,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
+        }
+      ],
+      "constraints": [
+        {
+          "field": "telegram_type",
+          "equals": 1
+        }
+      ],
+      "telegram_type_id": "a5-20-01.command.temperature",
+      "message_bindings": [
+        {
+          "message_ref": "temperature_setpoint",
+          "field_ref": "setpoint",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 255,
+            "scale_min": 0,
+            "scale_max": 40
+          },
+          "depends_on": {
+            "field": "setpoint_selection",
+            "equals": 1
+          }
+        },
+        {
+          "message_ref": "room_temperature",
+          "field_ref": "room_temperature",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 255,
+            "scale_min": 40,
+            "scale_max": 0
+          }
+        },
+        {
+          "message_ref": "summer_mode",
+          "field_ref": "summer_mode"
+        },
+        {
+          "message_ref": "valve_position",
+          "field_ref": "setpoint",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 100,
+            "scale_min": 0,
+            "scale_max": 100
+          },
+          "depends_on": {
+            "field": "setpoint_selection",
+            "equals": 0
+          }
+        }
+      ]
+    },
+    {
+      "telegram_id": {
+        "rorg": "A5"
+      },
+      "direction": "tx",
+      "fields": [
+        {
+          "name": "setpoint",
+          "offset": 0,
+          "size": 8,
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "room_temperature",
+          "offset": 8,
+          "size": 8,
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "run_init_sequence",
+          "offset": 16,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "run_lift_set",
+          "offset": 17,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "valve_maintenance",
+          "offset": 18,
+          "size": 2,
+          "raw_min": 0,
+          "raw_max": 3,
+          "source": "payload"
+        },
+        {
+          "name": "summer_mode",
+          "offset": 20,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "setpoint_selection",
+          "offset": 21,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "setpoint_inverse",
+          "offset": 22,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0
+        },
+        {
+          "name": "service_selection",
+          "offset": 23,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        },
+        {
+          "name": "reserved_24_4",
+          "offset": 24,
+          "size": 4,
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
+        },
+        {
+          "name": "telegram_type",
+          "offset": 28,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        },
+        {
+          "name": "reserved_29_3",
+          "offset": 29,
+          "size": 3,
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
+        }
+      ],
+      "constraints": [
+        {
+          "field": "telegram_type",
+          "equals": 1
+        }
+      ],
+      "telegram_type_id": "a5-20-01.command.service",
+      "message_bindings": [
+        {
+          "message_ref": "run_init_sequence",
+          "field_ref": "run_init_sequence"
+        },
+        {
+          "message_ref": "run_lift_set",
+          "field_ref": "run_lift_set"
+        },
+        {
+          "message_ref": "valve_maintenance",
+          "field_ref": "valve_maintenance"
+        }
+      ]
+    }
+  ],
+  "tx": {
+    "aggregation_window_seconds": 10
+  },
+  "func_description": "HVAC Component",
+  "type_description": "Battery Powered Actuator",
+  "description": "HVAC Component, Battery Powered Actuator",
+  "direction": "bidirectional",
+  "device_class": "actuator_bidirectional"
+}

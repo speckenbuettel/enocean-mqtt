@@ -1,14 +1,17 @@
 [build-system]
-requires = ["setuptools>=68", "wheel"]
+# Build tools only; runtime requirements belong in project.dependencies.
+requires = ["setuptools>=77", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "enocean-mqtt"
-version = "0.1.0.dev0"
+dynamic = ["version"]
+# setup.py derives the distribution version from VERSION (SemVer unchanged).
 description = "Modular EnOcean ESP3 busmonitor and MQTT gateway"
 readme = "README.md"
 requires-python = ">=3.11"
-license = { text = "MIT" }
+license = "MIT"
+license-files = ["LICENSE", "CREDITS.md"]
 authors = [
   { name = "enocean-mqtt contributors" }
 ]
@@ -33,14 +36,16 @@ dependencies = [
   "tzdata>=2024.1",
 ]
 
-[project.optional-dependencies]
-excel = [
-  "openpyxl>=3.1.0"
-]
-
 [project.scripts]
+# Installed CLI entry points; the checkout root remains the working directory.
 enocean-mqtt = "enocean_mqtt.__main__:main"
+enocean-mqtt-auth = "enocean_mqtt.auth:main"
 enocean-devices = "enocean_mqtt.devices.cli:main"
+
+[project.urls]
+Repository = "https://github.com/speckenbuettel/enocean-mqtt"
+Documentation = "https://github.com/speckenbuettel/enocean-mqtt/blob/main/userguide/README.md"
+Issues = "https://github.com/speckenbuettel/enocean-mqtt/issues"
 
 [tool.setuptools]
 package-dir = { "" = "src" }
@@ -49,6 +54,7 @@ package-dir = { "" = "src" }
 where = ["src"]
 
 [tool.setuptools.package-data]
+# Include Web UI resources in wheels, not just in editable checkout installs.
 enocean_mqtt = [
   "py.typed",
   "web_api/templates/*.html",

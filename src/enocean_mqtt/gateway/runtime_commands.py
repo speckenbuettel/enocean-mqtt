@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 import json
+import logging
 from collections.abc import Callable
 from typing import Any
 
+from enocean_mqtt.eep.json_registry import EEPRegistryError, reload_eep_definitions
 from enocean_mqtt.gateway.orchestrator import GatewayOrchestrator
 from enocean_mqtt.gateway.runtime_schema import (
     RuntimeArgumentType,
@@ -19,6 +21,7 @@ from enocean_mqtt.replay.runtime_runner import ReplayRuntimeRunner
 from enocean_mqtt.replay.session import ReplaySession
 
 CommandHandler = Callable[[dict[str, Any]], None]
+logger = logging.getLogger(__name__)
 
 
 class RuntimeCommandExecutionError(Exception):
@@ -60,6 +63,8 @@ class RuntimeCommandHandler:
 
         self.shutdown_requested = False
         self.restart_requested = False
+
+        self.register("eeps.reload", self._handle_eeps_reload)
 
         self.register(
             "gateway.stop",
@@ -252,6 +257,21 @@ class RuntimeCommandHandler:
             "status": "accepted",
             "command": command,
         }
+
+    def _handle_eeps_reload(self, _payload: dict[str, Any]) -> None:
+        try:
+            profiles = reload_eep_definitions()
+        except EEPRegistryError as exc:
+            logger.error("EEP cache reload rejected; previous cache retained: %s", exc)
+            raise
+        self._status_publisher.publish_log(
+            level="info",
+            component="runtime-command",
+            message="EEP cache validated and reloaded",
+            command="eeps.reload",
+            profiles_total=len(profiles),
+            profiles=profiles,
+        )
 
     def _handle_gateway_exit(
         self,

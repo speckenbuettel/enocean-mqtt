@@ -215,6 +215,25 @@ class LoggingConfig(BaseModel):
         return value.strip().upper() if isinstance(value, str) else value
 
 
+class PushoverConfig(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    enabled: bool = False
+    user_token_file: str = Field(default="config/secrets/pushover_user_token", min_length=1)
+    api_token_file: str = Field(default="config/secrets/pushover_api_token", min_length=1)
+    device: str = Field(default="", max_length=200)
+    priority: int = Field(default=0, ge=-2, le=1)
+    timeout_seconds: float = Field(default=5.0, gt=0, le=30, allow_inf_nan=False)
+    notify_start: bool = True
+    notify_stop: bool = True
+    notify_errors: bool = True
+    error_cooldown_seconds: float = Field(default=300, ge=0, allow_inf_nan=False)
+
+
+class NotificationsConfig(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    pushover: PushoverConfig = Field(default_factory=PushoverConfig)
+
+
 class RuntimeConfig(BaseModel):
     model_config = ConfigDict(extra="forbid")
     application: ApplicationConfig = Field(default_factory=ApplicationConfig)
@@ -228,6 +247,7 @@ class RuntimeConfig(BaseModel):
     publish_defaults: PublishDefaultsConfig = Field(default_factory=PublishDefaultsConfig)
     web_api: WebAPIConfig = Field(default_factory=WebAPIConfig)
     logging: LoggingConfig = Field(default_factory=LoggingConfig)
+    notifications: NotificationsConfig = Field(default_factory=NotificationsConfig)
 
     def configured_interfaces(self) -> list[InterfaceTransportConfig]:
         return list(self.enocean.interfaces)

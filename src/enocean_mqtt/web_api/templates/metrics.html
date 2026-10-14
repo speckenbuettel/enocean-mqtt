@@ -5,7 +5,7 @@
 {% block title %}enocean-mqtt EnOcean Metrics{% endblock %}
 
 {% block styles %}
-  <link rel="stylesheet" href="/static/css/metrics.css?v=20260903-1">
+  <link rel="stylesheet" href="/static/css/metrics.css?v=20261009-1">
 {% endblock %}
 
 {% block main_class %} metrics-main{% endblock %}
@@ -60,6 +60,7 @@
           <button type="button" class="metrics-range-button active" data-range="24h">24 h</button>
           <button type="button" class="metrics-range-button" data-range="3d">3 d</button>
           <button type="button" class="metrics-range-button" data-range="7d">7 d</button>
+          <button type="button" class="metrics-range-button" data-range="30d">30 d</button>
         </div>
       </div>
 
@@ -68,7 +69,7 @@
           <div class="card-heading">
             <h3>RX Telegrams</h3>
             <div class="metric-chart-meta">
-              <div class="metric-chart-legend" aria-label="RX chart legend"><span><i></i>Known</span><span><i class="unknown"></i>Unknown</span></div>
+              <div class="metric-chart-legend" aria-label="RX chart legend"><span><i class="known-original"></i>Known Original</span><span><i class="known-repeated"></i>Known Repeated</span><span><i class="unknown-original"></i>Unknown Original</span><span><i class="unknown-repeated"></i>Unknown Repeated</span><span><i class="unclassified"></i>Unclassified</span></div>
               <span id="rxChartRange" class="card-tag">24 h</span>
             </div>
           </div>
@@ -91,6 +92,9 @@
         <dl class="compact-list">
           <div><dt>RX mean interval</dt><dd id="rxMeanInterval">–</dd></div>
           <div><dt>RX peak / min</dt><dd id="rxPeak">–</dd></div>
+          <div><dt>Original RX telegrams</dt><dd id="rxOriginal">–</dd></div>
+          <div><dt>Original RX / min</dt><dd id="rxOriginalRate">–</dd></div>
+          <div><dt>Repeated RX / min</dt><dd id="rxRepeatedRate">–</dd></div>
           <div><dt>Repeated RX telegrams</dt><dd id="rxRepeated">–</dd></div>
           <div><dt>TX mean interval</dt><dd id="txMeanInterval">–</dd></div>
           <div><dt>Unknown telegrams</dt><dd id="unknownTelegrams">–</dd></div>
@@ -149,5 +153,5 @@
 {% endblock %}
 
 {% block scripts %}
-  <script src="/static/js/metrics.js?v=20260904-1"></script>
+  <script src="/static/js/metrics.js?v=20261013-1"></script>
 {% endblock %}

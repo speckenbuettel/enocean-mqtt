@@ -140,6 +140,8 @@
   gap: 0.25rem;
   font-size: 0.78rem;
   white-space: nowrap;
+  color: var(--color-primary);
+  font-weight: 400;
 }
 
 .filter-checkbox-group {
@@ -196,6 +198,24 @@
   margin-top: 0.1rem;
 }
 
+.rorg-filter-separator {
+  border: 0;
+  border-top: 1px solid var(--color-border-soft);
+  margin: 0.4rem 0.45rem;
+}
+
+label[for="customRorgEnabled"] {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+#customRorg {
+  width: 4rem;
+  min-width: 0;
+}
+
 .table-wrap {
   width: 100%;
   max-height: calc(100dvh - 27rem);
@@ -249,6 +269,14 @@
   background: var(--color-known-device-hover);
 }
 
+.busmonitor-main tr.foreign-device {
+  background: var(--color-foreign-device, var(--palette-silver, #96A5AF));
+}
+
+.busmonitor-main tr.foreign-device:hover {
+  background: var(--color-foreign-device-hover, var(--palette-silver, #96A5AF));
+}
+
 .busmonitor-main tr.teach-in-telegram {
   background: rgb(214 180 90 / 18%);
   border-left: 4px solid var(--color-teach-in);
@@ -257,6 +285,45 @@
 .busmonitor-main tr.teach-in-telegram:hover {
   background: rgb(214 180 90 / 28%);
 }
+
+.busmonitor-main tr.decode-error {
+  background: color-mix(in srgb, var(--color-error) 18%, var(--color-surface));
+  border-left: 4px solid var(--color-error);
+}
+
+.busmonitor-main tr.decode-error:hover {
+  background: color-mix(in srgb, var(--color-error) 28%, var(--color-surface));
+}
+
+.busmonitor-color-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 1rem;
+  font-size: 0.78rem;
+}
+
+.busmonitor-color-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.busmonitor-color-legend i {
+  width: 0.8rem;
+  height: 0.8rem;
+  border: 1px solid var(--color-control-border);
+  border-radius: 0.15rem;
+}
+
+.busmonitor-color-legend .legend-known { background: var(--color-known-device); }
+.busmonitor-color-legend .legend-unknown { background: var(--color-surface); }
+.busmonitor-color-legend .legend-foreign {
+  background: var(--color-foreign-device, var(--palette-silver, #96A5AF));
+}
+.busmonitor-color-legend .legend-teach-in { background: var(--color-teach-in); }
+.busmonitor-color-legend .legend-error { background: var(--color-error); }
+.busmonitor-color-legend small { color: var(--color-primary-muted); }
 
 .mono {
   font-family: var(--font-mono);
@@ -322,8 +389,9 @@
   top: calc(100% + 0.45rem);
   z-index: var(--tooltip-z-index);
   display: none;
-  min-width: 18rem;
-  max-width: var(--tooltip-max-width);
+  width: max-content;
+  min-width: min(18rem, calc(100vw - 2rem));
+  max-width: min(50rem, calc(100vw - 2rem));
   padding: 0.65rem 0.75rem;
   background: var(--color-tooltip-bg);
   color: var(--color-tooltip-text);
@@ -341,30 +409,39 @@
   inset-inline-end: 0;
 }
 
-.tooltip:hover .tooltip-panel,
-.tooltip:focus-within .tooltip-panel {
-  display: block;
+.tooltip-floating {
+  position: fixed;
+  inset: auto;
+  display: grid;
+  grid-template-columns: minmax(0, max-content) minmax(0, max-content);
+  column-gap: 0.9rem;
+  box-sizing: border-box;
+  max-height: calc(100vh - 2rem);
+  overflow: auto;
+  font-family: var(--font-mono);
 }
 
 .tooltip-title {
+  grid-column: 1 / -1;
   margin-bottom: 0.35rem;
   font-weight: 700;
 }
 
 .tooltip-row {
-  display: grid;
-  grid-template-columns: minmax(7rem, max-content) minmax(0, 1fr);
-  gap: 0.75rem;
-  padding: 0.1rem 0;
+  display: contents;
 }
 
 .tooltip-key {
+  padding: 0.1rem 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
   color: var(--color-tooltip-muted);
   font-family: var(--font-mono);
   text-align: right;
 }
 
 .tooltip-value {
+  padding: 0.1rem 0;
   min-width: 0;
   overflow-wrap: anywhere;
 }

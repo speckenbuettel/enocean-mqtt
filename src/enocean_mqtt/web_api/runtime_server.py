@@ -61,6 +61,8 @@ _GATEWAY_STATUS_ROUTE_PATHS = {
     "/api/v1/gateway/runtime-mode",
     "/api/v1/gateway/enocean",
     "/api/v1/gateway/health",
+    "/api/v1/gateway/adapter-status",
+    "/api/v1/gateway/adapter-status/stream",
     "/api/v1/gateway/metrics",
     "/api/v1/gateway/runtime",
     "/api/v1/gateway/busmonitor-metrics",
@@ -84,6 +86,7 @@ class EmbeddedWebAPIServer:
         config: WebAPIConfig,
         *,
         device_publisher: Any | None = None,
+        device_tx_runtime: Any | None = None,
         virtual_device_runtime: Any | None = None,
         interface_status_provider: InterfaceControl | None = None,
         interface_connect: InterfaceControl | None = None,
@@ -96,6 +99,7 @@ class EmbeddedWebAPIServer:
     ) -> None:
         self.config = config
         self.device_publisher = device_publisher
+        self.device_tx_runtime = device_tx_runtime
         self.virtual_device_runtime = virtual_device_runtime
         self._interface_status_provider = interface_status_provider
         self._interface_connect = interface_connect
@@ -188,6 +192,8 @@ class EmbeddedWebAPIServer:
             ),
             device_publisher=self.device_publisher,
             virtual_device_runtime=self.virtual_device_runtime,
+            device_tx_runtime=self.device_tx_runtime,
+            virtual_device_writer=self.virtual_device_runtime,
             fallback_device_states_provider=get_latest_device_states,
             fallback_source="sqlite_latest_telegram",
         )

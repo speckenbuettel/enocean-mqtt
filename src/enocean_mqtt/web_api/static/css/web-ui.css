@@ -22,6 +22,8 @@
   --color-table-hover: var(--palette-silver-light);
   --color-known-device: var(--palette-olive);
   --color-known-device-hover: var(--palette-olive-light);
+  --color-foreign-device: var(--palette-silver);
+  --color-foreign-device-hover: var(--palette-silver);
   --color-selected-row: var(--palette-blue);
   --color-selected-row-text: var(--palette-off-white);
   --color-live-connected: var(--palette-olive);
@@ -89,14 +91,19 @@ textarea {
 .nav-brand {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.5rem;
   margin-bottom: 1rem;
   flex: 0 0 auto;
 }
 
 .nav-logo {
-  width: 34px;
-  height: 34px;
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  padding: 2px;
+  border: 2px solid var(--palette-silver);
+  border-radius: var(--radius-control);
   object-fit: contain;
 }
 
@@ -134,8 +141,10 @@ textarea {
 }
 
 .nav-link:hover,
+.nav-link:focus-visible,
 .nav-link.active {
   background: var(--palette-blue);
+  color: var(--palette-off-white);
 }
 
 .nav-logout-form {
@@ -157,8 +166,10 @@ textarea {
   cursor: pointer;
 }
 
-.nav-logout-button:hover {
+.nav-logout-button:hover,
+.nav-logout-button:focus-visible {
   background: var(--palette-blue);
+  color: var(--palette-off-white);
 }
 
 .app-main {

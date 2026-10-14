@@ -1,0 +1,220 @@
+{
+  "profile_type": "proprietary",
+  "manufacturer": "Eltako",
+  "model": "FHMB-rw",
+  "eep": "eltako-fhmb",
+  "base_eep": "A5-30-03",
+  "rorg": "A5",
+  "func": "30",
+  "type": "03",
+  "func_description": "Heat Detector",
+  "type_description": "Eltako FHMB-rw with heat alarm and temperature measurement",
+  "description": "Heat Detector, Eltako FHMB-rw with heat alarm and temperature measurement",
+  "source": "Eltako FHMB-rw operating instructions",
+  "source_version": "30 000 056 - 1 / 39-2020",
+  "sources": {
+    "manufacturer_pdf": [
+      "Eltako FHMB-rw - Bedienungsanleitung (30 000 056 - 1, 2020-39).pdf"
+    ],
+    "reference_profile": [
+      "registry/A5-30-03.json"
+    ],
+    "eep_xml": [
+      "enocean/eeps/eep268.xml"
+    ],
+    "authoring_prompt": [
+      "userguide/prompts/eep-profile-v1.8.md"
+    ]
+  },
+  "direction": "unidirectional",
+  "device_class": "sensor",
+  "channels": [
+    {
+      "name": "temperature",
+      "display_name": null,
+      "source_key": "temperature",
+      "description": "Temperature, inverse raw 255..0 mapped to 0..40 degrees C",
+      "function_group": "from",
+      "semantic_role": "climate.temperature.measurement",
+      "object_type": "measurement",
+      "semantic_attributes": {},
+      "data_type": "float",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      },
+      "unit": "°C",
+      "value_precision": 1,
+      "value_resolution": 0.157,
+      "ranges": [
+        {
+          "min": 0,
+          "max": 40,
+          "step": 0.157,
+          "unit": "°C"
+        }
+      ],
+      "channel_type": "measurement",
+      "semantic_confidence": "high"
+    },
+    {
+      "name": "heat_alarm",
+      "display_name": null,
+      "source_key": "heat_alarm",
+      "description": "Active-low heat alarm",
+      "function_group": "from",
+      "semantic_role": "security.fire_alarm.state",
+      "object_type": "state",
+      "semantic_attributes": {},
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "alarm",
+          "description": "Heat alarm active"
+        },
+        {
+          "value": 1,
+          "label": "no_alarm",
+          "description": "No heat alarm"
+        }
+      ],
+      "channel_type": "state",
+      "semantic_confidence": "high"
+    }
+  ],
+  "messages": [],
+  "function_groups": [
+    {
+      "name": "from",
+      "title": "",
+      "direction": "from",
+      "functions": [
+        "temperature",
+        "heat_alarm"
+      ]
+    }
+  ],
+  "telegrams": [
+    {
+      "telegram_type_id": "eltako-fhmb.data",
+      "telegram_id": {
+        "rorg": "A5"
+      },
+      "direction": null,
+      "fields": [
+        {
+          "name": "manufacturer_db3",
+          "offset": 0,
+          "size": 8,
+          "constant": 0,
+          "source": "payload"
+        },
+        {
+          "name": "temperature",
+          "offset": 8,
+          "size": 8,
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "unused_db1_high",
+          "offset": 16,
+          "size": 3,
+          "reserved": true,
+          "constant": 0,
+          "source": "payload"
+        },
+        {
+          "name": "heat_alarm",
+          "offset": 19,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "unused_inputs",
+          "offset": 20,
+          "size": 4,
+          "reserved": true,
+          "constant": 15,
+          "source": "payload"
+        },
+        {
+          "name": "manufacturer_db0_high",
+          "offset": 24,
+          "size": 4,
+          "reserved": true,
+          "constant": 0,
+          "source": "payload"
+        },
+        {
+          "name": "telegram_type",
+          "offset": 28,
+          "size": 1,
+          "constant": 1,
+          "source": "payload"
+        },
+        {
+          "name": "manufacturer_db0_low",
+          "offset": 29,
+          "size": 3,
+          "reserved": true,
+          "constant": 0,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "temperature",
+          "field_ref": "temperature",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 255,
+            "scale_min": 40,
+            "scale_max": 0
+          }
+        },
+        {
+          "channel_ref": "heat_alarm",
+          "field_ref": "heat_alarm"
+        }
+      ],
+      "constraints": [
+        {
+          "field": "telegram_type",
+          "equals": 1
+        }
+      ]
+    }
+  ],
+  "tx": {
+    "aggregation_window_seconds": 10
+  }
+}

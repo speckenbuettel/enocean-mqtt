@@ -263,6 +263,14 @@ class ReplayRuntimeRunner:
 
         direction = runtime_event.direction
         statistics[f"{direction}_telegrams_total"] += 1
+        if direction == "rx":
+            counter = runtime_event.repeater_count
+            category = (
+                "original" if counter in (0, 15)
+                else "repeated" if counter in (1, 2)
+                else "unclassified"
+            )
+            statistics[f"{category}_telegrams_total"] += 1
 
         rorg = runtime_event.rorg or "unknown"
         rorg_statistics[rorg]["telegrams_total"] += 1
