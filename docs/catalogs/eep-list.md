@@ -1,12 +1,12 @@
 # EEP List
 
-Profile selection for version 0.9.0.
+Profile selection for version 0.10.0.
 
 Only profiles selected for this snapshot are listed. Status columns preserve
 maintained source claims; selection or compilation is not hardware validation.
 Proprietary associations alone do not establish tested device compatibility.
 
-<!-- Catalogue source SHA-256: 3e2f0c55274997a746f4212b120f7e55bba35333fdfa553de0f823ecabe067a7 -->
+<!-- Catalogue source SHA-256: 475499e75d71efe83038b5f8a5149258870cd92a449c1ab4614529179104019e -->
 
 | eep | telegram | direction | device_class | planned | implemented | rx tested | tx tested | func description | type description |
 |---|---|---|---|---|---|---|---|---|---|
@@ -39,6 +39,18 @@ Proprietary associations alone do not establish tested device compatibility.
 | A5-04-02 | 4BS | unidirectional | sensor |  | x | x | x | Temperature and Humidity Sensor | Range -20 °C to +60 °C and 0% to 100% |
 | A5-04-03 | 4BS | unidirectional | sensor |  | x |  |  | Temperature and Humidity Sensor | Range -20 °C to +60 °C (10 bit measurement) and 0% to 100% |
 | A5-04-04 | 4BS | unidirectional | sensor |  | x |  |  | Temperature and Humidity Sensor | Range -40 °C to +120 °C (12 bit measurement) and 0% to 100% |
+| A5-05-01 | 4BS | unidirectional | sensor |  | x | x | x | Barometric Sensor | Range 500 hPa to 1150 hPa |
+| A5-06-01 | 4BS | unidirectional | sensor |  | x |  |  | Light Sensor | Range 300 lx to 60.000 lx |
+| A5-06-02 | 4BS | unidirectional | sensor |  | x |  |  | Light Sensor | Range 0 lx to 1.020 lx |
+| A5-06-03 | 4BS | unidirectional | sensor |  | x |  |  | Light Sensor | Range 0 lx to 1000 lx (10 bit measurement, 1 lx resolution) |
+| A5-06-04 | 4BS | unidirectional | sensor |  | x |  |  | Light Sensor | Curtain Wall Brightness Sensor |
+| A5-06-05 | 4BS | unidirectional | sensor |  | x |  |  | Light Sensor | Range 0 lx to 10.200 lx |
+| A5-07-01 | 4BS | unidirectional | sensor |  | x |  |  | Occupancy Sensor | Occupancy with Supply Voltage Monitor |
+| A5-07-02 | 4BS | unidirectional | sensor |  | x |  |  | Occupancy Sensor | Occupancy with Supply Voltage Monitor |
+| A5-07-03 | 4BS | unidirectional | sensor |  | x |  |  | Occupancy Sensor | Occupancy with Supply Voltage Monitor and 10 bit Illumination Measurement |
+| A5-08-01 | 4BS | unidirectional | sensor |  | x |  |  | Light, Temperature and Occupancy Sensor | Range 0 lx to 510 lx, 0 °C to 51 °C and Occupancy Button |
+| A5-08-02 | 4BS | unidirectional | sensor |  | x |  |  | Light, Temperature and Occupancy Sensor | Range 0 lx to 1020 lx, 0 °C to +51 °C and Occupancy Button |
+| A5-08-03 | 4BS | unidirectional | sensor |  | x |  |  | Light, Temperature and Occupancy Sensor | Range 0 lx to 1530 lx, -30 °C to +50 °C and Occupancy Button |
 | A5-14-01 | 4BS | unidirectional | sensor |  | x |  |  | Multi-Func Sensor | Single Input Contact (Door/Window), Supply Voltage Monitor |
 | A5-14-02 | 4BS | unidirectional | sensor |  | x |  |  | Multi-Func Sensor | Single Input Contact (Door/Window), Supply Voltage Monitor and Illumination |
 | A5-14-03 | 4BS | unidirectional | sensor |  | x | x |  | Multi-Func Sensor | Single Input Contact (Door/Window), Supply Voltage Monitor and Vibration |

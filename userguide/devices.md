@@ -1,8 +1,13 @@
 # Devices, imports and virtual sensors
 
-Applies to the 2026-10-001 baseline. Complete the [installation and authentication
+Complete the [installation and authentication
 guide](README.md) first. Sign in with an **admin** token to make changes; a read
 token is sufficient for viewing. Use a separate test installation initially.
+
+For transmitters with a base ID and multiple channel sender IDs, use the
+[Gateway category](gateways.md). Unknown Devices offers **Register as device**
+for an individual device and **Register as gateway** for a gateway range. Gateway
+channel management is still being completed; see the linked guide's open work.
 
 ## Before adding a device
 
@@ -82,7 +87,7 @@ These API names are renamed rather than maintained as aliases.
 1. Open **Device Management** in the Web UI. With working hardware, let the sensor
    send a telegram and find its sender ID under **Unknown Devices** or in Busmonitor.
    IDs have exactly eight hexadecimal characters, without spaces or `0x`.
-2. Choose **Register device** on the unknown-device row, or **+ Device** to enter
+2. Choose **Register as device** on the unknown-device row, or **+ Device** to enter
    the ID manually. Unknown does not mean broken: the sender is not yet registered.
 3. Enter a unique **Device name**, for example `Living room climate`. The UI
    generates the **Alias** from the name. Avoid names that normalize to the same
@@ -158,8 +163,9 @@ a usable TX interface. A successful save is not proof of radio transmission.
    another installation's sender IDs. With no hardware, restrict the exercise to
    configuration/discovery and replay; no receiver acceptance can be tested.
 2. Open **Device Management → + Virtual device**.
-3. Set **Virtual device ID**, for example `test_climate`. Use lowercase letters,
-   numbers and underscores, without spaces. Treat it as a stable binding identity.
+3. Enter a **Friendly name**, for example `Virtual barometer`. The Web API
+   automatically generates a unique internal ID when the device is created.
+   The name can be changed later without changing that ID or its bindings.
 4. Select either an **EEP** or an installed manufacturer-specific **Profile**.
    For a standard EEP, leave Profile empty. For a manufacturer profile, EEP may
    remain empty; the selected Profile takes precedence for channel names and
@@ -169,18 +175,23 @@ a usable TX interface. A successful save is not proof of radio transmission.
    for example `humidity` and `temperature` only if those names exist in that profile.
    Protocol/control fields and channels supplied through profile defaults need not
    be exposed as user inputs. Supply every input required for a complete snapshot.
-6. Optionally enter a device name and description; leave **Enabled** checked and
+6. Optionally enter a description; leave **Enabled** checked and
    click **Save virtual device**. The gateway allocates its sender ID. Record it
    for receiver setup and verify no profile/sender-allocation error was logged.
 7. Discover its writable datapoints through API/OBS, or supply values using MQTT.
    Use engineering values for measurements and the profile's supported TX enum
    codes/types. `meaning` is a read-only explanation, not a writable command.
 
-Example MQTT channel topics for the default base topic and the example names:
+Read the generated ID in the virtual-device table or API response. Existing
+devices keep their IDs. API clients may still provide `virtual_device_id`
+explicitly; when omitted on creation, supply `metadata.device_name`.
+
+Example MQTT channel topics for the default base topic; replace
+`<virtual_device_id>` with the saved ID:
 
 ```text
-enocean-mqtt/virtual/test_climate/channel/humidity/set       payload: 60
-enocean-mqtt/virtual/test_climate/channel/temperature/set    payload: 20
+enocean-mqtt/virtual/<virtual_device_id>/channel/humidity/set       payload: 60
+enocean-mqtt/virtual/<virtual_device_id>/channel/temperature/set    payload: 20
 ```
 
 Publish commands **without retain**. Replace the base topic, ID and channel names
@@ -300,6 +311,19 @@ temperature update schedules a new attempt; there is no periodic retry without
 another input update.
 
 #### Configuration and diagnosis through MQTT, API and OBS
+
+Setting a virtual device to **disabled** pauses its normal radio transmissions.
+MQTT and API/OBS input updates continue to refresh its in-memory cache and state
+topics, but do not schedule TX. Disabling a device through Device Management
+cancels queued aggregation timers; the runtime also checks the current enabled
+state immediately before sending. Already submitted radio transmissions cannot
+be recalled. The pause does not create normal TX busmonitor or archive events.
+
+Explicit **Teach-In remains available**, including through the MQTT command
+topic, while the device is disabled. Re-enabling does not send a backlog or
+automatically transmit cached values. The next input update starts a new quiet
+interval and can use the other cached channel values. These cache values still
+have no automatic freshness expiry. Restarting the gateway clears the cache.
 
 Choose enabled channels in **Device Management**. There is no per-device UI/config
 override for the aggregation window: edit the selected profile JSON's root `tx`

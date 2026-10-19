@@ -9,6 +9,7 @@ from datetime import datetime
 from time import monotonic
 from typing import Any
 
+from enocean_mqtt.devices.gateways import ExternalGateway
 from enocean_mqtt.devices.models import Device
 from enocean_mqtt.devices.registry import DeviceRegistry
 from enocean_mqtt.devices.tx_profiles import (
@@ -16,6 +17,7 @@ from enocean_mqtt.devices.tx_profiles import (
     build_device_tx_capabilities,
 )
 from enocean_mqtt.eep.json_registry import EEPRegistryError, load_eep_definition
+from enocean_mqtt.eep.runtime_decoder import RuntimeDecodedTelegram
 from enocean_mqtt.eep.semantic_mapping import derived_value
 from enocean_mqtt.gateway.topics import (
     DeviceTopicIdentifier,
@@ -42,6 +44,27 @@ logger = logging.getLogger(__name__)
 
 class DevicePublisher:
     """Publish semantic device MQTT topics."""
+
+    def publish_gateway_command(
+        self, *, gateway: ExternalGateway, sender_id: str,
+        decoded: RuntimeDecodedTelegram, timestamp: str | None,
+    ) -> None:
+        """Retain the latest observed external command, never actuator state."""
+        self._mqtt_client.publish_json(
+            f"{self._base_topic}/devices/gateways/{gateway.base_id}/{sender_id}/command",
+            {
+                "base_id": gateway.base_id, "sender_id": sender_id,
+                "profile": decoded.eep, "profile_direction": "tx",
+                "telegram_type_id": decoded.telegram_type_id, "timestamp": timestamp,
+                "fields": decoded.fields,
+                "values": {
+                    name: {"value": item.published_value, "unit": item.unit,
+                           "raw_value": item.raw_value, "meaning": item.meaning}
+                    for name, item in decoded.values.items()
+                },
+            },
+            retain=True,
+        )
 
     def __init__(
         self,

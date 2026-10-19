@@ -3,6 +3,36 @@
 User-facing releases of enocean-mqtt. Public release history starts with 0.9.0.
 For support boundaries, see [Known Limitations](KNOWN_LIMITATIONS.md).
 
+## 0.10.0 — 2026-10-19
+
+- Add external gateway/channel management, passive command decoding and scoped
+  metrics. See [gateway setup and limitations](userguide/gateways.md).
+- Add RX screening diagnostics, busmonitor highlighting and a dashboard gateway count.
+- Improve virtual-device naming and pause normal transmission when disabled,
+  while retaining cached inputs and explicit Teach-In.
+- Support numeric profile conditions and labelled enum ranges; simplify existing
+  profiles without changing their numeric values or meanings.
+- Include new and revised profiles; the exact changes are listed below.
+  Updated range-based profiles require the 0.10.0 runtime.
+
+### Migration and scope
+
+External gateway command observations now use
+`<base_topic>/devices/gateways/<BASE_ID>/<SENDER_ID>/command`. Update subscriptions
+and ACLs from `gateways/<BASE_ID>/channels/<SENDER_ID>/command`; remove obsolete
+retained topics explicitly. Retained observations are not actuator state or
+proof of online status.
+
+D2 remains experimental and bidirectional 4BS Teach-In does not work. Offline
+regression checks do not replace model-specific hardware or OBS acceptance.
+
+<!-- profile-changes:start -->
+### Profile changes
+
+- Added profiles: `A5-05-01`, `A5-06-01`, `A5-06-02`, `A5-06-03`, `A5-06-04`, `A5-06-05`, `A5-07-01`, `A5-07-02`, `A5-07-03`, `A5-08-01`, `A5-08-02`, `A5-08-03`, `A5-38-08`, `D2-01-00`.
+- Updated profiles: `A5-04-01`, `A5-04-04`, `A5-14-01`, `A5-14-02`, `A5-14-03`, `A5-14-04`, `A5-14-05`, `A5-14-06`, `A5-14-08`, `A5-14-09`, `A5-20-01`, `A5-20-06`, `D2-01-0E`, `eltako-fud70s`.
+<!-- profile-changes:end -->
+
 ## 0.9.0 — 2026-10-14
 
 First public pre-1.0 version for user testing. Interfaces and configuration may

@@ -197,6 +197,7 @@ function updateDashboard(payload) {
   setText('activeRegistryCount', formatInteger(metrics.active_devices_total));
   setText('unknownDeviceCount', formatInteger(registry.unknown));
   setText('foreignDeviceCount', formatInteger(registry.foreign));
+  setText('gatewayCount', formatInteger(registry.gateways));
   setText('registryReload', registry.last_reload ? `reloaded ${formatRelativeTimestamp(registry.last_reload)}` : null);
 }
 

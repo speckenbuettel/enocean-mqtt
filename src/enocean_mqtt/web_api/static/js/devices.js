@@ -1,5 +1,5 @@
 const managementUrl = '/api/v1/device-management';
-const state = { physical: [], virtual: [], unknown: [], foreign: [], canWrite: false };
+const state = { physical: [], virtual: [], unknown: [], foreign: [], gateways: [], canWrite: false };
 
 const elements = {
   status: document.getElementById('deviceRegistryStatus'),
@@ -223,7 +223,10 @@ function renderUnknown() {
     row.append(cell(relativeTime(device.last_seen)));
     row.append(cell(device.last_rssi_dbm === null ? '—' : `${device.last_rssi_dbm} dBm`));
     row.append(cell(telegramCell({ raw_telegram: device.last_raw_telegram, data: device.last_data })));
-    row.append(cell(actionCell([actionButton('Register device', 'capture', 'unknown', device.sender_id)])));
+    row.append(cell(actionCell([
+      actionButton('Register as device', 'capture', 'unknown', device.sender_id),
+      actionButton('Register as gateway', 'capture-gateway', 'unknown', device.sender_id),
+    ])));
   });
 }
 
@@ -235,10 +238,11 @@ function renderPanels() {
   renderPhysical();
   renderVirtual();
   renderUnknown();
+  if (typeof renderGateways === 'function') renderGateways();
 }
 
 function setWritableControls() {
-  ['reloadDevicesButton', 'newPhysicalDeviceButton', 'newVirtualDeviceButton', 'importDevicesButton']
+  ['reloadDevicesButton', 'newPhysicalDeviceButton', 'newVirtualDeviceButton', 'importDevicesButton', 'newGatewayButton']
     .forEach((id) => { document.getElementById(id).disabled = !state.canWrite; });
 }
 
@@ -265,6 +269,7 @@ async function loadDevices() {
     state.unknown = payload.unknown_devices || [];
     state.canWrite = Boolean(payload.can_write);
     state.foreign = payload.foreign_devices || [];
+    state.gateways = payload.gateways || [];
     if (typeof migrateForeignDevices === 'function') await migrateForeignDevices();
     document.getElementById('physicalCount').textContent = payload.counts?.devices ?? 0;
     document.getElementById('unknownCount').textContent = payload.counts?.unknown_devices ?? 0;
@@ -315,9 +320,7 @@ function openVirtualDialog(device = null) {
   form.reset();
   form._device = device;
   elements.virtualTitle.textContent = device ? 'Edit virtual device' : 'New virtual device';
-  formValue(form, 'virtual_device_id').value = device?.virtual_device_id || '';
-  formValue(form, 'virtual_device_id').readOnly = Boolean(device);
-  formValue(form, 'device_name').value = device?.metadata?.device_name || '';
+  formValue(form, 'device_name').value = device?.metadata?.device_name || device?.virtual_device_id || '';
   formValue(form, 'eep').value = device?.eep || '';
   formValue(form, 'profile').value = device?.profile || '';
   formValue(form, 'channels').value = (device?.channels || []).join(', ');
@@ -370,7 +373,7 @@ async function saveVirtual(event) {
   if (deviceName) metadata.device_name = deviceName;
   else delete metadata.device_name;
   const payload = {
-    virtual_device_id: formValue(form, 'virtual_device_id').value.trim().toLowerCase(),
+    ...(existing ? { virtual_device_id: existing.virtual_device_id } : {}),
     eep: formValue(form, 'eep').value.trim(),
     profile: optional(formValue(form, 'profile').value),
     channels: formValue(form, 'channels').value.split(',').map((value) => value.trim()).filter(Boolean),
@@ -402,6 +405,7 @@ async function handleTableAction(button) {
   try {
     if (action === 'edit') return kind === 'physical' ? openPhysicalDialog(item) : openVirtualDialog(item);
     if (action === 'capture') return openPhysicalDialog(null, item);
+    if (action === 'capture-gateway') return openGatewayDialog(null, item);
     if (action === 'confirm') return await confirmReceiver(kind, id);
     if (action === 'teach-in') {
       if (!window.confirm(`Send teach-in telegram for ${id}?`)) return;

@@ -195,11 +195,13 @@
     <section class="busmonitor-color-legend compact-card" aria-label="Telegram color legend">
       <strong>Colors</strong>
       <span><i class="legend-known" aria-hidden="true"></i>Known device</span>
+      <span><i class="legend-gateway-unknown" aria-hidden="true"></i>Known gateway, unassigned channel</span>
       <span><i class="legend-unknown" aria-hidden="true"></i>Unknown device</span>
       <span><i class="legend-foreign" aria-hidden="true"></i>Foreign device</span>
       <span><i class="legend-teach-in" aria-hidden="true"></i>Teach-In</span>
+      <span><i class="legend-suspect" aria-hidden="true"></i>Suspect / screening hint</span>
       <span><i class="legend-error" aria-hidden="true"></i>Decode error</span>
-      <small>Decode errors take precedence over Teach-In; Teach-In takes precedence over device colors.</small>
+      <small>Decode errors take precedence over screening hints, then Teach-In, then device colors. Screening hints are not proof of corruption.</small>
     </section>
 
     <section class="details compact-card">

@@ -21,6 +21,7 @@ def decode_runtime_telegram(
     sender_id: str | None = None,
     telegram_id: str | None = None,
     external_context: dict[str, Any] | None = None,
+    profile_direction: str = "rx",
 ) -> RuntimeDecodedTelegram:
     """Decode one runtime telegram with a canonical decoder context.
 
@@ -47,4 +48,5 @@ def decode_runtime_telegram(
         telegram_id=telegram_id,
         rorg=rorg,
         external_context=context,
+        profile_direction=profile_direction,
     )

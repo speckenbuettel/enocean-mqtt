@@ -13,7 +13,7 @@ older registry files that do not yet provide telegram-local channel bindings.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, fields, replace
 from typing import Any
 
 from enocean_mqtt.eep.decoder import (
@@ -154,7 +154,9 @@ def dependency_matches(
     if dependency.values and value not in dependency.values:
         return False
 
-    return True
+    from enocean_mqtt.eep.numeric_conditions import bounds_match
+
+    return bounds_match(value, dependency.gte, dependency.lte)
 
 
 def select_telegram(
@@ -164,9 +166,12 @@ def select_telegram(
     telegram_id: str | None = None,
     rorg: str | None = None,
     external_context: dict[str, Any] | None = None,
+    profile_direction: str = "rx",
 ) -> tuple[TelegramDefinition | None, RuntimeDecodeContext]:
     """Select the active RX telegram definition for a payload."""
 
+    if profile_direction not in ("rx", "tx"):
+        raise ValueError("profile_direction must be rx or tx")
     if not eep_definition.telegrams:
         return None, build_runtime_context(
             payload_hex=payload_hex,
@@ -183,7 +188,9 @@ def select_telegram(
     )
 
     for telegram in eep_definition.telegrams:
-        if telegram.direction not in (None, "rx"):
+        if telegram.direction not in (None, profile_direction):
+            continue
+        if profile_direction == "tx" and telegram.direction != "tx":
             continue
 
         if telegram_id and telegram.telegram_type_id != telegram_id:
@@ -193,6 +200,12 @@ def select_telegram(
         # A short D5/F6 payload cannot be interpreted using A5 field offsets.
         if telegram.telegram_id.rorg.upper() != incoming_rorg:
             candidate_errors.append(f"{telegram.telegram_type_id}: identity mismatch")
+            continue
+
+        # A candidate for a longer command must not abort selection of a short one.
+        payload_bits = len(parse_payload_hex(payload_hex)) * 8
+        if any(item.offset + item.size > payload_bits for item in telegram.fields):
+            candidate_errors.append(f"{telegram.telegram_type_id}: field exceeds payload size")
             continue
 
         decode_context = build_runtime_context(
@@ -225,7 +238,8 @@ def select_telegram(
         detail = f"{detail}: " + "; ".join(candidate_errors)
 
     raise EEPDecodeError(
-        f"No matching RX telegram definition found for EEP {eep_definition.eep}{detail}"
+        f"No matching {profile_direction.upper()} telegram definition found "
+        f"for EEP {eep_definition.eep}{detail}"
     )
 
 
@@ -236,6 +250,7 @@ def decode_runtime_with_definition(
     telegram_id: str | None = None,
     rorg: str | None = None,
     external_context: dict[str, Any] | None = None,
+    profile_direction: str = "rx",
 ) -> RuntimeDecodedTelegram:
     """Decode an EEP payload using telegram-centric runtime registry data."""
 
@@ -246,11 +261,37 @@ def decode_runtime_with_definition(
         telegram_id=telegram_id,
         rorg=rorg,
         external_context=external_context,
+        profile_direction=profile_direction,
     )
 
     decoded_values: dict[str, RuntimeDecodedChannel] = {}
 
-    if telegram is not None and telegram.channel_bindings:
+    if telegram is not None and profile_direction == "tx":
+        # Reuse the value conversion contract while keeping message/channel registries intact.
+        channel_fields = {item.name for item in fields(ChannelDefinition)}
+        messages_as_channels = [
+            ChannelDefinition(**{
+                item.name: getattr(message, item.name)
+                for item in fields(message)
+                if item.name in channel_fields and item.name != "data_type"
+            }, data_type=message.data_type or "integer")
+            for message in eep_definition.messages
+        ]
+        command_definition = replace(eep_definition, channels=messages_as_channels)
+        for message_binding in telegram.message_bindings:
+            binding = ChannelBindingDefinition(
+                channel_ref=message_binding.message_ref,
+                field_ref=message_binding.field_ref,
+                field_parts=message_binding.field_parts,
+                scale=message_binding.scale,
+                enum=message_binding.enum,
+                ranges=message_binding.ranges,
+                depends_on=message_binding.depends_on,
+            )
+            decoded = decode_runtime_binding(command_definition, binding, decode_context)
+            if decoded is not None:
+                decoded_values[decoded.name] = decoded
+    elif telegram is not None and telegram.channel_bindings:
         for binding in telegram.channel_bindings:
             decoded = decode_runtime_binding(eep_definition, binding, decode_context)
             if decoded is not None:
@@ -321,8 +362,10 @@ def decode_runtime_binding(
         object_type=channel.object_type or channel.channel_type,
         range_label=range_label,
         enum_encoded=bool(binding.enum or channel.enum),
-        meaning=next((item.label for item in (binding.enum or channel.enum)
-                      if item.value == raw_value), None),
+        meaning=next(
+            (item.label for item in (binding.enum or channel.enum) if item.value == raw_value),
+            range_label if (binding.enum or channel.enum) else None,
+        ),
     )
 
 
@@ -370,7 +413,8 @@ def decode_runtime_channel(
         object_type=channel.object_type or channel.channel_type,
         range_label=range_label,
         enum_encoded=bool(channel.enum),
-        meaning=next((item.label for item in channel.enum if item.value == raw_value), None),
+        meaning=next((item.label for item in channel.enum if item.value == raw_value),
+                     range_label if channel.enum else None),
     )
 
 

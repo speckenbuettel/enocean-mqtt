@@ -17,6 +17,8 @@ from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 
 from enocean_mqtt.devices.foreign_registry import foreign_registry
+from enocean_mqtt.devices.gateway_decode import decode_gateway_payload
+from enocean_mqtt.devices.gateways import GatewayRegistry, gateway_registry
 from enocean_mqtt.eep.decoder import EEPDecodeError
 from enocean_mqtt.eep.json_registry import EEPRegistryError, load_eep_definition
 from enocean_mqtt.eep.runtime_decoder import decode_runtime_with_definition
@@ -366,6 +368,7 @@ def _devices_by_sender(runtime_service: RuntimeService) -> dict[str, dict[str, A
 def _last_rx_activity(
     sqlite_summary: dict[str, Any],
     devices_by_sender: dict[str, dict[str, Any]],
+    gateways: GatewayRegistry | None = None,
 ) -> dict[str, Any]:
     telegram = _dictionary(sqlite_summary.get("last_rx"))
     sender_id = _hex_text(telegram.get("sender_id"))
@@ -373,14 +376,36 @@ def _last_rx_activity(
     sender_name = device.get("device_name") or device.get("alias") or "unknown"
     decoded_tooltip = "Decode unavailable"
     profile = device.get("profile") or device.get("eep")
+    gateway = gateways.resolve(sender_id) if gateways is not None and sender_id else None
+    if gateway is not None:
+        gateway_channel = gateway.channel(sender_id or "")
+        profile = gateway_channel.profile if gateway_channel else profile
+        sender_name = (gateway_channel.name
+                       if gateway_channel and gateway_channel.name else gateway.name)
     data = telegram.get("data")
 
-    if profile and data:
+    if gateway is not None:
+        outcome, command, error = decode_gateway_payload(
+            profile, str(data) if data else None, telegram.get("rorg"),
+            telegram.get("erp1_status"),
+        )
+        if command is not None:
+            decoded_tooltip = "\n".join(
+                f"{name}: {value.published_value}{' ' + value.unit if value.unit else ''}"
+                for name, value in command.values.items()
+            ) or "Command decoded"
+        else:
+            decoded_tooltip = error or (
+                "Gateway known; channel profile not assigned" if outcome == "no_profile"
+                else outcome.replace("_", " ")
+            )
+    elif profile and data:
         try:
             definition = load_eep_definition(str(profile))
             decoded = decode_runtime_with_definition(
                 eep_definition=definition,
                 payload_hex=str(data),
+                profile_direction="tx" if gateway is not None else "rx",
                 status_hex=telegram.get("erp1_status"),
                 telegram_id=None,
                 rorg=telegram.get("rorg"),
@@ -544,6 +569,11 @@ def install_ui_routes(
             )
             if active_page == "busmonitor":
                 context["asset_versions"] = _busmonitor_asset_versions()
+            elif active_page == "metrics":
+                script = Path(__file__).parent / "static/js/metrics.js"
+                context["metrics_script_version"] = (
+                    hashlib.sha256(script.read_bytes()).hexdigest()[:16]
+                )
             elif active_page == "dashboard":
                 script = Path(__file__).parent / "static/js/dashboard.js"
                 context["dashboard_script_version"] = (
@@ -580,9 +610,11 @@ def install_ui_routes(
         runtime: dict[str, Any] = gateway_runtime_provider() or {}
         health = _dictionary(runtime.get("health"))
         metrics = _dictionary(runtime.get("metrics"))
+        gateways = gateway_registry(config_file.parent / "gateways.json")
         last_rx = _last_rx_activity(
             {"last_rx": metrics.get("last_rx") or sqlite.get("last_rx")},
             devices_by_sender,
+            gateways,
         )
 
         mqtt = _dictionary(health.get("mqtt"))
@@ -718,6 +750,7 @@ def install_ui_routes(
             "device_registry": {
                 "physical": physical_devices,
                 "virtual": virtual_devices,
+                "gateways": len(gateways.snapshot()),
                 "unknown": unknown_devices,
                 "foreign": len(
                     foreign_registry(config_file.parent / "foreign-devices.json").snapshot()

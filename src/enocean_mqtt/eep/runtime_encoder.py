@@ -33,6 +33,7 @@ from enocean_mqtt.eep.models import (
     SemanticValue,
     TelegramDefinition,
     ValueMapping,
+    ValueRangeMapping,
 )
 from enocean_mqtt.eep.semantic_mapping import semantic_value_matches_label
 
@@ -294,6 +295,7 @@ def _encode_binding(
         value=value,
         binding=binding,
         enum=enum,
+        ranges=binding.ranges or semantic_definition.ranges,
         field=field,
         semantic_ref=semantic_ref,
     )
@@ -399,11 +401,8 @@ def _apply_dependency_for_explicit_value(
 
     if dependency.equals is not None:
         _set_raw_field(raw_fields, dependency.field, _to_int(dependency.equals))
-        return
-
-    if len(dependency.values) == 1:
+    elif len(dependency.values) == 1:
         _set_raw_field(raw_fields, dependency.field, _to_int(dependency.values[0]))
-        return
 
     if not _dependency_satisfied(dependency, raw_fields):
         raise EEPEncodeError(
@@ -435,7 +434,9 @@ def _dependency_satisfied(
     if dependency.values and value not in {_to_int(item) for item in dependency.values}:
         return False
 
-    return True
+    from enocean_mqtt.eep.numeric_conditions import bounds_match
+
+    return bounds_match(value, dependency.gte, dependency.lte)
 
 
 def _encode_semantic_value(
@@ -443,11 +444,27 @@ def _encode_semantic_value(
     value: Any,
     binding: _Binding,
     enum: list[ValueMapping],
+    ranges: list[ValueRangeMapping],
     field: FieldDefinition,
     semantic_ref: str,
 ) -> int:
     if enum:
-        return _encode_enum_value(enum, value, semantic_ref, strict=bool(binding.field_parts))
+        try:
+            return _encode_enum_value(enum, value, semantic_ref, strict=bool(binding.field_parts))
+        except EEPEncodeError:
+            # A labelled raw interval is a compact fallback for codes that share
+            # a meaning, e.g. 0..250=no_error alongside five explicit errors.
+            if not ranges:
+                raise
+            raw = _to_composite_int(value)
+            for item in ranges:
+                lower = item.raw_min if item.raw_min is not None else item.min
+                upper = item.raw_max if item.raw_max is not None else item.max
+                if (item.label is not None and item.scale is None
+                        and item.depends_on is None and lower is not None
+                        and upper is not None and lower <= raw <= upper):
+                    return raw
+            raise
 
     if binding.scale is not None:
         return _encode_linear_scaled_value(binding.scale, value, strict=bool(binding.field_parts))

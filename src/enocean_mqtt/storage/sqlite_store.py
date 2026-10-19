@@ -12,15 +12,18 @@ The storage layer intentionally operates on RuntimeTelegramEvent.
 
 from __future__ import annotations
 
+import json
 import logging
 import sqlite3
+from dataclasses import asdict
 from pathlib import Path
 from threading import RLock
+from typing import Any
 
 from enocean_mqtt.devices.foreign_registry import foreign_registry
 from enocean_mqtt.runtime.event import RuntimeTelegramEvent
 
-SCHEMA_VERSION = 2
+SCHEMA_VERSION = 3
 
 
 class SQLiteRuntimeStore:
@@ -152,6 +155,20 @@ class SQLiteRuntimeStore:
             """
         )
 
+        cursor.execute(
+            """CREATE TABLE IF NOT EXISTS telegram_diagnostics (
+                diagnostic_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                timestamp_unix REAL,
+                classification TEXT NOT NULL,
+                reason TEXT NOT NULL,
+                event_json TEXT NOT NULL,
+                assessment_json TEXT NOT NULL
+            )"""
+        )
+        cursor.execute(
+            "CREATE INDEX IF NOT EXISTS idx_diagnostics_time "
+            "ON telegram_diagnostics(timestamp_unix)"
+        )
         cursor.execute("DELETE FROM schema_info")
 
         cursor.execute(
@@ -330,6 +347,31 @@ class SQLiteRuntimeStore:
 
                 self.connection.commit()
                 self._apply_retention_cleanup()
+            except sqlite3.Error:
+                self.connection.rollback()
+                raise
+
+    def persist_diagnostic(
+        self, event: RuntimeTelegramEvent, assessment: dict[str, Any],
+    ) -> None:
+        """Keep bounded raw evidence, respecting the normal persistence policy."""
+        if not self._should_persist(event):
+            return
+        with self._lock:
+            try:
+                self.connection.execute(
+                    "INSERT INTO telegram_diagnostics "
+                    "(timestamp_unix,classification,reason,event_json,assessment_json) "
+                    "VALUES (?,?,?,?,?)",
+                    (event.timestamp_unix, assessment["classification"], assessment["reason"],
+                     json.dumps(asdict(event)), json.dumps(assessment)),
+                )
+                self.connection.execute(
+                    "DELETE FROM telegram_diagnostics WHERE diagnostic_id IN "
+                    "(SELECT diagnostic_id FROM telegram_diagnostics "
+                    "ORDER BY diagnostic_id DESC LIMIT -1 OFFSET 10000)"
+                )
+                self.connection.commit()
             except sqlite3.Error:
                 self.connection.rollback()
                 raise

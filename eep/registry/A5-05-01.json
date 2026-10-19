@@ -1,0 +1,368 @@
+{
+  "profile_type": "standard",
+  "eep": "A5-05-01",
+  "rorg": "A5",
+  "func": "05",
+  "type": "01",
+  "func_description": "Barometric Sensor",
+  "type_description": "Range 500 hPa to 1150 hPa",
+  "source": "EnOcean Equipment Profiles",
+  "source_version": "2.6.8",
+  "sources": [
+    "enocean/eeps/eep268.xml",
+    "eep/eep-list.csv",
+    "eep/semantic-role-mapping.xlsx",
+    "enocean/eeps/json/A5-05-01.json",
+    "enocean/eeps/ip/A5-05-01_ip.pdf"
+  ],
+  "direction": "unidirectional",
+  "device_class": "sensor",
+  "channels": [
+    {
+      "name": "barometer",
+      "display_name": null,
+      "source_key": "barometer",
+      "description": "Barometer (linear)",
+      "function_group": "from",
+      "semantic_role": "environment.barometric_pressure.measurement",
+      "object_type": "measurement",
+      "semantic_attributes": {},
+      "data_type": "float",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "required_for_snapshot": true,
+        "managed": false
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "unit": "hPa",
+      "value_resolution": 0.635386119257087,
+      "value_precision": 1,
+      "ranges": [
+        {
+          "min": 500,
+          "max": 1150,
+          "step": 0.635386119257087,
+          "unit": "hPa"
+        }
+      ]
+    },
+    {
+      "name": "trigger",
+      "display_name": null,
+      "source_key": "trigger",
+      "description": "Communication trigger reason",
+      "default_value": 1,
+      "function_group": "from",
+      "semantic_role": "device.telegram_trigger.state",
+      "object_type": "state",
+      "semantic_attributes": {},
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "required_for_snapshot": true,
+        "managed": false
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "heartbeat"
+        },
+        {
+          "value": 1,
+          "label": "event"
+        }
+      ]
+    }
+  ],
+  "messages": [],
+  "telegrams": [
+    {
+      "telegram_type_id": "a5-05-01.data",
+      "telegram_id": {
+        "rorg": "A5"
+      },
+      "fields": [
+        {
+          "name": "unused_0",
+          "offset": 0,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_1",
+          "offset": 1,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_2",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_3",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_4",
+          "offset": 4,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_5",
+          "offset": 5,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "barometer",
+          "offset": 6,
+          "size": 10,
+          "raw_min": 0,
+          "raw_max": 1023,
+          "source": "payload"
+        },
+        {
+          "name": "unused_16",
+          "offset": 16,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_17",
+          "offset": 17,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_18",
+          "offset": 18,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_19",
+          "offset": 19,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_20",
+          "offset": 20,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_21",
+          "offset": 21,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_22",
+          "offset": 22,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_23",
+          "offset": 23,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_24",
+          "offset": 24,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_25",
+          "offset": 25,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_26",
+          "offset": 26,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_27",
+          "offset": 27,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "learn",
+          "offset": 28,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        },
+        {
+          "name": "unused_29",
+          "offset": 29,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_30",
+          "offset": 30,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "trigger",
+          "offset": 31,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "barometer",
+          "field_ref": "barometer",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 1023,
+            "scale_min": 500,
+            "scale_max": 1150
+          }
+        },
+        {
+          "channel_ref": "trigger",
+          "field_ref": "trigger"
+        }
+      ],
+      "constraints": [
+        {
+          "field": "learn",
+          "equals": 1
+        }
+      ]
+    }
+  ],
+  "function_groups": [
+    {
+      "name": "from",
+      "title": "Sensor values",
+      "direction": "from",
+      "functions": [
+        "barometer",
+        "trigger"
+      ]
+    }
+  ],
+  "metadata": {
+    "authoring_prompt": "v1.8",
+    "hardware_tested": false
+  },
+  "description": "Barometric Sensor, Range 500 hPa to 1150 hPa"
+}

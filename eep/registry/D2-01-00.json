@@ -1,0 +1,3579 @@
+{
+  "profile_type": "standard",
+  "eep": "D2-01-00",
+  "rorg": "D2",
+  "func": "01",
+  "type": "00",
+  "func_description": "Electronic Switches and Dimmers with Local Control",
+  "type_description": "Type 0x00",
+  "description": "Electronic Switches and Dimmers with Local Control, Type 0x00",
+  "source": "EnOcean Equipment Profiles",
+  "source_version": "2.6.8",
+  "channels": [
+    {
+      "name": "command",
+      "display_name": null,
+      "channel_type": "status",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 1,
+          "label": "id_01"
+        }
+      ]
+    },
+    {
+      "name": "dim_value",
+      "display_name": null,
+      "channel_type": "status",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "switch_to_new_output_value"
+        },
+        {
+          "value": 1,
+          "label": "dim_to_new_output_value_dim_timer_1"
+        },
+        {
+          "value": 2,
+          "label": "dim_to_new_output_value_dim_timer_2"
+        },
+        {
+          "value": 3,
+          "label": "dim_to_new_output_value_dim_timer_3"
+        },
+        {
+          "value": 4,
+          "label": "stop_dimming"
+        }
+      ],
+      "ranges": [
+        {
+          "raw_min": 5,
+          "raw_max": 7,
+          "label": "not_used"
+        }
+      ]
+    },
+    {
+      "name": "i_o_channel",
+      "display_name": null,
+      "channel_type": "status",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 30,
+          "label": "all_output_channels_supported_by_the_device"
+        },
+        {
+          "value": 31,
+          "label": "input_channel_from_mains_supply"
+        }
+      ],
+      "ranges": [
+        {
+          "raw_min": 0,
+          "raw_max": 29,
+          "label": "output_channel_to_load"
+        }
+      ]
+    },
+    {
+      "name": "output_value",
+      "display_name": null,
+      "channel_type": "status",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "output_value_0_or_off"
+        },
+        {
+          "value": 127,
+          "label": "output_value_not_valid_not_applicable"
+        }
+      ],
+      "ranges": [
+        {
+          "raw_min": 1,
+          "raw_max": 100,
+          "label": "output_value_1_to_100_or_on"
+        },
+        {
+          "raw_min": 101,
+          "raw_max": 126,
+          "label": "not_used"
+        }
+      ]
+    },
+    {
+      "name": "taught_in_devices",
+      "display_name": null,
+      "channel_type": "status",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "disable_taught_in_devices_with_different_eep"
+        },
+        {
+          "value": 1,
+          "label": "enable_taught_in_devices_with_different_eep"
+        }
+      ]
+    },
+    {
+      "name": "over_current_shut_down",
+      "display_name": null,
+      "channel_type": "status",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "over_current_shut_down_static_off"
+        },
+        {
+          "value": 1,
+          "label": "over_current_shut_down_automatic_restart"
+        }
+      ]
+    },
+    {
+      "name": "reset_over_current_shut_down",
+      "display_name": null,
+      "channel_type": "status",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "reset_over_current_shut_down_not_active"
+        },
+        {
+          "value": 1,
+          "label": "reset_over_current_shut_down_trigger_signal"
+        }
+      ]
+    },
+    {
+      "name": "local_control",
+      "display_name": null,
+      "channel_type": "configuration",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "disable_local_control"
+        },
+        {
+          "value": 1,
+          "label": "enable_local_control"
+        }
+      ]
+    },
+    {
+      "name": "dim_timer_3",
+      "display_name": null,
+      "channel_type": "configuration",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "not_used"
+        }
+      ],
+      "ranges": [
+        {
+          "raw_min": 1,
+          "raw_max": 15,
+          "label": "dim_timer_3_0_5_7_5s_steps_0_5s"
+        }
+      ]
+    },
+    {
+      "name": "dim_timer_1",
+      "display_name": null,
+      "channel_type": "configuration",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "not_used"
+        }
+      ],
+      "ranges": [
+        {
+          "raw_min": 1,
+          "raw_max": 15,
+          "label": "dim_timer_1_0_5_7_5s_steps_0_5s"
+        }
+      ]
+    },
+    {
+      "name": "dim_timer_2",
+      "display_name": null,
+      "channel_type": "configuration",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "not_used"
+        }
+      ],
+      "ranges": [
+        {
+          "raw_min": 1,
+          "raw_max": 15,
+          "label": "dim_timer_2_0_5_7_5s_steps_0_5s"
+        }
+      ]
+    },
+    {
+      "name": "user_interface_indication",
+      "display_name": null,
+      "channel_type": "status",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "user_interface_indication_day_operation"
+        },
+        {
+          "value": 1,
+          "label": "user_interface_indication_night_operation"
+        }
+      ]
+    },
+    {
+      "name": "power_failure",
+      "display_name": null,
+      "channel_type": "status",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "disable_power_failure_detection"
+        },
+        {
+          "value": 1,
+          "label": "enable_power_failure_detection"
+        }
+      ]
+    },
+    {
+      "name": "default_state",
+      "display_name": null,
+      "channel_type": "configuration",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "default_state_0_or_off"
+        },
+        {
+          "value": 1,
+          "label": "default_state_100_or_on"
+        },
+        {
+          "value": 2,
+          "label": "default_state_remember_previous_state"
+        },
+        {
+          "value": 3,
+          "label": "not_used"
+        }
+      ]
+    },
+    {
+      "name": "power_failure_detection",
+      "display_name": null,
+      "channel_type": "status",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "power_failure_not_detected_not_supported_disabled"
+        },
+        {
+          "value": 1,
+          "label": "power_failure_detected"
+        }
+      ]
+    },
+    {
+      "name": "over_current_switch_off",
+      "display_name": null,
+      "channel_type": "status",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "over_current_switch_off_ready_not_supported"
+        },
+        {
+          "value": 1,
+          "label": "over_current_switch_off_executed"
+        }
+      ]
+    },
+    {
+      "name": "error_level",
+      "display_name": null,
+      "channel_type": "status",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "error_level_0_hardware_ok"
+        },
+        {
+          "value": 1,
+          "label": "error_level_1_hardware_warning"
+        },
+        {
+          "value": 2,
+          "label": "error_level_2_hardware_failure"
+        },
+        {
+          "value": 3,
+          "label": "error_level_not_supported"
+        }
+      ]
+    },
+    {
+      "name": "report_measurement",
+      "display_name": null,
+      "channel_type": "status",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "report_measurement_query_only"
+        },
+        {
+          "value": 1,
+          "label": "report_measurement_query_auto_reporting"
+        }
+      ]
+    },
+    {
+      "name": "reset_measurement",
+      "display_name": null,
+      "channel_type": "status",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "reset_measurement_not_active"
+        },
+        {
+          "value": 1,
+          "label": "reset_measurement_trigger_signal"
+        }
+      ]
+    },
+    {
+      "name": "measurement_mode",
+      "display_name": null,
+      "channel_type": "status",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "energy_measurement"
+        },
+        {
+          "value": 1,
+          "label": "power_measurement"
+        }
+      ]
+    },
+    {
+      "name": "measurement_delta_to_be_reported_lsb",
+      "display_name": null,
+      "channel_type": "measurement",
+      "data_type": "float",
+      "unit": "N/A",
+      "value_precision": 0,
+      "value_resolution": 1.0,
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "measurement_delta_to_be_reported_msb",
+      "display_name": null,
+      "channel_type": "measurement",
+      "data_type": "float",
+      "unit": "N/A",
+      "value_precision": 0,
+      "value_resolution": 1.0,
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "unit",
+      "display_name": null,
+      "channel_type": "status",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "energy_ws"
+        },
+        {
+          "value": 1,
+          "label": "energy_wh"
+        },
+        {
+          "value": 2,
+          "label": "energy_kwh"
+        },
+        {
+          "value": 3,
+          "label": "power_w"
+        },
+        {
+          "value": 4,
+          "label": "power_kw"
+        }
+      ],
+      "ranges": [
+        {
+          "raw_min": 5,
+          "raw_max": 7,
+          "label": "not_used"
+        }
+      ]
+    },
+    {
+      "name": "maximum_time_between_two_subsequent_actuator_messages",
+      "display_name": null,
+      "channel_type": "measurement",
+      "data_type": "enum",
+      "value_precision": 0,
+      "value_resolution": 10.0,
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "reserved"
+        }
+      ],
+      "ranges": [
+        {
+          "raw_min": 1,
+          "raw_max": 255,
+          "scale": {
+            "raw_min": 1,
+            "raw_max": 255,
+            "scale_min": 10.0,
+            "scale_max": 2550.0
+          },
+          "unit": "s"
+        }
+      ],
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "minimum_time_between_two_subsequent_actuator_messages",
+      "display_name": null,
+      "channel_type": "measurement",
+      "data_type": "enum",
+      "value_precision": 0,
+      "value_resolution": 1.0,
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "reserved"
+        }
+      ],
+      "ranges": [
+        {
+          "raw_min": 1,
+          "raw_max": 255,
+          "scale": {
+            "raw_min": 1,
+            "raw_max": 255,
+            "scale_min": 1.0,
+            "scale_max": 255.0
+          },
+          "unit": "s"
+        }
+      ],
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "query",
+      "display_name": null,
+      "channel_type": "status",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "query_energy"
+        },
+        {
+          "value": 1,
+          "label": "query_power"
+        }
+      ]
+    },
+    {
+      "name": "measurement_value_4_bytes",
+      "display_name": null,
+      "channel_type": "status",
+      "data_type": "integer",
+      "unit": "N/A",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      }
+    },
+    {
+      "name": "pilotwire_mode",
+      "display_name": null,
+      "channel_type": "status",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "off"
+        },
+        {
+          "value": 1,
+          "label": "comfort"
+        },
+        {
+          "value": 2,
+          "label": "eco"
+        },
+        {
+          "value": 3,
+          "label": "anti_freeze"
+        },
+        {
+          "value": 4,
+          "label": "comfort_1"
+        },
+        {
+          "value": 5,
+          "label": "comfort_2"
+        }
+      ]
+    },
+    {
+      "name": "auto_off_timer",
+      "display_name": null,
+      "channel_type": "measurement",
+      "data_type": "enum",
+      "value_precision": 2,
+      "value_resolution": 0.09999999999999999,
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "timer_deactivated"
+        },
+        {
+          "value": 65535,
+          "label": "does_not_modify_saved_value"
+        }
+      ],
+      "ranges": [
+        {
+          "raw_min": 1,
+          "raw_max": 65534,
+          "scale": {
+            "raw_min": 1,
+            "raw_max": 65534,
+            "scale_min": 0.1,
+            "scale_max": 6553.4
+          },
+          "unit": "s"
+        }
+      ],
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "delay_off_timer",
+      "display_name": null,
+      "channel_type": "measurement",
+      "data_type": "enum",
+      "value_precision": 2,
+      "value_resolution": 0.09999999999999999,
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "timer_deactivated"
+        },
+        {
+          "value": 65535,
+          "label": "does_not_modify_saved_value"
+        }
+      ],
+      "ranges": [
+        {
+          "raw_min": 1,
+          "raw_max": 65534,
+          "scale": {
+            "raw_min": 1,
+            "raw_max": 65534,
+            "scale_min": 0.1,
+            "scale_max": 6553.4
+          },
+          "unit": "s"
+        }
+      ],
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "external_switch_push_button",
+      "display_name": null,
+      "channel_type": "status",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "not_applicable"
+        },
+        {
+          "value": 1,
+          "label": "external_switch"
+        },
+        {
+          "value": 2,
+          "label": "external_push_button"
+        },
+        {
+          "value": 3,
+          "label": "auto_detect"
+        }
+      ]
+    },
+    {
+      "name": "2_state_switch",
+      "display_name": null,
+      "channel_type": "status",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "change_of_key_state_sets_on_or_off"
+        },
+        {
+          "value": 1,
+          "label": "specific_on_off_positions"
+        }
+      ]
+    },
+    {
+      "name": "extended_command_id",
+      "display_name": null,
+      "channel_type": "status",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "id_00"
+        }
+      ]
+    },
+    {
+      "name": "maximum_value",
+      "display_name": null,
+      "channel_type": "configuration",
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "reserved"
+        }
+      ],
+      "ranges": [
+        {
+          "raw_min": 1,
+          "raw_max": 100,
+          "label": "set_maximum_value"
+        },
+        {
+          "raw_min": 101,
+          "raw_max": 127,
+          "label": "reserved"
+        }
+      ]
+    },
+    {
+      "name": "minimum_value",
+      "display_name": null,
+      "channel_type": "configuration",
+      "data_type": "integer",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "ranges": [
+        {
+          "raw_min": 0,
+          "raw_max": 99,
+          "label": "set_minimum_value"
+        },
+        {
+          "raw_min": 100,
+          "raw_max": 127,
+          "label": "reserved"
+        }
+      ]
+    }
+  ],
+  "telegrams": [
+    {
+      "telegram_type_id": "d2-01-00.cmd01.cmd_0x1_actuator_set_output",
+      "telegram_id": {
+        "rorg": "D2",
+        "cmd": "0x01"
+      },
+      "description": "CMD 0x1 - Actuator Set Output",
+      "fields": [
+        {
+          "name": "reserved_0_4",
+          "offset": 0,
+          "size": 4,
+          "shortcut": "",
+          "description": "Reserved field 0:4",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "command",
+          "offset": 4,
+          "size": 4,
+          "shortcut": "CMD",
+          "description": "Command ID",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "dim_value",
+          "offset": 8,
+          "size": 3,
+          "shortcut": "DV",
+          "description": "Dim value",
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload"
+        },
+        {
+          "name": "i_o_channel",
+          "offset": 11,
+          "size": 5,
+          "shortcut": "I/O",
+          "description": "I/O channel",
+          "raw_min": 0,
+          "raw_max": 31,
+          "source": "payload"
+        },
+        {
+          "name": "output_value",
+          "offset": 17,
+          "size": 7,
+          "shortcut": "OV",
+          "description": "Output value",
+          "raw_min": 0,
+          "raw_max": 127,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_16_1",
+          "offset": 16,
+          "size": 1,
+          "shortcut": "",
+          "description": "Reserved field 16:1",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "command",
+          "field_ref": "command",
+          "bitfield_ref": "command",
+          "enum": [
+            {
+              "value": 1,
+              "label": "id_01"
+            }
+          ]
+        },
+        {
+          "channel_ref": "dim_value",
+          "field_ref": "dim_value",
+          "bitfield_ref": "dim_value",
+          "enum": [
+            {
+              "value": 0,
+              "label": "switch_to_new_output_value"
+            },
+            {
+              "value": 1,
+              "label": "dim_to_new_output_value_dim_timer_1"
+            },
+            {
+              "value": 2,
+              "label": "dim_to_new_output_value_dim_timer_2"
+            },
+            {
+              "value": 3,
+              "label": "dim_to_new_output_value_dim_timer_3"
+            },
+            {
+              "value": 4,
+              "label": "stop_dimming"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 5,
+              "raw_max": 7,
+              "label": "not_used"
+            }
+          ]
+        },
+        {
+          "channel_ref": "i_o_channel",
+          "field_ref": "i_o_channel",
+          "bitfield_ref": "i_o_channel",
+          "enum": [
+            {
+              "value": 30,
+              "label": "all_output_channels_supported_by_the_device"
+            },
+            {
+              "value": 31,
+              "label": "input_channel_from_mains_supply"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 0,
+              "raw_max": 29,
+              "label": "output_channel_to_load"
+            }
+          ]
+        },
+        {
+          "channel_ref": "output_value",
+          "field_ref": "output_value",
+          "bitfield_ref": "output_value",
+          "enum": [
+            {
+              "value": 0,
+              "label": "output_value_0_or_off"
+            },
+            {
+              "value": 127,
+              "label": "output_value_not_valid_not_applicable"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 1,
+              "raw_max": 100,
+              "label": "output_value_1_to_100_or_on"
+            },
+            {
+              "raw_min": 101,
+              "raw_max": 126,
+              "label": "not_used"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "d2-01-00.cmd02.cmd_0x2_actuator_set_local",
+      "telegram_id": {
+        "rorg": "D2",
+        "cmd": "0x02"
+      },
+      "description": "CMD 0x2 - Actuator Set Local",
+      "fields": [
+        {
+          "name": "taught_in_devices",
+          "offset": 0,
+          "size": 1,
+          "shortcut": "d/e",
+          "description": "Taught-in devices",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_1_3",
+          "offset": 1,
+          "size": 3,
+          "shortcut": "",
+          "description": "Reserved field 1:3",
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload"
+        },
+        {
+          "name": "command",
+          "offset": 4,
+          "size": 4,
+          "shortcut": "CMD",
+          "description": "Command ID",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "over_current_shut_down",
+          "offset": 8,
+          "size": 1,
+          "shortcut": "OC",
+          "description": "Over current shut down",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "reset_over_current_shut_down",
+          "offset": 9,
+          "size": 1,
+          "shortcut": "RO",
+          "description": "reset over current shut down",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "local_control",
+          "offset": 10,
+          "size": 1,
+          "shortcut": "LC",
+          "description": "Local control",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "i_o_channel",
+          "offset": 11,
+          "size": 5,
+          "shortcut": "I/O",
+          "description": "I/O channel",
+          "raw_min": 0,
+          "raw_max": 31,
+          "source": "payload"
+        },
+        {
+          "name": "dim_timer_3",
+          "offset": 20,
+          "size": 4,
+          "shortcut": "DT3",
+          "description": "Dim timer 3",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "dim_timer_1",
+          "offset": 28,
+          "size": 4,
+          "shortcut": "DT1",
+          "description": "Dim timer 1",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "dim_timer_2",
+          "offset": 16,
+          "size": 4,
+          "shortcut": "DT2",
+          "description": "Dim timer 2",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "user_interface_indication",
+          "offset": 24,
+          "size": 1,
+          "shortcut": "d/n",
+          "description": "User interface indication",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "power_failure",
+          "offset": 25,
+          "size": 1,
+          "shortcut": "PF",
+          "description": "Power Failure",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "default_state",
+          "offset": 26,
+          "size": 2,
+          "shortcut": "DS",
+          "description": "Default state",
+          "raw_min": 0,
+          "raw_max": 3,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "taught_in_devices",
+          "field_ref": "taught_in_devices",
+          "bitfield_ref": "taught_in_devices",
+          "enum": [
+            {
+              "value": 0,
+              "label": "disable_taught_in_devices_with_different_eep"
+            },
+            {
+              "value": 1,
+              "label": "enable_taught_in_devices_with_different_eep"
+            }
+          ]
+        },
+        {
+          "channel_ref": "command",
+          "field_ref": "command",
+          "bitfield_ref": "command",
+          "enum": [
+            {
+              "value": 2,
+              "label": "id_02"
+            }
+          ]
+        },
+        {
+          "channel_ref": "over_current_shut_down",
+          "field_ref": "over_current_shut_down",
+          "bitfield_ref": "over_current_shut_down",
+          "enum": [
+            {
+              "value": 0,
+              "label": "over_current_shut_down_static_off"
+            },
+            {
+              "value": 1,
+              "label": "over_current_shut_down_automatic_restart"
+            }
+          ]
+        },
+        {
+          "channel_ref": "reset_over_current_shut_down",
+          "field_ref": "reset_over_current_shut_down",
+          "bitfield_ref": "reset_over_current_shut_down",
+          "enum": [
+            {
+              "value": 0,
+              "label": "reset_over_current_shut_down_not_active"
+            },
+            {
+              "value": 1,
+              "label": "reset_over_current_shut_down_trigger_signal"
+            }
+          ]
+        },
+        {
+          "channel_ref": "local_control",
+          "field_ref": "local_control",
+          "bitfield_ref": "local_control",
+          "enum": [
+            {
+              "value": 0,
+              "label": "disable_local_control"
+            },
+            {
+              "value": 1,
+              "label": "enable_local_control"
+            }
+          ]
+        },
+        {
+          "channel_ref": "i_o_channel",
+          "field_ref": "i_o_channel",
+          "bitfield_ref": "i_o_channel",
+          "enum": [
+            {
+              "value": 30,
+              "label": "all_output_channels_supported_by_the_device"
+            },
+            {
+              "value": 31,
+              "label": "input_channel_from_mains_supply"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 0,
+              "raw_max": 29,
+              "label": "output_channel_to_load"
+            }
+          ]
+        },
+        {
+          "channel_ref": "dim_timer_3",
+          "field_ref": "dim_timer_3",
+          "bitfield_ref": "dim_timer_3",
+          "enum": [
+            {
+              "value": 0,
+              "label": "not_used"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 1,
+              "raw_max": 15,
+              "label": "dim_timer_3_0_5_7_5s_steps_0_5s"
+            }
+          ]
+        },
+        {
+          "channel_ref": "dim_timer_1",
+          "field_ref": "dim_timer_1",
+          "bitfield_ref": "dim_timer_1",
+          "enum": [
+            {
+              "value": 0,
+              "label": "not_used"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 1,
+              "raw_max": 15,
+              "label": "dim_timer_1_0_5_7_5s_steps_0_5s"
+            }
+          ]
+        },
+        {
+          "channel_ref": "dim_timer_2",
+          "field_ref": "dim_timer_2",
+          "bitfield_ref": "dim_timer_2",
+          "enum": [
+            {
+              "value": 0,
+              "label": "not_used"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 1,
+              "raw_max": 15,
+              "label": "dim_timer_2_0_5_7_5s_steps_0_5s"
+            }
+          ]
+        },
+        {
+          "channel_ref": "user_interface_indication",
+          "field_ref": "user_interface_indication",
+          "bitfield_ref": "user_interface_indication",
+          "enum": [
+            {
+              "value": 0,
+              "label": "user_interface_indication_day_operation"
+            },
+            {
+              "value": 1,
+              "label": "user_interface_indication_night_operation"
+            }
+          ]
+        },
+        {
+          "channel_ref": "power_failure",
+          "field_ref": "power_failure",
+          "bitfield_ref": "power_failure",
+          "enum": [
+            {
+              "value": 0,
+              "label": "disable_power_failure_detection"
+            },
+            {
+              "value": 1,
+              "label": "enable_power_failure_detection"
+            }
+          ]
+        },
+        {
+          "channel_ref": "default_state",
+          "field_ref": "default_state",
+          "bitfield_ref": "default_state",
+          "enum": [
+            {
+              "value": 0,
+              "label": "default_state_0_or_off"
+            },
+            {
+              "value": 1,
+              "label": "default_state_100_or_on"
+            },
+            {
+              "value": 2,
+              "label": "default_state_remember_previous_state"
+            },
+            {
+              "value": 3,
+              "label": "not_used"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "d2-01-00.cmd03.cmd_0x3_actuator_status_query",
+      "telegram_id": {
+        "rorg": "D2",
+        "cmd": "0x03"
+      },
+      "description": "CMD 0x3 - Actuator Status Query",
+      "fields": [
+        {
+          "name": "reserved_0_4",
+          "offset": 0,
+          "size": 4,
+          "shortcut": "",
+          "description": "Reserved field 0:4",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "command",
+          "offset": 4,
+          "size": 4,
+          "shortcut": "CMD",
+          "description": "Command ID",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "i_o_channel",
+          "offset": 11,
+          "size": 5,
+          "shortcut": "I/O",
+          "description": "I/O channel",
+          "raw_min": 0,
+          "raw_max": 31,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_8_3",
+          "offset": 8,
+          "size": 3,
+          "shortcut": "",
+          "description": "Reserved field 8:3",
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "command",
+          "field_ref": "command",
+          "bitfield_ref": "command",
+          "enum": [
+            {
+              "value": 3,
+              "label": "id_03"
+            }
+          ]
+        },
+        {
+          "channel_ref": "i_o_channel",
+          "field_ref": "i_o_channel",
+          "bitfield_ref": "i_o_channel",
+          "enum": [
+            {
+              "value": 30,
+              "label": "all_output_channels_supported_by_the_device"
+            },
+            {
+              "value": 31,
+              "label": "input_channel_from_mains_supply"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 0,
+              "raw_max": 29,
+              "label": "output_channel_to_load"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "d2-01-00.cmd04.cmd_0x4_actuator_status_response",
+      "telegram_id": {
+        "rorg": "D2",
+        "cmd": "0x04"
+      },
+      "description": "CMD 0x4 - Actuator Status Response",
+      "fields": [
+        {
+          "name": "power_failure",
+          "offset": 0,
+          "size": 1,
+          "shortcut": "PF",
+          "description": "Power Failure",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "power_failure_detection",
+          "offset": 1,
+          "size": 1,
+          "shortcut": "PFD",
+          "description": "Power Failure Detection",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_2_2",
+          "offset": 2,
+          "size": 2,
+          "shortcut": "",
+          "description": "Reserved field 2:2",
+          "raw_min": 0,
+          "raw_max": 3,
+          "source": "payload"
+        },
+        {
+          "name": "command",
+          "offset": 4,
+          "size": 4,
+          "shortcut": "CMD",
+          "description": "Command ID",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "over_current_switch_off",
+          "offset": 8,
+          "size": 1,
+          "shortcut": "OC",
+          "description": "Over current switch off",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "error_level",
+          "offset": 9,
+          "size": 2,
+          "shortcut": "EL",
+          "description": "Error level",
+          "raw_min": 0,
+          "raw_max": 3,
+          "source": "payload"
+        },
+        {
+          "name": "i_o_channel",
+          "offset": 11,
+          "size": 5,
+          "shortcut": "I/O",
+          "description": "I/O channel",
+          "raw_min": 0,
+          "raw_max": 31,
+          "source": "payload"
+        },
+        {
+          "name": "local_control",
+          "offset": 16,
+          "size": 1,
+          "shortcut": "LC",
+          "description": "Local control",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "output_value",
+          "offset": 17,
+          "size": 7,
+          "shortcut": "OV",
+          "description": "Output value",
+          "raw_min": 0,
+          "raw_max": 127,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "power_failure",
+          "field_ref": "power_failure",
+          "bitfield_ref": "power_failure",
+          "enum": [
+            {
+              "value": 0,
+              "label": "power_failure_detection_disabled_not_supported"
+            },
+            {
+              "value": 1,
+              "label": "power_failure_detection_enabled"
+            }
+          ]
+        },
+        {
+          "channel_ref": "power_failure_detection",
+          "field_ref": "power_failure_detection",
+          "bitfield_ref": "power_failure_detection",
+          "enum": [
+            {
+              "value": 0,
+              "label": "power_failure_not_detected_not_supported_disabled"
+            },
+            {
+              "value": 1,
+              "label": "power_failure_detected"
+            }
+          ]
+        },
+        {
+          "channel_ref": "command",
+          "field_ref": "command",
+          "bitfield_ref": "command",
+          "enum": [
+            {
+              "value": 4,
+              "label": "id_04"
+            }
+          ]
+        },
+        {
+          "channel_ref": "over_current_switch_off",
+          "field_ref": "over_current_switch_off",
+          "bitfield_ref": "over_current_switch_off",
+          "enum": [
+            {
+              "value": 0,
+              "label": "over_current_switch_off_ready_not_supported"
+            },
+            {
+              "value": 1,
+              "label": "over_current_switch_off_executed"
+            }
+          ]
+        },
+        {
+          "channel_ref": "error_level",
+          "field_ref": "error_level",
+          "bitfield_ref": "error_level",
+          "enum": [
+            {
+              "value": 0,
+              "label": "error_level_0_hardware_ok"
+            },
+            {
+              "value": 1,
+              "label": "error_level_1_hardware_warning"
+            },
+            {
+              "value": 2,
+              "label": "error_level_2_hardware_failure"
+            },
+            {
+              "value": 3,
+              "label": "error_level_not_supported"
+            }
+          ]
+        },
+        {
+          "channel_ref": "i_o_channel",
+          "field_ref": "i_o_channel",
+          "bitfield_ref": "i_o_channel",
+          "enum": [
+            {
+              "value": 30,
+              "label": "not_applicable_do_not_use"
+            },
+            {
+              "value": 31,
+              "label": "input_channel_from_mains_supply"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 0,
+              "raw_max": 29,
+              "label": "output_channel_to_load"
+            }
+          ]
+        },
+        {
+          "channel_ref": "local_control",
+          "field_ref": "local_control",
+          "bitfield_ref": "local_control",
+          "enum": [
+            {
+              "value": 0,
+              "label": "local_control_disabled_not_supported"
+            },
+            {
+              "value": 1,
+              "label": "local_control_enabled"
+            }
+          ]
+        },
+        {
+          "channel_ref": "output_value",
+          "field_ref": "output_value",
+          "bitfield_ref": "output_value",
+          "enum": [
+            {
+              "value": 0,
+              "label": "output_value_0_or_off"
+            },
+            {
+              "value": 127,
+              "label": "output_value_not_valid_not_set"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 1,
+              "raw_max": 100,
+              "label": "output_value_1_to_100_or_on"
+            },
+            {
+              "raw_min": 101,
+              "raw_max": 126,
+              "label": "not_used"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "d2-01-00.cmd05.cmd_0x5_actuator_set_measurement",
+      "telegram_id": {
+        "rorg": "D2",
+        "cmd": "0x05"
+      },
+      "description": "CMD 0x5 - Actuator Set Measurement",
+      "fields": [
+        {
+          "name": "reserved_0_4",
+          "offset": 0,
+          "size": 4,
+          "shortcut": "",
+          "description": "Reserved field 0:4",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_20_1",
+          "offset": 20,
+          "size": 1,
+          "shortcut": "",
+          "description": "Reserved field 20:1",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "command",
+          "offset": 4,
+          "size": 4,
+          "shortcut": "CMD",
+          "description": "Command ID",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "report_measurement",
+          "offset": 8,
+          "size": 1,
+          "shortcut": "RM",
+          "description": "Report measurement",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "reset_measurement",
+          "offset": 9,
+          "size": 1,
+          "shortcut": "RE",
+          "description": "Reset measurement",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "measurement_mode",
+          "offset": 10,
+          "size": 1,
+          "shortcut": "e/p",
+          "description": "Measurement mode",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "i_o_channel",
+          "offset": 11,
+          "size": 5,
+          "shortcut": "I/O",
+          "description": "I/O channel",
+          "raw_min": 0,
+          "raw_max": 31,
+          "source": "payload"
+        },
+        {
+          "name": "measurement_delta_to_be_reported_lsb",
+          "offset": 16,
+          "size": 4,
+          "shortcut": "MD_LSB",
+          "description": "Measurement delta to be reported (LSB)",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "measurement_delta_to_be_reported_msb",
+          "offset": 24,
+          "size": 8,
+          "shortcut": "MD_MSB",
+          "description": "Measurement delta to be reported (MSB)",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "unit",
+          "offset": 21,
+          "size": 3,
+          "shortcut": "UN",
+          "description": "Unit",
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload"
+        },
+        {
+          "name": "maximum_time_between_two_subsequent_actuator_messages",
+          "offset": 32,
+          "size": 8,
+          "shortcut": "MAT",
+          "description": "Maximum time between two subsequent actuator messages",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "minimum_time_between_two_subsequent_actuator_messages",
+          "offset": 40,
+          "size": 8,
+          "shortcut": "MIT",
+          "description": "Minimum time between two subsequent actuator messages",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "command",
+          "field_ref": "command",
+          "bitfield_ref": "command",
+          "enum": [
+            {
+              "value": 5,
+              "label": "id_05"
+            }
+          ]
+        },
+        {
+          "channel_ref": "report_measurement",
+          "field_ref": "report_measurement",
+          "bitfield_ref": "report_measurement",
+          "enum": [
+            {
+              "value": 0,
+              "label": "report_measurement_query_only"
+            },
+            {
+              "value": 1,
+              "label": "report_measurement_query_auto_reporting"
+            }
+          ]
+        },
+        {
+          "channel_ref": "reset_measurement",
+          "field_ref": "reset_measurement",
+          "bitfield_ref": "reset_measurement",
+          "enum": [
+            {
+              "value": 0,
+              "label": "reset_measurement_not_active"
+            },
+            {
+              "value": 1,
+              "label": "reset_measurement_trigger_signal"
+            }
+          ]
+        },
+        {
+          "channel_ref": "measurement_mode",
+          "field_ref": "measurement_mode",
+          "bitfield_ref": "measurement_mode",
+          "enum": [
+            {
+              "value": 0,
+              "label": "energy_measurement"
+            },
+            {
+              "value": 1,
+              "label": "power_measurement"
+            }
+          ]
+        },
+        {
+          "channel_ref": "i_o_channel",
+          "field_ref": "i_o_channel",
+          "bitfield_ref": "i_o_channel",
+          "enum": [
+            {
+              "value": 30,
+              "label": "all_output_channels_supported_by_the_device"
+            },
+            {
+              "value": 31,
+              "label": "input_channel_from_mains_supply"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 0,
+              "raw_max": 29,
+              "label": "output_channel_to_load"
+            }
+          ]
+        },
+        {
+          "channel_ref": "measurement_delta_to_be_reported_lsb",
+          "field_ref": "measurement_delta_to_be_reported_lsb",
+          "bitfield_ref": "measurement_delta_to_be_reported_lsb",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 4095,
+            "scale_min": 0.0,
+            "scale_max": 4095.0
+          }
+        },
+        {
+          "channel_ref": "measurement_delta_to_be_reported_msb",
+          "field_ref": "measurement_delta_to_be_reported_msb",
+          "bitfield_ref": "measurement_delta_to_be_reported_msb",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 4095,
+            "scale_min": 0.0,
+            "scale_max": 4095.0
+          }
+        },
+        {
+          "channel_ref": "unit",
+          "field_ref": "unit",
+          "bitfield_ref": "unit",
+          "enum": [
+            {
+              "value": 0,
+              "label": "energy_ws"
+            },
+            {
+              "value": 1,
+              "label": "energy_wh"
+            },
+            {
+              "value": 2,
+              "label": "energy_kwh"
+            },
+            {
+              "value": 3,
+              "label": "power_w"
+            },
+            {
+              "value": 4,
+              "label": "power_kw"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 5,
+              "raw_max": 7,
+              "label": "not_used"
+            }
+          ]
+        },
+        {
+          "channel_ref": "maximum_time_between_two_subsequent_actuator_messages",
+          "field_ref": "maximum_time_between_two_subsequent_actuator_messages",
+          "bitfield_ref": "maximum_time_between_two_subsequent_actuator_messages",
+          "scale": {
+            "raw_min": 1,
+            "raw_max": 255,
+            "scale_min": 10.0,
+            "scale_max": 2550.0
+          },
+          "enum": [
+            {
+              "value": 0,
+              "label": "reserved"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 1,
+              "raw_max": 255,
+              "scale": {
+                "raw_min": 1,
+                "raw_max": 255,
+                "scale_min": 10.0,
+                "scale_max": 2550.0
+              },
+              "unit": "s"
+            }
+          ]
+        },
+        {
+          "channel_ref": "minimum_time_between_two_subsequent_actuator_messages",
+          "field_ref": "minimum_time_between_two_subsequent_actuator_messages",
+          "bitfield_ref": "minimum_time_between_two_subsequent_actuator_messages",
+          "scale": {
+            "raw_min": 1,
+            "raw_max": 255,
+            "scale_min": 1.0,
+            "scale_max": 255.0
+          },
+          "enum": [
+            {
+              "value": 0,
+              "label": "reserved"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 1,
+              "raw_max": 255,
+              "scale": {
+                "raw_min": 1,
+                "raw_max": 255,
+                "scale_min": 1.0,
+                "scale_max": 255.0
+              },
+              "unit": "s"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "d2-01-00.cmd06.cmd_0x6_actuator_measurement_query",
+      "telegram_id": {
+        "rorg": "D2",
+        "cmd": "0x06"
+      },
+      "description": "CMD 0x6 - Actuator Measurement Query",
+      "fields": [
+        {
+          "name": "reserved_0_4",
+          "offset": 0,
+          "size": 4,
+          "shortcut": "",
+          "description": "Reserved field 0:4",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "command",
+          "offset": 4,
+          "size": 4,
+          "shortcut": "CMD",
+          "description": "Command ID",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_8_2",
+          "offset": 8,
+          "size": 2,
+          "shortcut": "",
+          "description": "Reserved field 8:2",
+          "raw_min": 0,
+          "raw_max": 3,
+          "source": "payload"
+        },
+        {
+          "name": "query",
+          "offset": 10,
+          "size": 1,
+          "shortcut": "qu",
+          "description": "Query",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "i_o_channel",
+          "offset": 11,
+          "size": 5,
+          "shortcut": "I/O",
+          "description": "I/O channel",
+          "raw_min": 0,
+          "raw_max": 31,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "command",
+          "field_ref": "command",
+          "bitfield_ref": "command",
+          "enum": [
+            {
+              "value": 6,
+              "label": "id_06"
+            }
+          ]
+        },
+        {
+          "channel_ref": "query",
+          "field_ref": "query",
+          "bitfield_ref": "query",
+          "enum": [
+            {
+              "value": 0,
+              "label": "query_energy"
+            },
+            {
+              "value": 1,
+              "label": "query_power"
+            }
+          ]
+        },
+        {
+          "channel_ref": "i_o_channel",
+          "field_ref": "i_o_channel",
+          "bitfield_ref": "i_o_channel",
+          "enum": [
+            {
+              "value": 30,
+              "label": "all_output_channels_supported_by_the_device"
+            },
+            {
+              "value": 31,
+              "label": "input_channel_from_mains_supply"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 0,
+              "raw_max": 29,
+              "label": "output_channel_to_load"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "d2-01-00.cmd07.cmd_0x7_actuator_measurement_response",
+      "telegram_id": {
+        "rorg": "D2",
+        "cmd": "0x07"
+      },
+      "description": "CMD 0x7 - Actuator Measurement Response",
+      "fields": [
+        {
+          "name": "reserved_0_4",
+          "offset": 0,
+          "size": 4,
+          "shortcut": "",
+          "description": "Reserved field 0:4",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "command",
+          "offset": 4,
+          "size": 4,
+          "shortcut": "CMD",
+          "description": "Command ID",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "unit",
+          "offset": 8,
+          "size": 3,
+          "shortcut": "UN",
+          "description": "Unit",
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload"
+        },
+        {
+          "name": "i_o_channel",
+          "offset": 11,
+          "size": 5,
+          "shortcut": "I/O",
+          "description": "I/O channel",
+          "raw_min": 0,
+          "raw_max": 31,
+          "source": "payload"
+        },
+        {
+          "name": "measurement_value_4_bytes",
+          "offset": 16,
+          "size": 32,
+          "shortcut": "MV",
+          "description": "Measurement value (4 bytes)",
+          "raw_min": 0,
+          "raw_max": 4294967295,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "command",
+          "field_ref": "command",
+          "bitfield_ref": "command",
+          "enum": [
+            {
+              "value": 7,
+              "label": "id_07"
+            }
+          ]
+        },
+        {
+          "channel_ref": "unit",
+          "field_ref": "unit",
+          "bitfield_ref": "unit",
+          "enum": [
+            {
+              "value": 0,
+              "label": "energy_ws"
+            },
+            {
+              "value": 1,
+              "label": "energy_wh"
+            },
+            {
+              "value": 2,
+              "label": "energy_kwh"
+            },
+            {
+              "value": 3,
+              "label": "power_w"
+            },
+            {
+              "value": 4,
+              "label": "power_kw"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 5,
+              "raw_max": 7,
+              "label": "not_used"
+            }
+          ]
+        },
+        {
+          "channel_ref": "i_o_channel",
+          "field_ref": "i_o_channel",
+          "bitfield_ref": "i_o_channel",
+          "enum": [
+            {
+              "value": 30,
+              "label": "not_applicable_do_not_use"
+            },
+            {
+              "value": 31,
+              "label": "input_channel_from_mains_supply"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 0,
+              "raw_max": 29,
+              "label": "output_channel_to_load"
+            }
+          ]
+        },
+        {
+          "channel_ref": "measurement_value_4_bytes",
+          "field_ref": "measurement_value_4_bytes",
+          "bitfield_ref": "measurement_value_4_bytes"
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "d2-01-00.cmd08.cmd_0x8_actuator_set_pilot_wire_mode",
+      "telegram_id": {
+        "rorg": "D2",
+        "cmd": "0x08"
+      },
+      "description": "CMD 0x8 - Actuator Set Pilot Wire Mode",
+      "fields": [
+        {
+          "name": "reserved_0_4",
+          "offset": 0,
+          "size": 4,
+          "shortcut": "",
+          "description": "Reserved field 0:4",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_8_5",
+          "offset": 8,
+          "size": 5,
+          "shortcut": "",
+          "description": "Reserved field 8:5",
+          "raw_min": 0,
+          "raw_max": 31,
+          "source": "payload"
+        },
+        {
+          "name": "command",
+          "offset": 4,
+          "size": 4,
+          "shortcut": "CMD",
+          "description": "Command ID",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "pilotwire_mode",
+          "offset": 13,
+          "size": 3,
+          "shortcut": "PM",
+          "description": "Pilotwire mode",
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "command",
+          "field_ref": "command",
+          "bitfield_ref": "command",
+          "enum": [
+            {
+              "value": 8,
+              "label": "id_08"
+            }
+          ]
+        },
+        {
+          "channel_ref": "pilotwire_mode",
+          "field_ref": "pilotwire_mode",
+          "bitfield_ref": "pilotwire_mode",
+          "enum": [
+            {
+              "value": 0,
+              "label": "off"
+            },
+            {
+              "value": 1,
+              "label": "comfort"
+            },
+            {
+              "value": 2,
+              "label": "eco"
+            },
+            {
+              "value": 3,
+              "label": "anti_freeze"
+            },
+            {
+              "value": 4,
+              "label": "comfort_1"
+            },
+            {
+              "value": 5,
+              "label": "comfort_2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "d2-01-00.cmd09.cmd_0x9_actuator_pilot_wire_mode_query",
+      "telegram_id": {
+        "rorg": "D2",
+        "cmd": "0x09"
+      },
+      "description": "CMD 0x9 - Actuator Pilot Wire Mode Query",
+      "fields": [
+        {
+          "name": "reserved_0_4",
+          "offset": 0,
+          "size": 4,
+          "shortcut": "",
+          "description": "Reserved field 0:4",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "command",
+          "offset": 4,
+          "size": 4,
+          "shortcut": "CMD",
+          "description": "Command ID",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "command",
+          "field_ref": "command",
+          "bitfield_ref": "command",
+          "enum": [
+            {
+              "value": 9,
+              "label": "id_09"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "d2-01-00.cmd0a.cmd_0xa_actuator_pilot_wire_mode_response",
+      "telegram_id": {
+        "rorg": "D2",
+        "cmd": "0x0A"
+      },
+      "description": "CMD 0xA - Actuator Pilot Wire Mode Response",
+      "fields": [
+        {
+          "name": "reserved_0_4",
+          "offset": 0,
+          "size": 4,
+          "shortcut": "",
+          "description": "Reserved field 0:4",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_8_5",
+          "offset": 8,
+          "size": 5,
+          "shortcut": "",
+          "description": "Reserved field 8:5",
+          "raw_min": 0,
+          "raw_max": 31,
+          "source": "payload"
+        },
+        {
+          "name": "command",
+          "offset": 4,
+          "size": 4,
+          "shortcut": "CMD",
+          "description": "Command ID",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "pilotwire_mode",
+          "offset": 13,
+          "size": 3,
+          "shortcut": "PM",
+          "description": "Pilotwire mode",
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "command",
+          "field_ref": "command",
+          "bitfield_ref": "command",
+          "enum": [
+            {
+              "value": 10,
+              "label": "id_0a"
+            }
+          ]
+        },
+        {
+          "channel_ref": "pilotwire_mode",
+          "field_ref": "pilotwire_mode",
+          "bitfield_ref": "pilotwire_mode",
+          "enum": [
+            {
+              "value": 0,
+              "label": "off"
+            },
+            {
+              "value": 1,
+              "label": "comfort"
+            },
+            {
+              "value": 2,
+              "label": "eco"
+            },
+            {
+              "value": 3,
+              "label": "anti_freeze"
+            },
+            {
+              "value": 4,
+              "label": "comfort_1"
+            },
+            {
+              "value": 5,
+              "label": "comfort_2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "d2-01-00.cmd0b.cmd_0xb_actuator_set_external_interface_settings",
+      "telegram_id": {
+        "rorg": "D2",
+        "cmd": "0x0B"
+      },
+      "description": "CMD 0xB - Actuator Set External Interface Settings",
+      "fields": [
+        {
+          "name": "reserved_0_4",
+          "offset": 0,
+          "size": 4,
+          "shortcut": "",
+          "description": "Reserved field 0:4",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_8_3",
+          "offset": 8,
+          "size": 3,
+          "shortcut": "",
+          "description": "Reserved field 8:3",
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_51_5",
+          "offset": 51,
+          "size": 5,
+          "shortcut": "",
+          "description": "Reserved field 51:5",
+          "raw_min": 0,
+          "raw_max": 31,
+          "source": "payload"
+        },
+        {
+          "name": "command",
+          "offset": 4,
+          "size": 4,
+          "shortcut": "CMD",
+          "description": "Command ID",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "i_o_channel",
+          "offset": 11,
+          "size": 5,
+          "shortcut": "I/O",
+          "description": "I/O channel",
+          "raw_min": 0,
+          "raw_max": 31,
+          "source": "payload"
+        },
+        {
+          "name": "auto_off_timer",
+          "offset": 16,
+          "size": 16,
+          "shortcut": "AOT",
+          "description": "Auto OFF Timer",
+          "raw_min": 0,
+          "raw_max": 65535,
+          "source": "payload"
+        },
+        {
+          "name": "delay_off_timer",
+          "offset": 32,
+          "size": 16,
+          "shortcut": "DOT",
+          "description": "Delay OFF Timer",
+          "raw_min": 0,
+          "raw_max": 65535,
+          "source": "payload"
+        },
+        {
+          "name": "external_switch_push_button",
+          "offset": 48,
+          "size": 2,
+          "shortcut": "EBM",
+          "description": "External Switch/Push Button",
+          "raw_min": 0,
+          "raw_max": 3,
+          "source": "payload"
+        },
+        {
+          "name": "2_state_switch",
+          "offset": 50,
+          "size": 1,
+          "shortcut": "SWT",
+          "description": "2-state switch",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "command",
+          "field_ref": "command",
+          "bitfield_ref": "command",
+          "enum": [
+            {
+              "value": 11,
+              "label": "id_0b"
+            }
+          ]
+        },
+        {
+          "channel_ref": "i_o_channel",
+          "field_ref": "i_o_channel",
+          "bitfield_ref": "i_o_channel",
+          "enum": [
+            {
+              "value": 30,
+              "label": "all_output_channels_supported_by_the_device"
+            },
+            {
+              "value": 31,
+              "label": "input_channel_from_mains_supply"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 0,
+              "raw_max": 29,
+              "label": "output_channel_to_load"
+            }
+          ]
+        },
+        {
+          "channel_ref": "auto_off_timer",
+          "field_ref": "auto_off_timer",
+          "bitfield_ref": "auto_off_timer",
+          "scale": {
+            "raw_min": 1,
+            "raw_max": 65534,
+            "scale_min": 0.1,
+            "scale_max": 6553.4
+          },
+          "enum": [
+            {
+              "value": 0,
+              "label": "timer_deactivated"
+            },
+            {
+              "value": 65535,
+              "label": "does_not_modify_saved_value"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 1,
+              "raw_max": 65534,
+              "scale": {
+                "raw_min": 1,
+                "raw_max": 65534,
+                "scale_min": 0.1,
+                "scale_max": 6553.4
+              },
+              "unit": "s"
+            }
+          ]
+        },
+        {
+          "channel_ref": "delay_off_timer",
+          "field_ref": "delay_off_timer",
+          "bitfield_ref": "delay_off_timer",
+          "scale": {
+            "raw_min": 1,
+            "raw_max": 65534,
+            "scale_min": 0.1,
+            "scale_max": 6553.4
+          },
+          "enum": [
+            {
+              "value": 0,
+              "label": "timer_deactivated"
+            },
+            {
+              "value": 65535,
+              "label": "does_not_modify_saved_value"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 1,
+              "raw_max": 65534,
+              "scale": {
+                "raw_min": 1,
+                "raw_max": 65534,
+                "scale_min": 0.1,
+                "scale_max": 6553.4
+              },
+              "unit": "s"
+            }
+          ]
+        },
+        {
+          "channel_ref": "external_switch_push_button",
+          "field_ref": "external_switch_push_button",
+          "bitfield_ref": "external_switch_push_button",
+          "enum": [
+            {
+              "value": 0,
+              "label": "not_applicable"
+            },
+            {
+              "value": 1,
+              "label": "external_switch"
+            },
+            {
+              "value": 2,
+              "label": "external_push_button"
+            },
+            {
+              "value": 3,
+              "label": "auto_detect"
+            }
+          ]
+        },
+        {
+          "channel_ref": "2_state_switch",
+          "field_ref": "2_state_switch",
+          "bitfield_ref": "2_state_switch",
+          "enum": [
+            {
+              "value": 0,
+              "label": "change_of_key_state_sets_on_or_off"
+            },
+            {
+              "value": 1,
+              "label": "specific_on_off_positions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "d2-01-00.cmd0c.cmd_0xc_actuator_external_interface_settings_query",
+      "telegram_id": {
+        "rorg": "D2",
+        "cmd": "0x0C"
+      },
+      "description": "CMD 0xC - Actuator External Interface Settings Query",
+      "fields": [
+        {
+          "name": "reserved_0_4",
+          "offset": 0,
+          "size": 4,
+          "shortcut": "",
+          "description": "Reserved field 0:4",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_8_3",
+          "offset": 8,
+          "size": 3,
+          "shortcut": "",
+          "description": "Reserved field 8:3",
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload"
+        },
+        {
+          "name": "command",
+          "offset": 4,
+          "size": 4,
+          "shortcut": "CMD",
+          "description": "Command ID",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "i_o_channel",
+          "offset": 11,
+          "size": 5,
+          "shortcut": "I/O",
+          "description": "I/O channel",
+          "raw_min": 0,
+          "raw_max": 31,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "command",
+          "field_ref": "command",
+          "bitfield_ref": "command",
+          "enum": [
+            {
+              "value": 12,
+              "label": "id_0c"
+            }
+          ]
+        },
+        {
+          "channel_ref": "i_o_channel",
+          "field_ref": "i_o_channel",
+          "bitfield_ref": "i_o_channel",
+          "enum": [
+            {
+              "value": 30,
+              "label": "all_output_channels_supported_by_the_device"
+            },
+            {
+              "value": 31,
+              "label": "input_channel_from_mains_supply"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 0,
+              "raw_max": 29,
+              "label": "output_channel_to_load"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "d2-01-00.cmd0d.cmd_0xd_actuator_external_interface_settings_response",
+      "telegram_id": {
+        "rorg": "D2",
+        "cmd": "0x0D"
+      },
+      "description": "CMD 0xD - Actuator External Interface Settings Response",
+      "fields": [
+        {
+          "name": "reserved_0_4",
+          "offset": 0,
+          "size": 4,
+          "shortcut": "",
+          "description": "Reserved field 0:4",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_8_3",
+          "offset": 8,
+          "size": 3,
+          "shortcut": "",
+          "description": "Reserved field 8:3",
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_51_5",
+          "offset": 51,
+          "size": 5,
+          "shortcut": "",
+          "description": "Reserved field 51:5",
+          "raw_min": 0,
+          "raw_max": 31,
+          "source": "payload"
+        },
+        {
+          "name": "command",
+          "offset": 4,
+          "size": 4,
+          "shortcut": "CMD",
+          "description": "Command ID",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "i_o_channel",
+          "offset": 11,
+          "size": 5,
+          "shortcut": "I/O",
+          "description": "I/O channel",
+          "raw_min": 0,
+          "raw_max": 31,
+          "source": "payload"
+        },
+        {
+          "name": "auto_off_timer",
+          "offset": 16,
+          "size": 16,
+          "shortcut": "AOT",
+          "description": "Auto OFF Timer",
+          "raw_min": 0,
+          "raw_max": 65535,
+          "source": "payload"
+        },
+        {
+          "name": "delay_off_timer",
+          "offset": 32,
+          "size": 16,
+          "shortcut": "DOT",
+          "description": "Delay OFF Timer",
+          "raw_min": 0,
+          "raw_max": 65535,
+          "source": "payload"
+        },
+        {
+          "name": "external_switch_push_button",
+          "offset": 48,
+          "size": 2,
+          "shortcut": "EBM",
+          "description": "External Switch/Push Button",
+          "raw_min": 0,
+          "raw_max": 3,
+          "source": "payload"
+        },
+        {
+          "name": "2_state_switch",
+          "offset": 50,
+          "size": 1,
+          "shortcut": "SWT",
+          "description": "2-state switch",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "command",
+          "field_ref": "command",
+          "bitfield_ref": "command",
+          "enum": [
+            {
+              "value": 13,
+              "label": "id_0d"
+            }
+          ]
+        },
+        {
+          "channel_ref": "i_o_channel",
+          "field_ref": "i_o_channel",
+          "bitfield_ref": "i_o_channel",
+          "enum": [
+            {
+              "value": 30,
+              "label": "not_applicable"
+            },
+            {
+              "value": 31,
+              "label": "input_channel_from_mains_supply"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 0,
+              "raw_max": 29,
+              "label": "output_channel_to_load"
+            }
+          ]
+        },
+        {
+          "channel_ref": "auto_off_timer",
+          "field_ref": "auto_off_timer",
+          "bitfield_ref": "auto_off_timer",
+          "scale": {
+            "raw_min": 1,
+            "raw_max": 65534,
+            "scale_min": 0.1,
+            "scale_max": 6553.4
+          },
+          "enum": [
+            {
+              "value": 0,
+              "label": "timer_deactivated"
+            },
+            {
+              "value": 65535,
+              "label": "does_not_modify_saved_value"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 1,
+              "raw_max": 65534,
+              "scale": {
+                "raw_min": 1,
+                "raw_max": 65534,
+                "scale_min": 0.1,
+                "scale_max": 6553.4
+              },
+              "unit": "s"
+            }
+          ]
+        },
+        {
+          "channel_ref": "delay_off_timer",
+          "field_ref": "delay_off_timer",
+          "bitfield_ref": "delay_off_timer",
+          "scale": {
+            "raw_min": 1,
+            "raw_max": 65534,
+            "scale_min": 0.1,
+            "scale_max": 6553.4
+          },
+          "enum": [
+            {
+              "value": 0,
+              "label": "timer_deactivated"
+            },
+            {
+              "value": 65535,
+              "label": "does_not_modify_saved_value"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 1,
+              "raw_max": 65534,
+              "scale": {
+                "raw_min": 1,
+                "raw_max": 65534,
+                "scale_min": 0.1,
+                "scale_max": 6553.4
+              },
+              "unit": "s"
+            }
+          ]
+        },
+        {
+          "channel_ref": "external_switch_push_button",
+          "field_ref": "external_switch_push_button",
+          "bitfield_ref": "external_switch_push_button",
+          "enum": [
+            {
+              "value": 0,
+              "label": "not_applicable"
+            },
+            {
+              "value": 1,
+              "label": "external_switch"
+            },
+            {
+              "value": 2,
+              "label": "external_push_button"
+            },
+            {
+              "value": 3,
+              "label": "auto_detect"
+            }
+          ]
+        },
+        {
+          "channel_ref": "2_state_switch",
+          "field_ref": "2_state_switch",
+          "bitfield_ref": "2_state_switch",
+          "enum": [
+            {
+              "value": 0,
+              "label": "change_of_key_state_sets_on_or_off"
+            },
+            {
+              "value": 1,
+              "label": "specific_on_off_positions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "d2-01-00.cmd0f.cmd_0xf_ecid_0x00_actuator_set_dimming_limits",
+      "telegram_id": {
+        "rorg": "D2",
+        "cmd": "0x0F"
+      },
+      "description": "CMD 0xF / ECID 0x00 - Actuator Set Dimming Limits",
+      "fields": [
+        {
+          "name": "reserved_0_4",
+          "offset": 0,
+          "size": 4,
+          "shortcut": "",
+          "description": "Reserved field 0:4",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_21_4",
+          "offset": 21,
+          "size": 4,
+          "shortcut": "",
+          "description": "Reserved field 21:4",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_32_1",
+          "offset": 32,
+          "size": 1,
+          "shortcut": "",
+          "description": "Reserved field 32:1",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "command",
+          "offset": 4,
+          "size": 4,
+          "shortcut": "CMD",
+          "description": "Command ID",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "extended_command_id",
+          "offset": 8,
+          "size": 8,
+          "shortcut": "ECID",
+          "description": "Extended Command ID",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "i_o_channel",
+          "offset": 16,
+          "size": 5,
+          "shortcut": "I/O",
+          "description": "I/O Channel",
+          "raw_min": 0,
+          "raw_max": 31,
+          "source": "payload"
+        },
+        {
+          "name": "maximum_value",
+          "offset": 25,
+          "size": 7,
+          "shortcut": "MAXV",
+          "description": "Maximum Value",
+          "raw_min": 0,
+          "raw_max": 127,
+          "source": "payload"
+        },
+        {
+          "name": "minimum_value",
+          "offset": 33,
+          "size": 7,
+          "shortcut": "MINV",
+          "description": "Minimum Value",
+          "raw_min": 0,
+          "raw_max": 127,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "command",
+          "field_ref": "command",
+          "bitfield_ref": "command",
+          "enum": [
+            {
+              "value": 15,
+              "label": "id_f"
+            }
+          ]
+        },
+        {
+          "channel_ref": "extended_command_id",
+          "field_ref": "extended_command_id",
+          "bitfield_ref": "extended_command_id",
+          "enum": [
+            {
+              "value": 0,
+              "label": "id_00"
+            }
+          ]
+        },
+        {
+          "channel_ref": "i_o_channel",
+          "field_ref": "i_o_channel",
+          "bitfield_ref": "i_o_channel",
+          "enum": [
+            {
+              "value": 30,
+              "label": "all_output_channels_supported_by_the_device"
+            },
+            {
+              "value": 31,
+              "label": "reserved"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 0,
+              "raw_max": 29,
+              "label": "output_channel_to_load"
+            }
+          ]
+        },
+        {
+          "channel_ref": "maximum_value",
+          "field_ref": "maximum_value",
+          "bitfield_ref": "maximum_value",
+          "enum": [
+            {
+              "value": 0,
+              "label": "reserved"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 1,
+              "raw_max": 100,
+              "label": "set_maximum_value"
+            },
+            {
+              "raw_min": 101,
+              "raw_max": 127,
+              "label": "reserved"
+            }
+          ]
+        },
+        {
+          "channel_ref": "minimum_value",
+          "field_ref": "minimum_value",
+          "bitfield_ref": "minimum_value",
+          "ranges": [
+            {
+              "raw_min": 0,
+              "raw_max": 99,
+              "label": "set_minimum_value"
+            },
+            {
+              "raw_min": 100,
+              "raw_max": 127,
+              "label": "reserved"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "d2-01-00.cmd0f.cmd_0xf_ecid_0x01_actuator_dimming_limits_query",
+      "telegram_id": {
+        "rorg": "D2",
+        "cmd": "0x0F"
+      },
+      "description": "CMD 0xF / ECID 0x01 - Actuator Dimming Limits Query",
+      "fields": [
+        {
+          "name": "reserved_0_4",
+          "offset": 0,
+          "size": 4,
+          "shortcut": "",
+          "description": "Reserved field 0:4",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_21_3",
+          "offset": 21,
+          "size": 3,
+          "shortcut": "",
+          "description": "Reserved field 21:3",
+          "raw_min": 0,
+          "raw_max": 7,
+          "source": "payload"
+        },
+        {
+          "name": "command",
+          "offset": 4,
+          "size": 4,
+          "shortcut": "CMD",
+          "description": "Command ID",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "extended_command_id",
+          "offset": 8,
+          "size": 8,
+          "shortcut": "ECID",
+          "description": "Extended Command ID",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "i_o_channel",
+          "offset": 16,
+          "size": 5,
+          "shortcut": "I/O",
+          "description": "I/O Channel",
+          "raw_min": 0,
+          "raw_max": 31,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "command",
+          "field_ref": "command",
+          "bitfield_ref": "command",
+          "enum": [
+            {
+              "value": 15,
+              "label": "id_f"
+            }
+          ]
+        },
+        {
+          "channel_ref": "extended_command_id",
+          "field_ref": "extended_command_id",
+          "bitfield_ref": "extended_command_id",
+          "enum": [
+            {
+              "value": 1,
+              "label": "id_01"
+            }
+          ]
+        },
+        {
+          "channel_ref": "i_o_channel",
+          "field_ref": "i_o_channel",
+          "bitfield_ref": "i_o_channel",
+          "enum": [
+            {
+              "value": 30,
+              "label": "all_output_channels_supported_by_the_device"
+            },
+            {
+              "value": 31,
+              "label": "reserved"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 0,
+              "raw_max": 29,
+              "label": "single_channel_to_load"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "d2-01-00.cmd0f.cmd_0xf_ecid_0x02_actuator_dimming_limits_response",
+      "telegram_id": {
+        "rorg": "D2",
+        "cmd": "0x0F"
+      },
+      "description": "CMD 0xF / ECID 0x02 - Actuator Dimming Limits Response",
+      "fields": [
+        {
+          "name": "reserved_0_4",
+          "offset": 0,
+          "size": 4,
+          "shortcut": "",
+          "description": "Reserved field 0:4",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_21_4",
+          "offset": 21,
+          "size": 4,
+          "shortcut": "",
+          "description": "Reserved field 21:4",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_32_1",
+          "offset": 32,
+          "size": 1,
+          "shortcut": "",
+          "description": "Reserved field 32:1",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "command",
+          "offset": 4,
+          "size": 4,
+          "shortcut": "CMD",
+          "description": "Command ID",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload"
+        },
+        {
+          "name": "extended_command_id",
+          "offset": 8,
+          "size": 8,
+          "shortcut": "ECID",
+          "description": "Extended Command ID",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "i_o_channel",
+          "offset": 16,
+          "size": 5,
+          "shortcut": "I/O",
+          "description": "I/O Channel",
+          "raw_min": 0,
+          "raw_max": 31,
+          "source": "payload"
+        },
+        {
+          "name": "maximum_value",
+          "offset": 25,
+          "size": 7,
+          "shortcut": "MAXV",
+          "description": "Maximum Value",
+          "raw_min": 0,
+          "raw_max": 127,
+          "source": "payload"
+        },
+        {
+          "name": "minimum_value",
+          "offset": 33,
+          "size": 7,
+          "shortcut": "MINV",
+          "description": "Minimum Value",
+          "raw_min": 0,
+          "raw_max": 127,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "command",
+          "field_ref": "command",
+          "bitfield_ref": "command",
+          "enum": [
+            {
+              "value": 15,
+              "label": "id_f"
+            }
+          ]
+        },
+        {
+          "channel_ref": "extended_command_id",
+          "field_ref": "extended_command_id",
+          "bitfield_ref": "extended_command_id",
+          "enum": [
+            {
+              "value": 2,
+              "label": "id_02"
+            }
+          ]
+        },
+        {
+          "channel_ref": "i_o_channel",
+          "field_ref": "i_o_channel",
+          "bitfield_ref": "i_o_channel",
+          "enum": [
+            {
+              "value": 30,
+              "label": "all_output_channels_supported_by_the_device"
+            },
+            {
+              "value": 31,
+              "label": "reserved"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 0,
+              "raw_max": 29,
+              "label": "output_channel_to_load"
+            }
+          ]
+        },
+        {
+          "channel_ref": "maximum_value",
+          "field_ref": "maximum_value",
+          "bitfield_ref": "maximum_value",
+          "enum": [
+            {
+              "value": 0,
+              "label": "reserved"
+            }
+          ],
+          "ranges": [
+            {
+              "raw_min": 1,
+              "raw_max": 100,
+              "label": "set_maximum_value"
+            },
+            {
+              "raw_min": 101,
+              "raw_max": 127,
+              "label": "reserved"
+            }
+          ]
+        },
+        {
+          "channel_ref": "minimum_value",
+          "field_ref": "minimum_value",
+          "bitfield_ref": "minimum_value",
+          "ranges": [
+            {
+              "raw_min": 0,
+              "raw_max": 99,
+              "label": "set_minimum_value"
+            },
+            {
+              "raw_min": 100,
+              "raw_max": 127,
+              "label": "reserved"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tx": {
+    "aggregation_window_seconds": 10
+  }
+}

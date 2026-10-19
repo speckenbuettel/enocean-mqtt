@@ -62,3 +62,69 @@ an anomalous RORG may require a bounded diagnostic capture of complete ESP3
 frames, receiver/firmware identification and comparison with an independent
 receiver. Keep installation-specific captures private and collect only the
 smallest relevant interval.
+## RX screening and suspect telegrams
+
+The gateway screens received telegrams before semantic EEP decoding. This does
+not verify the original radio checksum: RADIO_ERP1 does not deliver that radio
+hash to the host, and the archived canonical ERP1 bytes do not contain it. ESP3
+CRC validation is a separate serial-link check. Passing screening does not prove
+that the radio payload is correct.
+
+The following classifications are deliberately separate:
+
+| Classification | Meaning | Normal data decoding |
+|---|---|---|
+| `suspect` | Invalid structure, fixed payload length, or unrecognized RORG | Skipped |
+| `profile_mismatch` | Valid RORG not covered by any RX identity in the assigned profile | Skipped; this can be a legitimate alternate telegram type |
+| `teach_in_candidate` | A5/D5 LRN bit is clear | Normal data decoding skipped; unknown senders remain discoverable; intentional Teach-In is not proven |
+| `sender_id_candidate` | Unknown sender differs by one or two bits from a currently configured physical device ID | Hint only; no suppression or reclassification |
+
+All configured RX identities are considered, so a profile can cover multiple
+RORGs. SIGNAL remains independent of the assigned EEP. Unsupported RORG bytes are
+retained verbatim in the raw record and diagnostic event but are not added as
+valid RORG categories or unknown devices by the live pipeline. No bytes or device
+assignments are automatically corrected. Structural screening cannot detect all
+plausible-but-wrong values or prove ownership of an unknown sender.
+
+Live busmonitor RX events include additive `quality` metadata when screened as
+above. History views also assess structure/profile compatibility on read using
+the current profile; this does not rewrite old telegrams. Diagnosis metadata says
+`corruption_proven: false` and gives the machine-readable `reason`. Real decoder
+or registry/schema failures still remain errors; the known non-data/profile
+rejections no longer create decoder tracebacks.
+
+### Collection and monitoring
+
+The Metrics page shows four screening counters and links to retained diagnostics.
+The same counters and per-reason totals are published as
+`decoder.telegram_quality` in the existing gateway/busmonitor MQTT metrics. They
+count the current runtime session; replay statistics remain separate.
+
+`GET /api/v1/runtime/diagnostics/telegrams?limit=100` reads retained raw evidence
+and assessment metadata. `limit` is 1..500; optional `classification` selects one
+of the four classifications. Existing API authentication/read permissions apply.
+The response includes `diagnostics`, `retained_total` and counts by classification.
+
+SQLite adds a separate `telegram_diagnostics` table (schema version 3), retaining
+the newest 10,000 diagnostic records across restarts. Raw history remains under
+its existing retention policy. Invalid hexadecimal input is kept only in the
+diagnostic JSON, not converted to a BLOB. Existing live/replay persistence flags
+and `exclude_from_sqlite` also apply to this collection: excluded senders still
+affect session counters and live events, but their raw evidence is not persisted.
+
+### Auditing foreign sender IDs
+
+In development checkouts containing `tools/diagnostics/audit_foreign_senders.py`,
+this optional tool compares
+all foreign senders with the current physical device registry in a read-only
+SQLite snapshot. Run it with `--database`, `--devices` and `--foreign-devices` paths;
+it writes a JSON report to standard output. Store this installation-specific
+report locally, not in public sources or issues.
+
+The report distinguishes insufficient stored data, ID similarity alone, temporal
+corroboration, and no close-ID evidence. Corroboration requires at most two ID-bit
+differences, equal RORG/payload and equal upper status nibble within one second.
+The lower repeater nibble may differ. Neither similarity nor corroboration is a
+proof of bit corruption. Exclusions/retention limit the available history; zero
+or one stored telegram does not establish the sender's lifetime transmission
+count. The tool never changes foreign classifications, device IDs or raw history.

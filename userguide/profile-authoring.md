@@ -1,9 +1,9 @@
 # Create a profile with Codex
 
-Workflow version: **1.7.0**, 2026-10-08. This version identifies the authoring
+Workflow version: **1.9.0**, 2026-10-19. This version identifies the authoring
 instructions, not the runtime release or an EnOcean specification version.
 
-Use the [versioned prompt](prompts/eep-profile-v1.7.md) to create one standard EEP
+Use the [versioned prompt](prompts/eep-profile-v1.9.md) to create one standard EEP
 or manufacturer-specific profile directly from its sources. The compiler is not
 required. Every output is initially a review candidate, not a supported profile.
 
@@ -61,7 +61,7 @@ without unnecessary installation identifiers.
 
 ## 2. Start the request
 
-Copy the entire [prompt v1.7](prompts/eep-profile-v1.7.md) into a Codex chat attached
+Copy the entire [prompt v1.9](prompts/eep-profile-v1.9.md) into a Codex chat attached
 to the checkout. Complete the input block with actual paths. The profile identifier
 is entered once; Codex derives the per-profile JSON/PDF paths and output filename.
 Explicit source paths override the conventional layout for manufacturer documents
@@ -84,6 +84,13 @@ Codex may ask targeted questions. Answering a question approves only the specifi
 profile/value; it does not change the global workbook unless separately requested.
 
 ## 3. Review and verify
+
+Prompt v1.9.0 requires exact decimal arithmetic for numeric metadata and checks
+of the saved JSON, not only the decoder output. For example, 5.1/255 must produce
+`value_resolution: 0.02` and `step: 0.02`. Non-terminating ratios use a documented
+approximation; output precision is derived from the exact ratio independently.
+Verify final-file/ZIP equality and fix the authoring source so regeneration keeps
+the correction. [v1.8.0](prompts/eep-profile-v1.8.md) remains available for reproducibility.
 
 Prompt v1.7.0 makes the CSV the primary source for profile-level descriptions.
 Verify the literal source cells and derived combined description against the

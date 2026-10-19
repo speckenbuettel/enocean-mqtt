@@ -1,6 +1,6 @@
 # Proprietary Profile List
 
-Profile selection for version 0.9.0.
+Profile selection for version 0.10.0.
 
 Only profiles selected for this snapshot are listed. Status columns preserve
 maintained source claims; selection or compilation is not hardware validation.

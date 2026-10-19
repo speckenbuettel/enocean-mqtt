@@ -205,6 +205,11 @@ function renderMetrics(busmonitor, gateway) {
   const rx = busmonitor.rx || {};
   const tx = busmonitor.tx || {};
   const decoder = busmonitor.decoder || {};
+  const quality = decoder.telegram_quality || {};
+  text('suspectTelegrams', number(quality.suspect_total));
+  text('profileMismatchTelegrams', number(quality.profile_mismatch_total));
+  text('teachInCandidates', number(quality.teach_in_candidates_total));
+  text('senderIdCandidates', number(quality.sender_id_candidates_total));
   const unknown = busmonitor.unknown_devices || {};
   const devices = gateway.devices || {};
 

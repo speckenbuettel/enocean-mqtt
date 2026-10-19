@@ -1,0 +1,375 @@
+{
+  "profile_type": "standard",
+  "eep": "A5-08-02",
+  "rorg": "A5",
+  "func": "08",
+  "type": "02",
+  "func_description": "Light, Temperature and Occupancy Sensor",
+  "type_description": "Range 0 lx to 1020 lx, 0 °C to +51 °C and Occupancy Button",
+  "source": "EnOcean Equipment Profiles",
+  "source_version": "2.6.8",
+  "sources": [
+    "enocean/eeps/eep268.xml",
+    "eep/eep-list.csv",
+    "eep/semantic-role-mapping.xlsx",
+    "enocean/eeps/json/A5-08-02.json",
+    "enocean/eeps/ip/A5-08-02_ip.pdf"
+  ],
+  "direction": "unidirectional",
+  "device_class": "sensor",
+  "channels": [
+    {
+      "name": "supply_voltage",
+      "display_name": null,
+      "source_key": "supplyVoltage",
+      "description": "Supply voltage (linear)",
+      "function_group": "from",
+      "semantic_role": "device.supply_voltage.measurement",
+      "object_type": "measurement",
+      "semantic_attributes": {},
+      "data_type": "float",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "required_for_snapshot": true,
+        "managed": false
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "unit": "V",
+      "value_resolution": 0.02,
+      "value_precision": 2,
+      "ranges": [
+        {
+          "min": 0,
+          "max": 5.1,
+          "step": 0.02,
+          "unit": "V"
+        }
+      ]
+    },
+    {
+      "name": "illumination",
+      "display_name": null,
+      "source_key": "illumination",
+      "description": "Illumination (linear)",
+      "function_group": "from",
+      "semantic_role": "environment.illuminance.measurement",
+      "object_type": "measurement",
+      "semantic_attributes": {},
+      "data_type": "float",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "required_for_snapshot": true,
+        "managed": false
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "unit": "lx",
+      "value_resolution": 4.0,
+      "value_precision": 0,
+      "ranges": [
+        {
+          "min": 0,
+          "max": 1020,
+          "step": 4.0,
+          "unit": "lx"
+        }
+      ]
+    },
+    {
+      "name": "temperature",
+      "display_name": null,
+      "source_key": "temperature",
+      "description": "Temperature (linear)",
+      "function_group": "from",
+      "semantic_role": "climate.temperature.measurement",
+      "object_type": "measurement",
+      "semantic_attributes": {},
+      "data_type": "float",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "required_for_snapshot": true,
+        "managed": false
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "unit": "°C",
+      "value_resolution": 0.2,
+      "value_precision": 1,
+      "ranges": [
+        {
+          "min": 0,
+          "max": 51,
+          "step": 0.2,
+          "unit": "°C"
+        }
+      ]
+    },
+    {
+      "name": "motion_detected",
+      "display_name": null,
+      "source_key": "motionDetected",
+      "description": "PIR Status",
+      "function_group": "from",
+      "semantic_role": "security.motion.state",
+      "object_type": "state",
+      "semantic_attributes": {},
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "required_for_snapshot": true,
+        "managed": false
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "motion_detected"
+        },
+        {
+          "value": 1,
+          "label": "no_motion"
+        }
+      ]
+    },
+    {
+      "name": "occupancy_button",
+      "display_name": null,
+      "source_key": "occupancyButton",
+      "description": "occupancy button",
+      "function_group": "from",
+      "semantic_role": "security.occupancy.state",
+      "object_type": "state",
+      "semantic_attributes": {},
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "required_for_snapshot": true,
+        "managed": false
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "pressed"
+        },
+        {
+          "value": 1,
+          "label": "released"
+        }
+      ]
+    }
+  ],
+  "messages": [],
+  "telegrams": [
+    {
+      "telegram_type_id": "a5-08-02.data",
+      "telegram_id": {
+        "rorg": "A5"
+      },
+      "fields": [
+        {
+          "name": "supply_voltage",
+          "offset": 0,
+          "size": 8,
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "illumination",
+          "offset": 8,
+          "size": 8,
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "temperature",
+          "offset": 16,
+          "size": 8,
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "unused_24",
+          "offset": 24,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_25",
+          "offset": 25,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_26",
+          "offset": 26,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_27",
+          "offset": 27,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "learn",
+          "offset": 28,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        },
+        {
+          "name": "unused_29",
+          "offset": 29,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "motion_detected",
+          "offset": 30,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "occupancy_button",
+          "offset": 31,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "supply_voltage",
+          "field_ref": "supply_voltage",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 255,
+            "scale_min": 0,
+            "scale_max": 5.1
+          }
+        },
+        {
+          "channel_ref": "illumination",
+          "field_ref": "illumination",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 255,
+            "scale_min": 0,
+            "scale_max": 1020
+          }
+        },
+        {
+          "channel_ref": "temperature",
+          "field_ref": "temperature",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 255,
+            "scale_min": 0,
+            "scale_max": 51
+          }
+        },
+        {
+          "channel_ref": "motion_detected",
+          "field_ref": "motion_detected"
+        },
+        {
+          "channel_ref": "occupancy_button",
+          "field_ref": "occupancy_button"
+        }
+      ],
+      "constraints": [
+        {
+          "field": "learn",
+          "equals": 1
+        }
+      ]
+    }
+  ],
+  "function_groups": [
+    {
+      "name": "from",
+      "title": "Sensor values",
+      "direction": "from",
+      "functions": [
+        "supply_voltage",
+        "illumination",
+        "temperature",
+        "motion_detected",
+        "occupancy_button"
+      ]
+    }
+  ],
+  "metadata": {
+    "authoring_prompt": "v1.8",
+    "hardware_tested": false
+  },
+  "description": "Light, Temperature and Occupancy Sensor, Range 0 lx to 1020 lx, 0 °C to +51 °C and Occupancy Button"
+}

@@ -30,6 +30,8 @@ from fastapi.templating import Jinja2Templates
 
 from enocean_mqtt.datapoints import DatapointRegistry
 from enocean_mqtt.devices.foreign_registry import foreign_registry
+from enocean_mqtt.devices.gateway_decode import decode_gateway_payload
+from enocean_mqtt.devices.gateways import gateway_registry
 from enocean_mqtt.devices.projection import ApiDeviceRegistry
 from enocean_mqtt.eep.decoder import EEPDecodeError
 from enocean_mqtt.eep.json_registry import (
@@ -613,7 +615,7 @@ def _hex_or_none(value: Any) -> str | None:
     return text.upper()
 
 
-def _load_device_index() -> dict[str, dict[str, Any]]:
+def _load_physical_device_index() -> dict[str, dict[str, Any]]:
     if not DEVICES_FILE.exists():
         return {}
 
@@ -645,6 +647,18 @@ def _load_device_index() -> dict[str, dict[str, Any]]:
     return device_index
 
 
+def _load_device_index() -> dict[str, dict[str, Any]]:
+    index = _load_physical_device_index()
+    for gateway in gateway_registry(DEVICES_FILE.parent / "gateways.json").snapshot().values():
+        for offset in range(gateway.sender_count):
+            sender_id = f"{int(gateway.base_id, 16) + offset:08X}"
+            previous = index.get(sender_id, {})
+            index[sender_id] = gateway.sender_summary(
+                sender_id, previous.get("profile") or previous.get("eep"),
+            )
+    return index
+
+
 def _device_summary(
     sender_id: Any,
     device_index: dict[str, dict[str, Any]],
@@ -669,6 +683,11 @@ def _device_summary(
     }
     summary["known"] = True
     summary["sender_id"] = normalized_sender_id
+    if device.get("device_class") == "gateway":
+        summary["device_class"] = "gateway"
+        summary["gateway_base_id"] = device["gateway_base_id"]
+        for key in ("gateway_name", "assignment_status", "profile_source", "offset", "configured"):
+            summary[key] = device.get(key)
 
     return summary
 
@@ -687,6 +706,15 @@ def _decode_telegram(
     device_index: dict[str, dict[str, Any]],
 ) -> tuple[dict[str, Any] | None, str | None]:
     rorg = str(telegram.get("rorg") or "").upper()
+    from enocean_mqtt.esp3.telegram_quality import assess_telegram
+
+    assessment = assess_telegram(
+        rorg=rorg, data=telegram.get("data"), sender_id=telegram.get("sender_id"),
+        status=telegram.get("erp1_status"), direction=telegram.get("direction") or "rx",
+    )
+    if assessment is not None and assessment.skip_decode:
+        telegram["quality"] = assessment.to_payload()
+        return None, None
     if rorg == "D0" or rorg not in RORG_NAMES:
         return None, None
     normalized_sender_id = _normalize_sender_id(telegram.get("sender_id"))
@@ -701,7 +729,29 @@ def _decode_telegram(
 
     profile = device.get("profile") or device.get("eep")
 
+    if device.get("device_class") == "gateway":
+        outcome, command, error = decode_gateway_payload(
+            profile, _hex_or_none(telegram.get("data")), telegram.get("rorg"),
+            _hex_or_none(telegram.get("erp1_status")),
+        )
+        telegram["decode_status"] = outcome
+        if command is None:
+            return None, error
+        return {
+            "profile": profile, "eep": command.eep, "profile_direction": "tx",
+            "telegram_type_id": command.telegram_type_id, "fields": command.fields,
+            "status_fields": command.status_fields,
+            "channels": {
+                name: {"value": value.published_value, "raw_value": value.raw_value,
+                       "meaning": value.meaning, "unit": value.unit,
+                       "data_type": value.data_type, "semantic_role": value.semantic_role}
+                for name, value in command.values.items()
+            },
+        }, None
+
     if not profile:
+        if device.get("device_class") == "gateway":
+            return None, None
         return None, "Known device has no profile/eep assignment"
 
     payload_hex = _hex_or_none(telegram.get("data"))
@@ -713,12 +763,21 @@ def _decode_telegram(
 
     try:
         eep_definition = load_eep_definition(str(profile))
+        assessment = assess_telegram(
+            rorg=rorg, data=payload_hex, sender_id=normalized_sender_id,
+            status=status_hex, direction=telegram.get("direction") or "rx",
+            definition=eep_definition,
+        )
+        if assessment is not None and assessment.skip_decode:
+            telegram["quality"] = assessment.to_payload()
+            return None, None
         decoded = decode_runtime_with_definition(
             eep_definition=eep_definition,
             payload_hex=payload_hex,
             status_hex=status_hex,
             telegram_id=None,
             rorg=telegram.get("rorg"),
+            profile_direction="tx" if device.get("device_class") == "gateway" else "rx",
             external_context={
                 "direction": telegram.get("direction"),
                 "sender_id": normalized_sender_id,
@@ -787,6 +846,15 @@ def _normalize_telegram_payload(
     telegram["raw_telegram"] = _hex_or_none(telegram.get("raw_telegram"))
     telegram["data"] = _hex_or_none(telegram.get("data"))
     telegram["erp1_status"] = _hex_or_none(telegram.get("erp1_status"))
+    from enocean_mqtt.esp3.telegram_quality import assess_telegram
+
+    assessment = assess_telegram(
+        rorg=telegram.get("rorg"), data=telegram["data"],
+        sender_id=telegram.get("sender_id"), status=telegram["erp1_status"],
+        direction=telegram.get("direction") or "rx", known_sender_ids=device_index,
+    )
+    if assessment is not None:
+        telegram["quality"] = assessment.to_payload()
     rorg = str(telegram.get("rorg") or "").upper()
     data = telegram["data"] or ""
     telegram["contains_teach_in"] = bool(
@@ -818,6 +886,11 @@ def _normalize_telegram_payload(
         DEVICES_FILE.parent / "foreign-devices.json"
     ).snapshot()
     telegram["device"] = _device_summary(normalized_sender_id, device_index)
+    device = device_index.get(normalized_sender_id or "", {})
+    telegram["gateway_base_id"] = device.get("gateway_base_id")
+    telegram["gateway_channel_unknown"] = (
+        device.get("device_class") == "gateway" and device.get("assignment_status") == "unknown"
+    )
     telegram.update(radio_diagnostics(telegram.get("rorg"), telegram.get("data")))
 
     decoded = None
@@ -827,7 +900,15 @@ def _normalize_telegram_payload(
         decoded, decode_error = _decode_telegram(telegram, device_index)
 
     telegram["decoded_tooltip"] = _decoded_tooltip(decoded, decode_error)
+    if telegram["gateway_channel_unknown"] and not device.get("profile"):
+        telegram["decoded_tooltip"] = "Gateway known; channel profile not assigned"
     telegram["decode_error"] = decode_error
+    if "quality" in telegram:
+        quality = telegram["quality"]
+        telegram["decoded_tooltip"] = (
+            f"RX screening: {quality['classification']} ({quality['reason']}); "
+            "corruption not proven"
+        )
     if "signal" in telegram:
         signal = telegram["signal"]
         telegram["decoded_tooltip"] = "\n".join(
@@ -937,16 +1018,21 @@ class SQLiteTelegramQuery:
                 parameters.extend(excluded_foreign_ids)
 
         if sender_id:
-            sender_values = [
-                normalized
-                for value in sender_id.split(",")
-                if (normalized := _normalize_sender_id(value))
-            ]
-
-            if sender_values:
-                placeholders = ", ".join("?" for _ in sender_values)
-                conditions.append(f"sender_id IN ({placeholders})")
-                parameters.extend(sender_values)
+            selection_clauses = []
+            gateways = gateway_registry(DEVICES_FILE.parent / "gateways.json").snapshot()
+            for value in sender_id.split(","):
+                if value.lower().startswith("gateway:"):
+                    base = value.split(":", 1)[1].strip().upper()
+                    gateway = gateways.get(base)
+                    if gateway is None:
+                        raise HTTPException(status_code=422, detail="Unknown gateway selection")
+                    selection_clauses.append("UPPER(sender_id) BETWEEN ? AND ?")
+                    parameters.extend([base, f"{int(base, 16) + gateway.sender_count - 1:08X}"])
+                elif normalized := _normalize_sender_id(value):
+                    selection_clauses.append("UPPER(sender_id) = ?")
+                    parameters.append(normalized)
+            if selection_clauses:
+                conditions.append("(" + " OR ".join(selection_clauses) + ")")
 
         if rorg:
             rorg_values = [
@@ -1317,14 +1403,22 @@ def _busmonitor_devices_payload(
         device_index = {
             key: device for key, device in device_index.items() if key not in foreign_ids
         }
-    return {
-        "devices": [
+    devices = [
             {**device, "known": device["sender_id"] in known_ids,
              "foreign_device": device["sender_id"] in foreign_ids}
             for device in _device_list(device_index)
-        ],
-        "count": len(device_index),
-    }
+            if device.get("device_class") != "gateway"
+    ]
+    if device_types is None or "known" in _selected_device_types(device_types):
+        devices.extend({
+            "sender_id": gateway.base_id, "device_name": gateway.name,
+            "device_class": "gateway", "gateway_base_id": gateway.base_id,
+            "selection_id": f"gateway:{gateway.base_id}",
+            "sender_count": gateway.sender_count, "known": True, "foreign_device": False,
+        } for gateway in gateway_registry(
+            DEVICES_FILE.parent / "gateways.json"
+        ).snapshot().values())
+    return {"devices": devices, "count": len(devices)}
 
 
 def _runtime_commands_payload() -> dict[str, Any]:
@@ -2030,6 +2124,18 @@ def get_runtime_status() -> dict[str, Any]:
 @app.get("/api/v1/runtime/diagnostics")
 def get_runtime_diagnostics() -> dict[str, Any]:
     return _runtime_diagnostics_payload()
+
+
+@app.get("/api/v1/runtime/diagnostics/telegrams")
+def get_telegram_diagnostics(
+    limit: int = Query(100, ge=1, le=500),
+    classification: str | None = Query(None, pattern=(
+        "^(suspect|profile_mismatch|teach_in_candidate|sender_id_candidate)$"
+    )),
+) -> dict[str, Any]:
+    from enocean_mqtt.storage.telegram_diagnostics import read_telegram_diagnostics
+
+    return read_telegram_diagnostics(SQLITE_DATABASE, limit, classification)
 
 
 @app.get("/api/v1/interfaces")

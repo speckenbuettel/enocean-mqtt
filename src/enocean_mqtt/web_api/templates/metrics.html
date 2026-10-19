@@ -52,6 +52,7 @@
       </article>
     </section>
 
+
     <section class="compact-card metrics-chart-section">
       <div class="card-heading metrics-chart-section-heading">
         <h2>Telegram Activity</h2>
@@ -149,9 +150,22 @@
         <div class="observation-raw"><dt>Last RX</dt><dd id="lastRx">–</dd></div>
       </dl>
     </section>
+
+    <section class="compact-card">
+      <div class="card-heading"><h2>RX Telegram Screening</h2>
+        <a href="/api/v1/runtime/diagnostics/telegrams" target="_blank" rel="noopener">Retained diagnostics (JSON)</a>
+      </div>
+      <p>Suspicion is not proof of corruption. Counters cover this runtime session.</p>
+      <dl class="compact-list">
+        <div><dt>Suspect structure / RORG</dt><dd id="suspectTelegrams">–</dd></div>
+        <div><dt>Profile mismatch</dt><dd id="profileMismatchTelegrams">–</dd></div>
+        <div><dt>Teach-In candidates</dt><dd id="teachInCandidates">–</dd></div>
+        <div><dt>Similar sender IDs (hint only)</dt><dd id="senderIdCandidates">–</dd></div>
+      </dl>
+    </section>
   </div>
 {% endblock %}
 
 {% block scripts %}
-  <script src="/static/js/metrics.js?v=20261013-1"></script>
+  <script src="/static/js/metrics.js?v={{ metrics_script_version }}"></script>
 {% endblock %}

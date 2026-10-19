@@ -146,6 +146,13 @@ def _load_dependency(data: dict[str, Any] | None) -> DependencyDefinition | None
     if not data:
         return None
 
+    try:
+        from enocean_mqtt.eep.numeric_conditions import validate_bounds
+
+        validate_bounds(data.get("gte"), data.get("lte"))
+    except ValueError as exc:
+        raise EEPRegistryError(f"Invalid dependency bounds: {exc}") from exc
+
     return DependencyDefinition(
         field=data["field"],
         source=data.get("source", "field"),
@@ -153,6 +160,8 @@ def _load_dependency(data: dict[str, Any] | None) -> DependencyDefinition | None
         not_equals=data.get("not_equals"),
         values=data.get("values", []),
         metadata=data.get("metadata", {}),
+        gte=data.get("gte"),
+        lte=data.get("lte"),
     )
 
 

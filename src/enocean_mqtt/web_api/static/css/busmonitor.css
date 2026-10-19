@@ -266,7 +266,22 @@ label[for="customRorgEnabled"] {
 }
 
 .busmonitor-main tr.known-device:hover {
-  background: var(--color-known-device-hover);
+  background: var(--color-known-device);
+  outline: 1px solid var(--palette-blue);
+  outline-offset: -1px;
+}
+
+.busmonitor-main tr.gateway-channel-unknown {
+  background: var(--color-gateway-channel-unknown);
+}
+
+.busmonitor-main tr.gateway-channel-unknown:hover {
+  outline: 1px solid var(--palette-blue);
+  outline-offset: -1px;
+}
+
+.busmonitor-color-legend .legend-gateway-unknown {
+  background: var(--color-gateway-channel-unknown);
 }
 
 .busmonitor-main tr.foreign-device {
@@ -284,6 +299,15 @@ label[for="customRorgEnabled"] {
 
 .busmonitor-main tr.teach-in-telegram:hover {
   background: rgb(214 180 90 / 28%);
+}
+
+.busmonitor-main tr.suspect-telegram {
+  background: var(--color-suspect-telegram, #d8c5ee);
+  border-left: 4px solid var(--color-suspect-telegram-border, #79539c);
+}
+
+.busmonitor-main tr.suspect-telegram:hover {
+  background: var(--color-suspect-telegram-hover, #ccb0e8);
 }
 
 .busmonitor-main tr.decode-error {
@@ -322,6 +346,7 @@ label[for="customRorgEnabled"] {
   background: var(--color-foreign-device, var(--palette-silver, #96A5AF));
 }
 .busmonitor-color-legend .legend-teach-in { background: var(--color-teach-in); }
+.busmonitor-color-legend .legend-suspect { background: var(--color-suspect-telegram, #d8c5ee); }
 .busmonitor-color-legend .legend-error { background: var(--color-error); }
 .busmonitor-color-legend small { color: var(--color-primary-muted); }
 

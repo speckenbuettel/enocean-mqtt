@@ -1,0 +1,458 @@
+{
+  "profile_type": "standard",
+  "eep": "A5-38-08",
+  "rorg": "A5",
+  "func": "38",
+  "type": "08",
+  "func_description": "Central Command",
+  "type_description": "Gateway",
+  "description": "Central Command, Gateway. Curated minimal Registry v3 profile for 0x02 Dimming telegrams used as controller/TX profile for FUD70S runtime proof of concept.",
+  "source": "EnOcean Equipment Profiles / IP Representation",
+  "source_version": "2.6.8",
+  "sources": {
+    "xml": [
+      "enocean/eeps/eep268.xml"
+    ],
+    "json": [
+      "enocean/eeps/json/A5-38-08.json"
+    ],
+    "semantic_mapping": [
+      "eep/semantic-role-mapping.json"
+    ],
+    "eep_list": [
+      "eep/eep-list.csv"
+    ]
+  },
+  "direction": "unidirectional",
+  "device_class": "controller",
+  "function_groups": [
+    {
+      "name": "dimming",
+      "title": "Dimming",
+      "direction": "to",
+      "description": "A5-38-08 command 0x02: dimming and switching command",
+      "functions": [
+        "dim_value",
+        "ramping_time",
+        "dimming_range",
+        "store_final_value",
+        "switch"
+      ]
+    }
+  ],
+  "messages": [
+    {
+      "name": "dim_value",
+      "display_name": null,
+      "description": "Dimming value, absolute 0..100% or relative 0..100% depending on dimming_range",
+      "source_key": "dimValue",
+      "function_group": "dimming",
+      "semantic_role": "lighting.brightness",
+      "object_type": "setpoint",
+      "semantic_confidence": "high",
+      "data_type": "float",
+      "unit": "%",
+      "ranges": [
+        {
+          "min": 0,
+          "max": 100,
+          "step": 0.392,
+          "unit": "%",
+          "description": "Output value 0% to 100%"
+        }
+      ],
+      "value_resolution": 0.39215686274509803,
+      "value_precision": 1,
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "ramping_time",
+      "display_name": null,
+      "description": "Ramping time in seconds. 0 means no ramping; 1..255 is seconds to 100%.",
+      "source_key": "rampingTime",
+      "function_group": "dimming",
+      "semantic_role": "control.timer",
+      "object_type": "setpoint",
+      "semantic_confidence": "high",
+      "semantic_attributes": {
+        "timer_type": "ramping"
+      },
+      "data_type": "integer",
+      "unit": "s",
+      "ranges": [
+        {
+          "min": 0,
+          "max": 255,
+          "step": 1,
+          "unit": "s",
+          "description": "Time to reach specified dim_value"
+        }
+      ],
+      "default_value": 0,
+      "value_resolution": 1.0,
+      "value_precision": 0,
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": true,
+        "default_value": 0,
+        "required_for_snapshot": false
+      }
+    },
+    {
+      "name": "dimming_range",
+      "display_name": null,
+      "description": "Dimming range selection according to A5-38-08. In the Eltako FUD70S context the same DB0.2 bit is documented as dimming value lock: 0 = not locked, 1 = locked.",
+      "function_group": "dimming",
+      "semantic_role": "lighting.dimming_mode",
+      "object_type": "configuration",
+      "semantic_confidence": "high",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "absolute_value",
+          "description": "Absolute dimming value; FUD70S: dimming value not locked"
+        },
+        {
+          "value": 1,
+          "label": "relative_value",
+          "description": "Relative dimming value; FUD70S: dimming value locked"
+        }
+      ],
+      "default_value": 0,
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": true,
+        "default_value": 0,
+        "required_for_snapshot": false
+      }
+    },
+    {
+      "name": "store_final_value",
+      "display_name": null,
+      "description": "Store final value",
+      "source_key": "storeFinalValue",
+      "function_group": "dimming",
+      "semantic_role": "lighting.store_final_value",
+      "object_type": "configuration",
+      "semantic_confidence": "medium",
+      "data_type": "boolean",
+      "default_value": false,
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": true,
+        "default_value": false,
+        "required_for_snapshot": false
+      }
+    },
+    {
+      "name": "switch",
+      "display_name": null,
+      "description": "Switching command ON/OFF",
+      "source_key": "switch",
+      "function_group": "dimming",
+      "semantic_role": "actuator.switch",
+      "object_type": "setpoint",
+      "semantic_confidence": "medium",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "off",
+          "description": "Off"
+        },
+        {
+          "value": 1,
+          "label": "on",
+          "description": "On"
+        }
+      ],
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": false,
+        "required_for_snapshot": true
+      }
+    },
+    {
+      "name": "telegram_type",
+      "display_name": null,
+      "description": "LRN bit / telegram type",
+      "semantic_role": "enocean.telegram_type",
+      "object_type": "state",
+      "semantic_confidence": "high",
+      "data_type": "enum",
+      "enum": [
+        {
+          "value": 0,
+          "label": "teach_in_telegram",
+          "description": "Teach-in telegram"
+        },
+        {
+          "value": 1,
+          "label": "data_telegram",
+          "description": "Data telegram"
+        }
+      ],
+      "default_value": 1,
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "managed": true,
+        "default_value": "data_telegram",
+        "required_for_snapshot": false
+      }
+    }
+  ],
+  "telegrams": [
+    {
+      "telegram_type_id": "a5-38-08.cmd02.dimming",
+      "telegram_id": {
+        "rorg": "A5",
+        "cmd": "0x02"
+      },
+      "direction": "tx",
+      "description": "0x02 Dimming",
+      "fields": [
+        {
+          "name": "command",
+          "offset": 0,
+          "size": 8,
+          "shortcut": "COM",
+          "description": "Command ID",
+          "data_type": "integer",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload",
+          "constant": 2
+        },
+        {
+          "name": "dimming_value",
+          "offset": 8,
+          "size": 8,
+          "shortcut": "EDIM",
+          "description": "Dimming value",
+          "data_type": "integer",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "ramping_time",
+          "offset": 16,
+          "size": 8,
+          "shortcut": "RMP",
+          "description": "Ramping time",
+          "data_type": "integer",
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "reserved_24_4",
+          "offset": 24,
+          "size": 4,
+          "shortcut": "",
+          "description": "Reserved field DB0.7..DB0.4",
+          "data_type": "integer",
+          "raw_min": 0,
+          "raw_max": 15,
+          "source": "payload",
+          "reserved": true,
+          "constant": 0
+        },
+        {
+          "name": "telegram_type",
+          "offset": 28,
+          "size": 1,
+          "shortcut": "LRNB",
+          "description": "LRN Bit",
+          "data_type": "integer",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "dimming_range",
+          "offset": 29,
+          "size": 1,
+          "shortcut": "EDIM R",
+          "description": "Dimming Range",
+          "data_type": "integer",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "store_final_value",
+          "offset": 30,
+          "size": 1,
+          "shortcut": "STR",
+          "description": "Store final value",
+          "data_type": "integer",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        },
+        {
+          "name": "switching_command",
+          "offset": 31,
+          "size": 1,
+          "shortcut": "SW",
+          "description": "Switching Command ON/OFF",
+          "data_type": "integer",
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload"
+        }
+      ],
+      "message_bindings": [
+        {
+          "message_ref": "dim_value",
+          "field_ref": "dimming_value",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 255,
+            "scale_min": 0.0,
+            "scale_max": 100.0
+          }
+        },
+        {
+          "message_ref": "ramping_time",
+          "field_ref": "ramping_time",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 255,
+            "scale_min": 0.0,
+            "scale_max": 255.0
+          }
+        },
+        {
+          "message_ref": "dimming_range",
+          "field_ref": "dimming_range",
+          "enum": [
+            {
+              "value": 0,
+              "label": "absolute_value"
+            },
+            {
+              "value": 1,
+              "label": "relative_value"
+            }
+          ]
+        },
+        {
+          "message_ref": "store_final_value",
+          "field_ref": "store_final_value",
+          "enum": [
+            {
+              "value": 0,
+              "label": "no"
+            },
+            {
+              "value": 1,
+              "label": "yes"
+            }
+          ]
+        },
+        {
+          "message_ref": "switch",
+          "field_ref": "switching_command",
+          "enum": [
+            {
+              "value": 0,
+              "label": "off"
+            },
+            {
+              "value": 1,
+              "label": "on"
+            }
+          ]
+        },
+        {
+          "message_ref": "telegram_type",
+          "field_ref": "telegram_type",
+          "enum": [
+            {
+              "value": 0,
+              "label": "teach_in_telegram"
+            },
+            {
+              "value": 1,
+              "label": "data_telegram"
+            }
+          ]
+        }
+      ],
+      "constraints": [
+        {
+          "field": "command",
+          "equals": 2
+        },
+        {
+          "field": "reserved_24_4",
+          "equals": 0
+        }
+      ]
+    }
+  ],
+  "tx": {
+    "aggregation_window_seconds": 10
+  },
+  "metadata": {
+    "curation_status": "runtime_poc_subset",
+    "curated_by": "llm_assisted_review",
+    "source_notes": [
+      "This is an intentionally minimal A5-38-08 Registry v3 subset for the runtime proof of concept.",
+      "Only command 0x02 Dimming is included because it is the relevant TX profile for the Eltako FUD70S integration test.",
+      "Other A5-38-08 command variants remain out of scope until the runtime has been validated with selected profiles.",
+      "DB0.2 is kept as the standard A5-38-08 dimming_range bit. Eltako FUD70S documentation interprets the same bit as dimming value lock: 0 = not locked, 1 = locked."
+    ]
+  }
+}

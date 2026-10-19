@@ -1,0 +1,683 @@
+{
+  "profile_type": "standard",
+  "eep": "A5-07-01",
+  "rorg": "A5",
+  "func": "07",
+  "type": "01",
+  "func_description": "Occupancy Sensor",
+  "type_description": "Occupancy with Supply Voltage Monitor",
+  "source": "EnOcean Equipment Profiles",
+  "source_version": "2.6.8",
+  "sources": [
+    "enocean/eeps/eep268.xml",
+    "eep/eep-list.csv",
+    "eep/semantic-role-mapping.xlsx",
+    "enocean/eeps/json/A5-07-01.json",
+    "enocean/eeps/ip/A5-07-01_ip.pdf"
+  ],
+  "direction": "unidirectional",
+  "device_class": "sensor",
+  "channels": [
+    {
+      "name": "motion_detected",
+      "display_name": null,
+      "source_key": "motionDetected",
+      "description": "PIR Status",
+      "function_group": "from",
+      "semantic_role": "security.motion.state",
+      "object_type": "state",
+      "semantic_attributes": {},
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "required_for_snapshot": true,
+        "managed": false
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "enum": [
+        {
+          "value": 0,
+          "label": "no_motion"
+        },
+        {
+          "value": 128,
+          "label": "motion_detected"
+        }
+      ],
+      "ranges": [
+        {
+          "min": 0,
+          "max": 127,
+          "label": "no_motion"
+        },
+        {
+          "min": 128,
+          "max": 255,
+          "label": "motion_detected"
+        }
+      ]
+    },
+    {
+      "name": "supply_voltage",
+      "display_name": null,
+      "source_key": "supplyVoltage",
+      "description": "Supply voltage / super cap. (linear)",
+      "function_group": "from",
+      "semantic_role": "device.supply_voltage.measurement",
+      "object_type": "measurement",
+      "semantic_attributes": {},
+      "data_type": "float",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "required_for_snapshot": true,
+        "managed": false
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "unit": "V",
+      "value_resolution": 0.02,
+      "value_precision": 2,
+      "ranges": [
+        {
+          "min": 0,
+          "max": 5,
+          "step": 0.02,
+          "unit": "V"
+        }
+      ]
+    },
+    {
+      "name": "error_code",
+      "display_name": null,
+      "source_key": "errorCode",
+      "description": "Error code from supply voltage byte",
+      "function_group": "from",
+      "semantic_role": "device.error_code.diagnostic",
+      "object_type": "diagnostic",
+      "semantic_attributes": {},
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "required_for_snapshot": true,
+        "managed": false
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "enum": [
+        {
+          "value": 251,
+          "label": "error_251"
+        },
+        {
+          "value": 252,
+          "label": "error_252"
+        },
+        {
+          "value": 253,
+          "label": "error_253"
+        },
+        {
+          "value": 254,
+          "label": "error_254"
+        },
+        {
+          "value": 255,
+          "label": "error_255"
+        }
+      ],
+      "ranges": [
+        {
+          "min": 0,
+          "max": 250,
+          "label": "no_error"
+        }
+      ]
+    }
+  ],
+  "messages": [],
+  "telegrams": [
+    {
+      "telegram_type_id": "a5-07-01.without_supply",
+      "telegram_id": {
+        "rorg": "A5"
+      },
+      "fields": [
+        {
+          "name": "unused_0",
+          "offset": 0,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_1",
+          "offset": 1,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_2",
+          "offset": 2,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_3",
+          "offset": 3,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_4",
+          "offset": 4,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_5",
+          "offset": 5,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_6",
+          "offset": 6,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_7",
+          "offset": 7,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_8",
+          "offset": 8,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_9",
+          "offset": 9,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_10",
+          "offset": 10,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_11",
+          "offset": 11,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_12",
+          "offset": 12,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_13",
+          "offset": 13,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_14",
+          "offset": 14,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_15",
+          "offset": 15,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "motion_detected",
+          "offset": 16,
+          "size": 8,
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "unused_24",
+          "offset": 24,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_25",
+          "offset": 25,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_26",
+          "offset": 26,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_27",
+          "offset": 27,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "learn",
+          "offset": 28,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        },
+        {
+          "name": "unused_29",
+          "offset": 29,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_30",
+          "offset": 30,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "supply_available",
+          "offset": 31,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "motion_detected",
+          "field_ref": "motion_detected"
+        },
+        {
+          "channel_ref": "supply_voltage",
+          "field_ref": "motion_detected",
+          "depends_on": {
+            "field": "supply_available",
+            "equals": 2
+          }
+        },
+        {
+          "channel_ref": "error_code",
+          "field_ref": "motion_detected",
+          "depends_on": {
+            "field": "supply_available",
+            "equals": 2
+          }
+        }
+      ],
+      "constraints": [
+        {
+          "field": "learn",
+          "equals": 1
+        },
+        {
+          "field": "supply_available",
+          "equals": 0
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "a5-07-01.with_supply",
+      "telegram_id": {
+        "rorg": "A5"
+      },
+      "fields": [
+        {
+          "name": "supply_voltage",
+          "offset": 0,
+          "size": 8,
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "unused_8",
+          "offset": 8,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_9",
+          "offset": 9,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_10",
+          "offset": 10,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_11",
+          "offset": 11,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_12",
+          "offset": 12,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_13",
+          "offset": 13,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_14",
+          "offset": 14,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_15",
+          "offset": 15,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "motion_detected",
+          "offset": 16,
+          "size": 8,
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "unused_24",
+          "offset": 24,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_25",
+          "offset": 25,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_26",
+          "offset": 26,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_27",
+          "offset": 27,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "learn",
+          "offset": 28,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        },
+        {
+          "name": "unused_29",
+          "offset": 29,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_30",
+          "offset": 30,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "supply_available",
+          "offset": 31,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "error_code",
+          "field_ref": "supply_voltage"
+        },
+        {
+          "channel_ref": "supply_voltage",
+          "field_ref": "supply_voltage",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 250,
+            "scale_min": 0,
+            "scale_max": 5
+          },
+          "depends_on": {
+            "field": "supply_voltage",
+            "gte": 0,
+            "lte": 250
+          }
+        },
+        {
+          "channel_ref": "motion_detected",
+          "field_ref": "motion_detected"
+        }
+      ],
+      "constraints": [
+        {
+          "field": "learn",
+          "equals": 1
+        },
+        {
+          "field": "supply_available",
+          "equals": 1
+        }
+      ]
+    }
+  ],
+  "function_groups": [
+    {
+      "name": "from",
+      "title": "Sensor values",
+      "direction": "from",
+      "functions": [
+        "motion_detected",
+        "supply_voltage",
+        "error_code"
+      ]
+    }
+  ],
+  "metadata": {
+    "authoring_prompt": "v1.9",
+    "hardware_tested": false,
+    "numeric_condition_runtime": "Requires inclusive gte/lte and labelled enum-range meanings (2026-10-19)."
+  },
+  "description": "Occupancy Sensor, Occupancy with Supply Voltage Monitor"
+}

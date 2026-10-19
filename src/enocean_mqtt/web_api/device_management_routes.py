@@ -13,11 +13,15 @@ from collections.abc import Callable, Mapping
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
+from uuid import uuid4
 
 from fastapi import APIRouter, HTTPException, Request, Response
+from pydantic import ValidationError
 
 from enocean_mqtt.devices.csv_format import export_csv, import_csv
 from enocean_mqtt.devices.foreign_registry import ForeignDevice, foreign_registry
+from enocean_mqtt.devices.gateway_observations import gateway_projection
+from enocean_mqtt.devices.gateways import ExternalGateway, GatewayRevisionConflict, gateway_registry
 from enocean_mqtt.devices.models import Device
 from enocean_mqtt.devices.registry import DeviceRegistry
 from enocean_mqtt.gateway.runtime_commands import RuntimeCommandExecutionError
@@ -58,6 +62,7 @@ def create_device_management_router(
     )
     physical_path = Path(devices_file)
     foreign_devices = foreign_registry(physical_path.parent / "foreign-devices.json")
+    gateways = gateway_registry(physical_path.parent / "gateways.json")
     virtual_path = Path(virtual_devices_file)
     database_path = Path(sqlite_database)
     runtime_config_path = Path(config_file)
@@ -82,6 +87,131 @@ def create_device_management_router(
             raise HTTPException(status_code=400, detail=exc.message) from exc
         except RuntimeCommandExecutionError as exc:
             raise HTTPException(status_code=409, detail=exc.message) from exc
+
+    @router.get("/gateways")
+    def get_gateways() -> dict[str, Any]:
+        return {"gateways": [item.model_dump() for item in gateways.snapshot().values()]}
+
+    def project_gateway(base_id: str) -> dict[str, Any]:
+        gateway = gateways.snapshot().get(base_id.upper())
+        if gateway is None:
+            raise HTTPException(status_code=404, detail="Gateway not found")
+        physical, _ = _physical_registry(physical_path)
+        config: dict[str, Any] = {}
+        try:
+            config = json.loads(runtime_config_path.read_text(encoding="utf-8"))
+            metric_windows = config.get("metrics", {})
+        except (OSError, ValueError, AttributeError):
+            config = {}
+            metric_windows = {}
+        if not isinstance(metric_windows, dict):
+            metric_windows = {}
+
+        def seconds(key: str, default: int) -> int:
+            try:
+                return max(1, int(metric_windows.get(key, default)))
+            except (TypeError, ValueError):
+                return default
+
+        projection = gateway_projection(
+            gateway, gateways, database_path,
+            {device.device_id.upper(): device.registry_profile for device in physical.devices},
+            _active_window_seconds(runtime_config_path),
+            rate_window_seconds=seconds("telegram_mean_interval_window_seconds", 3600),
+            peak_window_seconds=seconds("peak_telegrams_window_seconds", 900),
+        )
+        physical_ids = {device.device_id.upper() for device in physical.devices}
+        foreign_ids = set(foreign_devices.snapshot())
+        for channel in projection["observed_channels"]:
+            channel["conflicts"] = [
+                kind for kind, ids in (("legacy_device", physical_ids), ("foreign", foreign_ids))
+                if channel["sender_id"] in ids
+            ]
+        if any(gateway.contains(sender) for sender in physical_ids):
+            projection["issues"].append(
+                "Gateway range includes legacy physical registrations; "
+                "migrate their profiles explicitly."
+            )
+        if any(gateway.contains(sender) for sender in foreign_ids):
+            projection["issues"].append(
+                "Gateway range includes foreign sender classifications; "
+                "storage exclusions still apply."
+            )
+        paths = config.get("paths", {})
+        paths = paths if isinstance(paths, dict) else {}
+        sender_path = Path(paths.get(
+            "sender_id_registry", physical_path.parent / "sender-id-registry.json",
+        ))
+        if not sender_path.is_absolute():
+            project_root = runtime_config_path.parent.parent
+            sender_path = project_root / sender_path
+        try:
+            sender_data = json.loads(sender_path.read_text(encoding="utf-8"))
+            for interface in sender_data.get("interfaces", []):
+                local_base = int(interface["base_id"], 16)
+                if max(local_base, int(gateway.base_id, 16)) < min(
+                    local_base + 128, int(gateway.base_id, 16) + gateway.sender_count,
+                ):
+                    projection["issues"].append(
+                        "Gateway range overlaps a locally managed sender pool; "
+                        "local TX is excluded from gateway RX metrics."
+                    )
+                    break
+        except FileNotFoundError:
+            pass
+        except (OSError, ValueError, KeyError, TypeError, AttributeError):
+            projection["issues"].append("Local sender-pool collision check unavailable.")
+        return projection
+
+    @router.get("/gateways/{base_id}/channels")
+    def get_gateway_channels(base_id: str) -> dict[str, Any]:
+        projection = project_gateway(base_id)
+        return {"base_id": base_id.upper(), "channels": projection["observed_channels"],
+                "observation": projection["observation"], "issues": projection["issues"]}
+
+    @router.get("/gateways/{base_id}/metrics")
+    def get_gateway_metrics(base_id: str) -> dict[str, Any]:
+        projection = project_gateway(base_id)
+        return {"base_id": base_id.upper(), "metrics": projection["metrics"],
+                "rates": projection["rates"],
+                "channels": [{"sender_id": item["sender_id"], "metrics": item["metrics"]}
+                             for item in projection["observed_channels"]],
+                "observation": projection["observation"], "issues": projection["issues"]}
+
+    @router.put("/gateways/{base_id}")
+    def put_gateway(base_id: str, payload: dict[str, Any], request: Request) -> dict[str, Any]:
+        if not can_write(request):
+            raise HTTPException(status_code=403, detail="Administrator privileges required")
+        try:
+            candidate = dict(payload)
+            source_sender = candidate.pop("source_sender_id", None)
+            expected_revision = candidate.pop("expected_revision", None)
+            gateway = ExternalGateway.model_validate({**candidate, "base_id": base_id})
+            if source_sender is not None and not gateway.contains(str(source_sender)):
+                raise ValueError("Source sender ID must belong to the gateway range")
+            gateways.upsert(gateway, expected_revision=expected_revision)
+        except GatewayRevisionConflict as exc:
+            raise HTTPException(status_code=409, detail=str(exc)) from exc
+        except ValidationError as exc:
+            messages = [
+                f"{'.'.join(str(part) for part in item['loc']) or 'gateway'}: "
+                f"{item['msg'].removeprefix('Value error, ')}"
+                for item in exc.errors(include_url=False, include_input=False)
+            ]
+            raise HTTPException(status_code=422, detail="; ".join(messages)) from exc
+        except ValueError as exc:
+            raise HTTPException(status_code=422, detail=str(exc)) from exc
+        return {"status": "ok", "gateway": gateway.model_dump()}
+
+    @router.delete("/gateways/{base_id}")
+    def delete_gateway(base_id: str, request: Request) -> dict[str, Any]:
+        if not can_write(request):
+            raise HTTPException(status_code=403, detail="Administrator privileges required")
+        try:
+            gateways.remove(base_id)
+        except ValueError as exc:
+            raise HTTPException(status_code=422, detail=str(exc)) from exc
+        return {"status": "ok"}
 
     @router.get("/foreign")
     def get_foreign_devices() -> dict[str, Any]:
@@ -132,7 +262,12 @@ def create_device_management_router(
             active_window_seconds,
         )
         unknown_payload = unknown_devices_provider(lookback_limit=None)
-        unknown_devices = list(unknown_payload.get("unknown_devices") or [])
+        gateway_items = list(gateways.snapshot().values())
+        active_sender_ids.difference_update(gateways.sender_ids())
+        unknown_devices = [
+            item for item in (unknown_payload.get("unknown_devices") or [])
+            if not any(gateway.contains(item["sender_id"]) for gateway in gateway_items)
+        ]
 
         physical_devices = [
             {
@@ -145,6 +280,7 @@ def create_device_management_router(
                 "teach_in_receivers": _teach_in_receivers(device.metadata),
             }
             for device in physical_registry.devices
+            if not any(gateway.contains(device.device_id) for gateway in gateway_items)
         ]
         virtual_devices = [
             {
@@ -161,12 +297,14 @@ def create_device_management_router(
             "can_write": can_write(request),
             "counts": {
                 "devices": len(physical_devices),
+                "gateways": len(gateway_items),
                 "unknown_devices": len(unknown_devices),
                 "virtual_devices": len(virtual_devices),
                 "active_devices": len(active_sender_ids),
             },
             "active_window_seconds": active_window_seconds,
             "physical_devices": physical_devices,
+            "gateways": [project_gateway(item.base_id) for item in gateway_items],
             "virtual_devices": virtual_devices,
             "unknown_devices": unknown_devices,
             "foreign_devices": get_foreign_devices()["foreign_devices"],
@@ -271,7 +409,17 @@ def create_device_management_router(
 
     @router.post("/virtual")
     def create_virtual_device(payload: dict[str, Any]) -> dict[str, Any]:
-        virtual_payload = _virtual_payload(payload)
+        candidate = dict(payload)
+        if not str(candidate.get("virtual_device_id") or "").strip():
+            metadata = candidate.get("metadata")
+            if not isinstance(metadata, Mapping):
+                raise HTTPException(status_code=422, detail="A friendly device name is required")
+            name = metadata.get("device_name")
+            if not isinstance(name, str) or not name.strip():
+                raise HTTPException(status_code=422, detail="A friendly device name is required")
+            candidate["metadata"] = {**metadata, "device_name": name.strip()}
+            candidate["virtual_device_id"] = f"virtual_{uuid4().hex}"
+        virtual_payload = _virtual_payload(candidate)
         result = dispatch("virtual_device.create", {"virtual_device": virtual_payload})
         return {**result, "virtual_device": virtual_payload}
 

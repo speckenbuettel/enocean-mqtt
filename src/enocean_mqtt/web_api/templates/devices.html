@@ -37,6 +37,7 @@
         <select id="deviceTypeFilter" class="device-control" aria-label="Device type">
           <option value="all">All device types</option>
           <option value="physical">Physical devices</option>
+          <option value="gateway">Gateways</option>
           <option value="virtual">Virtual devices</option>
           <option value="unknown">Unknown devices</option>
           <option value="foreign">Foreign devices</option>
@@ -53,6 +54,7 @@
       <div class="device-action-group">
         <button id="reloadDevicesButton" class="device-button" type="button">Reload registry</button>
         <button id="newPhysicalDeviceButton" class="device-button" type="button">+ Device</button>
+        <button id="newGatewayButton" class="device-button" type="button">+ Gateway</button>
         <button id="newVirtualDeviceButton" class="device-button" type="button">+ Virtual device</button>
         <button id="importDevicesButton" class="device-button" type="button">Import CSV</button>
         <button id="exportDevicesButton" class="device-button" type="button">Export devices</button>
@@ -89,7 +91,51 @@
       <p>Foreign devices are devices that do not belong to your own network. They are listed separately from known and unknown devices. SQLite exclusion applies to future telegrams only; existing history is kept.</p>
       <div class="device-table-wrap"><table class="device-table"><thead><tr><th>Sender ID</th><th>SQLite storage</th><th>Actions</th></tr></thead><tbody id="foreignDevicesBody"></tbody></table></div>
     </section>
+  <section id="gatewayPanel" class="device-panel compact-card" data-panel="gateway">
+    <div class="card-heading device-panel-heading"><h2>Gateways</h2><span id="gatewayPanelCount" class="card-tag">0 gateways</span></div>
+    <p>Each gateway lists its received channels. Assign a profile to an unknown channel to decode its commands.</p>
+    <div class="device-table-wrap"><table class="device-table">
+      <thead><tr><th>Name</th><th>Base ID</th><th>Sender IDs</th><th>Channel profiles</th><th>Actions</th></tr></thead>
+      <tbody id="gatewaysBody"></tbody>
+    </table></div>
+  </section>
   </div>
+
+  <dialog id="gatewayDialog" class="device-dialog">
+    <form id="gatewayForm" class="device-dialog-form">
+      <header><h2>Gateway</h2><button class="device-dialog-close" type="button" data-close-dialog aria-label="Close">×</button></header>
+      <div class="device-form-grid">
+        <label>Name<input name="name" required></label>
+        <label>Base ID<input name="base_id" required maxlength="8" pattern="[A-Fa-f0-9]{8}"></label>
+        <label>Manufacturer<input name="manufacturer"></label>
+        <label>Model<input name="model"></label>
+        <label>Sender IDs from base<input name="sender_count" type="number" min="1" max="128" value="128" required></label>
+        <label class="device-form-wide">Description<textarea name="description" rows="2"></textarea></label>
+      </div>
+      <p id="gatewaySourceSender"></p>
+      <p>Optional channel profiles. Offset 0 is the base ID; offset 1 is base ID + 1.</p>
+      <div id="gatewayChannels"></div>
+      <button id="addGatewayChannel" class="device-button" type="button">+ Channel profile</button>
+      <p id="gatewayFormError" role="alert"></p>
+      <footer><button class="device-button" type="button" data-close-dialog>Cancel</button><button class="device-button primary" type="submit">Save gateway</button></footer>
+    </form>
+  </dialog>
+
+  <dialog id="gatewayChannelDialog" class="device-dialog">
+    <form id="gatewayChannelForm" class="device-dialog-form">
+      <header><h2>Gateway channel</h2><button type="button" class="device-dialog-close" data-close-dialog aria-label="Close">×</button></header>
+      <div class="device-form-grid">
+        <label>Gateway Base ID<input name="base_id" readonly></label>
+        <label>Sender ID<input name="sender_id" readonly></label>
+        <label>Offset<input name="offset" readonly></label>
+        <label>Name<input name="name"></label>
+        <label>Profile / EEP<input name="profile" list="deviceProfiles"></label>
+        <label>Description<input name="description"></label>
+      </div>
+      <p id="gatewayChannelError" role="alert"></p>
+      <footer><button type="button" class="device-button" data-close-dialog>Cancel</button><button type="submit" class="device-button primary">Save channel</button></footer>
+    </form>
+  </dialog>
 
   <dialog id="physicalDeviceDialog" class="device-dialog">
     <form id="physicalDeviceForm" class="device-dialog-form">
@@ -121,8 +167,7 @@
     <form id="virtualDeviceForm" class="device-dialog-form">
       <header><div><p class="eyebrow">Registry</p><h2 id="virtualDialogTitle">Virtual device</h2></div><button class="device-dialog-close" type="button" data-close-dialog aria-label="Close">×</button></header>
       <div class="device-form-grid">
-        <label>Virtual device ID<input name="virtual_device_id" required pattern="[a-z0-9]+(?:_[a-z0-9]+)*"></label>
-        <label>Device name<input name="device_name"></label>
+        <label class="device-form-wide">Friendly name<input name="device_name" required pattern=".*\S.*"></label>
         <label>EEP<input name="eep" required></label>
         <label>Profile<input name="profile"></label>
         <label class="device-form-wide">Channels<input name="channels" required></label>
@@ -135,7 +180,8 @@
 {% endblock %}
 
 {% block scripts %}
-  <script src="/static/js/devices.js?v=20261014-1"></script>
+  <script src="/static/js/devices.js?v=20261019-1"></script>
   <script src="/static/js/devices-enhancements.js?v=20261013-1"></script>
   <script src="/static/js/devices-ui-improvements.js?v=20261014-1"></script>
+  <script src="/static/js/gateways.js?v=20261016-3"></script>
 {% endblock %}

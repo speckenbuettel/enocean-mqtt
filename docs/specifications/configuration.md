@@ -1,5 +1,18 @@
 # Configuration Model
 
+## External gateway registry (2026-10-16)
+
+The optional `gateways.json` file resides beside the configured `devices_json`.
+It stores external gateway base IDs/range sizes and explicitly configured radio
+channel offsets with optional name, description and profile. Observations and
+metrics do not belong in this file. Existing assigned-profile records remain
+compatible; null profiles/new descriptions require coordinated API/runtime
+updates. Registry writers use an OS file lock and atomic replacement. UI writes
+add an `expected_revision` check; stale edits return HTTP 409 rather than silently
+replacing a newer record. The `.lock` sidecar is coordination state, not portable
+configuration. See the [gateway guide](../../userguide/gateways.md) for the schema,
+Base-ID derivation and migration behavior.
+
 ## Scope
 
 The global runtime configuration controls:

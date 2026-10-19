@@ -22,6 +22,7 @@
   --color-table-hover: var(--palette-silver-light);
   --color-known-device: var(--palette-olive);
   --color-known-device-hover: var(--palette-olive-light);
+  --color-gateway-channel-unknown: var(--palette-olive-light);
   --color-foreign-device: var(--palette-silver);
   --color-foreign-device-hover: var(--palette-silver);
   --color-selected-row: var(--palette-blue);

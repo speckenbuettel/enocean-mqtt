@@ -1,5 +1,26 @@
 # MQTT Model
 
+## External gateway command observations (2026-10-16)
+
+Since 2026-10-19, external gateway RX commands are published retained at
+`<base_topic>/devices/gateways/<BASE_ID>/<SENDER_ID>/command`. This device
+namespace is distinct from the application's existing singular `gateway` topics.
+It replaces the non-retained
+`<base_topic>/gateways/<BASE_ID>/channels/<SENDER_ID>/command` path; subscribers
+and broker ACLs must migrate. Only the new path is published. The next decoded
+RX command establishes the retained observation; no history backfill occurs.
+Retain represents the last observation, not online status or actuator state.
+Removal of configuration does not clear retained observations automatically;
+obsolete retained topics require explicit broker cleanup when decommissioning.
+Payload fields are `base_id`, `sender_id`, `profile`, `profile_direction: "tx"`,
+`telegram_type_id`, `timestamp`, raw `fields`, and decoded `values`. Value entries
+carry `value`, `raw_value`, `unit` and optional `meaning`; enum values remain
+numeric codes. A received command never updates a physical actuator's confirmed
+state. Profile-less channels remain raw-only on existing busmonitor paths.
+No transmit subscription is introduced. Dedicated retained gateway inventory and
+metrics topics are deferred; use the management read API described in the
+[gateway guide](../../userguide/gateways.md).
+
 ## Enum channel state contract (2026-10-07)
 
 Device `state` JSON under `channels.<name>` and per-channel `state` JSON expose

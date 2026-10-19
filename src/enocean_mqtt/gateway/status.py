@@ -411,7 +411,7 @@ class GatewayStatusPublisher:
             ),
         }
 
-        decoder_payload = {
+        decoder_payload: dict[str, Any] = {
             "decoded_telegrams_total": statistics.get(
                 "decoded_telegrams",
                 0,
@@ -420,6 +420,14 @@ class GatewayStatusPublisher:
                 "decode_errors",
                 0,
             ),
+        }
+
+        decoder_payload["telegram_quality"] = {
+            "suspect_total": statistics.get("suspect_telegrams", 0),
+            "profile_mismatch_total": statistics.get("profile_mismatch_telegrams", 0),
+            "teach_in_candidates_total": statistics.get("teach_in_candidate_telegrams", 0),
+            "sender_id_candidates_total": statistics.get("sender_id_candidate_telegrams", 0),
+            "reasons": statistics.get("telegram_quality_reasons", {}),
         }
 
         busmonitor_payload: dict[str, Any] = {

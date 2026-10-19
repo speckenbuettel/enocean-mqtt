@@ -4,10 +4,13 @@ from __future__ import annotations
 
 import logging
 
+from enocean_mqtt.devices.gateway_decode import decode_gateway_payload
+from enocean_mqtt.devices.gateways import ExternalGateway, GatewayRegistry
 from enocean_mqtt.devices.registry import DeviceRegistry
 from enocean_mqtt.eep.json_registry import EEPRegistryError, load_eep_definition
 from enocean_mqtt.eep.runtime_decode_service import decode_runtime_telegram
 from enocean_mqtt.esp3.signal import RORG_NAMES
+from enocean_mqtt.esp3.telegram_quality import assess_telegram
 from enocean_mqtt.gateway.publisher import DevicePublisher
 from enocean_mqtt.gateway.status import GatewayStatusPublisher
 from enocean_mqtt.replay.models import ReplayTelegram
@@ -23,10 +26,15 @@ class GatewayOrchestrator:
         registry: DeviceRegistry,
         publisher: DevicePublisher,
         status_publisher: GatewayStatusPublisher | None = None,
+        gateways: GatewayRegistry | None = None,
     ) -> None:
         self._registry = registry
         self._publisher = publisher
         self._status_publisher = status_publisher
+        self.gateways = gateways
+
+    def gateway_for_sender(self, sender_id: str) -> ExternalGateway | None:
+        return self.gateways.resolve(sender_id) if self.gateways is not None else None
 
     @property
     def registry(self) -> DeviceRegistry:
@@ -53,6 +61,24 @@ class GatewayOrchestrator:
             return False
 
         device = self._registry.get_by_device_id(sender_id)
+
+        gateway = self.gateway_for_sender(sender_id)
+        if gateway is not None:
+            if telegram.normalized_direction != "rx":
+                return False
+            channel = gateway.channel(sender_id)
+            profile = channel.profile if channel else (device.registry_profile if device else None)
+            outcome, decoded, error = decode_gateway_payload(
+                profile, telegram.payload_hex, telegram.eno_rorg, telegram.status,
+            )
+            if decoded is not None:
+                self._publisher.publish_gateway_command(
+                    gateway=gateway, sender_id=sender_id, decoded=decoded,
+                    timestamp=telegram.timestamp,
+                )
+            if error:
+                logger.debug("Gateway channel %s: %s (%s)", sender_id, error, outcome)
+            return decoded is not None
 
         if device is None:
             return False
@@ -115,6 +141,13 @@ class GatewayOrchestrator:
             return False
 
         try:
+            assessment = assess_telegram(
+                rorg=telegram.eno_rorg, data=payload_hex, sender_id=sender_id,
+                status=telegram.status, direction=telegram.normalized_direction or "rx",
+                definition=eep_definition,
+            )
+            if assessment is not None and assessment.skip_decode:
+                return False
             decoded = decode_runtime_telegram(
                 eep_definition=eep_definition,
                 payload_hex=payload_hex,

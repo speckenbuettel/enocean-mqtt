@@ -11,6 +11,8 @@ from typing import Any, TypedDict
 
 from fastapi import APIRouter, HTTPException, Query
 
+from enocean_mqtt.devices.gateways import gateway_registry
+
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
 DEFAULT_DATABASE = PROJECT_ROOT / "data" / "sqlite" / "enocean-mqtt.sqlite"
 DEFAULT_DEVICES_FILE = PROJECT_ROOT / "config" / "devices.json"
@@ -78,7 +80,10 @@ def build_telegram_activity(
     end = float(end_timestamp if end_timestamp is not None else time.time())
     start = end - duration_seconds
     bucket_count = duration_seconds // bucket_seconds
-    known_sender_ids = _load_known_sender_ids(devices_file)
+    known_sender_ids = sorted(
+        set(_load_known_sender_ids(devices_file))
+        | gateway_registry(devices_file.parent / "gateways.json").sender_ids()
+    )
 
     buckets: list[ActivityBucket] = [
         {

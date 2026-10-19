@@ -88,6 +88,13 @@ class DependencyDefinition:
     not_equals: SemanticValue | None = None
     values: list[SemanticValue] = dataclass_field(default_factory=list)
     metadata: dict[str, Any] = dataclass_field(default_factory=dict)
+    gte: int | float | None = None
+    lte: int | float | None = None
+
+    def __post_init__(self) -> None:
+        from enocean_mqtt.eep.numeric_conditions import validate_bounds
+
+        validate_bounds(self.gte, self.lte)
 
 
 @dataclass(slots=True)

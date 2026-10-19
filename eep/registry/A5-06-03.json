@@ -1,0 +1,575 @@
+{
+  "profile_type": "standard",
+  "eep": "A5-06-03",
+  "rorg": "A5",
+  "func": "06",
+  "type": "03",
+  "func_description": "Light Sensor",
+  "type_description": "Range 0 lx to 1000 lx (10 bit measurement, 1 lx resolution)",
+  "source": "EnOcean Equipment Profiles",
+  "source_version": "2.6.8",
+  "sources": [
+    "enocean/eeps/eep268.xml",
+    "eep/eep-list.csv",
+    "eep/semantic-role-mapping.xlsx",
+    "enocean/eeps/json/A5-06-03.json",
+    "enocean/eeps/ip/A5-06-03_ip.pdf"
+  ],
+  "direction": "unidirectional",
+  "device_class": "sensor",
+  "channels": [
+    {
+      "name": "supply_voltage",
+      "display_name": null,
+      "source_key": "supplyVoltage",
+      "description": "Supply voltage",
+      "function_group": "from",
+      "semantic_role": "device.supply_voltage.measurement",
+      "object_type": "measurement",
+      "semantic_attributes": {},
+      "data_type": "float",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "required_for_snapshot": true,
+        "managed": false
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "unit": "V",
+      "value_resolution": 0.02,
+      "value_precision": 2,
+      "ranges": [
+        {
+          "min": 0,
+          "max": 5,
+          "step": 0.02,
+          "unit": "V"
+        }
+      ]
+    },
+    {
+      "name": "error_code",
+      "display_name": null,
+      "source_key": "errorCode",
+      "description": "Error code from supply voltage byte",
+      "function_group": "from",
+      "semantic_role": "device.error_code.diagnostic",
+      "object_type": "diagnostic",
+      "semantic_attributes": {},
+      "data_type": "enum",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "required_for_snapshot": true,
+        "managed": false
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "enum": [
+        {
+          "value": 251,
+          "label": "error_251"
+        },
+        {
+          "value": 252,
+          "label": "error_252"
+        },
+        {
+          "value": 253,
+          "label": "error_253"
+        },
+        {
+          "value": 254,
+          "label": "error_254"
+        },
+        {
+          "value": 255,
+          "label": "error_255"
+        }
+      ],
+      "ranges": [
+        {
+          "min": 0,
+          "max": 250,
+          "label": "no_error"
+        }
+      ]
+    },
+    {
+      "name": "illumination",
+      "display_name": null,
+      "source_key": "illumination",
+      "description": "Illumination (linear)",
+      "function_group": "from",
+      "semantic_role": "environment.illuminance.measurement",
+      "object_type": "measurement",
+      "semantic_attributes": {},
+      "data_type": "float",
+      "output": {
+        "mqtt": true,
+        "api": true,
+        "storage": true
+      },
+      "tx": {
+        "required_for_snapshot": true,
+        "managed": false
+      },
+      "runtime": {
+        "transmit_on_connect": true,
+        "transmit_on_event": true,
+        "transmit_on_duplicate": false
+      },
+      "unit": "lx",
+      "value_resolution": 1.0,
+      "value_precision": 0,
+      "ranges": [
+        {
+          "min": 0,
+          "max": 1000,
+          "step": 1.0,
+          "unit": "lx"
+        }
+      ]
+    }
+  ],
+  "messages": [],
+  "telegrams": [
+    {
+      "telegram_type_id": "a5-06-03.data",
+      "telegram_id": {
+        "rorg": "A5"
+      },
+      "fields": [
+        {
+          "name": "supply_voltage",
+          "offset": 0,
+          "size": 8,
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "illumination",
+          "offset": 8,
+          "size": 10,
+          "raw_min": 0,
+          "raw_max": 1023,
+          "source": "payload"
+        },
+        {
+          "name": "unused_18",
+          "offset": 18,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_19",
+          "offset": 19,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_20",
+          "offset": 20,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_21",
+          "offset": 21,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_22",
+          "offset": 22,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_23",
+          "offset": 23,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_24",
+          "offset": 24,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_25",
+          "offset": 25,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_26",
+          "offset": 26,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_27",
+          "offset": 27,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "learn",
+          "offset": 28,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        },
+        {
+          "name": "unused_29",
+          "offset": 29,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_30",
+          "offset": 30,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_31",
+          "offset": 31,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "error_code",
+          "field_ref": "supply_voltage"
+        },
+        {
+          "channel_ref": "supply_voltage",
+          "field_ref": "supply_voltage",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 250,
+            "scale_min": 0,
+            "scale_max": 5
+          },
+          "depends_on": {
+            "field": "supply_voltage",
+            "gte": 0,
+            "lte": 250
+          }
+        },
+        {
+          "channel_ref": "illumination",
+          "field_ref": "illumination",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 1000,
+            "scale_min": 0,
+            "scale_max": 1000
+          }
+        }
+      ],
+      "constraints": [
+        {
+          "field": "learn",
+          "equals": 1
+        },
+        {
+          "requires": {
+            "field": "illumination",
+            "gte": 0,
+            "lte": 1000
+          }
+        }
+      ]
+    },
+    {
+      "telegram_type_id": "a5-06-03.over_range",
+      "telegram_id": {
+        "rorg": "A5"
+      },
+      "fields": [
+        {
+          "name": "supply_voltage",
+          "offset": 0,
+          "size": 8,
+          "raw_min": 0,
+          "raw_max": 255,
+          "source": "payload"
+        },
+        {
+          "name": "illumination",
+          "offset": 8,
+          "size": 10,
+          "raw_min": 0,
+          "raw_max": 1023,
+          "source": "payload"
+        },
+        {
+          "name": "unused_18",
+          "offset": 18,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_19",
+          "offset": 19,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_20",
+          "offset": 20,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_21",
+          "offset": 21,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_22",
+          "offset": 22,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_23",
+          "offset": 23,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_24",
+          "offset": 24,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_25",
+          "offset": 25,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_26",
+          "offset": 26,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_27",
+          "offset": 27,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "learn",
+          "offset": 28,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 1
+        },
+        {
+          "name": "unused_29",
+          "offset": 29,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_30",
+          "offset": 30,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        },
+        {
+          "name": "unused_31",
+          "offset": 31,
+          "size": 1,
+          "raw_min": 0,
+          "raw_max": 1,
+          "source": "payload",
+          "constant": 0,
+          "reserved": true
+        }
+      ],
+      "channel_bindings": [
+        {
+          "channel_ref": "error_code",
+          "field_ref": "supply_voltage"
+        },
+        {
+          "channel_ref": "supply_voltage",
+          "field_ref": "supply_voltage",
+          "scale": {
+            "raw_min": 0,
+            "raw_max": 250,
+            "scale_min": 0,
+            "scale_max": 5
+          },
+          "depends_on": {
+            "field": "supply_voltage",
+            "gte": 0,
+            "lte": 250
+          }
+        }
+      ],
+      "constraints": [
+        {
+          "field": "learn",
+          "equals": 1
+        },
+        {
+          "requires": {
+            "field": "illumination",
+            "gte": 1001,
+            "lte": 1023
+          }
+        }
+      ],
+      "direction": "rx"
+    }
+  ],
+  "function_groups": [
+    {
+      "name": "from",
+      "title": "Sensor values",
+      "direction": "from",
+      "functions": [
+        "supply_voltage",
+        "error_code",
+        "illumination"
+      ]
+    }
+  ],
+  "metadata": {
+    "authoring_prompt": "v1.9",
+    "hardware_tested": false,
+    "over_range": "Raw illumination codes1001..1023 retained in raw fields; no false in-range lux measurement emitted. Offline TX requires an explicit normal illumination.",
+    "numeric_condition_runtime": "Requires inclusive gte/lte and labelled enum-range meanings (2026-10-19)."
+  },
+  "description": "Light Sensor, Range 0 lx to 1000 lx (10 bit measurement, 1 lx resolution)"
+}

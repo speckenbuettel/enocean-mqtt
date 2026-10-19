@@ -119,6 +119,7 @@ class VirtualDeviceState:
     channel_updates: dict[str, str] = dataclass_field(default_factory=dict)
     pending_channels: set[str] = dataclass_field(default_factory=set)
     timer: threading.Timer | None = None
+    generation: int = 0
 
 
 class VirtualDeviceRuntime:
@@ -150,17 +151,39 @@ class VirtualDeviceRuntime:
         self._lock = threading.RLock()
 
     def register(self) -> None:
+        with self._lock:
+            for device_id, state in self._states.items():
+                device = self.registry.get_by_id(device_id)
+                if device is None or not device.enabled:
+                    self._cancel_snapshot_locked(state)
+            self._register_devices()
+
+    def update_registry(self, registry: VirtualDeviceRegistry) -> None:
+        """Apply edits and pause pending normal TX before returning to the caller."""
+        with self._lock:
+            self.registry = registry
+            self.register()
+
+    @staticmethod
+    def _cancel_snapshot_locked(state: VirtualDeviceState) -> None:
+        state.generation += 1
+        if state.timer is not None:
+            state.timer.cancel()
+            state.timer = None
+        state.pending_channels.clear()
+
+    def _register_devices(self) -> None:
         for device in self.registry.devices:
-            if device.enabled:
-                try:
-                    self._validate_device_channels(device)
-                except (EEPRegistryError, ValueError, OSError, KeyError, TypeError) as exc:
-                    LOGGER.error(
-                        "Skipping virtual device %s: EEP profile %s unavailable or invalid: %s",
-                        device.virtual_device_id, device.registry_profile, exc,
-                    )
-                    continue
-                self._register_validated_device(device)
+            try:
+                self._validate_device_channels(device)
+            except (EEPRegistryError, ValueError, OSError, KeyError, TypeError) as exc:
+                LOGGER.error(
+                    "Skipping virtual device %s: EEP profile %s unavailable or invalid: %s",
+                    device.virtual_device_id, device.registry_profile, exc,
+                )
+                continue
+            # Keep value caching and explicit Teach-In available while TX is paused.
+            self._register_validated_device(device)
 
     def register_device(self, device: VirtualDevice) -> None:
         self._validate_device_channels(device)
@@ -278,10 +301,14 @@ class VirtualDeviceRuntime:
         last_update = str(timestamp_fields["timestamp_local"])
 
         with self._lock:
+            device = self.registry.get_by_id(normalized_id)
+            if device is None:
+                raise VirtualDeviceRuntimeError(f"Unknown virtual device: {normalized_id}")
             state = self._states.setdefault(normalized_id, VirtualDeviceState())
             state.values[channel] = serialized
             state.channel_updates[channel] = last_update
-            state.pending_channels.add(channel)
+            if device.enabled:
+                state.pending_channels.add(channel)
             snapshot = dict(state.values)
             channel_updates = dict(state.channel_updates)
             self._schedule_snapshot_locked(device, state)
@@ -380,6 +407,11 @@ class VirtualDeviceRuntime:
             state.timer.cancel()
             state.timer = None
 
+        state.generation += 1
+        if not device.enabled:
+            state.pending_channels.clear()
+            return
+
         aggregation_window_seconds = _aggregation_window_seconds(
             load_eep_definition(device.registry_profile)
         )
@@ -387,28 +419,36 @@ class VirtualDeviceRuntime:
         timer = threading.Timer(
             aggregation_window_seconds,
             self._flush_device_snapshot,
-            args=(device.virtual_device_id,),
+            args=(device.virtual_device_id, state.generation),
         )
         timer.daemon = True
         state.timer = timer
         timer.start()
 
-    def _flush_device_snapshot(self, virtual_device_id: str) -> None:
+    def _flush_device_snapshot(
+        self, virtual_device_id: str, generation: int | None = None,
+    ) -> None:
         try:
-            device = self.registry.get_by_id(virtual_device_id)
-
-            if device is None:
-                raise VirtualDeviceRuntimeError(f"Unknown virtual device: {virtual_device_id}")
-
             with self._lock:
+                device = self.registry.get_by_id(virtual_device_id)
+                if device is None:
+                    return
                 state = self._states.setdefault(
                     virtual_device_id,
                     VirtualDeviceState(),
                 )
+                if generation is not None and generation != state.generation:
+                    return
+                if not device.enabled:
+                    self._cancel_snapshot_locked(state)
+                    return
+                active_generation = state.generation
                 state.timer = None
                 snapshot = dict(state.values)
                 pending_channels = set(state.pending_channels)
                 state.pending_channels.clear()
+                if not pending_channels:
+                    return
 
             encoded_telegrams = encode_virtual_device_snapshot(
                 device=device,
@@ -424,7 +464,14 @@ class VirtualDeviceRuntime:
                 return
 
             for encoded in encoded_telegrams:
-                self._publish_encoded_telegram(encoded)
+                # Reload and value updates may race with encoding. Check again at
+                # the actual send boundary, serialized with registry changes.
+                with self._lock:
+                    current = self.registry.get_by_id(virtual_device_id)
+                    if (current is not device or not current.enabled
+                            or state.generation != active_generation):
+                        return
+                    self._publish_encoded_telegram(encoded)
 
         except Exception as exc:
             self._publish_error(

@@ -7,6 +7,7 @@ import time
 from pathlib import Path
 from typing import Any
 
+from enocean_mqtt.devices.gateways import gateway_registry
 from enocean_mqtt.devices.registry import DeviceRegistry
 from enocean_mqtt.devices.tx_runtime import DeviceTxRuntime
 from enocean_mqtt.esp3.interface_manager import ESP3InterfaceManager
@@ -181,6 +182,7 @@ def _run_gateway(
         registry=initial_registry,
         publisher=device_publisher,
         status_publisher=status_publisher,
+        gateways=gateway_registry(Path(runtime_paths.devices_json).parent / "gateways.json"),
     )
 
     unknown_devices_registry = UnknownDeviceRegistry()
@@ -419,8 +421,7 @@ def _run_gateway(
     def reload_virtual_device_registry(
         registry: VirtualDeviceRegistry,
     ) -> None:
-        virtual_device_runtime.registry = registry
-        virtual_device_runtime.register()
+        virtual_device_runtime.update_registry(registry)
 
     virtual_device_commands = VirtualDeviceRuntimeCommands(
         status_publisher=status_publisher,

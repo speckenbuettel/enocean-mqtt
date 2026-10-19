@@ -16,6 +16,16 @@ and the [Changelog](CHANGELOG.md) for changes in a particular release.
 
 ## Interfaces and profiles
 
+- External gateway channels, range selection and scoped metrics have offline
+  coverage and maintainer-reported basic operation as of 2026-10-16. Web UI layout
+  cleanup is deferred; model/profile-specific live acceptance remains open. Historical
+  metrics are limited by retention/storage policies; process-local fallback
+  excludes earlier runs. Existing non-aligned manual gateway ranges require
+  review rather than automatic migration. Gateway ownership alone does not mean
+  that a channel has an EEP, and local sender-ID collisions need operator review.
+  No command observation proves actuator state. See the
+  [gateway work list](userguide/gateways.md#open-work-recorded-on-2026-10-16).
+
 - The Registry TX encoder does not evaluate telegram `constraints[]`. Simple
   numeric field scalings clamp to their raw range and may round inputs;
   semantic `ranges[]` are not TX input validation. Profile JSON alone cannot
@@ -27,7 +37,7 @@ and the [Changelog](CHANGELOG.md) for changes in a particular release.
   do not add general TX constraint enforcement. See the
   [runtime encoder implementation](src/enocean_mqtt/eep/runtime_encoder.py).
 
-- Startup skips enabled virtual devices whose EEP profile is missing, unreadable
+- Startup skips virtual devices whose EEP profile is missing, unreadable
   or invalid, logging an error per device. Other devices continue registering.
   Skipped devices receive no MQTT command subscriptions; restore their profiles
   and restart or reload virtual devices to retry. This does not select compiler

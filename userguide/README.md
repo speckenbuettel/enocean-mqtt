@@ -29,6 +29,9 @@ For notifications, see [Pushover setup in Settings](#pushover-setup-in-settings)
 For SIGNAL decoding and unknown radio types, see
 [Radio telegram diagnostics](../docs/radio-diagnostics.md).
 
+For external gateways with a base ID and channel sender IDs, see
+[External gateways](gateways.md).
+
 The System page's Service Logs default to **Since service start**, based on the
 current gateway/Web API process start time. Choose **All retained logs** to inspect
 earlier runs. CSV and Text exports contain the displayed selection. These filters

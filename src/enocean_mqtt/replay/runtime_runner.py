@@ -7,6 +7,9 @@ import time
 from collections import Counter, defaultdict
 from typing import Any
 
+from enocean_mqtt.devices.gateway_observations import record_gateway_rx
+from enocean_mqtt.eep.json_registry import load_eep_definition
+from enocean_mqtt.esp3.telegram_quality import assess_telegram
 from enocean_mqtt.gateway.orchestrator import GatewayOrchestrator
 from enocean_mqtt.gateway.status import GatewayStatusPublisher
 from enocean_mqtt.gateway.unknown_devices import UnknownDeviceRegistry
@@ -69,6 +72,7 @@ class ReplayRuntimeRunner:
         self._external_statistics = RuntimePipelineStatistics()
         self._last_external_health_publish_monotonic = 0.0
         self._external_statistics_lock = threading.RLock()
+        self._gateway_sender_ids: set[str] = set()
 
     def start_async(self, session: ReplaySession) -> None:
         """Start replay session in a background thread."""
@@ -245,10 +249,50 @@ class ReplayRuntimeRunner:
     ) -> dict[str, Any]:
         runtime_event = replay_telegram_to_runtime_event(telegram)
 
+        assessment = assess_telegram(
+            rorg=runtime_event.rorg, data=runtime_event.data,
+            sender_id=runtime_event.sender_id, status=runtime_event.erp1_status,
+            direction=runtime_event.direction,
+        )
+        registry = self._orchestrator.registry
+        device = registry.get_by_device_id(runtime_event.sender_id or "")
+        if (assessment is None and device is not None and device.registry_profile
+                and self._orchestrator.gateway_for_sender(runtime_event.sender_id or "") is None):
+            try:
+                definition = load_eep_definition(device.registry_profile)
+            except Exception:
+                # Keep registry/schema failures visible in the existing decoder path.
+                definition = None
+            if definition is not None:
+                assessment = assess_telegram(
+                    rorg=runtime_event.rorg, data=runtime_event.data,
+                    sender_id=runtime_event.sender_id, status=runtime_event.erp1_status,
+                    direction=runtime_event.direction, definition=definition,
+                )
+        if assessment is None and device is None:
+            assessment = assess_telegram(
+                rorg=runtime_event.rorg, data=runtime_event.data,
+                sender_id=runtime_event.sender_id, status=runtime_event.erp1_status,
+                direction=runtime_event.direction,
+                known_sender_ids=(d.device_id for d in registry.devices),
+            )
+
         if self._sqlite_store is not None:
-            self._sqlite_store.persist_event(runtime_event)
+            if assessment is not None:
+                self._sqlite_store.persist_diagnostic(runtime_event, assessment.to_payload())
+            if assessment is None or assessment.reason not in {
+                "invalid_rorg", "invalid_sender_id", "invalid_payload_hex", "invalid_status",
+            }:
+                self._sqlite_store.persist_event(runtime_event)
 
         payload = runtime_event_to_payload(runtime_event)
+        if assessment is not None:
+            payload["quality"] = assessment.to_payload()
+            stats = pipeline_statistics.statistics
+            stats[f"{assessment.classification}_telegrams"] += 1
+            pipeline_statistics.metrics_payload.setdefault("telegram_quality_reasons", {})
+            reasons = pipeline_statistics.metrics_payload["telegram_quality_reasons"]
+            reasons[assessment.reason] = reasons.get(assessment.reason, 0) + 1
 
         publish_live_event(payload)
 
@@ -273,7 +317,8 @@ class ReplayRuntimeRunner:
             statistics[f"{category}_telegrams_total"] += 1
 
         rorg = runtime_event.rorg or "unknown"
-        rorg_statistics[rorg]["telegrams_total"] += 1
+        if assessment is None or assessment.reason not in {"invalid_rorg", "unrecognized_rorg"}:
+            rorg_statistics[rorg]["telegrams_total"] += 1
 
         metrics_payload["last_sender_id"] = runtime_event.sender_id
         metrics_payload["last_rorg"] = rorg
@@ -297,9 +342,26 @@ class ReplayRuntimeRunner:
         sender_id = runtime_event.sender_id
         known_device = False
 
+        gateways = getattr(self._orchestrator, "gateways", None)
+        if gateways is not None:
+            gateway_ids = gateways.sender_ids()
+            for gateway_id in gateway_ids - self._gateway_sender_ids:
+                self._unknown_devices_registry.remove(gateway_id)
+                self._safe_publish_value(
+                    f"{self._base_topic}/busmonitor/unknown_devices/{gateway_id}",
+                    "", retain=True,
+                )
+            self._gateway_sender_ids = gateway_ids
+            for senders in unknown_rorg_senders.values():
+                senders.difference_update(gateway_ids)
+
         if sender_id:
             device = self._orchestrator.registry.get_by_device_id(sender_id)
-            known_device = device is not None
+            known_device = device is not None or sender_id.upper() in self._gateway_sender_ids
+            if gateways is not None:
+                record_gateway_rx(
+                    gateways, runtime_event, device.registry_profile if device else None,
+                )
 
         observed_at = runtime_event.timestamp_unix or time.time()
         active_cutoff = observed_at - self._active_device_window_seconds
@@ -311,15 +373,38 @@ class ReplayRuntimeRunner:
         for active_sender in expired_senders:
             del active_known_senders[active_sender]
 
-        if known_device and sender_id is not None:
+        if (assessment is not None and assessment.skip_decode
+                and (known_device or assessment.classification != "teach_in_candidate")):
+            # Already archived and exposed as raw evidence, never a device value.
+            pass
+        elif runtime_event.rorg == "D0" and known_device:
+            statistics["non_eep_telegrams"] += 1
+        elif known_device and sender_id is not None:
             active_known_senders[sender_id.strip().upper()] = observed_at
 
-            success = self._orchestrator.process_telegram(telegram)
-
-            if success:
-                statistics["decoded_telegrams"] += 1
+            gateway = self._orchestrator.gateway_for_sender(sender_id)
+            if gateway is not None and direction == "rx":
+                statistics["gateway_telegrams"] += 1
+            # Identification alone is not semantic decoding.
+            if gateway is not None:
+                from enocean_mqtt.devices.gateway_decode import decode_gateway_payload
+                channel = gateway.channel(sender_id)
+                profile = (channel.profile if channel else
+                           device.registry_profile if device else None)
+                outcome, _, _ = decode_gateway_payload(
+                    profile, telegram.payload_hex, telegram.eno_rorg, telegram.status,
+                )
+                if direction == "rx" and outcome == "decoded":
+                    if self._orchestrator.process_telegram(telegram):
+                        statistics["decoded_telegrams"] += 1
+                elif direction == "rx" and outcome in ("invalid_profile", "malformed_payload"):
+                    statistics["decode_errors"] += 1
             else:
-                statistics["decode_errors"] += 1
+                success = self._orchestrator.process_telegram(telegram)
+                if success:
+                    statistics["decoded_telegrams"] += 1
+                else:
+                    statistics["decode_errors"] += 1
         else:
             statistics["unknown_device_telegrams"] += 1
 
