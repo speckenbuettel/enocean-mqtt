@@ -3,7 +3,7 @@
 Public release history starts with 0.9.0.
 For support boundaries, see [Known Limitations](KNOWN_LIMITATIONS.md).
 
-## 0.10.0 — 2026-10-19
+## 0.10.0 – 2026-10-19
 
 - Add external gateway/channel management, passive command decoding and scoped
   metrics. See [gateway setup and limitations](userguide/gateways.md).
@@ -33,7 +33,7 @@ regression checks do not replace model-specific hardware or OBS acceptance.
 - Updated profiles: `A5-04-01`, `A5-04-04`, `A5-14-01`, `A5-14-02`, `A5-14-03`, `A5-14-04`, `A5-14-05`, `A5-14-06`, `A5-14-08`, `A5-14-09`, `A5-20-01`, `A5-20-06`, `D2-01-0E`, `eltako-fud70s`.
 <!-- profile-changes:end -->
 
-## 0.9.0 — 2026-10-14
+## 0.9.0 – 2026-10-14
 
 First public pre-1.0 version for user testing. Interfaces and configuration may
 still evolve on the way to 1.0.0.
