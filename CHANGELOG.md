@@ -29,7 +29,7 @@ regression checks do not replace model-specific hardware or OBS acceptance.
 <!-- profile-changes:start -->
 ### Profile changes
 
-- Added profiles: `A5-05-01`, `A5-06-01`, `A5-06-02`, `A5-06-03`, `A5-06-04`, `A5-06-05`, `A5-07-01`, `A5-07-02`, `A5-07-03`, `A5-08-01`, `A5-08-02`, `A5-08-03`, `A5-38-08`, `D2-01-00`.
+- Added profiles: `A5-05-01`, `A5-06-01`, `A5-06-02`, `A5-06-03`, `A5-06-04`, `A5-06-05`, `A5-07-01`, `A5-07-02`, `A5-07-03`, `A5-08-01`, `A5-08-02`, `A5-08-03`.
 - Updated profiles: `A5-04-01`, `A5-04-04`, `A5-14-01`, `A5-14-02`, `A5-14-03`, `A5-14-04`, `A5-14-05`, `A5-14-06`, `A5-14-08`, `A5-14-09`, `A5-20-01`, `A5-20-06`, `D2-01-0E`, `eltako-fud70s`.
 <!-- profile-changes:end -->
 
