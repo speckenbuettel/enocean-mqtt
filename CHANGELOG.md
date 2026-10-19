@@ -1,6 +1,6 @@
 # Changelog
 
-User-facing releases of enocean-mqtt. Public release history starts with 0.9.0.
+Public release history starts with 0.9.0.
 For support boundaries, see [Known Limitations](KNOWN_LIMITATIONS.md).
 
 ## 0.10.0 — 2026-10-19
