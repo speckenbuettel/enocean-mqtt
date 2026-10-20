@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import base64
 import json
 import os
 import subprocess
@@ -10,6 +11,9 @@ import tempfile
 import time
 import uuid
 from pathlib import Path
+
+# Synthetic fixture, deliberately not an operational credential.
+SMOKE_TOKEN = base64.b64encode(b"isolated-smoke-fixture-only-32bytes").decode("ascii")
 
 
 def run(*args: str, check: bool = True) -> str:
@@ -46,7 +50,7 @@ def main(image: str) -> None:
             secrets_dir.mkdir(mode=0o700)
             tokens = secrets_dir / "api-tokens.json"
             tokens.write_text(json.dumps({"tokens": [
-                {"name": "smoke", "token": "isolated-smoke-fixture-only", "roles": ["admin"]},
+                {"name": "smoke", "token": SMOKE_TOKEN, "roles": ["admin"]},
             ]}))
             tokens.chmod(0o600)
             before = config_file.read_bytes(), tokens.read_bytes()
@@ -60,7 +64,7 @@ def main(image: str) -> None:
             probe = (
                 "import json, urllib.request; "
                 "r=urllib.request.Request('http://127.0.0.1:8001/api/v1/gateway/version', "
-                "headers={'Authorization':'Bearer isolated-smoke-fixture-only'}); "
+                f"headers={{'Authorization':'Bearer {SMOKE_TOKEN}'}}); "
                 "v=json.load(urllib.request.urlopen(r,timeout=3)); "
                 "assert v['version']==open('VERSION').read().strip()"
             )
