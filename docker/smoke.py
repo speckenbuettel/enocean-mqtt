@@ -69,12 +69,13 @@ def main(image: str) -> None:
                 for _attempt in range(60):
                     result = subprocess.run(
                         ["docker", "exec", gateway, "python", "-c", probe],
-                        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                        capture_output=True, text=True,
                     )
                     if result.returncode == 0:
                         break
                     time.sleep(1)
                 else:
+                    print(result.stderr[-3000:], file=sys.stderr)
                     raise RuntimeError("Gateway API did not become ready")
                 run("exec", gateway, "python", "-m", "enocean_mqtt.container_runtime", "health")
                 run("exec", gateway, "python", "-c",
@@ -99,6 +100,14 @@ def main(image: str) -> None:
             assert marker.read_text() == "preserve"
             assert before == (config_file.read_bytes(), tokens.read_bytes())
             print("Container smoke passed: auth, profiles, read-only mode, SIGTERM, persistence")
+        except Exception:
+            print(run("logs", "--tail", "80", gateway, check=False), file=sys.stderr)
+            # Docker sends application logs to stderr; retain diagnostic evidence
+            # from this isolated fixture before disposing of its containers.
+            logs = subprocess.run(["docker", "logs", "--tail", "80", gateway],
+                                  capture_output=True, text=True)
+            print(logs.stderr, file=sys.stderr)
+            raise
         finally:
             run("rm", "-f", gateway, check=False)
             run("rm", "-f", broker, check=False)
