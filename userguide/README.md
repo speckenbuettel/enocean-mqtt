@@ -2,6 +2,9 @@
 
 This guide describes installation, configuration and operation of `enocean-mqtt` on Linux and Raspberry Pi.
 
+For Docker on Linux AMD64/ARM64, start with the [Docker installation guide](docker.md).
+The configuration and device chapters below also apply to container installations.
+
 > [!NOTE]
 > Starting with `0.9.0`, releases use SemVer (`MAJOR.MINOR.PATCH`). This pre-1.0
 > release is intended for user testing; interfaces may still change.

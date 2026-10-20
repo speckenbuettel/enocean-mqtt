@@ -67,6 +67,13 @@ marks and do not imply vendor endorsement.
 
 ## License boundaries
 
+Container images retain the installed Python packages' metadata and license
+files, the base image's operating-system notices, and the project's LICENSE,
+CREDITS and THIRD_PARTY_NOTICES under `/app`. The installed Python package
+inventory is available at `/app/python-packages.json`; it records the versions
+actually included in that image. Third-party licenses are not replaced by the
+project's own license.
+
 The project's own code is released under the [MIT License](LICENSE). This does not
 relicense third-party libraries, specifications, data or other third-party
 material. Their respective licenses and notices continue to apply.

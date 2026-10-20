@@ -113,7 +113,10 @@ not by itself imply lost radio reception, MQTT processing or stored telegrams.
   for ReDoc. Swagger/ReDoc may therefore not render in an offline browser even
   when the local API itself is reachable.
 - A native Linux installation, optionally run as a systemd service, is the current
-  deployment path. Docker distribution is future work, not a first-release requirement.
+  deployment path. Docker supports Linux AMD64/ARM64 through the
+  [container deployment guide](userguide/docker.md). Container acceptance checks
+  are hardware-free; USB hotplug may require recreation and Linux device permissions
+  remain host-specific. Docker Desktop USB passthrough is not part of that scope.
 - EnOcean Secure and remote management/commissioning are future work and are not
   part of the initial supported feature set.
 

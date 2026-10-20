@@ -169,7 +169,8 @@ API authentication and a post-installation smoke test. See the
 [device guide](userguide/devices.md) for registration, imports and virtual sensors,
 and the [acceptance checklist](userguide/acceptance-checklist.md) for practical tests.
 
-Container deployment (Docker) is planned but is not yet part of the validated runtime environment.
+For a container installation on Linux AMD64 or ARM64, see the
+[Docker guide](userguide/docker.md). Native installation and systemd remain supported.
 
 ## Current Status
 
@@ -195,7 +196,7 @@ Planned:
 
 - EnOcean secure
 - remote management & commissioning
-- Docker deployment
+- Docker USB hardware acceptance on additional hosts
 - TLS-capable MQTT support
 
 EEP and device coverage is being expanded continuously.

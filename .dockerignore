@@ -1,0 +1,26 @@
+# Deny by default. Never send operating configuration, credentials or source documents.
+**
+!Dockerfile
+!.dockerignore
+!pyproject.toml
+!setup.py
+!MANIFEST.in
+!VERSION
+!README.md
+!LICENSE
+!CREDITS.md
+!THIRD_PARTY_NOTICES.md
+!enocean-mqtt.png
+!src/
+!src/enocean_mqtt/
+!src/enocean_mqtt/**
+src/enocean_mqtt/**/__pycache__
+src/enocean_mqtt/**/*.pyc
+src/enocean_mqtt/eep/generator/**
+!eep/
+!eep/registry/
+!eep/registry/*.json
+!eep/semantic-aliases.json
+!config/
+!config/config.example.json
+!config/device-controller-mappings.json

@@ -94,7 +94,9 @@ class ReplayRuntimeRunner:
             )
             self._thread.start()
 
-    def run_sync(self, session: ReplaySession) -> None:
+    def run_sync(
+        self, session: ReplaySession, *, stop_requested: threading.Event | None = None,
+    ) -> None:
         """Run replay session synchronously."""
 
         with self._lock:
@@ -106,7 +108,7 @@ class ReplayRuntimeRunner:
                 reason="startup_replay_session",
             )
 
-        self._run_session(session, raise_errors=True)
+        self._run_session(session, raise_errors=True, stop_requested=stop_requested)
 
     def stop(self, reason: str) -> None:
         """Stop active replay session."""
@@ -474,7 +476,10 @@ class ReplayRuntimeRunner:
             with self._lock:
                 self._thread = None
 
-    def _run_session(self, session: ReplaySession, raise_errors: bool) -> None:
+    def _run_session(
+        self, session: ReplaySession, raise_errors: bool,
+        stop_requested: threading.Event | None = None,
+    ) -> None:
         reader = self._replay_controller.create_reader(session)
         pipeline_statistics = RuntimePipelineStatistics()
         last_health_publish_monotonic = 0.0
@@ -482,6 +487,9 @@ class ReplayRuntimeRunner:
 
         try:
             for telegram in reader.iter_telegrams(limit=session.limit):
+                if stop_requested is not None and stop_requested.is_set():
+                    completed_normally = False
+                    break
                 self._handle_reconnect_if_needed()
 
                 if self._runtime_state_manager.runtime_mode != "replay":
@@ -507,7 +515,12 @@ class ReplayRuntimeRunner:
 
                     last_health_publish_monotonic = now_monotonic
 
-                time.sleep(session.interval_seconds)
+                if stop_requested is not None:
+                    if stop_requested.wait(session.interval_seconds):
+                        completed_normally = False
+                        break
+                else:
+                    time.sleep(session.interval_seconds)
 
         except Exception:
             completed_normally = False

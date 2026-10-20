@@ -1,0 +1,24 @@
+services:
+  enocean-mqtt:
+    image: senecaiii/enocean-mqtt:${ENOCEAN_MQTT_TAG:-0.10.0}
+    user: "${LOCAL_UID:-1000}:${LOCAL_GID:-1000}"
+    restart: unless-stopped
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    tmpfs:
+      - /tmp:rw,nosuid,nodev,size=64m,mode=1777
+    ports:
+      - "${WEB_BIND_ADDRESS:-127.0.0.1}:8001:8001"
+    volumes:
+      - ./config:/app/config
+      - ./data:/app/data
+      - ./export:/app/export
+    stop_grace_period: 30s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

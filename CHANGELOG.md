@@ -1,9 +1,14 @@
 # Changelog
 
-Public release history starts with 0.9.0.
+Release history of enocean-mqtt.
 For support boundaries, see [Known Limitations](KNOWN_LIMITATIONS.md).
 
-## 0.10.0 – 2026-10-19
+## 0.10.0 (2026-10-19)
+
+Docker packaging added on 2026-10-20: Linux AMD64/ARM64 images, Compose setup,
+persistent configuration/data, non-root USB passthrough and orderly SIGTERM
+shutdown. See the [Docker guide](userguide/docker.md). Native installation remains
+supported. Container acceptance tests are hardware-free.
 
 - Add external gateway/channel management, passive command decoding and scoped
   metrics. See [gateway setup and limitations](userguide/gateways.md).

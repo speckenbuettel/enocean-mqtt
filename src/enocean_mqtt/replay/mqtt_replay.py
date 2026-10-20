@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import threading
 import time
 from pathlib import Path
 from typing import Any
@@ -16,7 +17,7 @@ from enocean_mqtt.gateway.mqtt_inject import (
     parse_injected_telegram,
 )
 from enocean_mqtt.gateway.orchestrator import GatewayOrchestrator
-from enocean_mqtt.gateway.process_control import restart_current_process
+from enocean_mqtt.gateway.process_control import restart_current_process, shutdown_signals
 from enocean_mqtt.gateway.publisher import DevicePublisher
 from enocean_mqtt.gateway.runtime_commands import RuntimeCommandHandler
 from enocean_mqtt.gateway.runtime_inventory_commands import RuntimeInventoryCommands
@@ -82,7 +83,10 @@ def main() -> None:
     )
     notifications.start()
     try:
-        restart_requested = _run_gateway(runtime_config, replay_session, notifications)
+        with shutdown_signals() as stop_requested:
+            restart_requested = _run_gateway(
+                runtime_config, replay_session, notifications, stop_requested=stop_requested,
+            )
     except Exception:
         notifications.gateway_error("gateway", "Runtime failed. See the gateway log for details.")
         raise
@@ -97,7 +101,10 @@ def _run_gateway(
     runtime_config: RuntimeConfig,
     replay_session: ReplaySession | None,
     notifications: NotificationService,
+    *,
+    stop_requested: threading.Event | None = None,
 ) -> bool:
+    stop_requested = stop_requested if stop_requested is not None else threading.Event()
     replay_controller = ReplayController()
     mqtt_config = runtime_config.mqtt
     runtime_paths = runtime_config.paths
@@ -541,12 +548,11 @@ def _run_gateway(
     notifications.gateway_started()
     try:
         if replay_session is not None:
-            replay_runtime_runner.run_sync(replay_session)
+            replay_runtime_runner.run_sync(replay_session, stop_requested=stop_requested)
         else:
             last_health_publish_monotonic = time.monotonic()
 
-            while not runtime_commands.shutdown_requested:
-                time.sleep(1.0)
+            while not runtime_commands.shutdown_requested and not stop_requested.wait(1.0):
 
                 now_monotonic = time.monotonic()
 
@@ -580,7 +586,7 @@ def _run_gateway(
 
         mqtt_client.disconnect()
 
-    return runtime_commands.restart_requested
+    return runtime_commands.restart_requested and not stop_requested.is_set()
 
 
 if __name__ == "__main__":

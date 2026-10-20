@@ -1,0 +1,7 @@
+# Linux USB override. Select the real host adapter via its stable by-id path.
+services:
+  enocean-mqtt:
+    devices:
+      - "${ENOCEAN_USB_DEVICE:?Set ENOCEAN_USB_DEVICE to the adapter by-id path}:/dev/enocean:rwm"
+    group_add:
+      - "${ENOCEAN_USB_GID:?Set ENOCEAN_USB_GID to the adapter numeric group ID}"

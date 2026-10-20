@@ -1,0 +1,131 @@
+name: Docker image
+
+on:
+  push:
+    tags: ['v*']
+  pull_request:
+    paths:
+      - Dockerfile
+      - .dockerignore
+      - docker/**
+      - src/**
+      - eep/registry/**
+      - pyproject.toml
+      - VERSION
+      - .github/workflows/docker.yml
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish tested AMD64 and ARM64 images to Docker Hub
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docker-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build-test:
+    if: github.repository == 'speckenbuettel/enocean-mqtt'
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: amd64
+            runner: ubuntu-24.04
+          - arch: arm64
+            runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: docker/setup-buildx-action@v3
+      - name: Read canonical version
+        id: version
+        run: echo "value=$(tr -d '\r\n' < VERSION)" >> "$GITHUB_OUTPUT"
+      - name: Build native image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          platforms: linux/${{ matrix.arch }}
+          load: true
+          push: false
+          tags: enocean-mqtt:test
+          provenance: false
+          labels: |
+            org.opencontainers.image.source=https://github.com/speckenbuettel/enocean-mqtt
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.version=${{ steps.version.outputs.value }}
+      - name: Verify platform and Compose
+        env:
+          ARCH: ${{ matrix.arch }}
+        run: |
+          test "$(docker inspect enocean-mqtt:test --format '{{.Architecture}}')" = "$ARCH"
+          docker compose config --quiet
+      - name: Container acceptance
+        run: python3 docker/smoke.py enocean-mqtt:test
+      - name: Save tested image
+        run: docker save enocean-mqtt:test --output /tmp/image.tar
+      - uses: actions/upload-artifact@v4
+        with:
+          name: image-${{ matrix.arch }}
+          path: /tmp/image.tar
+          retention-days: 2
+
+  publish:
+    needs: build-test
+    if: >-
+      github.repository == 'speckenbuettel/enocean-mqtt' &&
+      (startsWith(github.ref, 'refs/tags/v') ||
+      (github.event_name == 'workflow_dispatch' && inputs.publish &&
+      github.ref == 'refs/heads/main'))
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Check release and credentials
+        id: release
+        env:
+          HUB_USER: ${{ secrets.DOCKERHUB_USERNAME }}
+          HUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+          REF_TYPE: ${{ github.ref_type }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          test "$HUB_USER" = senecaiii && test -n "$HUB_TOKEN" || { echo 'Configure Docker Hub Action secrets'; exit 1; }
+          version="$(tr -d '\r\n' < VERSION)"
+          [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          if [ "$REF_TYPE" = tag ]; then test "$REF_NAME" = "v$version"; fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: image-*
+          path: /tmp/tested-images
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Publish exactly the tested images
+        env:
+          VERSION: ${{ steps.release.outputs.version }}
+          COMMIT: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          for arch in amd64 arm64; do
+            docker load --input "/tmp/tested-images/image-$arch/image.tar"
+            test "$(docker inspect enocean-mqtt:test --format '{{.Architecture}}')" = "$arch"
+            image="senecaiii/enocean-mqtt:sha-$COMMIT-$arch"
+            docker tag enocean-mqtt:test "$image"
+            docker push "$image"
+          done
+          docker buildx imagetools create \
+            --tag "senecaiii/enocean-mqtt:$VERSION" \
+            --tag "senecaiii/enocean-mqtt:latest" \
+            "senecaiii/enocean-mqtt:sha-$COMMIT-amd64" \
+            "senecaiii/enocean-mqtt:sha-$COMMIT-arm64"
+          docker buildx imagetools inspect "senecaiii/enocean-mqtt:$VERSION"
